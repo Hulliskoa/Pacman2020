@@ -1,0 +1,24 @@
+﻿  Entity.cpp
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:  syntax error: missing ';' before 'std::vector<int,std::allocator<_Ty>>'
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:         with
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:         [
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:             _Ty=int
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:         ]
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(11,22): error C3646:  'animations': unknown override specifier
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(11,22): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(12,29): error C3646:  'controller': unknown override specifier
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(12,29): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+  GameManager.cpp
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(15,63): error C2061:  syntax error: identifier 'String'
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:  syntax error: missing ';' before 'std::vector<int,std::allocator<_Ty>>'
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:         with
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:         [
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:             _Ty=int
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(9,7): error C2143:         ]
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(11,22): error C3646:  'animations': unknown override specifier
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(11,22): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(12,29): error C3646:  'controller': unknown override specifier
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(12,29): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+  Pacman2020.cpp
+  Generating Code...
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\Entity.h(15,63): error C2061:  syntax error: identifier 'String'
