@@ -1,15 +1,22 @@
 #pragma once
 
 #include <vector>
-#include "Entity.h"
+
+
+//https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
+
+
 
 class GameManager
-{	
+{
 
-	std::vector<Entity> entities;
-	void startGame() {}
-	void exitGame() {}
-	void pauseGame() {}
+
+	GameManager();
+
+	void run();
+	void startGame();
+	void exitGame();
+	void pauseGame();
 
 };
 
