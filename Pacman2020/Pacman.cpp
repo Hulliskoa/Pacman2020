@@ -1,14 +1,12 @@
 #include "Pacman.h"
 
 
-Pacman::Pacman()
-{
-	
-}
 
 
-void Pacman::update(SDL_Event event)
+void Pacman::update(SDL_Window* window)
 {
-	m_input.update(event);
+	m_input.update(window, velocity);
 }
+
+Pacman::Pacman(){}
 

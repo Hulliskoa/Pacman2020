@@ -162,6 +162,7 @@
     <ClInclude Include="Pacman.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
