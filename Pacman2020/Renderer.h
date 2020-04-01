@@ -2,6 +2,7 @@
 
 #include <SDL_image.h>
 #include <SDL.h>
+#include "Sprite.h"
 
 
 class Renderer
@@ -10,6 +11,7 @@ class Renderer
 
 public:
 	Renderer(SDL_Window* w);
-	void renderSprite(int x, int y, Sprite source);
+	
+	void renderMap();
 };
 
