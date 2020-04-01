@@ -9,7 +9,7 @@ GameManager::GameManager(SDL_Window* window) : w(window)
 
 void GameManager::run()
 {
-	while (!quit) {
+	while (true) {
 		
 		pacman.update(w);
 		

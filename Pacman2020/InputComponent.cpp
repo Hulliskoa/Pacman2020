@@ -50,14 +50,7 @@ void InputComponent::update(SDL_Window* window, int speedXY[2])
 	}
 }
 
-int* InputComponent::getSpeed()
-{
-	return speedXY;
-}
-
-InputComponent::InputComponent()
-{
-}
+InputComponent::InputComponent(){}
 
 
 

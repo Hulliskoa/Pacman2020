@@ -4,12 +4,17 @@
 #include "Pacman.h"
 
 
-
 //https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
+
+
+
+
+
 
 
 class GameManager
 {
+
 private:
 	bool quit = false;
 	SDL_Window* w;
