@@ -8,7 +8,7 @@ class InputComponent
 {
 private:
 	SDL_Event event{};
-	int speedXY[2];
+	constexpr int speed = 1;
 
 public:
 	void update(SDL_Window* window, int speedXY[2]);

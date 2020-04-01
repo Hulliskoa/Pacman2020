@@ -3,12 +3,12 @@
 
 
 
-void Pacman::update()
+void Pacman::update(SDL_Window* window)
 {
 	m_input.update(window, velocity);
 }
 
-Pacman::Pacman(SDL_Window* w) : window(w) {
+Pacman::Pacman() {
 	velocity[0] = {};
 }
 

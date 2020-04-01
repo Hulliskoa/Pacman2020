@@ -21,24 +21,24 @@ void InputComponent::update(SDL_Window* window, int speedXY[2])
 			{
 			case SDLK_UP:
 				speedXY[0] = 0;
-				speedXY[1] = 1;
+				speedXY[1] = acceleration;
 				std::cout << "UP" << std::endl;
 				break;
 
 			case SDLK_DOWN:
 				speedXY[0] = 0;
-				speedXY[1] = -1;
+				speedXY[1] = -acceleration;
 				std::cout << "DOWN" << std::endl;
 				break;
 
 			case SDLK_LEFT:
-				speedXY[0] = -1;
+				speedXY[0] = -acceleration;
 				speedXY[1] = 0;
 				std::cout << "LEFT" << std::endl;
 				break;
 
 			case SDLK_RIGHT:
-				speedXY[0] = 1;
+				speedXY[0] = acceleration;
 				speedXY[1] = 0;
 				std::cout << "RIGHT" << std::endl;
 				break;

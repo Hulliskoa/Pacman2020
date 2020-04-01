@@ -1,11 +1,9 @@
 #include "GameManager.h"
 
 
-GameManager::GameManager(SDL_Window* window) : w(window)
-{
-	pacman = Pacman();
-
-}
+GameManager::GameManager(SDL_Window* window) : 
+	w(window), 
+	pacman(Pacman()){}
 
 void GameManager::run()
 {

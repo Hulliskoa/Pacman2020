@@ -18,6 +18,7 @@ class GameManager
 private:
 	bool quit = false;
 	SDL_Window* w;
+	//Renderer m_render;
 	SDL_Event event{};
 	Pacman pacman;
 

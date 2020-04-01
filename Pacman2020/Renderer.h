@@ -10,6 +10,6 @@ class Renderer
 
 public:
 	Renderer(SDL_Window* w);
-	void renderImage()
+	void renderSprite(int x, int y, Sprite source);
 };
 
