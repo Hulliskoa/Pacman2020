@@ -155,13 +155,13 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Pacman2020.cpp" />
-    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pacman.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

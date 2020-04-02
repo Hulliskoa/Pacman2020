@@ -1,8 +1,6 @@
 #include "Pacman.h"
 
 
-
-
 void Pacman::update(SDL_Window* window)
 {
 	m_input.update(window, velocity);
@@ -28,10 +26,10 @@ void Pacman::update(SDL_Window* window)
 Pacman::Pacman(SDL_Renderer* renderer) {
 	velocity[0] = {};
 
-	leftAnimation = Animation(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	rightAnimation = Animation(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	upAnimation = Animation(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	downAnimation = Animation(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
+	leftAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
+	rightAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
+	upAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
+	downAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
 
 
 	if (!leftAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
@@ -57,20 +55,24 @@ Pacman::Pacman(SDL_Renderer* renderer) {
 
 	rightAnimation.addRect(457, 1, 9, 14);
 	rightAnimation.addRect(473, 1, 12, 14);
-	rightAnimation.addRect(489, 1, 13, 14);
+	rightAnimation.addRect(489, 1, 13, 13);
 
-	leftAnimation.addRect(459, 17, 13, 14);
-	leftAnimation.addRect(474, 17, 13, 14);
-	leftAnimation.addRect(489, 1, 13, 14);
+	leftAnimation.addRect(459, 17, 13, 13);
+	leftAnimation.addRect(474, 17, 13, 13);
+	leftAnimation.addRect(489, 1, 13, 13);
 
-	upAnimation.addRect(457, 34, 13, 12);
-	upAnimation.addRect(473, 34, 13, 12);
-	upAnimation.addRect(489, 1, 13, 14);
-	
-	downAnimation.addRect(457, 49, 13, 12);
-	downAnimation.addRect(473, 49, 13, 12);
-	downAnimation.addRect(489, 1, 13, 14);
+	upAnimation.addRect(457, 33, 13, 13);
+	upAnimation.addRect(473, 33, 13, 13);
+	upAnimation.addRect(489, 1, 13, 13);
 
+	downAnimation.addRect(457, 48, 13, 13);
+	downAnimation.addRect(473, 48, 13, 13);
+	downAnimation.addRect(489, 1, 13, 13);
+
+}
+
+Pacman::~Pacman()
+{
 }
 
 

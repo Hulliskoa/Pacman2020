@@ -1,5 +1,6 @@
-#include "AnimationComponent.h"
+#include "Animation.h"
 
+//Source: LazyFoo tutorial - http://lazyfoo.net/tutorials/SDL/11_clip_rendering_and_sprite_sheets/index.php
 
 AnimationComponent::AnimationComponent() {}
 
@@ -12,24 +13,17 @@ AnimationComponent::~AnimationComponent()
 
 bool AnimationComponent::loadFromFile(std::string path)
 {
-	//Get rid of preexisting texture
 	free();
-
-	//The final texture
 	SDL_Texture* newTexture = NULL;
-
-	//Load image at specified path
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+
 	if (loadedSurface == NULL)
 	{
 		std::cout << "Unable to load image " << path.c_str() << "! SDL_image Error: " << IMG_GetError() << std::endl;
 	}
 	else
 	{
-		//Color key image
 		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
-
-		//Create texture from surface pixels
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == NULL)
 		{
@@ -37,16 +31,13 @@ bool AnimationComponent::loadFromFile(std::string path)
 		}
 		else
 		{
-			//Get image dimensions
-			mWidth = loadedSurface->w;
-			mHeight = loadedSurface->h;
+			m_width = loadedSurface->w;
+			m_height = loadedSurface->h;
 		}
 
-		//Get rid of old loaded surface
 		SDL_FreeSurface(loadedSurface);
 	}
 
-	//Return success
 	mTexture = newTexture;
 	return mTexture != NULL;
 }
@@ -54,7 +45,7 @@ bool AnimationComponent::loadFromFile(std::string path)
 
 
 /**
-	Adds SDL_Rect with coordinates and dimensions of target sprite to the animation object
+	Adds SDL_Rect with coordinates and dimensions of target sprite to the vector containing all sprites for the animation
 */
 void AnimationComponent::addRect(int x, int y, int w, int h)
 {
@@ -68,30 +59,29 @@ void AnimationComponent::addRect(int x, int y, int w, int h)
 
 void AnimationComponent::free()
 {
-	//Free texture if it exists
 	if (mTexture != NULL)
 	{
 		SDL_DestroyTexture(mTexture);
 		mTexture = NULL;
-		mWidth = 0;
-		mHeight = 0;
+		m_width = 0;
+		m_height = 0;
 	}
 }
 
 int AnimationComponent::getWidth()
 {
-	return mWidth;
+	return m_width;
 }
 
 int AnimationComponent::getHeight()
 {
-	return mHeight;;
+	return m_height;;
 }
 
 void AnimationComponent::render(int x, int y)
 {
 	SDL_Rect clip = clips[frame];
-	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+	SDL_Rect renderQuad = { x, y, m_width, m_height };
 
 	if (&clip != NULL)
 	{

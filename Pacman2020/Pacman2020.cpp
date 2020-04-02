@@ -11,14 +11,11 @@ const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char* argv[])
 {
-	// Legge dette inn i funksjoner
+	//TODO: Legge dette inn i funksjoner
 
-	//The window we'll be rendering to
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
-	
 
-	//The surface contained by the window
 	SDL_Surface* screenSurface = nullptr;
 
 	//Initialize SDL
@@ -31,16 +28,16 @@ int main(int argc, char* argv[])
 		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (window == NULL)
 		{
-			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+			std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;
 
 		}
 		else
 		{
-		
+
 			renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 			if (renderer == NULL)
 			{
-				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+				std::cout << "Renderer could not be created! SDL Error: " << SDL_GetError() << std::endl;
 
 			}
 			else
@@ -52,7 +49,7 @@ int main(int argc, char* argv[])
 				int imgFlags = IMG_INIT_PNG;
 				if (!(IMG_Init(imgFlags) & imgFlags))
 				{
-					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+					std::cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << std::endl;
 
 				}
 			}
