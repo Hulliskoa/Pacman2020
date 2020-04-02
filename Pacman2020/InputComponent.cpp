@@ -21,13 +21,13 @@ void InputComponent::update(SDL_Window* window, int speedXY[2])
 			{
 			case SDLK_UP:
 				speedXY[0] = 0;
-				speedXY[1] = speed;
+				speedXY[1] = -speed;
 				std::cout << "UP" << std::endl;
 				break;
 
 			case SDLK_DOWN:
 				speedXY[0] = 0;
-				speedXY[1] = -speed;
+				speedXY[1] = speed;
 				std::cout << "DOWN" << std::endl;
 				break;
 

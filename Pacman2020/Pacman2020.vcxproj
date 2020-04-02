@@ -151,21 +151,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Pacman.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Pacman2020.cpp" />
+    <ClCompile Include="Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Pacman.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Pacman20201.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
