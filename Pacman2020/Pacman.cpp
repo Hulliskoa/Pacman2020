@@ -3,11 +3,20 @@
 
 void Pacman::update(SDL_Window* window)
 {
+
 	m_input.update(window, velocity);
+
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
 
+	//collision check
+	//Spørre hva pacman traff?
+	//
+	
 
+
+	//Checks the direction pacman is traveling
+	
 	if (velocity[0] > 0) {
 		rightAnimation.render(coordinates[0], coordinates[1]);
 	}
@@ -26,10 +35,13 @@ void Pacman::update(SDL_Window* window)
 Pacman::Pacman(SDL_Renderer* renderer) {
 	velocity[0] = {};
 
+	//TODO: laste opp spritesheet en gang
+	
 	leftAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
 	rightAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
 	upAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
 	downAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
+	startAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 1);
 
 
 	if (!leftAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
@@ -68,7 +80,10 @@ Pacman::Pacman(SDL_Renderer* renderer) {
 	downAnimation.addRect(457, 48, 13, 13);
 	downAnimation.addRect(473, 48, 13, 13);
 	downAnimation.addRect(489, 1, 13, 13);
+	
+	startAnimation.addRect(474, 17, 13, 13);
 
+	
 }
 
 Pacman::~Pacman()

@@ -24,8 +24,8 @@ public:
 private:
 	int frame = 0;
 	int numberOfFrames = 0;
-	std::vector<SDL_Rect> clips;
-	SDL_Texture* mTexture = nullptr;
+	std::vector<SDL_Rect> sprites;
+	SDL_Texture* m_texture = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	int m_width = 0;
 	int m_height = 0;

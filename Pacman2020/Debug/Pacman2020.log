@@ -1,4 +1,6 @@
-﻿  GameManager.cpp
+﻿  CollisionManager.cpp
+  Entity.cpp
+  GameManager.cpp
   Pacman.cpp
   Pacman2020.cpp
   Generating Code...

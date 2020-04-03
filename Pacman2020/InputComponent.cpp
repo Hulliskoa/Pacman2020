@@ -16,6 +16,7 @@ void InputComponent::update(SDL_Window* window, int speedXY[2])
 		//User presses a key
 		if (event.type == SDL_KEYDOWN)
 		{
+			
 			//Select surfaces based on key press
 			switch (event.key.keysym.sym)
 			{

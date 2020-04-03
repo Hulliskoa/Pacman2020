@@ -1,4 +1,4 @@
-#include "Animation.h"
+#include "AnimationComponent.h"
 
 //Source: LazyFoo tutorial - http://lazyfoo.net/tutorials/SDL/11_clip_rendering_and_sprite_sheets/index.php
 
@@ -38,8 +38,8 @@ bool AnimationComponent::loadFromFile(std::string path)
 		SDL_FreeSurface(loadedSurface);
 	}
 
-	mTexture = newTexture;
-	return mTexture != NULL;
+	m_texture = newTexture;
+	return m_texture != NULL;
 }
 
 
@@ -54,15 +54,15 @@ void AnimationComponent::addRect(int x, int y, int w, int h)
 	clip.h = h;
 	clip.x = x;
 	clip.y = y;
-	clips.push_back(clip);
+	sprites.push_back(clip);
 }
 
 void AnimationComponent::free()
 {
-	if (mTexture != NULL)
+	if (m_texture != NULL)
 	{
-		SDL_DestroyTexture(mTexture);
-		mTexture = NULL;
+		SDL_DestroyTexture(m_texture);
+		m_texture = NULL;
 		m_width = 0;
 		m_height = 0;
 	}
@@ -80,7 +80,7 @@ int AnimationComponent::getHeight()
 
 void AnimationComponent::render(int x, int y)
 {
-	SDL_Rect clip = clips[frame];
+	SDL_Rect clip = sprites[frame];
 	SDL_Rect renderQuad = { x, y, m_width, m_height };
 
 	if (&clip != NULL)
@@ -88,7 +88,7 @@ void AnimationComponent::render(int x, int y)
 		renderQuad.w = clip.w;
 		renderQuad.h = clip.h;
 	}
-	SDL_RenderCopy(renderer, mTexture, &clip, &renderQuad);
+	SDL_RenderCopy(renderer, m_texture, &clip, &renderQuad);
 
 	frame++;
 
