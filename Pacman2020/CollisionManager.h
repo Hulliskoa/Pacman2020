@@ -6,9 +6,12 @@
 class CollisionManager
 {
 private:
-	std::vector<Entity> entities;
+	std::vector<std::shared_ptr<Entity>> entities;
 
 public:
-	void collisionCheck(Entity pacman);
+	void collisionCheck(Entity &entityToCheck);
+	void addEntity(Entity &entity);
+	CollisionManager();
+	~CollisionManager();
 };
 

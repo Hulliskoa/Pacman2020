@@ -3,6 +3,7 @@
 #include "InputComponent.h"
 #include "SDL.h"
 
+
 enum entityType {
 	PACMAN,
 	GHOST,
@@ -19,7 +20,7 @@ class Entity
 {
 
 private:
-	InputComponent m_input;
+	int numFrames = 0;
 	
 	entityType entityT = NOT_DEFINED;
 public:
@@ -37,7 +38,8 @@ public:
 	virtual entityType getEntityType();
 	virtual void update(SDL_Window* window);
 	virtual int* getNewLocation();
-	Entity(SDL_Renderer* renderer, int x, int y);
+
+	Entity(SDL_Renderer* renderer, int x, int y, int numFrames);
 	Entity();
 
 };

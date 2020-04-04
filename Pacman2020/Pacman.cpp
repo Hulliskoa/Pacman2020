@@ -29,10 +29,10 @@ void Pacman::update(SDL_Window* window)
 
 }
 
-Pacman::Pacman(SDL_Renderer* renderer) : Entity(renderer, 0, 0) {
+Pacman::Pacman(SDL_Renderer* renderer) : Entity(renderer, 0, 0, 3) {
 
 
-	//TODO: laste opp spritesheet en gang
+	setEntityType(PACMAN);
 
 
 

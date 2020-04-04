@@ -2,6 +2,8 @@
 
 #include <vector>
 #include "Pacman.h"
+#include "Shadow.h"
+#include "CollisionManager.h"
 
 
 
@@ -11,7 +13,7 @@ class GameManager
 private:
 
 	//TODO:: Move to map object
-	int currentpos[2] = {0,0};
+	int currentpos[2] = { 0,0 };
 	int mapTest[31][28] = {
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -44,17 +46,18 @@ private:
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	
+
 	};
 	bool quit = false;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	SDL_Event* event{};
-
+	CollisionManager collisionManager;
+	Shadow shadow;
 	Pacman pacman;
 
 public:
-	GameManager(SDL_Window* window, SDL_Renderer * renderer);
+	GameManager(SDL_Window* window, SDL_Renderer* renderer);
 
 	void run();
 	void startGame();

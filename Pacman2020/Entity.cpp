@@ -29,12 +29,14 @@ int* Entity::getNewLocation() {
 
 
 
-Entity::Entity(SDL_Renderer* renderer, int x, int y): velocity{0,0}, coordinates{x,y}
+Entity::Entity(SDL_Renderer* renderer, int x, int y, int numFrames): velocity{0,0}, coordinates{x,y}, numFrames(numFrames)
 {
-	leftAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	rightAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	upAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	downAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
+	//TODO: laste opp spritesheet en gang
+
+	leftAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
+	rightAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
+	upAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
+	downAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
 	startAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 1);
 
 

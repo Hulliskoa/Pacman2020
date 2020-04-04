@@ -15,7 +15,6 @@ private:
 public:
 	
 	void update(SDL_Window* window) override;
-
 	Pacman(SDL_Renderer* renderer);
 	~Pacman();
 
