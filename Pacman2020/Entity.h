@@ -21,8 +21,8 @@ class Entity
 
 private:
 	int numFrames = 0;
-	
 	entityType entityT = NOT_DEFINED;
+
 public:
 	int velocity[2];//current direction pacman is travelling element 0 = x plane and element 1 = y plane.
 	int coordinates[2];//current coordinates to be used in rendering and collision
@@ -36,7 +36,7 @@ public:
 	virtual void setCoordinates(int* newCoordinates);
 	virtual void setEntityType(entityType type);
 	virtual entityType getEntityType();
-	virtual void update(SDL_Window* window);
+	virtual void update();
 	virtual int* getNewLocation();
 
 	Entity(SDL_Renderer* renderer, int x, int y, int numFrames);

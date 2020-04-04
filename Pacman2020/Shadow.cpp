@@ -2,6 +2,8 @@
 
 void Shadow::update()
 {
+
+	//midlertidig for å sjekke collision
 	if (animationCounter < 8) {
 		rightAnimation.render(coordinates[0] += 8, coordinates[1]);
 	}

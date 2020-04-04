@@ -11,11 +11,11 @@ class Pacman : public Entity
 {
 private:
 	InputComponent m_input;
-
+	SDL_Window * window;
 public:
 	
-	void update(SDL_Window* window) override;
-	Pacman(SDL_Renderer* renderer);
+	void update();
+	Pacman(SDL_Renderer* renderer, SDL_Window * w);
 	~Pacman();
 
 };

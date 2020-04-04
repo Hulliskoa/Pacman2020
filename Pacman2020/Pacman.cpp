@@ -1,7 +1,7 @@
 #include "Pacman.h"
 
 
-void Pacman::update(SDL_Window* window)
+void Pacman::update()
 {
 
 	m_input.update(window, velocity);
@@ -29,7 +29,7 @@ void Pacman::update(SDL_Window* window)
 
 }
 
-Pacman::Pacman(SDL_Renderer* renderer) : Entity(renderer, 0, 0, 3) {
+Pacman::Pacman(SDL_Renderer* renderer, SDL_Window * w) : Entity(renderer, 100, 100, 3), window(w) {
 
 
 	setEntityType(PACMAN);

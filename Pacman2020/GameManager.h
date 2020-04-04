@@ -50,11 +50,11 @@ private:
 	};
 	bool quit = false;
 	SDL_Window* window;
-	SDL_Renderer* renderer;
+	SDL_Renderer* gameRenderer;
 	SDL_Event* event{};
 	CollisionManager collisionManager;
-	Shadow shadow;
-	Pacman pacman;
+	std::shared_ptr<Shadow> shadow;
+	std::shared_ptr<Pacman> pacman;
 
 public:
 	GameManager(SDL_Window* window, SDL_Renderer* renderer);

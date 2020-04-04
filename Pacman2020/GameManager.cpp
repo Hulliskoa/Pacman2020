@@ -3,15 +3,16 @@
 
 GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	window(window),
-	renderer(renderer),
-	pacman(Pacman(renderer)),
-	shadow(Shadow(renderer))
+	gameRenderer(renderer)
 {
+	
 	collisionManager = CollisionManager();
-
+	shadow = std::make_shared<Shadow>(gameRenderer);
+	pacman = std::make_shared<Pacman>(gameRenderer, window);
 	collisionManager.addEntity(shadow);
-
+	collisionManager.addEntity(pacman);
 }
+
 
 
 
@@ -19,21 +20,16 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 void GameManager::run()
 {
 
-
-
-
 	while (true) {
-		SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-		SDL_RenderClear(renderer);
-
-
+		SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
+		SDL_RenderClear(gameRenderer);
 
 		//entity update methods
-		shadow.update();
-		pacman.update(window);
+		shadow->update();
+		pacman->update();
 		collisionManager.collisionCheck(pacman);
 
-		SDL_RenderPresent(renderer);
+		SDL_RenderPresent(gameRenderer);
 		SDL_Delay(100);
 	}
 

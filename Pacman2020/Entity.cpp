@@ -21,7 +21,8 @@ entityType Entity::getEntityType()
 	return entityT;
 }
 
-void Entity::update(SDL_Window* window) {}
+void Entity::update(){}
+
 
 int* Entity::getNewLocation() {
 	return nullptr;
