@@ -12,11 +12,8 @@ void Pacman::update(SDL_Window* window)
 	//collision check
 	//Spørre hva pacman traff?
 	//
-	
-
-
 	//Checks the direction pacman is traveling
-	
+
 	if (velocity[0] > 0) {
 		rightAnimation.render(coordinates[0], coordinates[1]);
 	}
@@ -32,38 +29,12 @@ void Pacman::update(SDL_Window* window)
 
 }
 
-Pacman::Pacman(SDL_Renderer* renderer) {
-	velocity[0] = {};
+Pacman::Pacman(SDL_Renderer* renderer) : Entity(renderer, 0, 0) {
+
 
 	//TODO: laste opp spritesheet en gang
-	
-	leftAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	rightAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	upAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	downAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 3);
-	startAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 1);
 
 
-	if (!leftAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
-	{
-		printf("Failed to load sprite sheet texture!\n");
-
-	}
-	if (!rightAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
-	{
-		printf("Failed to load sprite sheet texture!\n");
-
-	}
-	if (!upAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
-	{
-		printf("Failed to load sprite sheet texture!\n");
-
-	}
-	if (!downAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
-	{
-		printf("Failed to load sprite sheet texture!\n");
-
-	}
 
 	rightAnimation.addRect(457, 1, 9, 14);
 	rightAnimation.addRect(473, 1, 12, 14);
@@ -80,10 +51,10 @@ Pacman::Pacman(SDL_Renderer* renderer) {
 	downAnimation.addRect(457, 48, 13, 13);
 	downAnimation.addRect(473, 48, 13, 13);
 	downAnimation.addRect(489, 1, 13, 13);
-	
+
 	startAnimation.addRect(474, 17, 13, 13);
 
-	
+
 }
 
 Pacman::~Pacman()

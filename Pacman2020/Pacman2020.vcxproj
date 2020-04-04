@@ -158,6 +158,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Pacman2020.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="Shadow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionManager.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="Shadow.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

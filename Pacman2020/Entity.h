@@ -1,7 +1,7 @@
 #pragma once
 #include "AnimationComponent.h"
 #include "InputComponent.h"
-
+#include "SDL.h"
 
 enum entityType {
 	PACMAN,
@@ -20,10 +20,10 @@ class Entity
 
 private:
 	InputComponent m_input;
-	int velocity[2];//current direction pacman is travelling element 0 = x plane and element 1 = y plane.
+	
 	entityType entityT = NOT_DEFINED;
 public:
-
+	int velocity[2];//current direction pacman is travelling element 0 = x plane and element 1 = y plane.
 	int coordinates[2];//current coordinates to be used in rendering and collision
 	AnimationComponent leftAnimation;
 	AnimationComponent rightAnimation;
@@ -37,7 +37,8 @@ public:
 	virtual entityType getEntityType();
 	virtual void update(SDL_Window* window);
 	virtual int* getNewLocation();
-
+	Entity(SDL_Renderer* renderer, int x, int y);
+	Entity();
 
 };
 
