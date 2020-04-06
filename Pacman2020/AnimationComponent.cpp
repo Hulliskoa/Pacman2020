@@ -11,11 +11,10 @@ AnimationComponent::~AnimationComponent()
 	free();
 }
 
-bool AnimationComponent::loadFromFile(SDL_Surface * mainSpriteSheet)
+bool AnimationComponent::loadFromFile(SDL_Surface* mainSpriteSheet)
 {
 	free();
 	SDL_Texture* newTexture = NULL;
-	
 
 	if (mainSpriteSheet == NULL)
 	{
@@ -34,10 +33,7 @@ bool AnimationComponent::loadFromFile(SDL_Surface * mainSpriteSheet)
 			m_width = mainSpriteSheet->w;
 			m_height = mainSpriteSheet->h;
 		}
-
-		
 	}
-
 	m_texture = newTexture;
 	return m_texture != NULL;
 }
@@ -47,13 +43,13 @@ bool AnimationComponent::loadFromFile(SDL_Surface * mainSpriteSheet)
 /**
 	Adds SDL_Rect with coordinates and dimensions of target sprite to the vector containing all sprites for the animation
 */
-void AnimationComponent::addRect(int x, int y, int w, int h)
+void AnimationComponent::addRect(int xSpriteSheet, int ySpriteSheet, int w, int h)
 {
 	SDL_Rect clip;
 	clip.w = w;
 	clip.h = h;
-	clip.x = x;
-	clip.y = y;
+	clip.x = xSpriteSheet;
+	clip.y = ySpriteSheet;
 	m_sprites.push_back(clip);
 }
 

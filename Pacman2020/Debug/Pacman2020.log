@@ -1,9 +1,4 @@
 ﻿  AnimationComponent.cpp
-  CollisionManager.cpp
-  Entity.cpp
-  GameManager.cpp
-  Pacman.cpp
-  Pacman2020.cpp
   Shadow.cpp
   Generating Code...
   Pacman2020.vcxproj -> C:\Users\truls\source\repos\Pacman2020\Debug\Pacman2020.exe

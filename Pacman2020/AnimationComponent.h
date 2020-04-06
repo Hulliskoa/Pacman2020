@@ -14,7 +14,7 @@ public:
 	~AnimationComponent();
 
 	bool loadFromFile(SDL_Surface * mainSpriteSheet);
-	void addRect(int x, int y, int w, int h);
+	void addRect(int xSpriteSheet, int ySpriteSheet, int w, int h);
 	void free();
 	void render(int x, int y);
 
