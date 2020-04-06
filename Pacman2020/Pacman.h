@@ -15,7 +15,7 @@ private:
 public:
 	
 	void update();
-	Pacman(SDL_Renderer* renderer, SDL_Window * w);
+	Pacman(SDL_Renderer* renderer, SDL_Window * w, SDL_Surface * mainSpriteSheet);
 	~Pacman();
 
 };

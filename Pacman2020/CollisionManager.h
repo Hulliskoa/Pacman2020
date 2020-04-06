@@ -6,6 +6,7 @@
 class CollisionManager
 {
 private:
+	int hitBoxRadius = 4;
 	std::vector<std::shared_ptr<Entity>> entities;
 
 public:

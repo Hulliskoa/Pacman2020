@@ -21,12 +21,14 @@ void Shadow::update()
 	if (animationCounter == 32) {
 		animationCounter = 0;
 	}
-	
+
+
+	Entity::update();
 }
 
-Shadow::Shadow(SDL_Renderer* renderer) : Entity(renderer, 8, 8, 2)
+Shadow::Shadow(SDL_Renderer* renderer, SDL_Surface* mainSpriteSheet) : Entity(renderer, 8, 8, 2, mainSpriteSheet)
 {
-	Shadow::setEntityType(GHOST);
+	setEntityType(GHOST);
 
 	rightAnimation.addRect(457, 65, 14, 14);
 	rightAnimation.addRect(473, 65, 14, 14);

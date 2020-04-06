@@ -21,7 +21,15 @@ entityType Entity::getEntityType()
 	return entityT;
 }
 
-void Entity::update(){}
+void Entity::update() {
+	if (coordinates[0] > 290) {
+		coordinates[0] = -10;
+	}
+	if (coordinates[1] > 290) {
+		coordinates[1] = -10;
+	}
+
+}
 
 
 int* Entity::getNewLocation() {
@@ -30,38 +38,39 @@ int* Entity::getNewLocation() {
 
 
 
-Entity::Entity(SDL_Renderer* renderer, int x, int y, int numFrames): velocity{0,0}, coordinates{x,y}, numFrames(numFrames)
+Entity::Entity(SDL_Renderer* renderer, int x, int y, int numFrames, SDL_Surface* mainSpriteSheet) : velocity{ 0,0 }, coordinates{ x,y }, numFrames(numFrames), spriteSheet(mainSpriteSheet)
 {
 	//TODO: laste opp spritesheet en gang
 
-	leftAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
-	rightAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
-	upAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
-	downAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", numFrames);
-	startAnimation = AnimationComponent(renderer, "..\\Pacman2020\\sprites\\spritesheet.png", 1);
+	leftAnimation = AnimationComponent(renderer, numFrames);
+	rightAnimation = AnimationComponent(renderer, numFrames);
+	upAnimation = AnimationComponent(renderer, numFrames);
+	downAnimation = AnimationComponent(renderer, numFrames);
+	startAnimation = AnimationComponent(renderer, 1);
 
 
-	if (!leftAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
+	if (!leftAnimation.loadFromFile(spriteSheet))
 	{
-		printf("Failed to load sprite sheet texture!\n");
+		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
-	}
-	if (!rightAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
+	}	if (!rightAnimation.loadFromFile(spriteSheet))
 	{
-		printf("Failed to load sprite sheet texture!\n");
+		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
-	}
-	if (!upAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
+	}	if (!upAnimation.loadFromFile(spriteSheet))
 	{
-		printf("Failed to load sprite sheet texture!\n");
+		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
-	}
-	if (!downAnimation.loadFromFile("..\\Pacman2020\\sprites\\spritesheet.png"))
+	}	if (!downAnimation.loadFromFile(spriteSheet))
 	{
-		printf("Failed to load sprite sheet texture!\n");
+		std::cout << "Failed to load sprite sheet texture!" << std::endl;
+
+	}	if (!startAnimation.loadFromFile(spriteSheet))
+	{
+		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
 	}
 }
 
-Entity::Entity() :coordinates{ 0,0 }, velocity{ 0,0 } {}
+Entity::Entity() :coordinates{ 0,0 }, velocity{ 0,0 }, spriteSheet(nullptr) {}
 

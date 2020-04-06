@@ -22,9 +22,9 @@ class Entity
 private:
 	int numFrames = 0;
 	entityType entityT = NOT_DEFINED;
-
+	SDL_Surface * spriteSheet;
 public:
-	int velocity[2];//current direction pacman is travelling element 0 = x plane and element 1 = y plane.
+	int velocity[2];//current direction the entity is travelling element 0 = x plane and element 1 = y plane.
 	int coordinates[2];//current coordinates to be used in rendering and collision
 	AnimationComponent leftAnimation;
 	AnimationComponent rightAnimation;
@@ -39,7 +39,7 @@ public:
 	virtual void update();
 	virtual int* getNewLocation();
 
-	Entity(SDL_Renderer* renderer, int x, int y, int numFrames);
+	Entity(SDL_Renderer* renderer ,int x, int y, int numAnimFrames, SDL_Surface * spriteSheet);
 	Entity();
 
 };

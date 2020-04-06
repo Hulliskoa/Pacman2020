@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 			}
 			else
 			{
-				//Scales by two render so that it looks more retro
+				//Scales render by 2 so that it looks larger and more retro
 				SDL_RenderSetScale(renderer, 2, 2);
 				SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 
@@ -60,5 +60,13 @@ int main(int argc, char* argv[])
 	gm.run();
 
 
+	SDL_FreeSurface(screenSurface);
+	screenSurface = NULL;
+	SDL_DestroyWindow(window);
+	window = NULL;
+	SDL_DestroyRenderer(renderer);
+	renderer = NULL;
+	SDL_Quit();
+	
 	return 0;
 }

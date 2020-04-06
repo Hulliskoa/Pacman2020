@@ -5,13 +5,17 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	window(window),
 	gameRenderer(renderer)
 {
-	
+	spriteSheet = IMG_Load("..\\Pacman2020\\sprites\\spritesheet.png");
+
+
 	collisionManager = CollisionManager();
-	shadow = std::make_shared<Shadow>(gameRenderer);
-	pacman = std::make_shared<Pacman>(gameRenderer, window);
+	shadow = std::make_shared<Shadow>(gameRenderer, spriteSheet);
+	pacman = std::make_shared<Pacman>(gameRenderer, window, spriteSheet);
 	collisionManager.addEntity(shadow);
 	collisionManager.addEntity(pacman);
 }
+
+
 
 
 

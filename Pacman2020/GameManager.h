@@ -52,13 +52,13 @@ private:
 	SDL_Window* window;
 	SDL_Renderer* gameRenderer;
 	SDL_Event* event{};
+	SDL_Surface* spriteSheet;
 	CollisionManager collisionManager;
 	std::shared_ptr<Shadow> shadow;
 	std::shared_ptr<Pacman> pacman;
 
 public:
 	GameManager(SDL_Window* window, SDL_Renderer* renderer);
-
 	void run();
 	void startGame();
 	void exitGame();

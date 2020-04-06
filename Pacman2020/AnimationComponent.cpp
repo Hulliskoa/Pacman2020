@@ -4,38 +4,38 @@
 
 AnimationComponent::AnimationComponent() {}
 
-AnimationComponent::AnimationComponent(SDL_Renderer* renderer, std::string pathToSpritesheet, int numSprites) : renderer(renderer), numberOfFrames(numSprites) {}
+AnimationComponent::AnimationComponent(SDL_Renderer* renderer, int numSprites) : renderer(renderer), m_numberOfFrames(numSprites) {}
 
 AnimationComponent::~AnimationComponent()
 {
 	free();
 }
 
-bool AnimationComponent::loadFromFile(std::string path)
+bool AnimationComponent::loadFromFile(SDL_Surface * mainSpriteSheet)
 {
 	free();
 	SDL_Texture* newTexture = NULL;
-	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+	
 
-	if (loadedSurface == NULL)
+	if (mainSpriteSheet == NULL)
 	{
-		std::cout << "Unable to load image " << path.c_str() << "! SDL_image Error: " << IMG_GetError() << std::endl;
+		std::cout << "Unable to load image! SDL_image Error: " << IMG_GetError() << std::endl;
 	}
 	else
 	{
-		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
-		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+		SDL_SetColorKey(mainSpriteSheet, SDL_TRUE, SDL_MapRGB(mainSpriteSheet->format, 0, 0xFF, 0xFF));
+		newTexture = SDL_CreateTextureFromSurface(renderer, mainSpriteSheet);
 		if (newTexture == NULL)
 		{
-			std::cout << "Unable to create texture from " << path.c_str() << "! SDL Error: " << SDL_GetError() << std::endl;
+			std::cout << "Unable to create texture! SDL Error: " << SDL_GetError() << std::endl;
 		}
 		else
 		{
-			m_width = loadedSurface->w;
-			m_height = loadedSurface->h;
+			m_width = mainSpriteSheet->w;
+			m_height = mainSpriteSheet->h;
 		}
 
-		SDL_FreeSurface(loadedSurface);
+		
 	}
 
 	m_texture = newTexture;
@@ -54,7 +54,7 @@ void AnimationComponent::addRect(int x, int y, int w, int h)
 	clip.h = h;
 	clip.x = x;
 	clip.y = y;
-	sprites.push_back(clip);
+	m_sprites.push_back(clip);
 }
 
 void AnimationComponent::free()
@@ -66,6 +66,7 @@ void AnimationComponent::free()
 		m_width = 0;
 		m_height = 0;
 	}
+
 }
 
 int AnimationComponent::getWidth()
@@ -80,7 +81,7 @@ int AnimationComponent::getHeight()
 
 void AnimationComponent::render(int x, int y)
 {
-	SDL_Rect clip = sprites[frame];
+	SDL_Rect clip = m_sprites[m_frame];
 	SDL_Rect renderQuad = { x, y, m_width, m_height };
 
 	if (&clip != NULL)
@@ -90,10 +91,10 @@ void AnimationComponent::render(int x, int y)
 	}
 	SDL_RenderCopy(renderer, m_texture, &clip, &renderQuad);
 
-	frame++;
+	m_frame++;
 
-	if (frame == numberOfFrames) {
-		frame = 0;
+	if (m_frame == m_numberOfFrames) {
+		m_frame = 0;
 	}
 
 }

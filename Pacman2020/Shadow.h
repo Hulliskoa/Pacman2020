@@ -9,7 +9,7 @@ private:
 	int animationCounter = 0;
 public:
 	void update();
-	Shadow(SDL_Renderer* renderer);
+	Shadow(SDL_Renderer* renderer, SDL_Surface* mainSpriteSheet);
 	~Shadow();
 
 };

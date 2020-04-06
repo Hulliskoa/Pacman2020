@@ -6,14 +6,17 @@ void Pacman::update()
 
 	m_input.update(window, velocity);
 
+	//collision check må inn her
+	//Spørre hva pacman traff?
+
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
 
-	//collision check
-	//Spørre hva pacman traff?
-	//
-	//Checks the direction pacman is traveling
 
+
+
+
+	//Checks the direction pacman is traveling
 	if (velocity[0] > 0) {
 		rightAnimation.render(coordinates[0], coordinates[1]);
 	}
@@ -26,10 +29,17 @@ void Pacman::update()
 	else if (velocity[1] < 0) {
 		upAnimation.render(coordinates[0], coordinates[1]);
 	}
+	else {
+		startAnimation.render(coordinates[0], coordinates[1]);
+	}
+
+
+
+	Entity::update();
 
 }
 
-Pacman::Pacman(SDL_Renderer* renderer, SDL_Window * w) : Entity(renderer, 100, 100, 3), window(w) {
+Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface * mainSpriteSheet) : Entity(renderer, 100, 100, 3, mainSpriteSheet), window(w) {
 
 
 	setEntityType(PACMAN);
@@ -52,7 +62,9 @@ Pacman::Pacman(SDL_Renderer* renderer, SDL_Window * w) : Entity(renderer, 100, 1
 	downAnimation.addRect(473, 48, 13, 13);
 	downAnimation.addRect(489, 1, 13, 13);
 
-	startAnimation.addRect(474, 17, 13, 13);
+	startAnimation.addRect(489, 1, 13, 13);
+	startAnimation.addRect(489, 1, 13, 13);
+	startAnimation.addRect(489, 1, 13, 13);
 
 
 }
