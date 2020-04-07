@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Pacman.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="GameManager.h" />

@@ -1,15 +1,14 @@
 #include "InputComponent.h"
 
 
-void InputComponent::update(SDL_Window* window, int speedXY[2])
+void InputComponent::update(SDL_Window* window, int speedXY[2], std::shared_ptr<GameState> gameState)
 {
 
 	while (SDL_PollEvent(&event) != 0)
 	{
 		if (event.type == SDL_QUIT)
 		{
-			SDL_DestroyWindow(window);
-			SDL_Quit();
+			*gameState = GameState::EXIT_GAME;
 			break;
 
 		}

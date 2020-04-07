@@ -4,7 +4,7 @@
 #include "SDL.h"
 
 
-enum entityType {
+enum class EntityType {
 	PACMAN,
 	GHOST,
 	AFRAID_GHOST,
@@ -21,7 +21,7 @@ class Entity
 
 private:
 	int numFrames = 0;
-	entityType entityT = NOT_DEFINED;
+	EntityType entityT = EntityType::NOT_DEFINED;
 	SDL_Surface * spriteSheet;
 public:
 	int velocity[2];//current direction the entity is travelling element 0 = x plane and element 1 = y plane.
@@ -34,8 +34,8 @@ public:
 
 	virtual void setVelocity(int x, int y);
 	virtual void setCoordinates(int* newCoordinates);
-	virtual void setEntityType(entityType type);
-	virtual entityType getEntityType();
+	virtual void setEntityType(EntityType type);
+	virtual EntityType getEntityType();
 	virtual void update();
 	virtual int* getNewLocation();
 

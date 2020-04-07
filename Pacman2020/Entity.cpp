@@ -11,17 +11,18 @@ void Entity::setCoordinates(int* newCoordinates)
 	coordinates[1] = newCoordinates[1];
 }
 
-void Entity::setEntityType(entityType type)
+void Entity::setEntityType(EntityType type)
 {
 	entityT = type;
 }
 
-entityType Entity::getEntityType()
+EntityType Entity::getEntityType()
 {
 	return entityT;
 }
 
 void Entity::update() {
+	//teleports entity when going outside window
 	if (coordinates[0] > 290) {
 		coordinates[0] = -10;
 	}

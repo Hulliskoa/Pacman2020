@@ -1,10 +1,10 @@
 #include "Pacman.h"
 
 
-void Pacman::update()
+void Pacman::update(std::shared_ptr<GameState> gameState)
 {
 
-	m_input.update(window, velocity);
+	m_input.update(window, velocity,gameState);
 
 	//collision check må inn her
 	//Spørre hva pacman traff?
