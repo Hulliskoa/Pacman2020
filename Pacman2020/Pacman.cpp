@@ -8,7 +8,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState)
 
 	//collision check må inn her
 	//Spørre hva pacman traff?
-
+	
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
 
@@ -42,8 +42,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState)
 Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface * mainSpriteSheet) : Entity(renderer, 100, 100, 3, mainSpriteSheet), window(w) {
 
 
-	setEntityType(PACMAN);
-
+	setEntityType(EntityType::PACMAN);
+	
 
 
 	rightAnimation.addRect(457, 1, 9, 14);

@@ -28,7 +28,7 @@ void Shadow::update()
 
 Shadow::Shadow(SDL_Renderer* renderer, SDL_Surface* mainSpriteSheet) : Entity(renderer, 8, 8, 2, mainSpriteSheet)
 {
-	setEntityType(GHOST);
+	setEntityType(EntityType::GHOST);
 
 	rightAnimation.addRect(457, 65, 14, 14);
 	rightAnimation.addRect(473, 65, 14, 14);

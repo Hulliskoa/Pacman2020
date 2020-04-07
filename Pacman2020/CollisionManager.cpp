@@ -38,21 +38,20 @@ void CollisionManager::collisionCheck(std::shared_ptr<Entity> entityToCheck)
 		if (collision) {
 			switch (x->getEntityType())
 			{
-			case GHOST:
+			case EntityType::GHOST:
 				//entity.setVelocity(0, 0);
 				std::cout << "hit ghost" << std::endl;
 				break;
-			case AFRAID_GHOST:break;
-			case PELLET:break;
-			case POWER_PELLET:break;
-			case FRUIT: break;
-			case WALL:
+			case EntityType::AFRAID_GHOST:break;
+			case EntityType::PELLET:break;
+			case EntityType::POWER_PELLET:break;
+			case EntityType::FRUIT: break;
+			case EntityType::WALL:
 				entityToCheck->setVelocity(0, 0);
 				break;
-			case TELEPORT:
-				entityToCheck->setCoordinates(x->getNewLocation());
+			case EntityType::TELEPORT:
 				break;
-			case PACMAN:
+			case EntityType::PACMAN:
 				break;
 			default:
 				break;

@@ -1,8 +1,8 @@
 #include "Entity.h"
 
 void Entity::setVelocity(int x, int y) {
-	velocity[0] = 0;
-	velocity[1] = 0;
+	velocity[0] = x;
+	velocity[1] = y;
 }
 
 void Entity::setCoordinates(int* newCoordinates)
@@ -31,13 +31,6 @@ void Entity::update() {
 	}
 
 }
-
-
-int* Entity::getNewLocation() {
-	return nullptr;
-}
-
-
 
 Entity::Entity(SDL_Renderer* renderer, int x, int y, int numFrames, SDL_Surface* mainSpriteSheet) : velocity{ 0,0 }, coordinates{ x,y }, numFrames(numFrames), spriteSheet(mainSpriteSheet)
 {

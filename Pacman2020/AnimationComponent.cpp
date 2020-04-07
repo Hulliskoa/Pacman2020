@@ -65,16 +65,6 @@ void AnimationComponent::free()
 
 }
 
-int AnimationComponent::getWidth()
-{
-	return m_width;
-}
-
-int AnimationComponent::getHeight()
-{
-	return m_height;;
-}
-
 void AnimationComponent::render(int x, int y)
 {
 	SDL_Rect clip = m_sprites[m_frame];

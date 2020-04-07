@@ -7,20 +7,6 @@
 
 class AnimationComponent
 {
-public:
-
-	AnimationComponent();
-	AnimationComponent(SDL_Renderer* renderer, int numFrames);
-	~AnimationComponent();
-
-	bool loadFromFile(SDL_Surface * mainSpriteSheet);
-	void addRect(int xSpriteSheet, int ySpriteSheet, int w, int h);
-	void free();
-	void render(int x, int y);
-
-	int getWidth();
-	int getHeight();
-
 private:
 	int m_frame = 0;
 	int m_numberOfFrames = 0;
@@ -29,4 +15,18 @@ private:
 	SDL_Renderer* renderer = nullptr;
 	int m_width = 0;
 	int m_height = 0;
+
+public:
+
+	AnimationComponent();
+	AnimationComponent(SDL_Renderer* renderer, int numFrames);
+	~AnimationComponent();
+
+
+	bool loadFromFile(SDL_Surface * mainSpriteSheet);
+	void addRect(int xSpriteSheet, int ySpriteSheet, int w, int h);
+	void free();
+	void render(int x, int y);
+
+
 };

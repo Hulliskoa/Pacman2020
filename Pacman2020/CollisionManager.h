@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "Pacman.h"
 #include "Entity.h"
+
 
 class CollisionManager
 {

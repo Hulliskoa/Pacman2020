@@ -7,6 +7,7 @@
 #include "AnimationComponent.h"
 #include "Entity.h"
 #include "GameState.h"
+#include "CollisionManager.h"
 
 class Pacman : public Entity
 {

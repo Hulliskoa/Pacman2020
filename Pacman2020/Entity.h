@@ -4,6 +4,7 @@
 #include "SDL.h"
 
 
+
 enum class EntityType {
 	PACMAN,
 	GHOST,
@@ -23,9 +24,11 @@ private:
 	int numFrames = 0;
 	EntityType entityT = EntityType::NOT_DEFINED;
 	SDL_Surface * spriteSheet;
+	
 public:
 	int velocity[2];//current direction the entity is travelling element 0 = x plane and element 1 = y plane.
 	int coordinates[2];//current coordinates to be used in rendering and collision
+	
 	AnimationComponent leftAnimation;
 	AnimationComponent rightAnimation;
 	AnimationComponent upAnimation;
@@ -37,7 +40,6 @@ public:
 	virtual void setEntityType(EntityType type);
 	virtual EntityType getEntityType();
 	virtual void update();
-	virtual int* getNewLocation();
 
 	Entity(SDL_Renderer* renderer ,int x, int y, int numAnimFrames, SDL_Surface * spriteSheet);
 	Entity();
