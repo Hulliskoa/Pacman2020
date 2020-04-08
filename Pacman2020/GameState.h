@@ -6,5 +6,6 @@ enum class GameState {
 	GAME_STARTED,
 	GAME_PAUSED,
 	EXIT_GAME,
+	GAME_OVER
 
 };

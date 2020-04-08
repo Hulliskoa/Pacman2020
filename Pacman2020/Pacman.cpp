@@ -1,22 +1,45 @@
 #include "Pacman.h"
 
 
-void Pacman::update(std::shared_ptr<GameState> gameState)
+void Pacman::update(std::shared_ptr<GameState> gameState, CollisionManager collisionManager)
 {
+	//husk forrige velocity
+	int lastVelocity[2] = { velocity[0], velocity[1] };
+	//InputManager
+	m_input.update(window, velocity, gameState);
+	EntityType collisionCheck = collisionManager.collisionCheck(this);
+	//Hva traff jeg?
 
-	m_input.update(window, velocity,gameState);
-
+	if (collisionCheck == EntityType::GHOST)
+		std::cout << "HELLO" << std::endl;
 	//collision check må inn her
 	//Spørre hva pacman traff?
-	
+	 //type = CollisionManager().collisionCheck(this);
+
+
+	/*
+	switch (type)
+	{
+	case EntityType::GHOST:
+		deathAnimation.render(coordinates[0], coordinates[1]);
+		gameState = GameState::GAME_OVER;
+		break;
+	case EntityType::WALL:
+	default:
+
+
+
+
+		break;
+	}
+
+
+
+	*/
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
 
 
-
-
-
-	//Checks the direction pacman is traveling
 	if (velocity[0] > 0) {
 		rightAnimation.render(coordinates[0], coordinates[1]);
 	}
@@ -33,17 +56,19 @@ void Pacman::update(std::shared_ptr<GameState> gameState)
 		startAnimation.render(coordinates[0], coordinates[1]);
 	}
 
+	//Checks the direction pacman is traveling
+
+
 
 
 	Entity::update();
 
 }
 
-Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface * mainSpriteSheet) : Entity(renderer, 100, 100, 3, mainSpriteSheet), window(w) {
+Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteSheet) : Entity(renderer, 100, 100, 3, mainSpriteSheet), window(w) {
 
 
 	setEntityType(EntityType::PACMAN);
-	
 
 
 	rightAnimation.addRect(457, 1, 9, 14);

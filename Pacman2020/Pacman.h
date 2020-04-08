@@ -14,9 +14,10 @@ class Pacman : public Entity
 private:
 	InputComponent m_input;
 	SDL_Window * window;
+	AnimationComponent deathAnimation;
 public:
 	
-	void update(std::shared_ptr<GameState> gameState);
+	void update(std::shared_ptr<GameState> gameState, CollisionManager collisionManager);
 	Pacman(SDL_Renderer* renderer, SDL_Window * w, SDL_Surface * mainSpriteSheet);
 	~Pacman();
 

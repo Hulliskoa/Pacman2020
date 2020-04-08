@@ -1,6 +1,6 @@
 #include "CollisionManager.h"
 
-void CollisionManager::collisionCheck(std::shared_ptr<Entity> entityToCheck)
+EntityType CollisionManager::collisionCheck(Entity* entityToCheck)
 {
 	bool collision = false;
 	int movementPlane = NULL;
@@ -39,19 +39,28 @@ void CollisionManager::collisionCheck(std::shared_ptr<Entity> entityToCheck)
 			switch (x->getEntityType())
 			{
 			case EntityType::GHOST:
-				//entity.setVelocity(0, 0);
-				std::cout << "hit ghost" << std::endl;
+				return EntityType::GHOST;
 				break;
-			case EntityType::AFRAID_GHOST:break;
-			case EntityType::PELLET:break;
-			case EntityType::POWER_PELLET:break;
-			case EntityType::FRUIT: break;
+			case EntityType::AFRAID_GHOST:
+				return EntityType::AFRAID_GHOST;
+				break;
+			case EntityType::PELLET:
+				return EntityType::PELLET;
+				break;
+			case EntityType::POWER_PELLET:
+				return EntityType::POWER_PELLET;
+				break;
+			case EntityType::FRUIT:
+				return EntityType::FRUIT;
+				break;
 			case EntityType::WALL:
-				entityToCheck->setVelocity(0, 0);
+				return EntityType::WALL;
 				break;
 			case EntityType::TELEPORT:
+				return EntityType::TELEPORT;
 				break;
 			case EntityType::PACMAN:
+				return EntityType::PACMAN;
 				break;
 			default:
 				break;
@@ -60,10 +69,12 @@ void CollisionManager::collisionCheck(std::shared_ptr<Entity> entityToCheck)
 	}
 }
 
+
 void CollisionManager::addEntity(std::shared_ptr<Entity> entity)
 {
 	entities.emplace_back(entity);
 }
+
 
 CollisionManager::CollisionManager()
 {

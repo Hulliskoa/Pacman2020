@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "Entity.h"
 #include "Pacman.h"
 #include "Shadow.h"
 #include "GameState.h"
@@ -11,7 +12,7 @@ class GameManager
 {
 
 private:
-
+	CollisionManager collisionManager;
 	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();
 	SDL_Window* window;
 	SDL_Renderer* gameRenderer;
@@ -22,6 +23,7 @@ private:
 
 public:
 	GameManager(SDL_Window* window, SDL_Renderer* renderer);
+
 	void run();
 	void startGame();
 	void exitGame();
