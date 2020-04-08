@@ -7,18 +7,16 @@ void Pacman::update(std::shared_ptr<GameState> gameState, CollisionManager colli
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 	//InputManager
 	m_input.update(window, velocity, gameState);
-	EntityType collisionCheck = collisionManager.collisionCheck(this);
+
 	//Hva traff jeg?
 
-	if (collisionCheck == EntityType::GHOST)
-		std::cout << "HELLO" << std::endl;
 	//collision check må inn her
 	//Spørre hva pacman traff?
 	 //type = CollisionManager().collisionCheck(this);
 
 
 	
-	switch (collisionCheck)
+	switch (collisionManager.collisionCheck(this))
 	{
 	case EntityType::GHOST:
 		deathAnimation.render(coordinates[0], coordinates[1]);
