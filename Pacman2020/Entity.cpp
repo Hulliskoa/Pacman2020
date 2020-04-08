@@ -23,11 +23,17 @@ EntityType Entity::getEntityType()
 
 void Entity::update() {
 	//teleports entity when going outside window
-	if (coordinates[0] > 290) {
+	if (coordinates[0] > 230) {
 		coordinates[0] = -10;
 	}
-	if (coordinates[1] > 290) {
+	if (coordinates[1] > 295) {
 		coordinates[1] = -10;
+	}
+	if (coordinates[0] < -10) {
+		coordinates[0] = 230;
+	}
+	if (coordinates[1] < -10) {
+		coordinates[1] = 295;
 	}
 
 }
@@ -36,30 +42,30 @@ Entity::Entity(SDL_Renderer* renderer, int x, int y, int numFrames, SDL_Surface*
 {
 	//TODO: laste opp spritesheet en gang
 
-	leftAnimation = AnimationComponent(renderer, numFrames);
-	rightAnimation = AnimationComponent(renderer, numFrames);
-	upAnimation = AnimationComponent(renderer, numFrames);
-	downAnimation = AnimationComponent(renderer, numFrames);
-	startAnimation = AnimationComponent(renderer, 1);
+	leftAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
+	rightAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
+	upAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
+	downAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
+	startAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
 
 
-	if (!leftAnimation.loadFromFile(spriteSheet))
+	if (!leftAnimation->loadFromFile(spriteSheet))
 	{
 		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
-	}	if (!rightAnimation.loadFromFile(spriteSheet))
+	}	if (!rightAnimation->loadFromFile(spriteSheet))
 	{
 		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
-	}	if (!upAnimation.loadFromFile(spriteSheet))
+	}	if (!upAnimation->loadFromFile(spriteSheet))
 	{
 		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
-	}	if (!downAnimation.loadFromFile(spriteSheet))
+	}	if (!downAnimation->loadFromFile(spriteSheet))
 	{
 		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 
-	}	if (!startAnimation.loadFromFile(spriteSheet))
+	}	if (!startAnimation->loadFromFile(spriteSheet))
 	{
 		std::cout << "Failed to load sprite sheet texture!" << std::endl;
 

@@ -11,6 +11,7 @@ enum class EntityType {
 	AFRAID_GHOST,
 	PELLET,
 	POWER_PELLET,
+	INACTIVE_PELLET,
 	FRUIT,
 	WALL,
 	TELEPORT,
@@ -26,14 +27,16 @@ private:
 	SDL_Surface * spriteSheet;
 	
 public:
-	int velocity[2];//current direction the entity is travelling element 0 = x plane and element 1 = y plane.
-	int coordinates[2];//current coordinates to be used in rendering and collision
+	//current direction the entity is travelling element 0 = x-plane and element 1 = y-plane.
+	int velocity[2];
+	//current coordinates to be used for rendering and collision checking
+	int coordinates[2];
 	
-	AnimationComponent leftAnimation;
-	AnimationComponent rightAnimation;
-	AnimationComponent upAnimation;
-	AnimationComponent downAnimation;
-	AnimationComponent startAnimation;
+	std::shared_ptr<AnimationComponent> leftAnimation;
+	std::shared_ptr<AnimationComponent>  rightAnimation;
+	std::shared_ptr<AnimationComponent>  upAnimation;
+	std::shared_ptr<AnimationComponent>  downAnimation;
+	std::shared_ptr<AnimationComponent>  startAnimation;
 
 	virtual void setVelocity(int x, int y);
 	virtual void setCoordinates(int* newCoordinates);

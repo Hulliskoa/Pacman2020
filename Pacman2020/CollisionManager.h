@@ -10,7 +10,7 @@ private:
 	std::vector<std::shared_ptr<Entity>> entities;
 
 public:
-	EntityType collisionCheck(Entity * entityToCheck);
+	std::shared_ptr<Entity>  collisionCheck(Entity * entityToCheck);
 	void addEntity(std::shared_ptr<Entity> entity);
 	CollisionManager();
 	~CollisionManager();

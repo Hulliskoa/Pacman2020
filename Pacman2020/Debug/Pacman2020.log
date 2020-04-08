@@ -1,7 +1,2 @@
-﻿  CollisionManager.cpp
-  GameManager.cpp
-  Pacman.cpp
-  Pacman2020.cpp
-  Generating Code...
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\CollisionManager.cpp(62): warning C4715: 'CollisionManager::collisionCheck': not all control paths return a value
+﻿  GameManager.cpp
   Pacman2020.vcxproj -> C:\Users\truls\source\repos\Pacman2020\Debug\Pacman2020.exe

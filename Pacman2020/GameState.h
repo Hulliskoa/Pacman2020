@@ -3,6 +3,7 @@
 
 enum class GameState {
 	GAME_RUNNING,
+	LEVEL_COMPLETE,
 	GAME_STARTED,
 	GAME_PAUSED,
 	EXIT_GAME,

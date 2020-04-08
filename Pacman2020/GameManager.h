@@ -5,6 +5,7 @@
 #include "Pacman.h"
 #include "Shadow.h"
 #include "GameState.h"
+#include "LevelManager.h"
 
 
 
@@ -12,12 +13,15 @@ class GameManager
 {
 
 private:
-	CollisionManager collisionManager;
-	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();
+
 	SDL_Window* window;
 	SDL_Renderer* gameRenderer;
 	SDL_Event* event{};
 	SDL_Surface* spriteSheet;
+
+	std::shared_ptr<CollisionManager> collisionManager;
+	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();
+	std::shared_ptr<LevelManager> levelManager;
 	std::shared_ptr<Shadow> shadow;
 	std::shared_ptr<Pacman> pacman;
 

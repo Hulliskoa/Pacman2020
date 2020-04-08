@@ -1,15 +1,12 @@
 #include "CollisionManager.h"
 
-EntityType CollisionManager::collisionCheck(Entity* entityToCheck)
+std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
 {
 	bool collision = false;
 	int movementPlane = NULL;
 	int oppositePlane = NULL;
 
-
-	/*
-	Checks wich direction the entity is moving and sets movementPlane variable
-	*/
+	//Checks which direction the entity is moving and sets movementPlane based on that
 	if (entityToCheck->velocity[0] != 0) {
 		movementPlane = 0;
 	}
@@ -24,11 +21,12 @@ EntityType CollisionManager::collisionCheck(Entity* entityToCheck)
 		oppositePlane = 0;
 	}
 
-	//Checks if entityToCheck is within hitbox of any other entity on the lvl
+	//Checks if entityToCheck is within hitbox of any other entity on the map, returns value to be used for entity's updatefunction
 	for (auto x : entities) {
 		if (x->getEntityType() == entityToCheck->getEntityType()) {
 			continue;
 		}
+		//Use hitbox dimensions to check if an entity is within range
 		if ((x->coordinates[movementPlane] - hitBoxRadius) <= entityToCheck->coordinates[movementPlane] && entityToCheck->coordinates[movementPlane] <= (x->coordinates[movementPlane] + hitBoxRadius)) {
 			if ((x->coordinates[oppositePlane] - hitBoxRadius) <= entityToCheck->coordinates[oppositePlane] && entityToCheck->coordinates[oppositePlane] <= (x->coordinates[oppositePlane] + hitBoxRadius))
 			{
@@ -36,50 +34,20 @@ EntityType CollisionManager::collisionCheck(Entity* entityToCheck)
 			}
 		}
 		if (collision) {
-			switch (x->getEntityType())
-			{
-			case EntityType::GHOST:
-				return EntityType::GHOST;
-				break;
-			case EntityType::AFRAID_GHOST:
-				return EntityType::AFRAID_GHOST;
-				break;
-			case EntityType::PELLET:
-				return EntityType::PELLET;
-				break;
-			case EntityType::POWER_PELLET:
-				return EntityType::POWER_PELLET;
-				break;
-			case EntityType::FRUIT:
-				return EntityType::FRUIT;
-				break;
-			case EntityType::WALL:
-				return EntityType::WALL;
-				break;
-			case EntityType::TELEPORT:
-				return EntityType::TELEPORT;
-				break;
-			case EntityType::PACMAN:
-				return EntityType::PACMAN;
-				break;
-			default:
-				break;
-			}
+			std::cout << "Hit: " << std::endl;
+			return x;
+		}
+		else {
+			return nullptr;
 		}
 	}
 }
-
 
 void CollisionManager::addEntity(std::shared_ptr<Entity> entity)
 {
 	entities.emplace_back(entity);
 }
 
+CollisionManager::CollisionManager(){}
 
-CollisionManager::CollisionManager()
-{
-}
-
-CollisionManager::~CollisionManager()
-{
-}
+CollisionManager::~CollisionManager(){}
