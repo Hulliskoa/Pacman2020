@@ -17,25 +17,32 @@ void Pacman::update(std::shared_ptr<GameState> gameState, CollisionManager colli
 	 //type = CollisionManager().collisionCheck(this);
 
 
-	/*
-	switch (type)
+	
+	switch (collisionCheck)
 	{
 	case EntityType::GHOST:
 		deathAnimation.render(coordinates[0], coordinates[1]);
-		gameState = GameState::GAME_OVER;
+		//gameState = GameState::GAME_OVER;
 		break;
 	case EntityType::WALL:
+		break;
+	case EntityType::AFRAID_GHOST:
+		break;
+	case EntityType::PELLET:
+		break;
+	case EntityType::POWER_PELLET:
+		break;
+	case EntityType::FRUIT:
+		break;
+	case EntityType::TELEPORT:
+		break;
 	default:
-
-
-
-
 		break;
 	}
 
 
 
-	*/
+	
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
 
