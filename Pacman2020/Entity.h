@@ -1,9 +1,8 @@
 #pragma once
+
 #include "AnimationComponent.h"
 #include "InputComponent.h"
-#include "SDL.h"
-
-
+#include <SDL.h>
 
 enum class EntityType {
 	PACMAN,
@@ -18,34 +17,20 @@ enum class EntityType {
 	NOT_DEFINED
 };
 
+
 class Entity
 {
-
-private:
-	int numFrames = 0;
+protected:
 	EntityType entityT = EntityType::NOT_DEFINED;
-	SDL_Surface * spriteSheet;
 	
+	//SDL_Surface* spriteSheet;
 public:
-	//current direction the entity is travelling element 0 = x-plane and element 1 = y-plane.
-	int velocity[2];
-	//current coordinates to be used for rendering and collision checking
 	int coordinates[2];
-	
-	std::shared_ptr<AnimationComponent> leftAnimation;
-	std::shared_ptr<AnimationComponent>  rightAnimation;
-	std::shared_ptr<AnimationComponent>  upAnimation;
-	std::shared_ptr<AnimationComponent>  downAnimation;
-	std::shared_ptr<AnimationComponent>  startAnimation;
+	//current coordinates to be used for rendering and collision checking
 
-	virtual void setVelocity(int x, int y);
+	Entity();
 	virtual void setCoordinates(int* newCoordinates);
 	virtual void setEntityType(EntityType type);
 	virtual EntityType getEntityType();
-	virtual void update();
-
-	Entity(SDL_Renderer* renderer ,int x, int y, int numAnimFrames, SDL_Surface * spriteSheet);
-	Entity();
-
 };
 

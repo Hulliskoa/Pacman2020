@@ -5,11 +5,11 @@
 #include <SDL.h>
 #include "InputComponent.h"
 #include "AnimationComponent.h"
-#include "Entity.h"
+#include "MovingEntity.h"
 #include "GameState.h"
 #include "CollisionManager.h"
 
-class Pacman : public Entity
+class Pacman : public MovingEntity
 {
 private:
 	InputComponent m_input;

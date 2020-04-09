@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "Entity.h"
+#include "MovingEntity.h"
 #include "Pacman.h"
 #include "Shadow.h"
 #include "GameState.h"
@@ -27,7 +27,6 @@ private:
 
 public:
 	GameManager(SDL_Window* window, SDL_Renderer* renderer);
-
 	void run();
 	void startGame();
 	void exitGame();

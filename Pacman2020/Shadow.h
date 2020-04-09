@@ -1,9 +1,9 @@
 #pragma once
-#include "Entity.h"
+#include "MovingEntity.h"
 #include <SDL.h>
 
 class Shadow :
-	public Entity
+	public MovingEntity
 {
 private:
 	int animationCounter = 0;

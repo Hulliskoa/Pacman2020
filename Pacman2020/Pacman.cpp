@@ -15,7 +15,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	 //type = CollisionManager().collisionCheck(this);
 
 
-	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(this);
+	std::shared_ptr<MovingEntity>  collidedWith = collisionManager->collisionCheck(this);
 	if (collidedWith != nullptr) {
 		switch (collidedWith->getEntityType())
 		{
@@ -98,11 +98,11 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 
 
-	Entity::update();
+	MovingEntity::update();
 
 }
 
-Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteSheet) : Entity(renderer, 100, 100, 3, mainSpriteSheet), window(w) {
+Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 100, 100, 3, mainSpriteSheet), window(w) {
 
 
 	setEntityType(EntityType::PACMAN);

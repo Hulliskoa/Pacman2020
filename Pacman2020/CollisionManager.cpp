@@ -1,6 +1,6 @@
 #include "CollisionManager.h"
 
-std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
+std::shared_ptr<MovingEntity> CollisionManager::collisionCheck(MovingEntity* entityToCheck)
 {
 	bool collision = false;
 	int movementPlane = NULL;
@@ -43,7 +43,7 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
 	}
 }
 
-void CollisionManager::addEntity(std::shared_ptr<Entity> entity)
+void CollisionManager::addEntity(std::shared_ptr<MovingEntity> entity)
 {
 	entities.emplace_back(entity);
 }
