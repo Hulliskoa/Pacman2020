@@ -68,18 +68,23 @@ void AnimationComponent::free()
 void AnimationComponent::render(int x, int y)
 {
 	SDL_Rect clip = m_sprites[m_frame];
-	SDL_Rect renderQuad = { x, y, m_width, m_height };
+	SDL_Rect renderQuad = { x - (clip.w/2), y - (clip.h / 2), m_width, m_height };
+
 
 	if (&clip != NULL)
 	{
 		renderQuad.w = clip.w;
 		renderQuad.h = clip.h;
 	}
+	
+
 	SDL_RenderCopy(renderer, m_texture, &clip, &renderQuad);
 
 	m_frame++;
 
-	if (m_frame == m_numberOfFrames) {
+
+
+	if (m_frame >= m_numberOfFrames) {
 		m_frame = 0;
 	}
 

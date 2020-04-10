@@ -24,13 +24,16 @@ protected:
 	EntityType entityT = EntityType::NOT_DEFINED;
 	
 	//SDL_Surface* spriteSheet;
-public:
-	int coordinates[2];
-	//current coordinates to be used for rendering and collision checking
 
+public:
+	int velocity[2] = {0,0};
+	int coordinates[2] = { 0,0 };
+	//current coordinates to be used for rendering and collision checking
+	std::shared_ptr<AnimationComponent>  startAnimation;
 	Entity();
-	virtual void setCoordinates(int* newCoordinates);
-	virtual void setEntityType(EntityType type);
-	virtual EntityType getEntityType();
+	Entity(SDL_Renderer* renderer, int x, int y, int numAnimFrames, SDL_Surface* mainSpriteSheet);
+	void setCoordinates(int* newCoordinates);
+	void setEntityType(EntityType type);
+	EntityType getEntityType();
 };
 

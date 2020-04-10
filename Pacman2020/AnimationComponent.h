@@ -8,6 +8,7 @@
 class AnimationComponent
 {
 private:
+	int testF = 0;
 	int m_frame = 0;
 	int m_numberOfFrames = 0;
 	std::vector<SDL_Rect> m_sprites;

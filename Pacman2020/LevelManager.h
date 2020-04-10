@@ -12,7 +12,7 @@ class LevelManager
 private:
 	//int currentLevel;
 	char levelArray[31][28] = {};
-	std::vector<std::shared_ptr<MovingEntity>> entityArray;
+	std::vector<std::shared_ptr<Entity>> entityArray;
 	std::vector<std::string> levels;
 	SDL_Renderer* renderer;
 	SDL_Surface* mazeSprites;

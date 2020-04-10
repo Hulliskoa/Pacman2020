@@ -26,7 +26,7 @@ void Shadow::update()
 	MovingEntity::update();
 }
 
-Shadow::Shadow(SDL_Renderer* renderer, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 8, 8, 2, mainSpriteSheet)
+Shadow::Shadow(SDL_Renderer* renderer, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 100, 100, 2, mainSpriteSheet)
 {
 	setEntityType(EntityType::GHOST);
 

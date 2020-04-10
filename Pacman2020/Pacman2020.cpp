@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include "GameManager.h"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 700;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 900;
 
 int main(int argc, char* argv[])
 {
@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 			else
 			{
 				//Scales render by 2 so that it looks larger and more retro
-				SDL_RenderSetScale(renderer, 2, 2);
+				SDL_RenderSetScale(renderer, 3, 3);
 				SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 
 				//Initialize PNG loading

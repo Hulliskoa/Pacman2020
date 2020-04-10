@@ -27,7 +27,7 @@ void GameManager::run()
 
 		SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 		SDL_RenderClear(gameRenderer);
-		//levelManager->renderLevel();
+		levelManager->renderLevel();
 		//entity update methods
 		shadow->update();
 		pacman->update(gameState, collisionManager);

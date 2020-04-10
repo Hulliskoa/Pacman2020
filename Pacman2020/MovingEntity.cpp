@@ -7,24 +7,25 @@ void MovingEntity::setVelocity(int x, int y) {
 
 void MovingEntity::update() {
 	//teleports entity when going outside window
-	if (coordinates[0] > 230) {
-		coordinates[0] = -10;
+	if (coordinates[0] > 250) {
+		coordinates[0] = -8;
 	}
 	if (coordinates[1] > 295) {
-		coordinates[1] = -10;
+		coordinates[1] = -8;
 	}
-	if (coordinates[0] < -10) {
-		coordinates[0] = 230;
+	if (coordinates[0] < -8) {
+		coordinates[0] = 250;
 	}
-	if (coordinates[1] < -10) {
-		coordinates[1] = 295;
+	if (coordinates[1] < -8) {
+		coordinates[1] = 320;
 	}
 
 }
 
-MovingEntity::MovingEntity(SDL_Renderer* renderer, int x, int y, int numAnimFrames, SDL_Surface* mainSpriteSheet) : velocity{ 0,0 }, numFrames(numAnimFrames)
+MovingEntity::MovingEntity(SDL_Renderer* renderer, int x, int y, int numAnimFrames, SDL_Surface* mainSpriteSheet) : numFrames(numAnimFrames)
 {
-	
+	velocity[0] = 0;
+	velocity[1] = 0;
 	coordinates[0] = x;
 	coordinates[1] = y;
 	leftAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
@@ -57,5 +58,4 @@ MovingEntity::MovingEntity(SDL_Renderer* renderer, int x, int y, int numAnimFram
 	}
 }
 
-MovingEntity::MovingEntity() : velocity{ 0,0 } {}
 

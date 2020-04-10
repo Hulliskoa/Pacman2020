@@ -3,24 +3,18 @@
 
 void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager)
 {
+
 	// Saves last direction pacman traveled in.
 	int lastVelocity[2] = { velocity[0], velocity[1] };
-	//InputManager
+
 	m_input.update(window, velocity, gameState);
-	
-	//Hva traff jeg?
-
-	//collision check må inn her
-	//Spørre hva pacman traff?
-	 //type = CollisionManager().collisionCheck(this);
-
-
-	std::shared_ptr<MovingEntity>  collidedWith = collisionManager->collisionCheck(this);
+	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(this);
 	if (collidedWith != nullptr) {
 		switch (collidedWith->getEntityType())
 		{
 		case EntityType::GHOST:
 			//deathAnimation.render(coordinates[0], coordinates[1]);
+			std::cout << "hit ghost" << std::endl;
 			//gameState = GameState::GAME_OVER;
 			break;
 		case EntityType::WALL:
@@ -31,7 +25,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				coordinates[0] += lastVelocity[0];
 				coordinates[1] += lastVelocity[1];
 			}
-
+			
 			//Stoppe
 			break;
 		case EntityType::AFRAID_GHOST:
@@ -40,6 +34,9 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			//Søke tilbake til huset
 			break;
 		case EntityType::PELLET:
+			coordinates[0] += velocity[0];
+			coordinates[1] += velocity[1];
+			collidedWith->setEntityType(EntityType::NOT_DEFINED);
 			//Legg til poeng
 			//Forsvinne fra kartet
 			break;
@@ -57,6 +54,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			//Endre koordinat
 			break;
 		default:
+			coordinates[0] += velocity[0];
+			coordinates[1] += velocity[1];
 			break;
 		}
 	}
@@ -64,7 +63,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		coordinates[0] += velocity[0];
 		coordinates[1] += velocity[1];
 	}
-
 
 
 
@@ -90,26 +88,29 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 	}
 	else {
+		lastAnimation = startAnimation;
 		startAnimation->render(coordinates[0], coordinates[1]);
 	}
 
 	//Checks the direction pacman is traveling
 
+	
+	
 
 
 
 	MovingEntity::update();
-
+	
 }
-
-Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 100, 100, 3, mainSpriteSheet), window(w) {
-
-
-	setEntityType(EntityType::PACMAN);
+//112, 216,
+Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 32, 40, 3, mainSpriteSheet), window(w) {
 
 
-	rightAnimation->addRect(457, 1, 9, 14);
-	rightAnimation->addRect(473, 1, 12, 14);
+	MovingEntity::setEntityType(EntityType::PACMAN);
+	lastAnimation = startAnimation;
+
+	rightAnimation->addRect(457, 1, 13, 13);
+	rightAnimation->addRect(473, 1, 13, 13);
 	rightAnimation->addRect(489, 1, 13, 13);
 
 	leftAnimation->addRect(459, 17, 13, 13);
