@@ -17,8 +17,11 @@ private:
 	SDL_Renderer* renderer;
 	SDL_Surface* mazeSprites;
 	SDL_Texture* m_texture = nullptr;
-	int m_width = 0;
-	int m_height = 0;
+	int m_textureWidth = 0;
+	int m_textureHeight = 0;
+
+	int xOffset = 3;
+	int yOffset = 4;
 public:
 	LevelManager(SDL_Renderer* mainRenderer);
 	//void update();

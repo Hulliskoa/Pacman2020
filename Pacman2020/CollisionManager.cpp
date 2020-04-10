@@ -18,6 +18,8 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
 	}
 
 	if ((movementPlane == 0) && (oppositePlane == 0)) {
+		entityToCheck = nullptr;
+		free(entityToCheck);
 		return nullptr;
 	}
 	//Checks if entityToCheck is within hitbox of any other entity on the map, returns value to be used for entity's updatefunction
@@ -50,13 +52,15 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
 			}
 		}
 		if (collision) {
-
+			entityToCheck = nullptr;
+			free(entityToCheck);
 			//x->setEntityType(EntityType::NOT_DEFINED);
 			return x;
 		}
 
 	}
-
+	entityToCheck = nullptr;
+	free(entityToCheck);
 
 
 }

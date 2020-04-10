@@ -28,6 +28,6 @@ public:
 	void addRect(int xSpriteSheet, int ySpriteSheet, int w, int h);
 	void free();
 	void render(int x, int y);
-
+	void renderTest(int x, int y, SDL_Texture* texture);
 
 };

@@ -20,7 +20,7 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 {
 	std::ifstream lvlFile;
 
-	lvlFile.open("..\\Pacman2020\\levels\\lvl1.txt");
+	lvlFile.open("..\\Pacman2020\\levels\\lvl2.txt");
 	char currentChar;
 	int rowCounter = 0;
 	int columnCounter = 0;
@@ -41,39 +41,162 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 		}
 	}
 
+	char upTile;
+	char rightTile;
+	char leftTile;
+	char downTile;
+	char leftDownTile;
+	char rightDownTile;
+	char rightUpTile;
+	char leftUpTile;
+
+	for (int y = 0; y < 31; y++) {
+		for (int x = 0; x < 28; x++) {
 
 
-	for (int y = 4; y < 35; y++) {
-		for (int x = 3; x < 31; x++) {
 			std::shared_ptr<Entity> lvlEntity;
-			char currentEntity = levelArray[y - 4][x - 3];
+			char currentEntity = levelArray[y][x];
 
+			upTile = (y - 1 > 0) ? levelArray[y - 1][x] : 'x';
+			rightTile = (x != 28) ? levelArray[y][x + 1] : 'x';
+			downTile = (y != 31) ? levelArray[y + 1][x] : 'x';
+			leftTile = (x - 1 > 0) ? levelArray[y][x - 1] : 'x';
+
+			//controll structure for drawing and creating map from textfile
+			if (currentEntity == 'x')
+			{
+
+
+
+				if (downTile == 'x' && leftTile == 'x' && upTile == 'x' && rightTile == 'x') {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(208, 88, 8, 8);
+					lvlEntity->setEntityType(EntityType::NOT_DEFINED);
+					collisionManager->addEntity(lvlEntity);
+				}
+				else if ((downTile != 'x' && leftTile == 'x') && (upTile == 'x' && rightTile == 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(351, 27, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}
+				else if ((downTile == 'x' && leftTile == 'x') && (upTile != 'x' && rightTile == 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(270, 36, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}
+				else if ((downTile == 'x' && leftTile == 'x') && (upTile != 'x' && rightTile != 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(279, 36, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}
+				else if ((downTile == 'x' && leftTile != 'x') && (upTile == 'x' && rightTile == 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(306, 36, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}
+				else if ((downTile == 'x' && leftTile == 'x') && (upTile == 'x' && rightTile != 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(297, 36, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}
+				else if ((downTile != 'x' && leftTile == 'x') && (upTile == 'x' && rightTile != 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(315, 36, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}
+				else if ((downTile == 'x' && leftTile != 'x') && (upTile != 'x' && rightTile == 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(288, 36, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}else if ((downTile != 'x' && leftTile != 'x') && (upTile == 'x' && rightTile == 'x')) {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+					lvlEntity->startAnimation->addRect(324, 36, 8, 8);
+					lvlEntity->setEntityType(EntityType::WALL);
+					collisionManager->addEntity(lvlEntity);
+
+				}
+				else if (downTile == 'x' && downTile + 1 != 'x' && leftTile == 'x' && upTile == 'x' && rightTile == 'x') {
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+						lvlEntity->startAnimation->addRect(288, 36, 8, 8);
+						lvlEntity->setEntityType(EntityType::WALL);
+						collisionManager->addEntity(lvlEntity);
+
+				}
+				else
+				{
+					lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+						lvlEntity->startAnimation->addRect(208, 88, 8, 8);
+						lvlEntity->setEntityType(EntityType::NOT_DEFINED);
+					collisionManager->addEntity(lvlEntity);
+				}
+
+
+			}
+			else if (currentEntity == 'o')
+			{
+				lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+				lvlEntity->startAnimation->addRect(342, 72, 8, 8);
+				collisionManager->addEntity(lvlEntity);
+				lvlEntity->setEntityType(EntityType::PELLET);
+			}
+			else
+			{
+				lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+				lvlEntity->startAnimation->addRect(333, 72, 8, 8);
+				collisionManager->addEntity(lvlEntity);
+				lvlEntity->setEntityType(EntityType::NOT_DEFINED);
+			}
+
+			/*
+
+			rightTile = levelArray[y][x];
 			if (currentEntity == '-') {
-				lvlEntity = std::make_shared<Entity>(renderer, x * 8, y * 8, 1, mazeSprites);
+				lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
 				lvlEntity->startAnimation->addRect(351, 27, 8, 8);
 				lvlEntity->setEntityType(EntityType::WALL);
 				collisionManager->addEntity(lvlEntity);
 
 			}
 			else if (currentEntity == '|') {
-				lvlEntity = std::make_shared<Entity>(renderer, x * 8, y * 8, 1, mazeSprites);
+				lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
 				lvlEntity->startAnimation->addRect(306, 36, 8, 8);
 				lvlEntity->setEntityType(EntityType::WALL);
 				collisionManager->addEntity(lvlEntity);
 
 			}
 			else if (currentEntity == 'x') {
-				lvlEntity = std::make_shared<Entity>(renderer, x * 8, y * 8, 1, mazeSprites);
+				lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
 				lvlEntity->startAnimation->addRect(333, 72, 8, 8);
 				lvlEntity->setEntityType(EntityType::NOT_DEFINED);
 				collisionManager->addEntity(lvlEntity);
 			}
 			else if (currentEntity == 'o') {
-				lvlEntity = std::make_shared<Entity>(renderer, x * 8, y * 8, 1, mazeSprites);
+				lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
 				lvlEntity->startAnimation->addRect(342, 72, 8, 8);
 				collisionManager->addEntity(lvlEntity);
 				lvlEntity->setEntityType(EntityType::PELLET);
 			}
+			else if (currentEntity == 'e') {
+				lvlEntity = std::make_shared<Entity>(renderer, (x + xOffset) * 8, (y + yOffset) * 8, 1, mazeSprites);
+				lvlEntity->startAnimation->addRect(342, 72, 8, 8);
+				collisionManager->addEntity(lvlEntity);
+				lvlEntity->setEntityType(EntityType::NOT_DEFINED);
+			}
+			*/
 			entityArray.emplace_back(lvlEntity);
 		}
 	}
@@ -99,8 +222,8 @@ bool LevelManager::loadFromFile(SDL_Surface* mainSpriteSheet)
 		}
 		else
 		{
-			m_width = mainSpriteSheet->w;
-			m_height = mainSpriteSheet->h;
+			m_textureWidth = mainSpriteSheet->w;
+			m_textureHeight = mainSpriteSheet->h;
 		}
 	}
 	m_texture = newTexture;
@@ -123,8 +246,8 @@ void LevelManager::free()
 	{
 		SDL_DestroyTexture(m_texture);
 		m_texture = NULL;
-		m_width = 0;
-		m_height = 0;
+		m_textureWidth = 0;
+		m_textureHeight = 0;
 	}
 
 }
