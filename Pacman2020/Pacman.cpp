@@ -21,6 +21,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
 				velocity[0] = lastVelocity[0];
 				velocity[1] = lastVelocity[1];
+				lastAnimation->render(coordinates[0], coordinates[1]);
 			}
 			else {
 				
@@ -42,6 +43,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			//Forsvinne fra kartet
 			break;
 		case EntityType::POWER_PELLET:
+			collidedWith->setEntityType(EntityType::NOT_DEFINED);
 			//Legg til poeng
 			////Animere til blått spøkelse
 			//Starte timer
@@ -102,7 +104,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	MovingEntity::update();
 	
 }
-//112, 216,
+
 Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 32, 40, 3, mainSpriteSheet), window(w) {
 
 

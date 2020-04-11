@@ -4,7 +4,7 @@
 #include "MovingEntity.h"
 
 /**
-
+	CollisionManger class does collisionchecking on behalf of all the MovingEntity objects
 */
 class CollisionManager
 {

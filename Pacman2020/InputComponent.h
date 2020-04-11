@@ -10,7 +10,7 @@ class InputComponent
 {
 private:
 	SDL_Event event{};
-	const int speed = 4;
+	const int speed = 8;
 
 public:
 	void update(SDL_Window* window, int speedXY[2], std::shared_ptr<GameState> gameState);
