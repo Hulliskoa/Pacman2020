@@ -40,9 +40,7 @@ bool AnimationComponent::loadFromFile(SDL_Surface* mainSpriteSheet)
 
 
 
-/**
-	Adds SDL_Rect with coordinates and dimensions of target sprite to the vector containing all sprites for the animation
-*/
+
 void AnimationComponent::addRect(int xSpriteSheet, int ySpriteSheet, int w, int h)
 {
 	SDL_Rect clip;
@@ -79,31 +77,6 @@ void AnimationComponent::render(int x, int y)
 	
 
 	SDL_RenderCopy(renderer, m_texture, &clip, &renderQuad);
-
-	m_frame++;
-
-
-
-	if (m_frame >= m_numberOfFrames) {
-		m_frame = 0;
-	}
-
-}
-
-void AnimationComponent::renderTest(int x, int y, SDL_Texture* texture)
-{
-	SDL_Rect clip = m_sprites[m_frame];
-	SDL_Rect renderQuad = { x - (clip.w / 2), y - (clip.h / 2), m_width, m_height };
-
-
-	if (&clip != NULL)
-	{
-		renderQuad.w = clip.w;
-		renderQuad.h = clip.h;
-	}
-
-
-	SDL_RenderCopy(renderer, texture, &clip, &renderQuad);
 
 	m_frame++;
 

@@ -5,13 +5,15 @@
 
 
 
-
-
+/**
+	MovingEntity class is derived from Entity super class and handles all moving entities on the map.
+*/
 class MovingEntity : public Entity
 {
 
 protected:
 	int numFrames = 0;
+
 
 public:
 	//current direction the entity is travelling. element 0 = x-plane and element 1 = y-plane.

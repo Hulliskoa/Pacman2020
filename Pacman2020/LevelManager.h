@@ -6,7 +6,10 @@
 #include <iostream>
 #include "CollisionManager.h"
 
-
+/**
+	LevelManager renders and creates each level from .txt files containing ascii drawings of the level to be rendered.
+	All stationary objects on the level is created here and rendered by this class. 
+*/
 class LevelManager
 {
 private:
@@ -24,11 +27,9 @@ private:
 	int yOffset = 4;
 public:
 	LevelManager(SDL_Renderer* mainRenderer);
-	//void update();
 	~LevelManager();
 	void free();
 	void createLevel(std::shared_ptr<CollisionManager> collisionManager, int currentLvl);
-	//void update(SDL_Renderer* renderer);
 	bool loadFromFile(SDL_Surface* mainSpriteSheet);
 	void renderLevel();
 

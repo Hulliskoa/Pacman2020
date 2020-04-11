@@ -5,9 +5,9 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 {
 
 	// Saves last direction pacman traveled in.
+	
 	int lastVelocity[2] = { velocity[0], velocity[1] };
-
-	m_input.update(window, velocity, gameState);
+	
 	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(this);
 	if (collidedWith != nullptr) {
 		switch (collidedWith->getEntityType())
@@ -18,12 +18,15 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			//gameState = GameState::GAME_OVER;
 			break;
 		case EntityType::WALL:
-			if ((velocity[0] == lastVelocity[0]) || (velocity[1] == lastVelocity[1])) {
-				lastAnimation->render(coordinates[0], coordinates[1]);
+			if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
+				velocity[0] = lastVelocity[0];
+				velocity[1] = lastVelocity[1];
 			}
 			else {
-				coordinates[0] += lastVelocity[0];
-				coordinates[1] += lastVelocity[1];
+				
+				lastAnimation->render(coordinates[0], coordinates[1]);
+				velocity[0] = 0;
+				velocity[1] = 0;
 			}
 			
 			//Stoppe
@@ -34,8 +37,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			//Søke tilbake til huset
 			break;
 		case EntityType::PELLET:
-			coordinates[0] += velocity[0];
-			coordinates[1] += velocity[1];
 			collidedWith->setEntityType(EntityType::NOT_DEFINED);
 			//Legg til poeng
 			//Forsvinne fra kartet
@@ -54,18 +55,17 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			//Endre koordinat
 			break;
 		default:
-			coordinates[0] += velocity[0];
-			coordinates[1] += velocity[1];
 			break;
 		}
 	}
 	else {
-		coordinates[0] += velocity[0];
-		coordinates[1] += velocity[1];
+	
 	}
+	coordinates[0] += velocity[0];
+	coordinates[1] += velocity[1];
 
 
-
+	//Checks the direction pacman is traveling
 	if (velocity[0] > 0) {
 		lastAnimation = rightAnimation;
 		rightAnimation->render(coordinates[0], coordinates[1]);
@@ -92,9 +92,9 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		startAnimation->render(coordinates[0], coordinates[1]);
 	}
 
-	//Checks the direction pacman is traveling
 
-	
+
+	m_input.update(window, velocity, gameState);
 	
 
 
@@ -113,16 +113,16 @@ Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteShe
 	rightAnimation->addRect(473, 1, 13, 13);
 	rightAnimation->addRect(489, 1, 13, 13);
 
-	leftAnimation->addRect(459, 17, 13, 13);
-	leftAnimation->addRect(474, 17, 13, 13);
+	leftAnimation->addRect(457, 17, 13, 13);
+	leftAnimation->addRect(473, 17, 13, 13);
 	leftAnimation->addRect(489, 1, 13, 13);
 
 	upAnimation->addRect(457, 33, 13, 13);
 	upAnimation->addRect(473, 33, 13, 13);
 	upAnimation->addRect(489, 1, 13, 13);
 
-	downAnimation->addRect(457, 48, 13, 13);
-	downAnimation->addRect(473, 48, 13, 13);
+	downAnimation->addRect(457, 49, 13, 13);
+	downAnimation->addRect(473, 49, 13, 13);
 	downAnimation->addRect(489, 1, 13, 13);
 
 	startAnimation->addRect(489, 1, 13, 13);

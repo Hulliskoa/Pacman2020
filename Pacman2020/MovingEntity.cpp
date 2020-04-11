@@ -58,4 +58,6 @@ MovingEntity::MovingEntity(SDL_Renderer* renderer, int x, int y, int numAnimFram
 	}
 }
 
+MovingEntity::MovingEntity(){}
+
 

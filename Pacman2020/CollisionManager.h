@@ -3,11 +3,13 @@
 #include "Entity.h"
 #include "MovingEntity.h"
 
+/**
 
+*/
 class CollisionManager
 {
 private:
-	int hitBoxRadius = 6;
+	int hitBoxRadius = 8;
 	std::vector<std::shared_ptr<Entity>> entities;
 
 public:
