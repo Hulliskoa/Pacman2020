@@ -1,0 +1,36 @@
+\hypertarget{class_level_manager}{}\doxysection{Level\+Manager Class Reference}
+\label{class_level_manager}\index{LevelManager@{LevelManager}}
+
+
+{\ttfamily \#include $<$Level\+Manager.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_level_manager_a63431e5983e1d4ae1e6ae249fad91941}\label{class_level_manager_a63431e5983e1d4ae1e6ae249fad91941}} 
+{\bfseries Level\+Manager} (S\+D\+L\+\_\+\+Renderer $\ast$main\+Renderer)
+\item 
+\mbox{\Hypertarget{class_level_manager_a0d50e315ec3427f98bce20d8bcf38b7f}\label{class_level_manager_a0d50e315ec3427f98bce20d8bcf38b7f}} 
+void {\bfseries free} ()
+\item 
+\mbox{\Hypertarget{class_level_manager_a76cad5f9ec8ca9b4a4153d2d42a48618}\label{class_level_manager_a76cad5f9ec8ca9b4a4153d2d42a48618}} 
+bool {\bfseries read\+Level\+From\+Txt} (int current\+Lvl)
+\item 
+\mbox{\Hypertarget{class_level_manager_a6de547fb129523222163d3dafbaed2d9}\label{class_level_manager_a6de547fb129523222163d3dafbaed2d9}} 
+bool {\bfseries loadsprite\+Sheet\+Texture} (std\+::string path)
+\item 
+\mbox{\Hypertarget{class_level_manager_a28f7ab4cdc0b15c48834ca3eacb7cbfd}\label{class_level_manager_a28f7ab4cdc0b15c48834ca3eacb7cbfd}} 
+void {\bfseries create\+Level} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager)
+\item 
+\mbox{\Hypertarget{class_level_manager_a874637f46eac9bc616c2f4fb5baca090}\label{class_level_manager_a874637f46eac9bc616c2f4fb5baca090}} 
+void {\bfseries render\+Level} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_level_manager}{Level\+Manager}} renders and creates each level from .txt files containing ascii drawings of the level to be rendered. All stationary objects on the level is created and rendered by this class. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Level\+Manager.\+h\item 
+Level\+Manager.\+cpp\end{DoxyCompactItemize}

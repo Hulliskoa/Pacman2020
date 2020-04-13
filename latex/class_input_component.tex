@@ -1,0 +1,38 @@
+\hypertarget{class_input_component}{}\doxysection{Input\+Component Class Reference}
+\label{class_input_component}\index{InputComponent@{InputComponent}}
+
+
+{\ttfamily \#include $<$Input\+Component.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_input_component_a0ccbc8df1018cc6f67155dd68abe98b3}{update}} (S\+D\+L\+\_\+\+Window $\ast$window, int speed\+XY\mbox{[}2\mbox{]}, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Component for controlling the different entities in the game. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_input_component_a0ccbc8df1018cc6f67155dd68abe98b3}\label{class_input_component_a0ccbc8df1018cc6f67155dd68abe98b3}} 
+\index{InputComponent@{InputComponent}!update@{update}}
+\index{update@{update}!InputComponent@{InputComponent}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Input\+Component\+::update (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Window $\ast$}]{window,  }\item[{int}]{speed\+XY\mbox{[}2\mbox{]},  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+
+Function for checking for input from keyboard 
+\begin{DoxyParams}{Parameters}
+{\em window} & S\+D\+L\+\_\+\+Window in which the input will be coming from \\
+\hline
+{\em speed\+XY} & array for handling in which direction the entity is moving \\
+\hline
+{\em game\+State} & used for sending back gamestate to the \mbox{\hyperlink{class_game_manager}{Game\+Manager}} depending on input recieved \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Input\+Component.\+h\item 
+Input\+Component.\+cpp\end{DoxyCompactItemize}

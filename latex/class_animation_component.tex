@@ -1,0 +1,79 @@
+\hypertarget{class_animation_component}{}\doxysection{Animation\+Component Class Reference}
+\label{class_animation_component}\index{AnimationComponent@{AnimationComponent}}
+
+
+{\ttfamily \#include $<$Animation\+Component.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_animation_component_a9109568f995cfa036e8337898039396d}{Animation\+Component}} (int num\+Sprites, S\+D\+L\+\_\+\+Texture $\ast$texture, int texture\+Width, int texture\+Height)
+\item 
+void \mbox{\hyperlink{class_animation_component_a097c2d6627968fb7405616e0aad6b9ab}{add\+Rect}} (int x\+Sprite\+Sheet, int y\+Sprite\+Sheet, int w, int h)
+\item 
+void \mbox{\hyperlink{class_animation_component_a808d922bb219087c274854274aca5056}{render}} (int x, int y, S\+D\+L\+\_\+\+Renderer $\ast$renderer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_animation_component}{Animation\+Component}} is responsible for rendering animations for all entities in the game. Each entity object has a \mbox{\hyperlink{class_animation_component}{Animation\+Component}} for each animations they need. With the help of spritesheets and S\+D\+L\+\_\+\+Renderer this class can render all the sprites we need to create animations 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_animation_component_a9109568f995cfa036e8337898039396d}\label{class_animation_component_a9109568f995cfa036e8337898039396d}} 
+\index{AnimationComponent@{AnimationComponent}!AnimationComponent@{AnimationComponent}}
+\index{AnimationComponent@{AnimationComponent}!AnimationComponent@{AnimationComponent}}
+\doxysubsubsection{\texorpdfstring{AnimationComponent()}{AnimationComponent()}}
+{\footnotesize\ttfamily Animation\+Component\+::\+Animation\+Component (\begin{DoxyParamCaption}\item[{int}]{num\+Sprites,  }\item[{S\+D\+L\+\_\+\+Texture $\ast$}]{texture,  }\item[{int}]{texture\+Width,  }\item[{int}]{texture\+Height }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em num\+Sprites} & an int that tells the \mbox{\hyperlink{class_animation_component}{Animation\+Component}} how many sprites will be used in this animation \\
+\hline
+{\em texture} & S\+D\+L\+\_\+\+Texture of the spritesheet textures used to show sprites on screen \\
+\hline
+{\em texture\+Width} & width of the spritesheet texture we will be using \\
+\hline
+{\em texture\+Height} & height of the spritesheet texture we will be using \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_animation_component_a097c2d6627968fb7405616e0aad6b9ab}\label{class_animation_component_a097c2d6627968fb7405616e0aad6b9ab}} 
+\index{AnimationComponent@{AnimationComponent}!addRect@{addRect}}
+\index{addRect@{addRect}!AnimationComponent@{AnimationComponent}}
+\doxysubsubsection{\texorpdfstring{addRect()}{addRect()}}
+{\footnotesize\ttfamily void Animation\+Component\+::add\+Rect (\begin{DoxyParamCaption}\item[{int}]{x\+Sprite\+Sheet,  }\item[{int}]{y\+Sprite\+Sheet,  }\item[{int}]{w,  }\item[{int}]{h }\end{DoxyParamCaption})}
+
+Adds S\+D\+L\+\_\+\+Rect with coordinates and dimensions of target sprite to the m\+\_\+sprites vector containing all sprites used for rendering the animation 
+\begin{DoxyParams}{Parameters}
+{\em x\+Sprite\+Sheet} & takes the x coordinate of the sprite we want to render from the spritesheet. \\
+\hline
+{\em y\+Sprite\+Sheet} & takes the y coordinate of the sprite we want to render from the spritesheet. \\
+\hline
+{\em w} & sprite width in pixels \\
+\hline
+{\em h} & sprite height in pixels \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_animation_component_a808d922bb219087c274854274aca5056}\label{class_animation_component_a808d922bb219087c274854274aca5056}} 
+\index{AnimationComponent@{AnimationComponent}!render@{render}}
+\index{render@{render}!AnimationComponent@{AnimationComponent}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Animation\+Component\+::render (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer }\end{DoxyParamCaption})}
+
+Renders alle sprites contained in m\+\_\+sprites vector using the m\+\_\+frame member variable to count which sprite to render when 
+\begin{DoxyParams}{Parameters}
+{\em x} & takes an int that represent the x coordinate of where we want the sprite to rendered inside the S\+D\+L\+\_\+\+Window \\
+\hline
+{\em y} & takes an int that represent the y coordinate of where we want the sprite to rendered inside the S\+D\+L\+\_\+\+Window \\
+\hline
+{\em renderer} & main renderer used to show sprites on screen \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Animation\+Component.\+h\item 
+Animation\+Component.\+cpp\end{DoxyCompactItemize}

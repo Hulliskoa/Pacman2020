@@ -10,25 +10,17 @@
 */
 class MovingEntity : public Entity
 {
-
-protected:
-	int numFrames = 0;
-
-
 public:
-	//current direction the entity is travelling. element 0 = x-plane and element 1 = y-plane.
-
-
-	std::shared_ptr<AnimationComponent> leftAnimation;
-	std::shared_ptr<AnimationComponent>  rightAnimation;
-	std::shared_ptr<AnimationComponent>  upAnimation;
-	std::shared_ptr<AnimationComponent>  downAnimation;
+	std::shared_ptr<AnimationComponent> leftAnimation;/*!<Animation used for animating movement towards the left*/
+	std::shared_ptr<AnimationComponent>  rightAnimation;/*!<Animation used for animating movement towards the right*/
+	std::shared_ptr<AnimationComponent>  upAnimation; /*!<Animation used for animating movement upwards*/
+	std::shared_ptr<AnimationComponent>  downAnimation;/*!<Animation used for animating movement downwards*/
 
 
 	virtual void setVelocity(int x, int y);
 	virtual void update();
 
-	MovingEntity(SDL_Renderer* renderer, int x, int y, int numAnimFrames, SDL_Surface* mainSpriteSheet);
+	MovingEntity(int xStart, int yStart, int numAnimFrames, SDL_Texture* mainSpriteSheet, int textureWidth, int textureHeight);
 	MovingEntity();
 
 };

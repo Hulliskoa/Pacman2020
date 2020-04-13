@@ -22,42 +22,20 @@ void MovingEntity::update() {
 
 }
 
-MovingEntity::MovingEntity(SDL_Renderer* renderer, int x, int y, int numAnimFrames, SDL_Surface* mainSpriteSheet) : numFrames(numAnimFrames)
+MovingEntity::MovingEntity(int xStart, int yStart, int numAnimFrames, SDL_Texture* mainSpriteSheet, int textureWidth, int textureHeight)
 {
+	numFrames = numAnimFrames;
 	velocity[0] = 0;
 	velocity[1] = 0;
-	coordinates[0] = x;
-	coordinates[1] = y;
-	leftAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
-	rightAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
-	upAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
-	downAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
-	startAnimation = std::make_shared<AnimationComponent>(renderer, numFrames);
-
-
-	if (!leftAnimation->loadFromFile(mainSpriteSheet))
-	{
-		std::cout << "Failed to load sprite sheet texture!" << std::endl;
-
-	}	if (!rightAnimation->loadFromFile(mainSpriteSheet))
-	{
-		std::cout << "Failed to load sprite sheet texture!" << std::endl;
-
-	}	if (!upAnimation->loadFromFile(mainSpriteSheet))
-	{
-		std::cout << "Failed to load sprite sheet texture!" << std::endl;
-
-	}	if (!downAnimation->loadFromFile(mainSpriteSheet))
-	{
-		std::cout << "Failed to load sprite sheet texture!" << std::endl;
-
-	}	if (!startAnimation->loadFromFile(mainSpriteSheet))
-	{
-		std::cout << "Failed to load sprite sheet texture!" << std::endl;
-
-	}
+	coordinates[0] = xStart;
+	coordinates[1] = yStart;
+	rightAnimation = std::make_shared<AnimationComponent>(numFrames, mainSpriteSheet, textureWidth, textureHeight);
+	leftAnimation = std::make_shared<AnimationComponent>(numFrames, mainSpriteSheet, textureWidth, textureHeight);
+	upAnimation = std::make_shared<AnimationComponent>(numFrames, mainSpriteSheet, textureWidth, textureHeight);
+	downAnimation = std::make_shared<AnimationComponent>(numFrames, mainSpriteSheet, textureWidth, textureHeight);
+	startAnimation = std::make_shared<AnimationComponent>(numFrames, mainSpriteSheet, textureWidth, textureHeight);
 }
 
-MovingEntity::MovingEntity(){}
+MovingEntity::MovingEntity() {}
 
 

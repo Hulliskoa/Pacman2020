@@ -1,0 +1,73 @@
+\hypertarget{class_entity}{}\doxysection{Entity Class Reference}
+\label{class_entity}\index{Entity@{Entity}}
+Inheritance diagram for Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_entity}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_entity_aac4313d4f72e0ace055e5ed914ef465b}\label{class_entity_aac4313d4f72e0ace055e5ed914ef465b}} 
+{\bfseries Entity} (int x\+Start, int y\+Start, int num\+Anim\+Frames, S\+D\+L\+\_\+\+Texture $\ast$sprite\+Texture, int sprite\+Width, int sprite\+Height)
+\item 
+\mbox{\Hypertarget{class_entity_a5b4a105615745fbaf859ba61f2786019}\label{class_entity_a5b4a105615745fbaf859ba61f2786019}} 
+void {\bfseries set\+Coordinates} (int $\ast$new\+Coordinates)
+\item 
+\mbox{\Hypertarget{class_entity_a93982cb8359648b54c7d63c8b7841c64}\label{class_entity_a93982cb8359648b54c7d63c8b7841c64}} 
+void {\bfseries set\+Entity\+Type} (Entity\+Type type)
+\item 
+\mbox{\Hypertarget{class_entity_a5c82bd9c16d75af5293757a1f29ad3d6}\label{class_entity_a5c82bd9c16d75af5293757a1f29ad3d6}} 
+Entity\+Type {\bfseries get\+Entity\+Type} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_entity_ada4fb2e4ca7984ea0354cb3275413793}{velocity}} \mbox{[}2\mbox{]} = \{ 0,0 \}
+\item 
+int \mbox{\hyperlink{class_entity_a6579716bfda99a483be988974ee5b8bd}{coordinates}} \mbox{[}2\mbox{]} = \{ 0,0 \}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\+Component}} $>$ \mbox{\hyperlink{class_entity_aaf345856d001fc17ca23b0b7f99659aa}{start\+Animation}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Entity\+Type \mbox{\hyperlink{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}{entityT}} = Entity\+Type\+::\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED
+\item 
+\mbox{\Hypertarget{class_entity_af36b7fe32bbac6e497ce4b626b7f910a}\label{class_entity_af36b7fe32bbac6e497ce4b626b7f910a}} 
+int {\bfseries num\+Frames} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_entity_a6579716bfda99a483be988974ee5b8bd}\label{class_entity_a6579716bfda99a483be988974ee5b8bd}} 
+\index{Entity@{Entity}!coordinates@{coordinates}}
+\index{coordinates@{coordinates}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{coordinates}{coordinates}}
+{\footnotesize\ttfamily int Entity\+::coordinates\mbox{[}2\mbox{]} = \{ 0,0 \}}
+
+current coordinates to be used for rendering and collision checking \mbox{\Hypertarget{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}\label{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}} 
+\index{Entity@{Entity}!entityT@{entityT}}
+\index{entityT@{entityT}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{entityT}{entityT}}
+{\footnotesize\ttfamily Entity\+Type Entity\+::entityT = Entity\+Type\+::\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED\hspace{0.3cm}{\ttfamily [protected]}}
+
+Defines what entity type the object is \mbox{\Hypertarget{class_entity_aaf345856d001fc17ca23b0b7f99659aa}\label{class_entity_aaf345856d001fc17ca23b0b7f99659aa}} 
+\index{Entity@{Entity}!startAnimation@{startAnimation}}
+\index{startAnimation@{startAnimation}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{startAnimation}{startAnimation}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Entity\+::start\+Animation}
+
+Animation used at the start of game or if the object is stationary \mbox{\Hypertarget{class_entity_ada4fb2e4ca7984ea0354cb3275413793}\label{class_entity_ada4fb2e4ca7984ea0354cb3275413793}} 
+\index{Entity@{Entity}!velocity@{velocity}}
+\index{velocity@{velocity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{velocity}{velocity}}
+{\footnotesize\ttfamily int Entity\+::velocity\mbox{[}2\mbox{]} = \{ 0,0 \}}
+
+current direction the entity is travelling. element 0 = x-\/plane and element 1 = y-\/plane. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Entity.\+h\item 
+Entity.\+cpp\end{DoxyCompactItemize}

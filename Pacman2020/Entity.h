@@ -4,6 +4,9 @@
 #include "InputComponent.h"
 #include <SDL.h>
 
+/**
+	Enum class for keeping track of what kind of entity the object is.
+*/
 enum class EntityType {
 	PACMAN,
 	GHOST,
@@ -21,17 +24,15 @@ enum class EntityType {
 class Entity
 {
 protected:
-	EntityType entityT = EntityType::NOT_DEFINED;
-	
-	//SDL_Surface* spriteSheet;
-
+	EntityType entityT = EntityType::NOT_DEFINED;/*!<Defines what entity type the object is*/
+	int numFrames = 0;
 public:
-	int velocity[2] = {0,0};
-	int coordinates[2] = { 0,0 };
-	//current coordinates to be used for rendering and collision checking
-	std::shared_ptr<AnimationComponent>  startAnimation;
+	int velocity[2] = { 0,0 };/*!<current direction the entity is travelling. element 0 = x-plane and element 1 = y-plane.*/
+	int coordinates[2] = { 0,0 };/*!<current coordinates to be used for rendering and collision checking*/
+	std::shared_ptr<AnimationComponent>  startAnimation;/*!<Animation used at the start of game or if the object is stationary*/
+	
 	Entity();
-	Entity(SDL_Renderer* renderer, int x, int y, int numAnimFrames, SDL_Surface* mainSpriteSheet);
+	Entity(int xStart, int yStart, int numAnimFrames, SDL_Texture* spriteTexture, int spriteWidth, int spriteHeight);
 	void setCoordinates(int* newCoordinates);
 	void setEntityType(EntityType type);
 	EntityType getEntityType();

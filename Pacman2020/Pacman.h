@@ -13,13 +13,13 @@ class Pacman : public MovingEntity
 {
 private:
 	InputComponent m_input;
-	SDL_Window * window;
+	SDL_Window* window;
 	AnimationComponent deathAnimation;
 	std::shared_ptr<AnimationComponent> lastAnimation = nullptr;
 public:
-	
-	void update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager);
-	Pacman(SDL_Renderer* renderer, SDL_Window * w, SDL_Surface * mainSpriteSheet);
+
+	void update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer * renderer);
+	Pacman(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth);
 	~Pacman();
 
 };

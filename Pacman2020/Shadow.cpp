@@ -1,20 +1,20 @@
 #include "Shadow.h"
 
-void Shadow::update()
+void Shadow::update(SDL_Renderer * renderer)
 {
 
 	//midlertidig for å sjekke collision
 	if (animationCounter < 8) {
-		rightAnimation->render(coordinates[0] += 8, coordinates[1]);
+		rightAnimation->render(coordinates[0] += 8, coordinates[1], renderer);
 	}
 	else if (animationCounter >= 8 && animationCounter < 16) {
-		downAnimation->render(coordinates[0], coordinates[1] += 8);
+		downAnimation->render(coordinates[0], coordinates[1] += 8, renderer);
 	}
 	else if (animationCounter >= 16 && animationCounter < 24) {
-		leftAnimation->render(coordinates[0] -= 8, coordinates[1]);
+		leftAnimation->render(coordinates[0] -= 8, coordinates[1], renderer);
 	}
 	else if (animationCounter >= 24) {
-		upAnimation->render(coordinates[0], coordinates[1] -= 8);
+		upAnimation->render(coordinates[0], coordinates[1] -= 8, renderer);
 
 	}
 	animationCounter++;
@@ -26,7 +26,7 @@ void Shadow::update()
 	MovingEntity::update();
 }
 
-Shadow::Shadow(SDL_Renderer* renderer, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 100, 100, 2, mainSpriteSheet)
+Shadow::Shadow(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(32, 40, 3, mainSpriteSheet, textureWidth, textureHeight)
 {
 	setEntityType(EntityType::GHOST);
 

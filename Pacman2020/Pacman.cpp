@@ -1,13 +1,13 @@
 #include "Pacman.h"
 
 
-void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager)
+void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer * renderer)
 {
 
 	// Saves last direction pacman traveled in.
-	
+
 	int lastVelocity[2] = { velocity[0], velocity[1] };
-	
+
 	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(this);
 	if (collidedWith != nullptr) {
 		switch (collidedWith->getEntityType())
@@ -21,15 +21,15 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
 				velocity[0] = lastVelocity[0];
 				velocity[1] = lastVelocity[1];
-				lastAnimation->render(coordinates[0], coordinates[1]);
+				lastAnimation->render(coordinates[0], coordinates[1], renderer);
 			}
 			else {
-				
-				lastAnimation->render(coordinates[0], coordinates[1]);
+
+				lastAnimation->render(coordinates[0], coordinates[1], renderer);
 				velocity[0] = 0;
 				velocity[1] = 0;
 			}
-			
+
 			//Stoppe
 			break;
 		case EntityType::AFRAID_GHOST:
@@ -61,7 +61,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		}
 	}
 	else {
-	
+
 	}
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
@@ -70,42 +70,42 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	//Checks the direction pacman is traveling
 	if (velocity[0] > 0) {
 		lastAnimation = rightAnimation;
-		rightAnimation->render(coordinates[0], coordinates[1]);
+		rightAnimation->render(coordinates[0], coordinates[1], renderer);
 
 	}
 	else if (velocity[0] < 0) {
 		lastAnimation = leftAnimation;
-		leftAnimation->render(coordinates[0], coordinates[1]);
+		leftAnimation->render(coordinates[0], coordinates[1], renderer);
 
 	}
 
 	else if (velocity[1] > 0) {
 		lastAnimation = downAnimation;
-		downAnimation->render(coordinates[0], coordinates[1]);
+		downAnimation->render(coordinates[0], coordinates[1], renderer);
 
 	}
 	else if (velocity[1] < 0) {
 		lastAnimation = upAnimation;
-		upAnimation->render(coordinates[0], coordinates[1]);
+		upAnimation->render(coordinates[0], coordinates[1], renderer);
 
 	}
 	else {
 		lastAnimation = startAnimation;
-		startAnimation->render(coordinates[0], coordinates[1]);
+		startAnimation->render(coordinates[0], coordinates[1], renderer);
 	}
 
 
 
 	m_input.update(window, velocity, gameState);
-	
+
 
 
 
 	MovingEntity::update();
-	
+
 }
 
-Pacman::Pacman(SDL_Renderer* renderer, SDL_Window* w, SDL_Surface* mainSpriteSheet) : MovingEntity(renderer, 32, 40, 3, mainSpriteSheet), window(w) {
+Pacman::Pacman(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(32, 40, 3, mainSpriteSheet, textureWidth, textureHeight), window(w) {
 
 
 	MovingEntity::setEntityType(EntityType::PACMAN);

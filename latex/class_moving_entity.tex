@@ -1,0 +1,72 @@
+\hypertarget{class_moving_entity}{}\doxysection{Moving\+Entity Class Reference}
+\label{class_moving_entity}\index{MovingEntity@{MovingEntity}}
+
+
+{\ttfamily \#include $<$Moving\+Entity.\+h$>$}
+
+Inheritance diagram for Moving\+Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_moving_entity}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_moving_entity_a2ba99ce07171b7f250a0c2f1c13904f1}\label{class_moving_entity_a2ba99ce07171b7f250a0c2f1c13904f1}} 
+virtual void {\bfseries set\+Velocity} (int x, int y)
+\item 
+\mbox{\Hypertarget{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123c5c}\label{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123c5c}} 
+virtual void {\bfseries update} ()
+\item 
+\mbox{\Hypertarget{class_moving_entity_acb4cd05921080d325fd27dfbefa38436}\label{class_moving_entity_acb4cd05921080d325fd27dfbefa38436}} 
+{\bfseries Moving\+Entity} (int x\+Start, int y\+Start, int num\+Anim\+Frames, S\+D\+L\+\_\+\+Texture $\ast$main\+Sprite\+Sheet, int texture\+Width, int texture\+Height)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\+Component}} $>$ \mbox{\hyperlink{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}{left\+Animation}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\+Component}} $>$ \mbox{\hyperlink{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}{right\+Animation}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\+Component}} $>$ \mbox{\hyperlink{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}{up\+Animation}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\+Component}} $>$ \mbox{\hyperlink{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}{down\+Animation}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} class is derived from \mbox{\hyperlink{class_entity}{Entity}} super class and handles all moving entities on the map. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}\label{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}} 
+\index{MovingEntity@{MovingEntity}!downAnimation@{downAnimation}}
+\index{downAnimation@{downAnimation}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{downAnimation}{downAnimation}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::down\+Animation}
+
+Animation used for animating movement downwards \mbox{\Hypertarget{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}\label{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}} 
+\index{MovingEntity@{MovingEntity}!leftAnimation@{leftAnimation}}
+\index{leftAnimation@{leftAnimation}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{leftAnimation}{leftAnimation}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::left\+Animation}
+
+Animation used for animating movement towards the left \mbox{\Hypertarget{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}\label{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}} 
+\index{MovingEntity@{MovingEntity}!rightAnimation@{rightAnimation}}
+\index{rightAnimation@{rightAnimation}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{rightAnimation}{rightAnimation}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::right\+Animation}
+
+Animation used for animating movement towards the right \mbox{\Hypertarget{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}\label{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}} 
+\index{MovingEntity@{MovingEntity}!upAnimation@{upAnimation}}
+\index{upAnimation@{upAnimation}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{upAnimation}{upAnimation}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::up\+Animation}
+
+Animation used for animating movement upwards 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Moving\+Entity.\+h\item 
+Moving\+Entity.\+cpp\end{DoxyCompactItemize}

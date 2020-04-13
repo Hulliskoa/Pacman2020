@@ -1,16 +1,9 @@
-﻿  CollisionManager.cpp
-  Entity.cpp
-  GameManager.cpp
-  InputComponent.cpp
-  LevelManager.cpp
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(51,7): warning C4101: 'leftUpTile': unreferenced local variable
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(50,7): warning C4101: 'rightUpTile': unreferenced local variable
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(48,7): warning C4101: 'leftDownTile': unreferenced local variable
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(49,7): warning C4101: 'rightDownTile': unreferenced local variable
-  MovingEntity.cpp
-  Pacman.cpp
-  Pacman2020.cpp
+﻿  LevelManager.cpp
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(53,7): warning C4101: 'leftUpTile': unreferenced local variable
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(52,7): warning C4101: 'rightUpTile': unreferenced local variable
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(50,7): warning C4101: 'leftDownTile': unreferenced local variable
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(51,7): warning C4101: 'rightDownTile': unreferenced local variable
   Shadow.cpp
   Generating Code...
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\CollisionManager.cpp(66): warning C4715: 'CollisionManager::collisionCheck': not all control paths return a value
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(41): warning C4715: 'LevelManager::readLevelFromTxt': not all control paths return a value
   Pacman2020.vcxproj -> C:\Users\truls\source\repos\Pacman2020\Debug\Pacman2020.exe
