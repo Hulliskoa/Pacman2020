@@ -6,9 +6,13 @@
 #include "Shadow.h"
 #include "GameState.h"
 #include "LevelManager.h"
-
-
-
+#include <SDL_ttf.h>
+/*! \brief
+ *		Handles the different game states and creation of game objects
+ *
+ *
+ *
+ */
 class GameManager
 {
 
@@ -16,15 +20,17 @@ private:
 
 	SDL_Window* window;
 	SDL_Renderer* gameRenderer;
-	SDL_Event* event{};
-	SDL_Surface* spriteSheet;
 	SDL_Texture* spriteSheetTexture;
+
 	int spriteSheetWidth;
 	int spriteSheetHeight;
 	int currentLvl = 1;
-	std::shared_ptr<CollisionManager> collisionManager;
-	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();
-	std::shared_ptr<LevelManager> levelManager;
+	bool lvlLoaded = false;
+
+	std::shared_ptr<InputComponent> m_input;/*!<InputComponent for handling menu inputs*/
+	std::shared_ptr<CollisionManager> m_collisionManager;/*!<collision manager used throughout the program*/
+	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();/*!<Keeps track of game state*/
+	std::shared_ptr<LevelManager> m_levelManager;/*!<A single level manager for creating and rendering levels*/
 	std::shared_ptr<Shadow> shadow;
 	std::shared_ptr<Pacman> pacman;
 
@@ -32,6 +38,8 @@ public:
 	GameManager(SDL_Window* window, SDL_Renderer* renderer);
 	void run();
 	bool loadspriteSheetTexture(std::string path);
+	void mainMenu();
+	void inGame();
 	void startGame();
 	void exitGame();
 	void pauseGame();

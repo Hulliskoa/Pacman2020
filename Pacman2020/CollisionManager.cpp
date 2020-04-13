@@ -70,6 +70,11 @@ void CollisionManager::addEntity(std::shared_ptr<Entity> entity)
 	entities.emplace_back(entity);
 }
 
+void CollisionManager::clearEntityArray()
+{
+	entities.clear();
+}
+
 CollisionManager::CollisionManager() {}
 
 CollisionManager::~CollisionManager() {}

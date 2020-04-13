@@ -2,7 +2,7 @@ var indexSectionsWithContent =
 {
   0: "acdegilmprsuv",
   1: "acegilmps",
-  2: "aru",
+  2: "acru",
   3: "cdelrsuv"
 };
 

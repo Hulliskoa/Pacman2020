@@ -91,6 +91,11 @@ $(document).ready(function(){initNavTree('class_entity.html',''); initResizable(
 <div class="title">Entity Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>All ingame objects are either an <a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity, Pacman,...">Entity</a> or derived from it - see: <a class="el" href="class_moving_entity.html">MovingEntity</a>, <a class="el" href="class_pacman.html">Pacman</a>, <a class="el" href="class_shadow.html">Shadow</a>.  
+ <a href="class_entity.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_entity_8h_source.html">Entity.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Entity:</div>
 <div class="dyncontent">
@@ -135,7 +140,10 @@ Protected Attributes</h2></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>numFrames</b> = 0</td></tr>
 <tr class="separator:af36b7fe32bbac6e497ce4b626b7f910a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>All ingame objects are either an <a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity, Pacman,...">Entity</a> or derived from it - see: <a class="el" href="class_moving_entity.html">MovingEntity</a>, <a class="el" href="class_pacman.html">Pacman</a>, <a class="el" href="class_shadow.html">Shadow</a>. </p>
+<p>The whole game is built up by entities. These have different entity types that define their behaviour when pacman collide with them </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a6579716bfda99a483be988974ee5b8bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6579716bfda99a483be988974ee5b8bd">&#9670;&nbsp;</a></span>coordinates</h2>
 
@@ -147,7 +155,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>numFrames</b> = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>current coordinates to be used for rendering and collision checking </p>
+<p>current coordinates to be used for rendering and collision checking element 0 = x-coordinate and element 1 = y-coordinate. </p>
 
 </div>
 </div>

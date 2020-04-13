@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update_32',['update',['../class_input_component.html#a0ccbc8df1018cc6f67155dd68abe98b3',1,'InputComponent']]]
+  ['render_35',['render',['../class_animation_component.html#a808d922bb219087c274854274aca5056',1,'AnimationComponent']]]
 ];

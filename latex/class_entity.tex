@@ -1,5 +1,14 @@
 \hypertarget{class_entity}{}\doxysection{Entity Class Reference}
 \label{class_entity}\index{Entity@{Entity}}
+
+
+All ingame objects are either an \mbox{\hyperlink{class_entity}{Entity}} or derived from it -\/ see\+: \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}}, \mbox{\hyperlink{class_pacman}{Pacman}}, \mbox{\hyperlink{class_shadow}{Shadow}}.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
 Inheritance diagram for Entity\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -40,6 +49,11 @@ int {\bfseries num\+Frames} = 0
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+All ingame objects are either an \mbox{\hyperlink{class_entity}{Entity}} or derived from it -\/ see\+: \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}}, \mbox{\hyperlink{class_pacman}{Pacman}}, \mbox{\hyperlink{class_shadow}{Shadow}}. 
+
+The whole game is built up by entities. These have different entity types that define their behaviour when pacman collide with them 
+
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_entity_a6579716bfda99a483be988974ee5b8bd}\label{class_entity_a6579716bfda99a483be988974ee5b8bd}} 
 \index{Entity@{Entity}!coordinates@{coordinates}}
@@ -47,7 +61,7 @@ int {\bfseries num\+Frames} = 0
 \doxysubsubsection{\texorpdfstring{coordinates}{coordinates}}
 {\footnotesize\ttfamily int Entity\+::coordinates\mbox{[}2\mbox{]} = \{ 0,0 \}}
 
-current coordinates to be used for rendering and collision checking \mbox{\Hypertarget{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}\label{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}} 
+current coordinates to be used for rendering and collision checking element 0 = x-\/coordinate and element 1 = y-\/coordinate. \mbox{\Hypertarget{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}\label{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}} 
 \index{Entity@{Entity}!entityT@{entityT}}
 \index{entityT@{entityT}!Entity@{Entity}}
 \doxysubsubsection{\texorpdfstring{entityT}{entityT}}

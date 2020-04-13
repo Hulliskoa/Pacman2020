@@ -2,21 +2,51 @@
 \label{class_collision_manager}\index{CollisionManager@{CollisionManager}}
 
 
+Does collision checking on behalf of all the \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} objects.  
+
+
+
+
 {\ttfamily \#include $<$Collision\+Manager.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_collision_manager_aaafc944c384702015bd29c5d876261a2}\label{class_collision_manager_aaafc944c384702015bd29c5d876261a2}} 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ {\bfseries collision\+Check} (\mbox{\hyperlink{class_entity}{Entity}} $\ast$entity\+To\+Check)
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ \mbox{\hyperlink{class_collision_manager_aaafc944c384702015bd29c5d876261a2}{collision\+Check}} (\mbox{\hyperlink{class_entity}{Entity}} $\ast$entity\+To\+Check)
 \item 
-\mbox{\Hypertarget{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}\label{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}} 
-void {\bfseries add\+Entity} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity)
+void \mbox{\hyperlink{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}{add\+Entity}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Collision\+Manger class does collisionchecking on behalf of all the \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} objects 
+Does collision checking on behalf of all the \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} objects. 
+
+The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}\label{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}} 
+\index{CollisionManager@{CollisionManager}!addEntity@{addEntity}}
+\index{addEntity@{addEntity}!CollisionManager@{CollisionManager}}
+\doxysubsubsection{\texorpdfstring{addEntity()}{addEntity()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::add\+Entity (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{entity }\end{DoxyParamCaption})}
+
+Used to add entities to the entities vector 
+\begin{DoxyParams}{Parameters}
+{\em entity} & \mbox{\hyperlink{class_entity}{Entity}} we want to add to vector for collision checking later \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_collision_manager_aaafc944c384702015bd29c5d876261a2}\label{class_collision_manager_aaafc944c384702015bd29c5d876261a2}} 
+\index{CollisionManager@{CollisionManager}!collisionCheck@{collisionCheck}}
+\index{collisionCheck@{collisionCheck}!CollisionManager@{CollisionManager}}
+\doxysubsubsection{\texorpdfstring{collisionCheck()}{collisionCheck()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ Collision\+Manager\+::collision\+Check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_entity}{Entity}} $\ast$}]{entity\+To\+Check }\end{DoxyParamCaption})}
+
+Checks if the entity has collided with anything and returns the pointer to the object it collided with 
+\begin{DoxyParams}{Parameters}
+{\em entity\+To\+Check} & the \mbox{\hyperlink{class_entity}{Entity}} that we want to check collision on \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

@@ -23,5 +23,6 @@ public:
 		\param gameState used for sending back gamestate to the GameManager depending on input recieved
 	*/
 	void update(SDL_Window* window, int speedXY[2], std::shared_ptr<GameState> gameState);
+	std::string mainUpdate(std::shared_ptr<GameState> gameState);
 	InputComponent();
 };

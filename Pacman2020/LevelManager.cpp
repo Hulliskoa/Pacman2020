@@ -11,14 +11,20 @@ LevelManager::LevelManager(SDL_Renderer* mainRenderer) : renderer(mainRenderer) 
 
 LevelManager::~LevelManager()
 {
-	free();
+	if (m_levelSpriteSheet != NULL)
+	{
+		SDL_DestroyTexture(m_levelSpriteSheet);
+		m_levelSpriteSheet = NULL;
+		m_textureWidth = 0;
+		m_textureHeight = 0;
+	}
 }
 
 bool LevelManager::readLevelFromTxt(int currentLvl) {
 	std::ifstream lvlFile;
+	std::string path ="..\\Pacman2020\\levels\\lvl" +std::to_string(currentLvl) + ".txt";
 
-
-	lvlFile.open("..\\Pacman2020\\levels\\lvl3.txt");
+	lvlFile.open(path);
 	char currentChar;
 	int rowCounter = 0;
 	int columnCounter = 0;
@@ -42,15 +48,15 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)
 {
-
+	//entityArray.clear();
 	char upTile;
 	char rightTile;
 	char leftTile;
 	char downTile;
-	char leftDownTile;
-	char rightDownTile;
-	char rightUpTile;
-	char leftUpTile;
+	//char leftDownTile;
+	//char rightDownTile;
+	//char rightUpTile;
+	//char leftUpTile;
 
 	int xCoord = 0;
 	int yCoord = 0;
@@ -262,7 +268,7 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 }
 
 
-void LevelManager::renderLevel(SDL_Renderer * renderer)
+void LevelManager::renderLevel(SDL_Renderer* renderer)
 {
 	for (auto x : entityArray) {
 		if (x->getEntityType() != EntityType::NOT_DEFINED)
@@ -271,17 +277,6 @@ void LevelManager::renderLevel(SDL_Renderer * renderer)
 	}
 }
 
-void LevelManager::free()
-{
-	if (m_levelSpriteSheet != NULL)
-	{
-		SDL_DestroyTexture(m_levelSpriteSheet);
-		m_levelSpriteSheet = NULL;
-		m_textureWidth = 0;
-		m_textureHeight = 0;
-	}
-
-}
 bool LevelManager::loadspriteSheetTexture(std::string path)
 {
 	//The final texture

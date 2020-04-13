@@ -2,11 +2,11 @@
 
 
 enum class GameState {
+	MAIN_MENU,
 	GAME_RUNNING,
 	LEVEL_COMPLETE,
 	GAME_STARTED,
 	GAME_PAUSED,
 	EXIT_GAME,
 	GAME_OVER
-
 };

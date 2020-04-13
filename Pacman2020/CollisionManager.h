@@ -3,9 +3,12 @@
 #include "Entity.h"
 #include "MovingEntity.h"
 
-/**
-	CollisionManger class does collision checking on behalf of all the MovingEntity objects
-*/
+/*! \brief
+ *		Does collision checking on behalf of all the MovingEntity objects
+ *
+ *
+ * The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them
+ */
 class CollisionManager
 {
 private:
@@ -23,6 +26,7 @@ public:
 		\param entity Entity we want to add to vector for collision checking later
 	*/
 	void addEntity(std::shared_ptr<Entity> entity);
+	void clearEntityArray();
 	CollisionManager();
 	~CollisionManager();
 };
