@@ -31,7 +31,7 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 
 	if (!lvlFile) {
 		std::cerr << "Unable to open lvlfile";
-		exit(1);
+		return false;
 	}
 	while (lvlFile >> currentChar) {
 
@@ -44,6 +44,7 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 
 		}
 	}
+	return true;
 }
 
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)

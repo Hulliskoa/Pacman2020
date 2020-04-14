@@ -6,7 +6,7 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	gameRenderer(renderer)
 {
 
-
+	//Pre-loading spritesheet to save memory when loading sprites for all moving entities
 	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\spritesheet.png")) {
 		std::cout << "could not load spritesheet" << std::endl;
 	}
@@ -19,10 +19,11 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	pacman = std::make_shared<Pacman>(window, spriteSheetTexture, spriteSheetHeight, spriteSheetWidth);
 	//collisionManager->addEntity(shadow);
 
+	startGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Start Game", 35, 50, gameRenderer);
+	quitGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Quit Game", 35, 100, gameRenderer);
+	continueGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Quit Game", 35, 100, gameRenderer);
 
-
-
-
+	//std::string fontPath, std::string message, int xCoord, int yCoord, SDL_Renderer* rendere
 	*gameState = GameState::MAIN_MENU;
 }
 
@@ -48,7 +49,7 @@ void GameManager::run()
 
 void GameManager::mainMenu()
 {
-	std::shared_ptr < std::string> test = std::make_shared<std::string>();
+
 
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
@@ -57,15 +58,41 @@ void GameManager::mainMenu()
 		m_collisionManager->addEntity(pacman);
 		lvlLoaded = true;
 	}
+
+	*menuInput = m_input->mainUpdate(gameState);
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
+	startGameText->renderText(gameRenderer, 0);
+	quitGameText->renderText(gameRenderer, 0);
+
+	if (menuChoice == 0) {
+		startGameText->renderText(gameRenderer, 1);
+	}
+	if (menuChoice == 1) {
+		quitGameText->renderText(gameRenderer, 1);
+	}
 
 
 	SDL_RenderPresent(gameRenderer);
-	SDL_Delay(100);
-	*test = m_input->mainUpdate(gameState);
-	if (*test == "RETURN")
+
+
+	if (*menuInput == "DOWN") {
+		menuChoice = menuChoice == 1 ? 0 : 1;
+
+	}
+	else if (*menuInput == "UP") {
+		menuChoice = menuChoice == 0 ? 1 : 0;
+	}
+
+
+	if (*menuInput == "RETURN" && menuChoice == 0) {
 		*gameState = GameState::GAME_RUNNING;
+	}
+	if (*menuInput == "RETURN" && menuChoice == 1) {
+		*gameState = GameState::EXIT_GAME;
+	}
+
+
 }
 
 void GameManager::inGame() {
@@ -136,3 +163,5 @@ bool GameManager::loadspriteSheetTexture(std::string path)
 	spriteSheetTexture = newTexture;
 	return spriteSheetTexture != NULL;
 }
+
+

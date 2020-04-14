@@ -1,13 +1,4 @@
-﻿  CollisionManager.cpp
-  Entity.cpp
-  GameManager.cpp
-  InputComponent.cpp
-  LevelManager.cpp
-  MovingEntity.cpp
-  Pacman.cpp
+﻿  GameManager.cpp
   Pacman2020.cpp
-  Shadow.cpp
   Generating Code...
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\LevelManager.cpp(47): warning C4715: 'LevelManager::readLevelFromTxt': not all control paths return a value
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\CollisionManager.cpp(66): warning C4715: 'CollisionManager::collisionCheck': not all control paths return a value
   Pacman2020.vcxproj -> C:\Users\truls\source\repos\Pacman2020\Debug\Pacman2020.exe
