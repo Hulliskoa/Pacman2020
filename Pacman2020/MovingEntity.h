@@ -6,10 +6,12 @@
 
 
 /**
-	MovingEntity class is derived from Entity super class and handles all moving entities on the map.
+	MovingEntity class is derived from Entity super class and is used to create all moving entities in the game.
 */
 class MovingEntity : public Entity
 {
+protected:
+	InputComponent m_input;
 public:
 	std::shared_ptr<AnimationComponent> leftAnimation;/*!<Animation used for animating movement towards the left*/
 	std::shared_ptr<AnimationComponent>  rightAnimation;/*!<Animation used for animating movement towards the right*/

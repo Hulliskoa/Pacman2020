@@ -1,4 +1,4 @@
-// Pacman2020.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Pacman2020.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include "GameManager.h"
 
-const int SCREEN_WIDTH = 800;
+const int SCREEN_WIDTH = 696;
 const int SCREEN_HEIGHT = 900;
 
 

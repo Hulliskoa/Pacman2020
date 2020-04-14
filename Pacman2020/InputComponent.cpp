@@ -1,7 +1,7 @@
 #include "InputComponent.h"
 
 
-void InputComponent::update(SDL_Window* window, int speedXY[2], std::shared_ptr<GameState> gameState)
+void InputComponent::update(int speedXY[2], std::shared_ptr<GameState> gameState)
 {
 
 	while (SDL_PollEvent(&event) != 0)
@@ -43,7 +43,7 @@ void InputComponent::update(SDL_Window* window, int speedXY[2], std::shared_ptr<
 
 				break;
 			case SDLK_ESCAPE:
-				*gameState = GameState::GAME_STARTED;
+				*gameState = GameState::MAIN_MENU;
 				break;
 			default:
 				break;

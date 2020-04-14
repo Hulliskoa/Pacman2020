@@ -96,7 +96,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 
 
-	m_input.update(window, velocity, gameState);
+	m_input.update(velocity, gameState);
 
 
 
@@ -105,7 +105,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 }
 
-Pacman::Pacman(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(32, 40, 3, mainSpriteSheet, textureWidth, textureHeight), window(w) {
+Pacman::Pacman( SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(32, 40, 3, mainSpriteSheet, textureWidth, textureHeight) {
 
 
 	MovingEntity::setEntityType(EntityType::PACMAN);

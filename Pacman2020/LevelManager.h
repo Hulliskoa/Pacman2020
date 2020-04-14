@@ -23,7 +23,7 @@ private:
 	SDL_Texture* m_levelSpriteSheet = nullptr;
 	int m_textureWidth = 0;
 	int m_textureHeight = 0;
-	int xMapOffset = 3;
+	int xMapOffset = 1;
 	int yMapOffset = 4;
 
 public:

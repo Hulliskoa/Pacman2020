@@ -1,6 +1,5 @@
-#include "Shadow.h"
-
-void Shadow::update(SDL_Renderer * renderer)
+#include "Ghost.h"
+void Ghost::update(SDL_Renderer* renderer)
 {
 
 	//midlertidig for å sjekke collision
@@ -26,10 +25,11 @@ void Shadow::update(SDL_Renderer * renderer)
 	MovingEntity::update();
 }
 
-Shadow::Shadow(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(32, 40, 3, mainSpriteSheet, textureWidth, textureHeight)
+Ghost::Ghost(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(32, 40, 3, mainSpriteSheet, textureWidth, textureHeight)
 {
 	setEntityType(EntityType::GHOST);
 
+	//Shadow
 	rightAnimation->addRect(457, 65, 14, 14);
 	rightAnimation->addRect(473, 65, 14, 14);
 
@@ -44,6 +44,3 @@ Shadow::Shadow(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, i
 
 }
 
-Shadow::~Shadow()
-{
-}

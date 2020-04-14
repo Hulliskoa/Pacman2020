@@ -6,7 +6,7 @@
 #include "GameState.h"
 
 /**
-	Component for controlling the different entities in the game. 
+	Component for controlling entities in the game.
 */
 
 class InputComponent
@@ -22,7 +22,7 @@ public:
 		\param speedXY array for handling in which direction the entity is moving
 		\param gameState used for sending back gamestate to the GameManager depending on input recieved
 	*/
-	void update(SDL_Window* window, int speedXY[2], std::shared_ptr<GameState> gameState);
+	void update(int speedXY[2], std::shared_ptr<GameState> gameState);
 	std::string mainUpdate(std::shared_ptr<GameState> gameState);
 	InputComponent();
 };
