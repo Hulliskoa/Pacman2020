@@ -11,7 +11,7 @@
 class MovingEntity : public Entity
 {
 protected:
-	InputComponent m_input;
+	std::shared_ptr<InputComponent> m_input;
 public:
 	std::shared_ptr<AnimationComponent> leftAnimation;/*!<Animation used for animating movement towards the left*/
 	std::shared_ptr<AnimationComponent>  rightAnimation;/*!<Animation used for animating movement towards the right*/

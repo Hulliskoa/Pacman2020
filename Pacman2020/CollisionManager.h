@@ -20,12 +20,17 @@ public:
 		Checks if the entity has collided with anything and returns the pointer to the object it collided with
 		\param entityToCheck the Entity that we want to check collision on
 	*/
-	std::shared_ptr<Entity>  collisionCheck(Entity* entityToCheck);
+	std::shared_ptr<Entity>  collisionCheck(std::shared_ptr<Entity> entityToCheck);
 	/**
 		Used to add entities to the entities vector
 		\param entity Entity we want to add to vector for collision checking later
 	*/
 	void addEntity(std::shared_ptr<Entity> entity);
+	/**
+		checks if entity is on top of an intersection
+		\param entityToCheck Entity we want to check is on top of intersection
+	*/
+	bool checkIntersection(std::shared_ptr<Entity> entityToCheck);
 	void clearEntityArray();
 	CollisionManager();
 	~CollisionManager();

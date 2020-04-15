@@ -1,7 +1,8 @@
 #pragma once
 #include "MovingEntity.h"
 #include <SDL.h>
-#include "Pacman.h"
+#include "AiComponent.h"
+#include "CollisionManager.h"
 
 
 class Ghost :
@@ -9,9 +10,10 @@ class Ghost :
 {
 private:
 	int animationCounter = 0;
-	std::shared_ptr<Pacman> pacman;
+	std::shared_ptr<AiComponent> aiComponent;
+	std::shared_ptr<Entity> pacman;
 public:
-	void update(SDL_Renderer* renderer);
-	Ghost(SDL_Window* w, SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth);
+	void update(SDL_Renderer* renderer, std::shared_ptr<MovingEntity> pacman, std::shared_ptr<CollisionManager> collisionManager);
+	Ghost(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth);
 
 };

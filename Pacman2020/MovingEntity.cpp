@@ -14,7 +14,7 @@ void MovingEntity::update() {
 		coordinates[1] = -8;
 	}
 	if (coordinates[0] < -8) {
-		coordinates[0] = 250;
+		coordinates[0] = 240;
 	}
 	if (coordinates[1] < -8) {
 		coordinates[1] = 320;

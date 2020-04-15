@@ -1,6 +1,6 @@
 #include "CollisionManager.h"
 
-std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
+std::shared_ptr<Entity> CollisionManager::collisionCheck(std::shared_ptr<Entity> entityToCheck)
 {
 	bool collision = false;
 	int flip = 1;
@@ -18,11 +18,11 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
 	}
 
 	if ((movementPlane == 0) && (oppositePlane == 0)) {
-		entityToCheck = nullptr;
-		free(entityToCheck);
+
+
 		return nullptr;
 	}
-	//Checks if entityToCheck is within hitbox of any other entity on the map, returns value to be used for entity's updatefunction
+	//Checks if entityToCheck is within hitbox of any other entity on the map, returns value to be used in entity's updatefunction
 	for (auto x : entities) {
 		if (x->getEntityType() == entityToCheck->getEntityType() || x->getEntityType() == EntityType::NOT_DEFINED) {
 			continue;
@@ -52,22 +52,27 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(Entity* entityToCheck)
 			}
 		}
 		if (collision) {
-			entityToCheck = nullptr;
-			free(entityToCheck);
-			//x->setEntityType(EntityType::NOT_DEFINED);
 			return x;
 		}
 
 	}
-	entityToCheck = nullptr;
-	free(entityToCheck);
-
-
 }
 
 void CollisionManager::addEntity(std::shared_ptr<Entity> entity)
 {
 	entities.emplace_back(entity);
+}
+
+bool CollisionManager::checkIntersection(std::shared_ptr<Entity> entityToCheck)
+{
+	for (auto x : entities) {
+		if (x->getEntityType() == EntityType::INTERSECTION) {
+			if ((x->coordinates[0] == entityToCheck->coordinates[0]) && (x->coordinates[1] == entityToCheck->coordinates[1])) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 void CollisionManager::clearEntityArray()

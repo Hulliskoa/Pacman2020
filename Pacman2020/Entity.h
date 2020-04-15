@@ -17,6 +17,8 @@ enum class EntityType {
 	FRUIT,
 	WALL,
 	TELEPORT,
+	INTERSECTION,
+	DOOR,
 	NOT_DEFINED
 };
 
@@ -26,7 +28,7 @@ enum class EntityType {
  *
  *  The whole game is built up by entities. These have different entity types that define their behaviour when pacman collide with them
  */
-class Entity
+class Entity : public std::enable_shared_from_this<Entity>
 {
 protected:
 	EntityType entityT = EntityType::NOT_DEFINED;/*!<Defines what entity type the object is*/

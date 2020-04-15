@@ -1,14 +1,14 @@
 #include "Pacman.h"
 
 
-void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer * renderer)
+void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer* renderer)
 {
 
 	// Saves last direction pacman traveled in.
 
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 
-	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(this);
+	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());
 	if (collidedWith != nullptr) {
 		switch (collidedWith->getEntityType())
 		{
@@ -56,6 +56,9 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		case EntityType::TELEPORT:
 			//Endre koordinat
 			break;
+		case EntityType::INTERSECTION:
+			//Endre koordinat
+			break;
 		default:
 			break;
 		}
@@ -63,8 +66,16 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	else {
 
 	}
+
+
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
+
+	if (collisionManager->checkIntersection(shared_from_this())) {
+		m_input->update(velocity, gameState);
+	}
+
+
 
 
 	//Checks the direction pacman is traveling
@@ -94,22 +105,16 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		startAnimation->render(coordinates[0], coordinates[1], renderer);
 	}
 
-
-
-	m_input.update(velocity, gameState);
-
-
-
-
 	MovingEntity::update();
 
 }
 
-Pacman::Pacman( SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(32, 40, 3, mainSpriteSheet, textureWidth, textureHeight) {
+Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(16, 40, 3, mainSpriteSheet, textureWidth, textureHeight) {
 
-
+	m_input = std::make_shared <InputComponent>();
 	MovingEntity::setEntityType(EntityType::PACMAN);
 	lastAnimation = startAnimation;
+	deathAnimation = std::make_shared<AnimationComponent>(12, mainSpriteSheet, textureWidth, textureHeight);
 
 	rightAnimation->addRect(457, 1, 13, 13);
 	rightAnimation->addRect(473, 1, 13, 13);

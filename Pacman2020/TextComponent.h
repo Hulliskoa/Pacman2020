@@ -4,15 +4,17 @@
 #include <SDL_ttf.h>
 #include <iostream>
 #include <vector>
-
+/*! \brief
+ *		Wrapper object for showing text on screen
+ *
+ *
+ * It saves two versions of the same text to be able to switch between white and purple text
+ */
 class TextComponent
 {
 private:
 	std::vector<SDL_Texture*> texts;
 	TTF_Font* m_font;
-	
-
-	SDL_Texture* m_message2;
 	SDL_Rect message_rect;
 	SDL_Color color;
 	std::string m_text;

@@ -12,7 +12,7 @@
 class Pacman : public MovingEntity
 {
 private:
-	AnimationComponent deathAnimation;
+	std::shared_ptr<AnimationComponent> deathAnimation;
 	std::shared_ptr<AnimationComponent> lastAnimation = nullptr;
 public:
 

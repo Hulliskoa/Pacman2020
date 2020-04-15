@@ -14,16 +14,14 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	m_input = std::make_shared <InputComponent>();
 	m_collisionManager = std::make_shared<CollisionManager>();
 	m_levelManager = std::make_shared<LevelManager>(gameRenderer);
-	//shadow = std::make_shared<Shadow>(gameRenderer, spriteSheet, spriteSheetTexture, spriteSheetHeight, spriteSheetWidth);
+	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth);
 
 	pacman = std::make_shared<Pacman>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth);
 	//collisionManager->addEntity(shadow);
 
 	startGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Start Game", 35, 50, gameRenderer);
 	quitGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Quit Game", 35, 100, gameRenderer);
-	continueGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Continue Game", 35, 100, gameRenderer);
-
-	//std::string fontPath, std::string message, int xCoord, int yCoord, SDL_Renderer* rendere
+	continueGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Continue Game", 35, 50, gameRenderer);
 	*gameState = GameState::MAIN_MENU;
 }
 
@@ -54,7 +52,8 @@ void GameManager::mainMenu()
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
 		m_levelManager->readLevelFromTxt(currentLvl);
-		m_levelManager->createLevel(m_collisionManager);
+		m_levelManager->createLevel2(m_collisionManager);
+		m_levelManager->createInterSections(m_collisionManager);
 		m_collisionManager->addEntity(pacman);
 		lvlLoaded = true;
 	}
@@ -68,6 +67,8 @@ void GameManager::mainMenu()
 	//Renders main menu;
 	startGameText->renderText(gameRenderer, 0);
 	quitGameText->renderText(gameRenderer, 0);
+
+	//continueGameText->renderText(gameRenderer, 0);
 
 	if (menuChoice == 0) {
 		startGameText->renderText(gameRenderer, 1);
@@ -102,11 +103,11 @@ void GameManager::inGame() {
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
 
-	m_levelManager->renderLevel(gameRenderer);
+	m_levelManager->renderLevel();
 	//entity update methods
 	//shadow->update();
 	pacman->update(gameState, m_collisionManager, gameRenderer);
-
+	shadow->update(gameRenderer, pacman, m_collisionManager);
 
 	/*
 	while (*gameState == GameState::LEVEL_COMPLETE) {
