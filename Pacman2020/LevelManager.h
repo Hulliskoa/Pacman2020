@@ -47,7 +47,6 @@ public:
 		\param collisionManager global collision manager is supplied so that every entity created can be push into the collision vector
 	*/
 	void createLevel(std::shared_ptr<CollisionManager> collisionManager);
-	void createLevel2(std::shared_ptr<CollisionManager> collisionManager);
 
 	/**
 		Renders level to screen and makes use of the entityArray to load each entity created.

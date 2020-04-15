@@ -44,336 +44,119 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 	}
 	return true;
 }
+
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)
 {
-	//entityArray.clear();
-	char upTile;
-	char rightTile;
-	char leftTile;
-	char downTile;
-	//char leftDownTile;
-	//char rightDownTile;
-	//char rightUpTile;
-	//char leftUpTile;
-
-	int xCoord = 0;
-	int yCoord = 0;
-	EntityType entityType = EntityType::NOT_DEFINED;
-
-	for (int y = 0; y < 31; y++) {
-		for (int x = 0; x < 28; x++) {
-
-
-			std::shared_ptr<Entity> lvlEntity;
-			char currentEntity = levelArray[y][x];
-
-			upTile = (y - 1 > 0) ? levelArray[y - 1][x] : 'x';
-			rightTile = (x != 28) ? levelArray[y][x + 1] : 'x';
-			downTile = (y != 31) ? levelArray[y + 1][x] : 'x';
-			leftTile = (x - 1 > 0) ? levelArray[y][x - 1] : 'x';
-
-			//controll structure for drawing and creating map from textfile
-			if (currentEntity == 'x')
-			{
-				if (downTile == 'x' && leftTile == 'x' && upTile == 'x' && rightTile == 'x') {
-					xCoord = 288;
-					yCoord = 88;
-					entityType = EntityType::NOT_DEFINED;
-				}
-				else if ((downTile != 'x' && leftTile == 'x') && (upTile == 'x' && rightTile == 'x')) {
-					xCoord = 351;
-					yCoord = 27;
-					entityType = EntityType::WALL;
-				}
-				else if ((downTile == 'x' && leftTile == 'x') && (upTile != 'x' && rightTile == 'x')) {
-					xCoord = 270;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-
-				}
-				else if ((downTile == 'x' && leftTile == 'x') && (upTile != 'x' && rightTile != 'x')) {
-					xCoord = 279;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-
-				}
-				else if ((downTile == 'x' && leftTile != 'x') && (upTile == 'x' && rightTile == 'x')) {
-					xCoord = 306;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-
-				}
-				else if ((downTile == 'x' && leftTile == 'x') && (upTile == 'x' && rightTile != 'x')) {
-
-					xCoord = 297;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-
-				}
-				else if ((downTile != 'x' && leftTile == 'x') && (upTile == 'x' && rightTile != 'x')) {
-					xCoord = 315;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-
-
-				}
-				else if ((downTile == 'x' && leftTile != 'x') && (upTile != 'x' && rightTile == 'x')) {
-					xCoord = 288;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-				}
-				else if ((downTile != 'x' && leftTile != 'x') && (upTile == 'x' && rightTile == 'x')) {
-					xCoord = 324;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-				}
-				else if (downTile == 'x' && downTile + 1 != 'x' && leftTile == 'x' && upTile == 'x' && rightTile == 'x') {
-					xCoord = 288;
-					yCoord = 36;
-					entityType = EntityType::WALL;
-				}
-				else
-				{
-					xCoord = 208;
-					yCoord = 88;
-					entityType = EntityType::NOT_DEFINED;
-
-				}
-			}
-			else if (currentEntity == 'o')
-			{
-				xCoord = 342;
-				yCoord = 72;
-				entityType = EntityType::PELLET;
-			}
-			else if (currentEntity == 'B' && (y - 1 < 0 || levelArray[y - 1][x] == 'e')) {
-				xCoord = 315;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-
-			}
-			else if (currentEntity == 'B' && (y + 1 > 30 || levelArray[y + 1][x] == 'e')) {
-				xCoord = 333;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == 'B' && (x - 1 < 0 || levelArray[y][x - 1] == 'e')) {
-				xCoord = 252;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == 'B' && (x + 1 > 27 || levelArray[y][x + 1] == 'e')) {
-				xCoord = 243;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == '0') {
-				xCoord = 225;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == '1') {
-				xCoord = 261;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == '2') {
-				xCoord = 288;
-				yCoord = 45;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == '3') {
-				xCoord = 324;
-				yCoord = 36;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == '4') {
-				xCoord = 270;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-
-			}
-			else if (currentEntity == '5') {
-				xCoord = 234;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == '6') {
-				xCoord = 315;
-				yCoord = 36;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == '7') {
-				xCoord = 279;
-				yCoord = 36;
-				entityType = EntityType::WALL;
-
-			}
-			else if (currentEntity == '8') {
-				xCoord = 324;
-				yCoord = 45;
-				entityType = EntityType::WALL;
-
-			}
-			else if (currentEntity == '9') {
-				xCoord = 315;
-				yCoord = 45;
-				entityType = EntityType::WALL;
-
-			}
-			else if (currentEntity == 'W') {
-				xCoord = 279;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == 'X') {
-				xCoord = 297;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-			}
-			else if (currentEntity == 'Y') {
-				xCoord = 306;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-
-			}
-			else if (currentEntity == 'Z') {
-				xCoord = 288;
-				yCoord = 27;
-				entityType = EntityType::WALL;
-
-			}
-			else if (currentEntity == 'O') {
-				xCoord = 360;
-				yCoord = 45;
-				entityType = EntityType::POWER_PELLET;
-			}
-			else
-			{
-				xCoord = 333;
-				yCoord = 72;
-				entityType = EntityType::NOT_DEFINED;
-			}
-
-			lvlEntity = std::make_shared<Entity>((x + xMapOffset) * 8, (y + yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
-			lvlEntity->startAnimation->addRect(xCoord, yCoord, 8, 8);
-			lvlEntity->setEntityType(entityType);
-			collisionManager->addEntity(lvlEntity);
-			entityArray.emplace_back(lvlEntity);
-		}
-	}
-
-}
-
-
-void LevelManager::createLevel2(std::shared_ptr<CollisionManager> collisionManager)
-{
-	//entityArray.clear();
+	//
 	char upTile = 0;
 	char rightTile = 0;
 	char leftTile = 0;
 	char downTile = 0;
-	//char leftDownTile;
-	//char rightDownTile;
-	//char rightUpTile;
-	//char leftUpTile;
+	char leftDownTile = 0;
+	char rightDownTile = 0;
+	char rightUpTile = 0;
+	char leftUpTile = 0;
 
-	int xCoord = 0;
-	int yCoord = 0;
+	int xCoord = 0;//spritesheet coordinates
+	int yCoord = 0;//spritesheet coordinates
 	EntityType entityType = EntityType::NOT_DEFINED;
 
 	for (int y = 0; y < 31; y++) {
 		for (int x = 0; x < 28; x++) {
 
 			std::shared_ptr<Entity> lvlEntity;
-			char currentEntity = levelArray[y][x];
+			char currentTile = levelArray[y][x];
 
-			upTile = (y - 1 >= 0) ? levelArray[y - 1][x] : 's';
-			rightTile = (x + 1 < 28) ? levelArray[y][x + 1] : 's';
-			downTile = (y + 1 < 31) ? levelArray[y + 1][x] : 's';
-			leftTile = (x - 1 > 0) ? levelArray[y][x - 1] : 's';
+			//checks each tile around current tile to be used later
+			rightTile = (x + 1 > 27) ? 's' : levelArray[y][x + 1];
+			leftTile = (x - 1 < 0) ? 's' : levelArray[y][x - 1];
+			upTile = (y - 1 < 0) ? 's' : levelArray[y - 1][x];
+			downTile = (y + 1 > 30) ? 's' : levelArray[y + 1][x];
 
-			if (currentEntity == 'B' || currentEntity == 'x') {
+			rightDownTile = (y + 1 > 30 || x + 1 > 27) ? 's' : levelArray[y + 1][x + 1];
+			leftUpTile = (y - 1 < 0 || x - 1 < 0) ? 's' : levelArray[y - 1][x - 1];
+			rightUpTile = (y - 1 < 0 || x + 1 > 27) ? 's' : levelArray[y - 1][x + 1];
+			leftDownTile = (y + 1 > 30 || x - 1 < 0) ? 's' : levelArray[y + 1][x - 1];
+
+
+
+			if (currentTile == 'B') {
 				//Outer border
-				if (currentEntity == 'B') {
-					entityType = EntityType::WALL;
+				entityType = EntityType::WALL;
 
-					//left side down corners
-					if (downTile == 'B' && rightTile == 'x' && upTile == 'B') {
-						xCoord = 234;
-						yCoord = 27;
-					}
+				//left side down corners
+				if (downTile == 'B' && rightTile == 'x' && upTile == 'B') {
+					xCoord = 234;
+					yCoord = 27;
+				}
 
-					if (downTile == 'B' && rightTile == 'B' && upTile == 's') {
-						xCoord = 234;
-						yCoord = 27;
-					}
-					else if (downTile == 'B' && rightTile == 'B' && upTile != 's') {
-						xCoord = 288;
-						yCoord = 36;
-					}
+				if (downTile == 'B' && rightTile == 'B' && upTile == 's') {
+					xCoord = 234;
+					yCoord = 27;
+				}
+				else if (downTile == 'B' && rightTile == 'B' && upTile != 's') {
+					xCoord = 288;
+					yCoord = 36;
+				}
 
-					//Right side down corners
-					else if (downTile == 'B' && leftTile == 'B' && upTile == 's') {
-						xCoord = 225;
-						yCoord = 27;
-					}
-					else if (downTile == 'B' && leftTile == 'B' && upTile != 's') {
-						xCoord = 279;
-						yCoord = 36;
-					}
+				//Right side down corners
+				else if (downTile == 'B' && leftTile == 'B' && upTile == 's') {
+					xCoord = 225;
+					yCoord = 27;
+				}
+				else if (downTile == 'B' && leftTile == 'B' && upTile != 's') {
+					xCoord = 279;
+					yCoord = 36;
+				}
 
-					//right side up corners
-					else if (upTile == 'B' && leftTile == 'B' && rightTile == 's') {
-						xCoord = 261;
-						yCoord = 27;
-					}
-					else if (upTile == 'B' && leftTile == 'B' && rightTile != 's') {
-						xCoord = 315;
-						yCoord = 36;
-					}
+				//right side up corners
+				else if (upTile == 'B' && leftTile == 'B' && rightTile == 's') {
+					xCoord = 261;
+					yCoord = 27;
+				}
+				else if (upTile == 'B' && leftTile == 'B' && rightTile != 's') {
+					xCoord = 315;
+					yCoord = 36;
+				}
 
-					//left side up corners
-					else if (upTile == 'B' && rightTile == 'B' && leftTile == 's') {
-						xCoord = 270;
-						yCoord = 27;
-					}
-					else if (upTile == 'B' && rightTile == 'B' && leftTile != 's') {
-						xCoord = 324;
-						yCoord = 36;
-					}
+				//left side up corners
+				else if (upTile == 'B' && rightTile == 'B' && leftTile == 's') {
+					xCoord = 270;
+					yCoord = 27;
+				}
+				else if (upTile == 'B' && rightTile == 'B' && leftTile != 's') {
+					xCoord = 324;
+					yCoord = 36;
+				}
 
-					//bottom border
-					else if (downTile == 's' && (leftTile != 's' || rightTile != 's')) {
-						xCoord = 333;
-						yCoord = 27;
-					}
+				//bottom border
+				else if (downTile == 's' && (leftTile != 's' || rightTile != 's')) {
+					xCoord = 333;
+					yCoord = 27;
+				}
 
-					//top border
-					else if (upTile == 's' && (leftTile != 's' || rightTile != 's')) {
-						xCoord = 315;
-						yCoord = 27;
-					}
+				//top border
+				else if (upTile == 's' && (leftTile != 's' || rightTile != 's')) {
+					xCoord = 315;
+					yCoord = 27;
+				}
 
-					//left border
-					else if (leftTile == 's') {
-						xCoord = 252;
-						yCoord = 27;
-					}
+				//left border
+				else if (leftTile == 's') {
+					xCoord = 252;
+					yCoord = 27;
+				}
 
-					//right border
-					else if (rightTile == 's') {
-						xCoord = 243;
-						yCoord = 27;
-
-					}
-
-
+				//right border
+				else if (rightTile == 's') {
+					xCoord = 243;
+					yCoord = 27;
 				}
 			}
 
-			//Special outer bordes with curve and straight wall
-			else if (currentEntity == 'C')
+
+			//Special outer borders with curve and straight wall
+			else if (currentTile == 'C')
 			{
 				entityType = EntityType::WALL;
 				if (rightTile == 's' && upTile == 'C') {
@@ -408,34 +191,34 @@ void LevelManager::createLevel2(std::shared_ptr<CollisionManager> collisionManag
 				}
 			}
 			//Ghost cage
-			else if (currentEntity == 'G')
+			else if (currentTile == 'G')
 			{
 				entityType = EntityType::WALL;
 				//left side lower corner
 				if (rightTile == 'G' && upTile == 'G') {
 					xCoord = 360;
 					yCoord = 36;
-
 				}
 				//left side upper corner
 				else if (rightTile == 'G' && downTile == 'G') {
 					xCoord = 342;
 					yCoord = 36;
-
 				}
 				//right side upper corner
 				else if (leftTile == 'G' && downTile == 'G') {
 					xCoord = 333;
 					yCoord = 36;
-
 				}
 				//right side lower corner
 				else if (leftTile == 'G' && upTile == 'G') {
 					xCoord = 351;
 					yCoord = 36;
-
 				}
-				//horizontal walls by door
+				//horizontal walls right side of door
+				else if (rightTile == 'G' && leftTile == 'D') {
+					xCoord = 225;
+					yCoord = 45;
+				}
 				else if (rightTile == 'G' && leftTile == 'G' || leftTile == 'D') {
 					if (y > 15) {
 						xCoord = 324;
@@ -445,9 +228,13 @@ void LevelManager::createLevel2(std::shared_ptr<CollisionManager> collisionManag
 						xCoord = 333;
 						yCoord = 27;
 					}
+				}
+				//horizontal walls left side of door
+				else if (leftTile == 'G' && rightTile == 'D') {
+					xCoord = 234;
+					yCoord = 45;
 
 				}
-				//horizontal walls by door
 				else if (leftTile == 'G' && rightTile == 'G' || rightTile == 'D') {
 					if (y > 15) {
 						xCoord = 324;
@@ -471,44 +258,114 @@ void LevelManager::createLevel2(std::shared_ptr<CollisionManager> collisionManag
 
 				}
 			}
-			//door in gost cage
-			else if (currentEntity == 'D')
+			//door in ghost cage
+			else if (currentTile == 'D')
 			{
-			entityType = EntityType::DOOR;
-			xCoord = 104;
-			yCoord = 96;
-			
+				entityType = EntityType::DOOR;
+				xCoord = 104;
+				yCoord = 96;
+
 			}
+			//maze parts inside borders
+			else if (currentTile == 'x')
+			{
+				entityType = EntityType::WALL;
+				//Transition between border walls and inner maze walls
+				if ((leftTile == 'C' || rightTile == 'C') && upTile != 'x') {
+					xCoord = 351;
+					yCoord = 27;
+				}
+				else if ((leftTile == 'C' || rightTile == 'C') && downTile != 'x') {
+					xCoord = 270;
+					yCoord = 36;
+				}
+				else if ((upTile == 'C' || downTile == 'C') && rightTile != 'x') {
+					xCoord = 297;
+					yCoord = 36;
+
+				}
+				else if ((upTile == 'C' || downTile == 'C') && leftTile != 'x') {
+					xCoord = 306;
+					yCoord = 36;
+
+				}
+				else if (upTile != 'x' && leftTile != 'x' && downTile == 'x' && rightTile == 'x') {
+					xCoord = 288;
+					yCoord = 45;
+				}
+				else if (upTile != 'x' && leftTile == 'x' && downTile == 'x' && rightTile != 'x') {
+					xCoord = 279;
+					yCoord = 36;
+				}
+				else if (upTile == 'x' && leftTile == 'x' && downTile != 'x' && rightTile != 'x') {
+					xCoord = 315;
+					yCoord = 36;
+				}
+				else if (upTile == 'x' && leftTile != 'x' && downTile != 'x' && rightTile == 'x') {
+					xCoord = 324;
+					yCoord = 36;
+				}
+				else if (upTile != 'x' && leftTile == 'x' && downTile == 'x' && rightTile == 'x') {
+					xCoord = 351;
+					yCoord = 27;
+				}
+				else if (upTile == 'x' && leftTile == 'x' && downTile != 'x' && rightTile == 'x') {
+					xCoord = 270;
+					yCoord = 36;
+				}
+				else if (upTile == 'x' && leftTile == 'x' && downTile == 'x' && rightTile != 'x') {
+					xCoord = 297;
+					yCoord = 36;
+				}
+				else if (upTile == 'x' && leftTile != 'x' && downTile == 'x' && rightTile == 'x') {
+					xCoord = 306;
+					yCoord = 36;
+				}
+				else if (rightUpTile != 'x' && leftUpTile == 'x' && rightDownTile == 'x' && leftDownTile == 'x') {
+					xCoord = 261;
+					yCoord = 45;
+				}
+				else if (rightUpTile == 'x' && leftUpTile != 'x' && rightDownTile == 'x' && leftDownTile == 'x') {
+					xCoord = 270;
+					yCoord = 45;
+				}
+				else if (rightUpTile == 'x' && leftUpTile == 'x' && rightDownTile != 'x' && leftDownTile == 'x') {
+					xCoord = 243;
+					yCoord = 45;
+				}
+				else if (rightUpTile == 'x' && leftUpTile == 'x' && rightDownTile == 'x' && leftDownTile != 'x') {
+					xCoord = 252;
+					yCoord = 45;
+				}
+			}
+			//Pellets and empty space inside maze
 			else {
-				if (currentEntity == 'o') {
+				if (currentTile == 'o') {
 					xCoord = 342;
 					yCoord = 72;
 					entityType = EntityType::PELLET;
 				}
-				else if (currentEntity == 'O') {
+				else if (currentTile == 'O') {
 					xCoord = 360;
 					yCoord = 45;
 					entityType = EntityType::POWER_PELLET;
 				}
-				else if (currentEntity == 'F') {
+				else if (currentTile == 'F') {
 					xCoord = 360;
 					yCoord = 45;
 					entityType = EntityType::NOT_DEFINED;
 				}
 
 			}
-			if (currentEntity != 's') {
+			if (currentTile != 's') {
 				lvlEntity = std::make_shared<Entity>((x + xMapOffset) * 8, (y + yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
 				lvlEntity->startAnimation->addRect(xCoord, yCoord, 8, 8);
 				lvlEntity->setEntityType(entityType);
 				collisionManager->addEntity(lvlEntity);
 				entityArray.emplace_back(lvlEntity);
 			}
-
-
 			xCoord = 192;
 			yCoord = 88;
-
 		}
 	}
 
@@ -516,7 +373,7 @@ void LevelManager::createLevel2(std::shared_ptr<CollisionManager> collisionManag
 void LevelManager::renderLevel()
 {
 	for (auto x : entityArray) {
-		if (x->getEntityType() != EntityType::NOT_DEFINED /*|| x->getEntityType() != EntityType::INTERSECTION*/)
+		if (x->getEntityType() != EntityType::NOT_DEFINED && x->getEntityType() != EntityType::INTERSECTION)
 			x->startAnimation->render(x->coordinates[0], x->coordinates[1], renderer);
 
 	}
@@ -524,10 +381,10 @@ void LevelManager::renderLevel()
 
 void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisionManager)
 {
-	char upTile;
-	char rightTile;
-	char leftTile;
-	char downTile;
+	char upTile = 0;
+	char rightTile = 0;
+	char leftTile = 0;
+	char downTile = 0;
 	int countTiles = 0;
 	EntityType entityType = EntityType::INTERSECTION;
 	for (int y = 0; y < 31; y++) {
@@ -547,7 +404,6 @@ void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisi
 					countTiles++;
 				if (downTile == 'o' || downTile == 'O' || downTile == 'F')
 					countTiles++;
-
 				if ((downTile == 'x' || downTile == 'B' || downTile == 'G') && (upTile == 'x' || upTile == 'B' || upTile == 'G'))
 					countTiles--;
 				if ((leftTile == 'x' || leftTile == 'B' || leftTile == 'G') && (rightTile == 'x' || rightTile == 'B' || rightTile == 'G'))
@@ -556,7 +412,7 @@ void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisi
 				if (countTiles >= 2) {
 					std::shared_ptr<Entity> lvlEntity;
 					lvlEntity = std::make_shared<Entity>((x + xMapOffset) * 8, (y + yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
-					lvlEntity->startAnimation->addRect(160, 112, 8, 8);
+					lvlEntity->startAnimation->addRect(192, 88, 8, 8);
 					lvlEntity->setEntityType(entityType);
 					collisionManager->addEntity(lvlEntity);
 					entityArray.emplace_back(lvlEntity);
@@ -565,7 +421,6 @@ void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisi
 			countTiles = 0;
 		}
 	}
-
 }
 
 bool LevelManager::loadspriteSheetTexture(std::string path)

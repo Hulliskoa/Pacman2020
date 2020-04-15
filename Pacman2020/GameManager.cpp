@@ -1,5 +1,8 @@
 #include "GameManager.h"
+#include <thread>
 
+using std::chrono::high_resolution_clock;
+using namespace std::chrono_literals;
 
 GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	window(window),
@@ -27,20 +30,23 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 
 void GameManager::run()
 {
+	auto currentFrame = high_resolution_clock::now();
+		while (*gameState == GameState::MAIN_MENU) {
+			mainMenu();
 
-	while (*gameState == GameState::MAIN_MENU) {
-		mainMenu();
+			while (*gameState == GameState::GAME_RUNNING) {
+				inGame();
+				auto lastFrame = currentFrame;
+				high_resolution_clock::duration timespan = currentFrame - lastFrame;
+				std::cout << "DeltaT= " << timespan.count() << std::endl;
+			}
+			/*
+			while (*gameState == GameState::EXIT_GAME) {
 
-		while (*gameState == GameState::GAME_RUNNING) {
-			inGame();
+			}
+
+			*/
 		}
-		/*
-		while (*gameState == GameState::EXIT_GAME) {
-
-		}
-
-		*/
-	}
 
 }
 
@@ -52,7 +58,7 @@ void GameManager::mainMenu()
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
 		m_levelManager->readLevelFromTxt(currentLvl);
-		m_levelManager->createLevel2(m_collisionManager);
+		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
 		m_collisionManager->addEntity(pacman);
 		lvlLoaded = true;

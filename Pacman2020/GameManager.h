@@ -25,7 +25,7 @@ private:
 	int spriteSheetWidth;
 	int spriteSheetHeight;
 	int menuChoice = 0;/*!<Keeps track of which menu choice that is selected*/
-	int currentLvl = 2;
+	int currentLvl = 1;
 	bool lvlLoaded = false;
 
 	std::shared_ptr<TextComponent> startGameText;
