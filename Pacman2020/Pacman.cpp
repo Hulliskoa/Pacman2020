@@ -59,6 +59,19 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		case EntityType::INTERSECTION:
 			//Endre koordinat
 			break;
+		case EntityType::DOOR:
+			if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
+				velocity[0] = lastVelocity[0];
+				velocity[1] = lastVelocity[1];
+				lastAnimation->render(coordinates[0], coordinates[1], renderer);
+			}
+			else {
+
+				lastAnimation->render(coordinates[0], coordinates[1], renderer);
+				velocity[0] = 0;
+				velocity[1] = 0;
+			}
+			break;
 		default:
 			break;
 		}
@@ -66,7 +79,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	else {
 
 	}
-
 
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];

@@ -350,6 +350,18 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 					yCoord = 45;
 					entityType = EntityType::POWER_PELLET;
 				}
+				/*
+				else if (currentTile == 'F' && downTile == 'G' && upTile == 'F') {
+					xCoord = 192;
+					yCoord = 88;
+					entityType = EntityType::WALL;
+				}
+				else if (currentTile == 'F' && upTile == 'G' && downTile == 'F') {
+					xCoord = 192;
+					yCoord = 88;
+					entityType = EntityType::WALL;
+				}
+				*/
 				else if (currentTile == 'F') {
 					xCoord = 360;
 					yCoord = 45;
@@ -363,20 +375,27 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 				lvlEntity->setEntityType(entityType);
 				collisionManager->addEntity(lvlEntity);
 				entityArray.emplace_back(lvlEntity);
+				if (entityType == EntityType::DOOR) {
+					ghostDoors.emplace_back(lvlEntity);
+				}
 			}
 			xCoord = 192;
 			yCoord = 88;
 		}
 	}
+	startingPelletCount = pelletCount();
 
 }
+
 void LevelManager::renderLevel()
 {
+
 	for (auto x : entityArray) {
 		if (x->getEntityType() != EntityType::NOT_DEFINED && x->getEntityType() != EntityType::INTERSECTION)
 			x->startAnimation->render(x->coordinates[0], x->coordinates[1], renderer);
 
 	}
+
 }
 
 void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisionManager)
@@ -416,6 +435,9 @@ void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisi
 					lvlEntity->setEntityType(entityType);
 					collisionManager->addEntity(lvlEntity);
 					entityArray.emplace_back(lvlEntity);
+					if (entityType == EntityType::DOOR) {
+						ghostDoors.emplace_back(lvlEntity);
+					}
 				}
 			}
 			countTiles = 0;
@@ -451,4 +473,32 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 	}
 	m_levelSpriteSheet = newTexture;
 	return m_levelSpriteSheet != NULL;
+}
+int LevelManager::pelletCount() {
+	int counter = 0;
+	for (auto x : entityArray) {
+		if (x->getEntityType() == EntityType::PELLET || x->getEntityType() == EntityType::POWER_PELLET) {
+			counter++;
+		}
+	}
+	return counter;
+}
+
+int LevelManager::getStartingPelletCount()
+{
+	return startingPelletCount;
+}
+
+void LevelManager::openDoors()
+{
+	for (auto x : ghostDoors) {
+		x->setEntityType(EntityType::NOT_DEFINED);
+	}
+}
+
+void LevelManager::closeDoors()
+{
+	for (auto x : ghostDoors) {
+		x->setEntityType(EntityType::DOOR);
+	}
 }

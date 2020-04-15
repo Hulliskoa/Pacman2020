@@ -22,7 +22,7 @@ public:
 		\param speedXY array for handling in which direction the entity is moving
 		\param gameState used for sending back gamestate to the GameManager depending on input recieved
 	*/
-	virtual void update(int speedXY[2], std::shared_ptr<GameState> gameState);
+	virtual void update(int *speedXY, std::shared_ptr<GameState> gameState);
 	std::string mainUpdate(std::shared_ptr<GameState> gameState);
 	InputComponent();
 };

@@ -18,21 +18,22 @@ class LevelManager
 private:
 	char levelArray[31][28] = {};/*!<Array containing all char's in the .txt file that was loaded for the specified level*/
 	std::vector<std::shared_ptr<Entity>> entityArray;/*!< an array of entities for use when rendering map. This i populated by a controlstructure checking what symbol was loaded in the levelArray*/
-
+	std::vector<std::shared_ptr<Entity>> ghostDoors;
 	SDL_Renderer* renderer;/*<!main renderer supplied by the Game manager*/
 	SDL_Texture* m_levelSpriteSheet = nullptr;/*<! spritesheet texture used to render the maze*/
 	int m_textureWidth = 0;/*<! width of the texture used to render the maze*/
 	int m_textureHeight = 0;/*<! height of the texture used to render the maze*/
 	int xMapOffset = 1;/*<! x offset to where the sprites should be rendered inside the sdl window*/
 	int yMapOffset = 4;/*<! y offset to where the sprites should be rendered inside the sdl window*/
-
+	int startingPelletCount = 0;
 public:
+
 	LevelManager(SDL_Renderer* mainRenderer);
 	~LevelManager();
 
 	/**
 		Used to read .txt file and convert it into the levelArray
-		\param currentLvl used when loading the .txt file. the naming of each file is "lvl#.txt" 
+		\param currentLvl used when loading the .txt file. the naming of each file is "lvl#.txt"
 	*/
 	bool readLevelFromTxt(int currentLvl);
 
@@ -50,9 +51,14 @@ public:
 
 	/**
 		Renders level to screen and makes use of the entityArray to load each entity created.
-		\param renderer needs to supply renderer to 
+		\param renderer needs to supply renderer to
 	*/
 	void renderLevel();
 	void createInterSections(std::shared_ptr<CollisionManager> collisionManager);
+	int pelletCount();
+	int getStartingPelletCount();
+	void openDoors();
+	void closeDoors();
+
 };
 

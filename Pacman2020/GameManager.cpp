@@ -3,6 +3,8 @@
 
 using std::chrono::high_resolution_clock;
 using namespace std::chrono_literals;
+auto currentFrame = high_resolution_clock::now();
+auto releaseTime = high_resolution_clock::now();
 
 GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	window(window),
@@ -17,7 +19,71 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	m_input = std::make_shared <InputComponent>();
 	m_collisionManager = std::make_shared<CollisionManager>();
 	m_levelManager = std::make_shared<LevelManager>(gameRenderer);
-	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth);
+
+	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
+	shadow->rightAnimation->addRect(457, 65, 14, 14);
+	shadow->rightAnimation->addRect(473, 65, 14, 14);
+
+	shadow->setVelocity(4, 0);
+	shadow->leftAnimation->addRect(489, 65, 14, 14);
+	shadow->leftAnimation->addRect(505, 65, 14, 14);
+
+	shadow->upAnimation->addRect(521, 65, 14, 14);
+	shadow->upAnimation->addRect(537, 65, 14, 14);
+
+	shadow->downAnimation->addRect(553, 65, 14, 14);
+	shadow->downAnimation->addRect(569, 65, 14, 14);
+
+	shadow->startAnimation->addRect(553, 65, 14, 14);
+	shadow->startAnimation->addRect(553, 65, 14, 14);
+
+	speedy = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 1, 132, 144);
+	speedy->rightAnimation->addRect(457, 81, 14, 14);
+	speedy->rightAnimation->addRect(473, 81, 14, 14);
+
+	speedy->leftAnimation->addRect(489, 81, 14, 14);
+	speedy->leftAnimation->addRect(505, 81, 14, 14);
+
+	speedy->upAnimation->addRect(521, 81, 14, 14);
+	speedy->upAnimation->addRect(537, 81, 14, 14);
+
+	speedy->downAnimation->addRect(553, 81, 14, 14);
+	speedy->downAnimation->addRect(569, 81, 14, 14);
+
+	speedy->startAnimation->addRect(553, 81, 14, 14);
+	speedy->startAnimation->addRect(553, 81, 14, 14);
+
+	bashful = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 2, 116, 144);
+	bashful->rightAnimation->addRect(457, 97, 14, 14);
+	bashful->rightAnimation->addRect(473, 97, 14, 14);
+
+	bashful->leftAnimation->addRect(489, 97, 14, 14);
+	bashful->leftAnimation->addRect(505, 97, 14, 14);
+
+	bashful->upAnimation->addRect(521, 97, 14, 14);
+	bashful->upAnimation->addRect(537, 97, 14, 14);
+
+	bashful->downAnimation->addRect(553, 97, 14, 14);
+	bashful->downAnimation->addRect(569, 97, 14, 14);
+
+	bashful->startAnimation->addRect(553, 97, 14, 14);
+	bashful->startAnimation->addRect(553, 97, 14, 14);
+
+	pokey = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 3, 100, 144);
+	pokey->rightAnimation->addRect(457, 113, 14, 14);
+	pokey->rightAnimation->addRect(473, 113, 14, 14);
+
+	pokey->leftAnimation->addRect(489, 113, 14, 14);
+	pokey->leftAnimation->addRect(505, 113, 14, 14);
+
+	pokey->upAnimation->addRect(521, 113, 14, 14);
+	pokey->upAnimation->addRect(537, 113, 14, 14);
+
+	pokey->downAnimation->addRect(553, 113, 14, 14);
+	pokey->downAnimation->addRect(569, 113, 14, 14);
+
+	pokey->startAnimation->addRect(553, 113, 14, 14);
+	pokey->startAnimation->addRect(553, 113, 14, 14);
 
 	pacman = std::make_shared<Pacman>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth);
 	//collisionManager->addEntity(shadow);
@@ -30,27 +96,26 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 
 void GameManager::run()
 {
-	auto currentFrame = high_resolution_clock::now();
-		while (*gameState == GameState::MAIN_MENU) {
-			mainMenu();
+	int totalPellets = 0;
 
-			while (*gameState == GameState::GAME_RUNNING) {
-				inGame();
-				auto lastFrame = currentFrame;
-				high_resolution_clock::duration timespan = currentFrame - lastFrame;
-				std::cout << "DeltaT= " << timespan.count() << std::endl;
-			}
-			/*
-			while (*gameState == GameState::EXIT_GAME) {
+	while (*gameState == GameState::MAIN_MENU) {
+		mainMenu();
+		totalPellets = m_levelManager->pelletCount();
+		while (*gameState == GameState::GAME_RUNNING) {
+			inGame();
+			auto lastFrame = currentFrame;
+			high_resolution_clock::duration timespan = currentFrame - lastFrame;
+			//std::cout << "DeltaT= " << timespan.count() << std::endl;
+		}
+		/*
+		while (*gameState == GameState::EXIT_GAME) {
 
-			}
-
-			*/
 		}
 
+		*/
+	}
+
 }
-
-
 void GameManager::mainMenu()
 {
 
@@ -105,15 +170,47 @@ void GameManager::mainMenu()
 }
 
 void GameManager::inGame() {
+	auto lastFrame = currentFrame;
+	currentFrame = high_resolution_clock::now();
+	high_resolution_clock::duration timeSinceRelease = releaseTime - lastFrame;
+
 
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
 
 	m_levelManager->renderLevel();
-	//entity update methods
-	//shadow->update();
+
+
+	if (ghostsMovingOut && (3000ms + timeSinceRelease) <= 0ms) {
+		speedy->aiComponent->removeTarget();
+		bashful->aiComponent->removeTarget();
+		pokey->aiComponent->removeTarget();
+		ghostsMovingOut = false;
+		m_levelManager->closeDoors();
+	}
+
+	if (m_levelManager->pelletCount() == ((m_levelManager->getStartingPelletCount()) - 29) + currentLvl) {
+		releaseTime = high_resolution_clock::now();
+		m_levelManager->openDoors();
+		speedy->setVelocity(4, 0);
+		bashful->setVelocity(-4, 0);
+		pokey->setVelocity(-4, 0);
+
+		speedy->aiComponent->setTarget(116, 120);
+		bashful->aiComponent->setTarget(116, 120);
+		pokey->aiComponent->setTarget(116, 120);
+		ghostsMovingOut = true;
+
+
+
+	}
+
 	pacman->update(gameState, m_collisionManager, gameRenderer);
 	shadow->update(gameRenderer, pacman, m_collisionManager);
+	speedy->update(gameRenderer, pacman, m_collisionManager);
+	bashful->update(gameRenderer, pacman, m_collisionManager);
+	pokey->update(gameRenderer, pacman, m_collisionManager);
+
 
 	/*
 	while (*gameState == GameState::LEVEL_COMPLETE) {
@@ -158,7 +255,7 @@ bool GameManager::loadspriteSheetTexture(std::string path)
 	}
 	else
 	{
-		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0));
 		newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
 		if (newTexture == NULL)
 		{

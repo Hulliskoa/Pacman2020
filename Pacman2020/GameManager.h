@@ -27,6 +27,7 @@ private:
 	int menuChoice = 0;/*!<Keeps track of which menu choice that is selected*/
 	int currentLvl = 1;
 	bool lvlLoaded = false;
+	bool ghostsMovingOut = false;
 
 	std::shared_ptr<TextComponent> startGameText;
 	std::shared_ptr<TextComponent> quitGameText;
@@ -37,6 +38,9 @@ private:
 	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();/*!<Keeps track of game state*/
 	std::shared_ptr<LevelManager> m_levelManager;/*!<A single level manager for creating and rendering levels*/
 	std::shared_ptr<Ghost> shadow;
+	std::shared_ptr<Ghost> speedy;
+	std::shared_ptr<Ghost> bashful;
+	std::shared_ptr<Ghost> pokey;
 	std::shared_ptr<Pacman> pacman;
 
 public:

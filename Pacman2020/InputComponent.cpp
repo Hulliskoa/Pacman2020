@@ -1,7 +1,7 @@
 #include "InputComponent.h"
 
 
-void InputComponent::update(int speedXY[2], std::shared_ptr<GameState> gameState)
+void InputComponent::update(int * speedXY, std::shared_ptr<GameState> gameState)
 {
 
 	while (SDL_PollEvent(&event) != 0)
