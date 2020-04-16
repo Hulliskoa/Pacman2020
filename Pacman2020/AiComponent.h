@@ -19,7 +19,7 @@ private:
 	std::vector<int> thirdV;
 	bool targetSet = false;
 	std::map<int, std::vector<int>> shortestPath;
-	int speed = 4;
+	int speed = 2;
 	bool eaten = false;
 
 public:

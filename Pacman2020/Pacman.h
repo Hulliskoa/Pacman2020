@@ -15,9 +15,10 @@ private:
 	std::shared_ptr<AnimationComponent> deathAnimation;
 	std::shared_ptr<AnimationComponent> lastAnimation = nullptr;
 	int score = 0;
-public:
+	int remainingLife = 3;
 
-	void update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer * renderer);
+public:
+	void update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer* renderer);
 	Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth);
 	~Pacman();
 

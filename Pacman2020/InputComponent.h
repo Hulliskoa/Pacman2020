@@ -13,7 +13,7 @@ class InputComponent
 {
 private:
 	SDL_Event event{};/*!<SDL_Event to read input from keyboard*/
-	const int speed = 8;/*!<The speed in pixels wich the different entities move at*/
+	const int speed = 4;/*!<The speed in pixels wich the different entities move at*/
 
 public:
 	/**

@@ -113,7 +113,6 @@ void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entit
 	currentGhost->velocity[0] = lastVelocity[1];
 	currentGhost->velocity[1] = lastVelocity[0];
 
-
 	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::DOOR) {
 		tilesChecked[1] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - targetTile[1], 2);
 		secondV.emplace_back(currentGhost->velocity[0]);

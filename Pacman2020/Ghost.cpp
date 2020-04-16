@@ -2,49 +2,74 @@
 void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer, std::shared_ptr<MovingEntity> pacman, std::shared_ptr<CollisionManager> collisionManager)
 {
 	if (collisionManager->checkIntersection(shared_from_this())) {
-		aiComponent->update(shared_from_this(),aiBehaviour, pacman, collisionManager);
+		aiComponent->update(shared_from_this(), aiBehaviour, pacman, collisionManager);
 		//std::shared_ptr<Entity> collidedwith = collisionManager->collisionCheck(shared_from_this());
 	}
 
-
-
 	coordinates[0] += velocity[0];
 	coordinates[1] += velocity[1];
-	if (*gameState == GameState::GAME_RUNNING) {
+
+	if (this->getEntityType() == EntityType::GHOST_EYES) {
+		aiComponent->setTarget(116, 144);
+	
+
 		if (velocity[0] > 0) {
-			rightAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnRightAnimation->render(coordinates[0], coordinates[1], renderer);
 		}
 		else if (velocity[0] < 0) {
-			leftAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnLeftAnimation->render(coordinates[0], coordinates[1], renderer);
 		}
 		else if (velocity[1] > 0) {
-			downAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnDownAnimation->render(coordinates[0], coordinates[1], renderer);
 		}
 		else if (velocity[1] < 0) {
-			upAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnUpAnimation->render(coordinates[0], coordinates[1], renderer);
 		}
-		else {
-			startAnimation->render(coordinates[0], coordinates[1], renderer);
+
+		if (coordinates[0] == 116 && coordinates[1] == 144) {
+			setEntityType(EntityType::GHOST);
 		}
 	}
-
-	if (*gameState == GameState::GAME_RUNNING_FLEE) {
-		aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
-		blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
-	}
-
-	if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
-		aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
-		if (alternateFleeAnimation) {
-			blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
-			alternateFleeAnimation = false;
-		}
-		else { 
-			whiteFleeAnimation->render(coordinates[0], coordinates[1], renderer);
-			alternateFleeAnimation = true;
-		}
+	else {
 	
+
+		if (*gameState == GameState::GAME_RUNNING) {
+			if (velocity[0] > 0) {
+				rightAnimation->render(coordinates[0], coordinates[1], renderer);
+			}
+			else if (velocity[0] < 0) {
+				leftAnimation->render(coordinates[0], coordinates[1], renderer);
+			}
+			else if (velocity[1] > 0) {
+				downAnimation->render(coordinates[0], coordinates[1], renderer);
+			}
+			else if (velocity[1] < 0) {
+				upAnimation->render(coordinates[0], coordinates[1], renderer);
+			}
+			else {
+				startAnimation->render(coordinates[0], coordinates[1], renderer);
+			}
+		}
+
+		if (*gameState == GameState::GAME_RUNNING_FLEE) {
+			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
+			blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
+		}
+
+		if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
+			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
+			if (alternateFleeAnimation) {
+				blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
+				alternateFleeAnimation = false;
+			}
+			else {
+				whiteFleeAnimation->render(coordinates[0], coordinates[1], renderer);
+				alternateFleeAnimation = true;
+			}
+
+		}
 	}
+
 
 
 	MovingEntity::update();

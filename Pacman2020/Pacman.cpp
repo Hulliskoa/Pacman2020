@@ -15,13 +15,20 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			std::cout << "hit ghost" << std::endl;
 			if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
 				std::cout << "hit ghost" << std::endl;
-				//collidedWith->aiComponent->returnToBase();
+				collidedWith->setEntityType(EntityType::GHOST_EYES);
 			}
 			else {
 				std::cout << "hit ghost" << std::endl;
-				*gameState = GameState::GAME_OVER;
-				//deathAnimation.render(coordinates[0], coordinates[1]);
-					//gameState = GameState::GAME_OVER;
+			
+				deathAnimation->render(coordinates[0], coordinates[1],renderer);
+				if (remainingLife >= 0) {
+					//*gameState = GameState::RESTART_LEVEL;
+				}
+				else
+				{
+					//*gameState = GameState::GAME_OVER;
+				}
+				
 			}
 
 			break;

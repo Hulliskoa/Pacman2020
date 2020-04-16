@@ -11,6 +11,7 @@
 enum class EntityType {
 	PACMAN,
 	GHOST,
+	GHOST_EYES,
 	AFRAID_GHOST,
 	PELLET,
 	POWER_PELLET,
@@ -37,7 +38,7 @@ protected:
 	int numFrames = 0;
 public:
 
-	int  velocity[2] = { 0,0 };/*!<current direction the entity is travelling. element 0 = x-plane and element 1 = y-plane.*/
+	int velocity[2] = { 0,0 };/*!<current direction the entity is travelling. element 0 = x-plane and element 1 = y-plane.*/
 	int coordinates[2] = { 0,0 };/*!<current coordinates to be used for rendering and collision checking. element 0 = x-coordinate and element 1 = y-coordinate.*/
 	std::shared_ptr<AnimationComponent>  startAnimation;/*!<Animation used at the start of game or if the object is stationary*/
 

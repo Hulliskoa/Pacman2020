@@ -6,6 +6,7 @@ using namespace std::chrono_literals;
 auto currentFrame = high_resolution_clock::now();
 auto releaseTime = high_resolution_clock::now();
 auto fleeStart = high_resolution_clock::now();
+auto deathTimer = high_resolution_clock::now();
 
 GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	window(window),
@@ -25,7 +26,7 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
 	shadow->rightAnimation->addRect(457, 65, 14, 14);
 	shadow->rightAnimation->addRect(473, 65, 14, 14);
-	shadow->setVelocity(4, 0);
+	shadow->setVelocity(2, 0);
 	shadow->leftAnimation->addRect(489, 65, 14, 14);
 	shadow->leftAnimation->addRect(505, 65, 14, 14);
 	shadow->upAnimation->addRect(521, 65, 14, 14);
@@ -89,8 +90,9 @@ void GameManager::run()
 	while (*gameState == GameState::MAIN_MENU) {
 		mainMenu();
 		totalPellets = m_levelManager->pelletCount();
-		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
+		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL) {
 			inGame();
+
 			while (*gameState == GameState::LEVEL_COMPLETE) {
 				nextLvl();
 			}
@@ -111,14 +113,15 @@ void GameManager::mainMenu()
 {
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
-		m_levelManager->readLevelFromTxt(currentLvl);
-		m_levelManager->createLevel(m_collisionManager);
-		m_levelManager->createInterSections(m_collisionManager);
 		m_collisionManager->addEntity(pacman);
 		m_collisionManager->addEntity(shadow);
 		m_collisionManager->addEntity(speedy);
 		m_collisionManager->addEntity(pokey);
 		m_collisionManager->addEntity(bashful);
+		m_levelManager->readLevelFromTxt(currentLvl);
+		m_levelManager->createLevel(m_collisionManager);
+		m_levelManager->createInterSections(m_collisionManager);
+
 		lvlLoaded = true;
 	}
 
@@ -166,6 +169,7 @@ void GameManager::inGame() {
 	high_resolution_clock::duration timeSinceRelease = releaseTime - lastFrame;
 	high_resolution_clock::duration timeSinceFlee = fleeStart - currentFrame;
 	high_resolution_clock::duration timeSpan = currentFrame - lastFrame;
+	high_resolution_clock::duration timeSinceDeath = deathTimer - lastFrame;
 
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
@@ -184,9 +188,9 @@ void GameManager::inGame() {
 	if (m_levelManager->pelletCount() == ((m_levelManager->getStartingPelletCount()) - 29) + currentLvl) {
 		releaseTime = high_resolution_clock::now();
 		m_levelManager->openDoors();
-		speedy->setVelocity(4, 0);
-		bashful->setVelocity(-4, 0);
-		pokey->setVelocity(-4, 0);
+		speedy->setVelocity(2, 0);
+		bashful->setVelocity(-2, 0);
+		pokey->setVelocity(-2, 0);
 
 		speedy->aiComponent->setTarget(8, 8);
 		bashful->aiComponent->setTarget(8, 8);
@@ -240,13 +244,36 @@ void GameManager::inGame() {
 
 	}
 	*/
+
 	if (m_levelManager->pelletCount() == 0) {
 		lvlLoaded = false;
 		*gameState = GameState::LEVEL_COMPLETE;
 	}
 
 
-	std::this_thread::sleep_for(100ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
+	if (*gameState == GameState::RESTART_LEVEL) {
+		pacman->setVelocity(0, 0);
+		speedy->setVelocity(0, 0);
+		bashful->setVelocity(0, 0);
+		pokey->setVelocity(0, 0);
+		shadow->setVelocity(0, 0);
+		deathTimer = high_resolution_clock::now();
+	}
+
+	if (timeSinceDeath > 5000ms && *gameState == GameState::RESTART_LEVEL) {
+		pacman->setCoordinates(104, 216);
+		pacman->setVelocity(0, 0);
+		shadow->setCoordinates(116, 120);
+		speedy->setCoordinates(132, 144);
+		bashful->setCoordinates(116, 144);
+		pokey->setCoordinates(100, 144);
+		speedy->setVelocity(0, 0);
+		bashful->setVelocity(0, 0);
+		pokey->setVelocity(0, 0);
+		shadow->setVelocity(2, 0);
+		*gameState = GameState::GAME_RUNNING;
+	}
+	std::this_thread::sleep_for(50ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
 	SDL_RenderPresent(gameRenderer);
 }
 
@@ -259,15 +286,17 @@ void GameManager::nextLvl()
 			currentLvl = 0;
 		}
 		m_collisionManager->clearEntityArray();
-		m_levelManager->readLevelFromTxt(currentLvl);
-		m_levelManager->createLevel(m_collisionManager);
-		m_levelManager->createInterSections(m_collisionManager);
-
 		m_collisionManager->addEntity(pacman);
 		m_collisionManager->addEntity(shadow);
 		m_collisionManager->addEntity(speedy);
 		m_collisionManager->addEntity(pokey);
 		m_collisionManager->addEntity(bashful);
+
+		m_levelManager->readLevelFromTxt(currentLvl);
+		m_levelManager->createLevel(m_collisionManager);
+		m_levelManager->createInterSections(m_collisionManager);
+
+
 
 		pacman->setVelocity(0, 0);
 		pacman->setCoordinates(104, 216);
@@ -279,7 +308,7 @@ void GameManager::nextLvl()
 		speedy->setVelocity(0, 0);
 		bashful->setVelocity(0, 0);
 		pokey->setVelocity(0, 0);
-		shadow->setVelocity(4, 0);
+		shadow->setVelocity(2, 0);
 		lvlLoaded = true;
 	}
 
