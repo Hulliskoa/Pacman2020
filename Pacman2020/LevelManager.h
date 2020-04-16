@@ -53,7 +53,7 @@ public:
 		Renders level to screen and makes use of the entityArray to load each entity created.
 		\param renderer needs to supply renderer to
 	*/
-	void renderLevel();
+	void renderLevel(SDL_Renderer * renderer);
 	void createInterSections(std::shared_ptr<CollisionManager> collisionManager);
 	int pelletCount();
 	int getStartingPelletCount();

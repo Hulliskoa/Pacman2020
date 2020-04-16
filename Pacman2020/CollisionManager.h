@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "Entity.h"
-#include "MovingEntity.h"
 
 /*! \brief
  *		Does collision checking on behalf of all the MovingEntity objects

@@ -18,15 +18,17 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(std::shared_ptr<Entity>
 	}
 
 	if ((movementPlane == 0) && (oppositePlane == 0)) {
-
-
 		return nullptr;
 	}
 	//Checks if entityToCheck is within hitbox of any other entity on the map, returns value to be used in entity's updatefunction
 	for (auto x : entities) {
+		if (x->getEntityType() == EntityType::GHOST) {
+			std::cout << "hellO" << std::endl;
+		}
 		if (x->getEntityType() == entityToCheck->getEntityType()) {
 			continue;
 		}
+		
 		//flips collision box to negative to be able to check for collision in negative directions
 		if (entityToCheck->velocity[movementPlane] < 0) {
 			flip = -1;

@@ -2,7 +2,7 @@
 
 Entity::Entity() {}
 
-Entity::Entity(int xStart, int yStart, int numAnimFrames, SDL_Texture * spriteTexture, int spriteWidth, int spriteHeight) {
+Entity::Entity(int xStart, int yStart, int numAnimFrames, SDL_Texture* spriteTexture, int spriteWidth, int spriteHeight) : numFrames(numAnimFrames) {
 	startAnimation = std::make_shared<AnimationComponent>(numAnimFrames, spriteTexture, spriteWidth, spriteHeight);
 	coordinates[0] = xStart;
 	coordinates[1] = yStart;
@@ -10,10 +10,10 @@ Entity::Entity(int xStart, int yStart, int numAnimFrames, SDL_Texture * spriteTe
 	velocity[1] = 0;
 }
 
-void Entity::setCoordinates(int* newCoordinates)
+void Entity::setCoordinates(int x, int y)
 {
-	coordinates[0] = newCoordinates[0];
-	coordinates[1] = newCoordinates[1];
+	coordinates[0] = x;
+	coordinates[1] = y;
 }
 
 void Entity::setEntityType(EntityType type)

@@ -19,7 +19,7 @@ bool init(SDL_Window** window, SDL_Renderer** renderer) {
 	}
 	else
 	{
-		*window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		*window = SDL_CreateWindow("PACMAN", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (*window == NULL)
 		{
 			std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;
@@ -36,11 +36,10 @@ bool init(SDL_Window** window, SDL_Renderer** renderer) {
 			}
 			else
 			{
-				//Scales render by 2 so that it looks larger and more retro
+				//Scales render by 3 so that everything looks larger and more retro
 				SDL_RenderSetScale(*renderer, 3, 3);
 				SDL_SetRenderDrawColor(*renderer, 0x00, 0x00, 0x00, 0x00);
 
-				//Initialize PNG loading
 				int imgFlags = IMG_INIT_PNG;
 				if (!(IMG_Init(imgFlags) & imgFlags))
 				{
@@ -53,7 +52,6 @@ bool init(SDL_Window** window, SDL_Renderer** renderer) {
 					}
 					return true;
 				}
-				
 			}
 		}
 	}
@@ -61,7 +59,6 @@ bool init(SDL_Window** window, SDL_Renderer** renderer) {
 
 int main(int argc, char* argv[])
 {
-	//TODO: Legge dette inn i funksjoner
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
@@ -70,7 +67,7 @@ int main(int argc, char* argv[])
 	if (!init(&window, &renderer)) {
 		std::cout << "could not initialize SDL" << std::endl;
 	}
-
+	//creating and running gameManager
 	std::shared_ptr<GameManager> gm = std::make_shared<GameManager>(window, renderer);
 	gm->run();
 

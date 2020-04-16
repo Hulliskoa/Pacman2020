@@ -16,7 +16,7 @@ private:
 	int m_numberOfFrames = 0;/*!< the number of frames the animation has*/
 	std::vector<SDL_Rect> m_sprites;/*!< vector containing all sprites needed for the animation*/
 	SDL_Texture* m_texture = nullptr; /*!< Texture used for drawing sprites in the SDL window*/
-	SDL_Renderer* renderer = nullptr;/*!< Main SDL_Renderer */
+	//SDL_Renderer* renderer = nullptr;/*!< Main SDL_Renderer */
 	int m_width = 0; /*!< width of the spritesheet in pixels. Used for rendering the correct sprites*/
 	int m_height = 0;/*!< height of the spritesheet in pixels. Used for rendering the correct sprites*/
 

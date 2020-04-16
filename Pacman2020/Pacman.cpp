@@ -5,7 +5,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 {
 
 	// Saves last direction pacman traveled in.
-
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 
 	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());
@@ -13,9 +12,18 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		switch (collidedWith->getEntityType())
 		{
 		case EntityType::GHOST:
-			//deathAnimation.render(coordinates[0], coordinates[1]);
 			std::cout << "hit ghost" << std::endl;
-			//gameState = GameState::GAME_OVER;
+			if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
+				std::cout << "hit ghost" << std::endl;
+				//collidedWith->aiComponent->returnToBase();
+			}
+			else {
+				std::cout << "hit ghost" << std::endl;
+				*gameState = GameState::GAME_OVER;
+				//deathAnimation.render(coordinates[0], coordinates[1]);
+					//gameState = GameState::GAME_OVER;
+			}
+
 			break;
 		case EntityType::WALL:
 			if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
@@ -24,13 +32,10 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				lastAnimation->render(coordinates[0], coordinates[1], renderer);
 			}
 			else {
-
 				lastAnimation->render(coordinates[0], coordinates[1], renderer);
 				velocity[0] = 0;
 				velocity[1] = 0;
 			}
-
-			//Stoppe
 			break;
 		case EntityType::AFRAID_GHOST:
 			//Legg til poeng
@@ -38,20 +43,22 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			//Søke tilbake til huset
 			break;
 		case EntityType::PELLET:
-			collidedWith->setEntityType(EntityType::NOT_DEFINED);
+			collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
+			score += 100;
 			//Legg til poeng
 			//Forsvinne fra kartet
 			break;
 		case EntityType::POWER_PELLET:
-			collidedWith->setEntityType(EntityType::NOT_DEFINED);
-			//Legg til poeng
+			*gameState = GameState::GAME_RUNNING_FLEE;
+			collidedWith->setEntityType(EntityType::INACTIVE_POWER_PELLET);
+			score += 100;
 			////Animere til blått spøkelse
 			//Starte timer
 			//Ghost skal løpe vekk fra pacman
 			break;
 		case EntityType::FRUIT:
 			//Legg til poeng
-			//Fjerne fra kart
+			collidedWith->setEntityType(EntityType::NOT_DEFINED);
 			break;
 		case EntityType::TELEPORT:
 			//Endre koordinat
@@ -121,7 +128,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 }
 
-Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(16, 40, 3, mainSpriteSheet, textureWidth, textureHeight) {
+Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(104, 216, 3, mainSpriteSheet, textureWidth, textureHeight) {
 
 	m_input = std::make_shared <InputComponent>();
 	MovingEntity::setEntityType(EntityType::PACMAN);
@@ -148,7 +155,17 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 	startAnimation->addRect(489, 1, 13, 13);
 	startAnimation->addRect(489, 1, 13, 13);
 
-
+	deathAnimation->addRect(489, 1, 13, 13);
+	deathAnimation->addRect(505, 1, 15, 13);
+	deathAnimation->addRect(519, 1, 15, 13);
+	deathAnimation->addRect(536, 1, 15, 13);
+	deathAnimation->addRect(552, 1, 15, 13);
+	deathAnimation->addRect(568, 1, 15, 13);
+	deathAnimation->addRect(584, 1, 15, 13);
+	deathAnimation->addRect(601, 1, 15, 13);
+	deathAnimation->addRect(615, 1, 15, 13);
+	deathAnimation->addRect(631, 1, 15, 13);
+	deathAnimation->addRect(647, 1, 15, 13);
 }
 
 Pacman::~Pacman()

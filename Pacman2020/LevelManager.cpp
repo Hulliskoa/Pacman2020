@@ -1,13 +1,6 @@
 #include "LevelManager.h"
 
-LevelManager::LevelManager(SDL_Renderer* mainRenderer) : renderer(mainRenderer) {
-	//mazeSprites = IMG_Load("..\\Pacman2020\\sprites\\mazeParts.png");
-
-
-	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
-		std::cout << "could not load maze spritesheet" << std::endl;
-	}
-}
+LevelManager::LevelManager(SDL_Renderer* mainRenderer) : renderer(mainRenderer) {}
 LevelManager::~LevelManager()
 {
 	if (m_levelSpriteSheet != NULL)
@@ -19,6 +12,7 @@ LevelManager::~LevelManager()
 	}
 }
 bool LevelManager::readLevelFromTxt(int currentLvl) {
+
 	std::ifstream lvlFile;
 	std::string path = "..\\Pacman2020\\levels\\lvl" + std::to_string(currentLvl) + ".txt";
 
@@ -34,9 +28,12 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 	while (lvlFile >> currentChar) {
 
 		levelArray[rowCounter][columnCounter] = currentChar;
+		std::cout << levelArray[rowCounter][columnCounter];
 		columnCounter++;
 
+
 		if (columnCounter >= 28) {
+			std::cout << std::endl;
 			columnCounter = 0;
 			rowCounter++;
 
@@ -44,10 +41,18 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 	}
 	return true;
 }
-
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)
 {
-	//
+
+	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
+		std::cout << "could not load maze spritesheet" << std::endl;
+	}
+
+	entityArray.erase(entityArray.begin(), entityArray.end());
+	entityArray.shrink_to_fit();
+	ghostDoors.erase(ghostDoors.begin(), ghostDoors.end());
+	ghostDoors.shrink_to_fit();
+
 	char upTile = 0;
 	char rightTile = 0;
 	char leftTile = 0;
@@ -59,11 +64,11 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 
 	int xCoord = 0;//spritesheet coordinates
 	int yCoord = 0;//spritesheet coordinates
-	EntityType entityType = EntityType::NOT_DEFINED;
+	EntityType entityType;
 
 	for (int y = 0; y < 31; y++) {
 		for (int x = 0; x < 28; x++) {
-
+			entityType = EntityType::NOT_DEFINED;
 			std::shared_ptr<Entity> lvlEntity;
 			char currentTile = levelArray[y][x];
 
@@ -78,8 +83,7 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 			rightUpTile = (y - 1 < 0 || x + 1 > 27) ? 's' : levelArray[y - 1][x + 1];
 			leftDownTile = (y + 1 > 30 || x - 1 < 0) ? 's' : levelArray[y + 1][x - 1];
 
-
-
+			//Special outer borders
 			if (currentTile == 'B') {
 				//Outer border
 				entityType = EntityType::WALL;
@@ -153,8 +157,6 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 					yCoord = 27;
 				}
 			}
-
-
 			//Special outer borders with curve and straight wall
 			else if (currentTile == 'C')
 			{
@@ -350,18 +352,6 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 					yCoord = 45;
 					entityType = EntityType::POWER_PELLET;
 				}
-				/*
-				else if (currentTile == 'F' && downTile == 'G' && upTile == 'F') {
-					xCoord = 192;
-					yCoord = 88;
-					entityType = EntityType::WALL;
-				}
-				else if (currentTile == 'F' && upTile == 'G' && downTile == 'F') {
-					xCoord = 192;
-					yCoord = 88;
-					entityType = EntityType::WALL;
-				}
-				*/
 				else if (currentTile == 'F') {
 					xCoord = 360;
 					yCoord = 45;
@@ -371,33 +361,31 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 			}
 			if (currentTile != 's') {
 				lvlEntity = std::make_shared<Entity>((x + xMapOffset) * 8, (y + yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
+				entityArray.emplace_back(lvlEntity);
 				lvlEntity->startAnimation->addRect(xCoord, yCoord, 8, 8);
 				lvlEntity->setEntityType(entityType);
 				collisionManager->addEntity(lvlEntity);
-				entityArray.emplace_back(lvlEntity);
 				if (entityType == EntityType::DOOR) {
 					ghostDoors.emplace_back(lvlEntity);
 				}
 			}
-			xCoord = 192;
+			xCoord = 208;
 			yCoord = 88;
 		}
 	}
 	startingPelletCount = pelletCount();
 
-}
 
-void LevelManager::renderLevel()
+}
+void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
 {
 
 	for (auto x : entityArray) {
-		if (x->getEntityType() != EntityType::NOT_DEFINED && x->getEntityType() != EntityType::INTERSECTION)
-			x->startAnimation->render(x->coordinates[0], x->coordinates[1], renderer);
-
+		if (x->getEntityType() != EntityType::NOT_DEFINED && x->getEntityType() != EntityType::INTERSECTION && x->getEntityType() != EntityType::INACTIVE_PELLET && x->getEntityType() != EntityType::INACTIVE_POWER_PELLET)
+			x->startAnimation->render(x->coordinates[0], x->coordinates[1], gameRenderer);
 	}
 
 }
-
 void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisionManager)
 {
 	char upTile = 0;
@@ -444,10 +432,14 @@ void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisi
 		}
 	}
 }
-
 bool LevelManager::loadspriteSheetTexture(std::string path)
 {
 	//The final texture
+	if (m_levelSpriteSheet != NULL) {
+		SDL_DestroyTexture(m_levelSpriteSheet);
+		m_levelSpriteSheet = NULL;
+	}
+
 	SDL_Texture* newTexture = NULL;
 
 	//Load image at specified path
@@ -459,7 +451,7 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 	}
 	else
 	{
-		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == NULL)
 		{
@@ -472,6 +464,7 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 		}
 	}
 	m_levelSpriteSheet = newTexture;
+	SDL_FreeSurface(loadedSurface);
 	return m_levelSpriteSheet != NULL;
 }
 int LevelManager::pelletCount() {
@@ -483,19 +476,16 @@ int LevelManager::pelletCount() {
 	}
 	return counter;
 }
-
 int LevelManager::getStartingPelletCount()
 {
 	return startingPelletCount;
 }
-
 void LevelManager::openDoors()
 {
 	for (auto x : ghostDoors) {
 		x->setEntityType(EntityType::NOT_DEFINED);
 	}
 }
-
 void LevelManager::closeDoors()
 {
 	for (auto x : ghostDoors) {

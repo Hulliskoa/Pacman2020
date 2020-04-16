@@ -22,7 +22,7 @@ private:
 
 
 public:
-	TextComponent(std::string fontPath, std::string text, int xCoord, int yCoord, SDL_Renderer* renderer);
+	TextComponent(std::string fontPath, std::string text, int xCoord, int yCoord, int textWidth, int textHeight, SDL_Renderer* renderer, int fontSize);
 	void renderText(SDL_Renderer* renderer, int position);
 	void switchColor();
 };

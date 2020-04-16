@@ -2,9 +2,9 @@
 
 //https://stackoverflow.com/questions/22886500/how-to-render-text-in-sdl2
 
-TextComponent::TextComponent(std::string fontPath, std::string text, int xCoord, int yCoord, SDL_Renderer* renderer) : m_text(text), m_mainRenderer(renderer)
+TextComponent::TextComponent(std::string fontPath, std::string text, int xCoord, int yCoord, int textWidth, int textHeight, SDL_Renderer* renderer, int fontSize) : m_text(text), m_mainRenderer(renderer)
 {
-	TTF_Font* m_font = TTF_OpenFont(fontPath.c_str(), 15);
+	TTF_Font* m_font = TTF_OpenFont(fontPath.c_str(), fontSize);
 	color = { 255,255,255 };
 	SDL_Surface* m_surfaceMessage1 = TTF_RenderText_Solid(m_font, m_text.c_str(), color);
 	color = { 201, 34, 149 };
@@ -20,8 +20,8 @@ TextComponent::TextComponent(std::string fontPath, std::string text, int xCoord,
 
 	message_rect.x = xCoord;  
 	message_rect.y = yCoord; 
-	message_rect.w = 200; 
-	message_rect.h = 50; 
+	message_rect.w = textWidth;
+	message_rect.h = textHeight;
 
 
 }

@@ -9,7 +9,7 @@
 #include <SDL_ttf.h>
 #include "TextComponent.h"
 /*! \brief
- *		Handles the different game states and creation of game objects
+ *		Handles the game loop, stores the different game states and creates game objects
  *
  *
  *
@@ -28,6 +28,7 @@ private:
 	int currentLvl = 1;
 	bool lvlLoaded = false;
 	bool ghostsMovingOut = false;
+	bool startedFleeing = false;
 
 	std::shared_ptr<TextComponent> startGameText;
 	std::shared_ptr<TextComponent> quitGameText;
@@ -49,11 +50,12 @@ public:
 	bool loadspriteSheetTexture(std::string path);
 	void mainMenu();
 	void inGame();
-
+	void nextLvl();
 
 	void startGame();
 	void exitGame();
 	void pauseGame();
+	
 
 };
 
