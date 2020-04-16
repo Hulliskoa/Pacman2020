@@ -16,6 +16,8 @@ private:
 	std::shared_ptr<AnimationComponent> lastAnimation = nullptr;
 	int score = 0;
 	int remainingLife = 3;
+	int ghostPoints = 100;
+	int pointDoubler = 2;
 
 public:
 	void update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer* renderer);

@@ -7,6 +7,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	// Saves last direction pacman traveled in.
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 
+	//std::cout << score << std::endl;
+
 	std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());
 	if (collidedWith != nullptr) {
 		switch (collidedWith->getEntityType())
@@ -14,8 +16,17 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		case EntityType::GHOST:
 			std::cout << "hit ghost" << std::endl;
 			if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
-				std::cout << "hit ghost" << std::endl;
+				std::cout << "hit scared ghost" << std::endl;
 				collidedWith->setEntityType(EntityType::GHOST_EYES);
+				
+				
+				
+				ghostPoints *= pointDoubler;
+				
+				std::cout << pointDoubler << std::endl;
+				std::cout << ghostPoints << std::endl;
+				
+				score += ghostPoints;
 			}
 			else {
 				std::cout << "hit ghost" << std::endl;
@@ -51,21 +62,22 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			break;
 		case EntityType::PELLET:
 			collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
-			score += 100;
+			score += 10;
 			//Legg til poeng
 			//Forsvinne fra kartet
 			break;
 		case EntityType::POWER_PELLET:
 			*gameState = GameState::GAME_RUNNING_FLEE;
 			collidedWith->setEntityType(EntityType::INACTIVE_POWER_PELLET);
-			score += 100;
+			score += 50;
+			ghostPoints = 100;
 			////Animere til blått spøkelse
 			//Starte timer
 			//Ghost skal løpe vekk fra pacman
 			break;
 		case EntityType::FRUIT:
 			//Legg til poeng
-			collidedWith->setEntityType(EntityType::NOT_DEFINED);
+			collidedWith->setEntityType(EntityType::INACTIVE_FRIUT);
 			break;
 		case EntityType::TELEPORT:
 			//Endre koordinat
@@ -132,6 +144,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	}
 
 	MovingEntity::update();
+
+	
 
 }
 
