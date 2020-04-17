@@ -262,7 +262,7 @@ void GameManager::nextLvl()
 	if (!lvlLoaded) {
 		currentLvl++;
 		if (currentLvl > 3) {
-			currentLvl = 0;
+			currentLvl = 1;
 		}
 		m_collisionManager->clearEntityArray();
 		m_collisionManager->addEntity(pacman);
