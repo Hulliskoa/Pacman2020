@@ -1,6 +1,11 @@
 #include "LevelManager.h"
 
-LevelManager::LevelManager(SDL_Renderer* mainRenderer) : renderer(mainRenderer) {}
+LevelManager::LevelManager(SDL_Renderer* mainRenderer) : renderer(mainRenderer) {
+
+	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
+		std::cout << "could not load maze spritesheet" << std::endl;
+	}
+}
 LevelManager::~LevelManager()
 {
 	if (m_levelSpriteSheet != NULL)
@@ -42,11 +47,9 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)
 {
 
-	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
-		std::cout << "could not load maze spritesheet" << std::endl;
-	}
 
-	entityArray.erase(entityArray.begin(), entityArray.end());
+
+	entityArray.clear();
 	entityArray.shrink_to_fit();
 	ghostDoors.erase(ghostDoors.begin(), ghostDoors.end());
 	ghostDoors.shrink_to_fit();
@@ -371,18 +374,22 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 			yCoord = 88;
 		}
 	}
-	startingPelletCount = pelletCount();
+	//startingPelletCount = pelletCount();
 
 
 }
 void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
 {
-
+	int counter = 0;
 	for (auto x : entityArray) {
-		if (x->getEntityType() != EntityType::NOT_DEFINED && x->getEntityType() != EntityType::INTERSECTION && x->getEntityType() != EntityType::INACTIVE_PELLET && x->getEntityType() != EntityType::INACTIVE_POWER_PELLET)
-			x->startAnimation->render(x->coordinates[0], x->coordinates[1], gameRenderer, 0);
-	}
 
+		if (x->getEntityType() != EntityType::NOT_DEFINED && x->getEntityType() != EntityType::INTERSECTION && x->getEntityType() != EntityType::INACTIVE_PELLET && x->getEntityType() != EntityType::INACTIVE_POWER_PELLET) {
+			x->startAnimation->render(x->coordinates[0], x->coordinates[1], gameRenderer, 0);
+			counter++;
+		}
+
+	}
+	std::cout << counter << std::endl;
 }
 void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisionManager)
 {
@@ -433,10 +440,12 @@ void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisi
 bool LevelManager::loadspriteSheetTexture(std::string path)
 {
 	//The final texture
+
 	if (m_levelSpriteSheet != NULL) {
 		SDL_DestroyTexture(m_levelSpriteSheet);
 		m_levelSpriteSheet = NULL;
 	}
+
 
 	SDL_Texture* newTexture = NULL;
 

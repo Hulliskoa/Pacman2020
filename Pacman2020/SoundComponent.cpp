@@ -3,7 +3,7 @@ SoundComponent::SoundComponent(std::string path) : pathToMedia(path) {
 	if (!loadMedia()) {
 		std::cout << "Could not load media" << std::endl;
 	}
-	Mix_AllocateChannels(1);
+	Mix_AllocateChannels(2);
 }
 
 SoundComponent::~SoundComponent()
@@ -24,15 +24,17 @@ bool SoundComponent::loadMedia() {
 		std::cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << std::endl;;
 		success = false;
 	}
-
-
-
 	return success;
 }
 
-void SoundComponent::play(int playLoop, int volume)
+void SoundComponent::play(int channel, int playLoop, int volume)
 {
-	
-	Mix_PlayChannel(-1, soundEffect, playLoop);
+	if (!Mix_Playing(channel)) {
+		Mix_PlayChannel(channel, soundEffect, playLoop);
+	}
+}
 
+void SoundComponent::fadeOut()
+{
+	Mix_FadeOutChannel(-1, 1000);
 }

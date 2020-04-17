@@ -12,6 +12,7 @@ private:
 public:
 	SoundComponent(std::string path);
 	bool loadMedia();
-	void play(int playLoop, int volume);
+	void play(int channel, int playLoop, int volume);
+	void fadeOut();
 	~SoundComponent();
 };

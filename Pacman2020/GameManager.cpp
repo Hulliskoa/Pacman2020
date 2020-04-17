@@ -91,24 +91,16 @@ void GameManager::run()
 		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE
 			|| *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL
 			|| *gameState == GameState::PACMAN_DIED) {
+			
 			inGame();
+
 			while (*gameState == GameState::LEVEL_COMPLETE) {
 				nextLvl();
 			}
 			while (*gameState == GameState::GAME_OVER) {
 				gameOver();
 			}
-
-
 		}
-
-
-		/*
-		while (*gameState == GameState::EXIT_GAME) {
-
-		}
-
-		*/
 	}
 }
 
@@ -127,12 +119,9 @@ void GameManager::mainMenu()
 
 		lvlLoaded = true;
 	}
-	m_introMusic->play(0, 30);
+	m_introMusic->play(-1, 0, 30);
 	//Checks button push in main menu;
 	*menuInput = m_input->mainUpdate(gameState);
-
-	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
-	SDL_RenderClear(gameRenderer);
 
 	//Renders main menu;
 	startGameText->renderText(gameRenderer, 0);
@@ -154,6 +143,7 @@ void GameManager::mainMenu()
 
 	if (*menuInput == "RETURN" && menuChoice == 0) {
 		*gameState = GameState::GAME_RUNNING;
+		m_introMusic->fadeOut();
 	}
 	if (*menuInput == "RETURN" && menuChoice == 1) {
 		*gameState = GameState::EXIT_GAME;
@@ -221,12 +211,15 @@ void GameManager::inGame() {
 		startedFleeing = true;
 	}
 	//Level complete
-	if (m_levelManager->pelletCount() == 0) {
+	if (m_levelManager->pelletCount() == 235) {
 		lvlLoaded = false;
-		shadow->increaseSpeed();
-		pokey->increaseSpeed();
-		bashful->increaseSpeed();
-		speedy->increaseSpeed();
+		if (currentLvl % 10 == 2) {
+			shadow->increaseSpeed();
+			pokey->increaseSpeed();
+			bashful->increaseSpeed();
+			speedy->increaseSpeed();
+		}
+
 		*gameState = GameState::LEVEL_COMPLETE;
 	}
 
@@ -258,10 +251,10 @@ void GameManager::inGame() {
 //code for handling loading of next level after all pellets have been eaten
 void GameManager::nextLvl()
 {
-
+	m_introMusic->play(1, 0, 30);
 	if (!lvlLoaded) {
 		currentLvl++;
-		currentMap++;
+		//currentMap++;
 		if (currentMap > 3) {
 			currentMap = 1;
 		}
@@ -316,6 +309,7 @@ void GameManager::nextLvl()
 
 	if (*menuInput == "RETURN" && menuChoice == 0) {
 		*gameState = GameState::GAME_RUNNING;
+		m_introMusic->fadeOut();
 	}
 	if (*menuInput == "RETURN" && menuChoice == 1) {
 		*gameState = GameState::EXIT_GAME;
