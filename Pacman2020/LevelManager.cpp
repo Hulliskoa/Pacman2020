@@ -28,12 +28,10 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 	while (lvlFile >> currentChar) {
 
 		levelArray[rowCounter][columnCounter] = currentChar;
-		std::cout << levelArray[rowCounter][columnCounter];
 		columnCounter++;
 
 
 		if (columnCounter >= 28) {
-			std::cout << std::endl;
 			columnCounter = 0;
 			rowCounter++;
 

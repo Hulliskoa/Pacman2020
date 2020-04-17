@@ -1,9 +1,8 @@
 #pragma once
-#include "Pacman.h"
+#include "Entity.h"
 #include <SDL.h>
 
-class Score :
-	public Entity
+class Score
 {
 private:
 	std::shared_ptr<AnimationComponent> zero;
@@ -19,16 +18,20 @@ private:
 	std::shared_ptr<AnimationComponent> highScore;
 
 
-	SDL_Texture * m_scoreTexture;
-	SDL_Renderer* gameRenderer;
+	std::shared_ptr<AnimationComponent> ghostPointsVisual;
+
+
+	SDL_Texture* m_scoreTexture;
+	SDL_Renderer* renderer;
 	int m_textureWidth;
 	int m_textureHeight;
 
 
 public:
 
-	Score(SDL_Renderer* renderer);
-	void update(std::shared_ptr<Pacman> pacman);
+	Score(SDL_Renderer * gameRenderer);
+	void update(int score);
+	void renderGhostPoints(std::shared_ptr<Entity> pacman, int ghostPoints);
 	bool loadspriteSheetTexture(std::string path);
 
 

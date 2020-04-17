@@ -7,6 +7,9 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	// Saves last direction pacman traveled in.
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 
+	//update score on main screen;
+	scoreComponent->update(score);
+
 	//Death animation and handling
 	if (*gameState == GameState::PACMAN_DIED) {
 		deathAnimation->render(coordinates[0], coordinates[1], renderer, 0);
@@ -25,10 +28,12 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		if (collidedWith != nullptr) {
 			switch (collidedWith->getEntityType())
 			{
+
 			case EntityType::GHOST:
 				std::cout << "hit ghost" << std::endl;
 				if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
 					std::cout << "hit scared ghost" << std::endl;
+					scoreComponent->renderGhostPoints(shared_from_this(), ghostPoints);
 					collidedWith->setEntityType(EntityType::GHOST_EYES);
 					score += ghostPoints;
 					//Score increase for each ghost pacman eats
@@ -42,6 +47,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 				}
 				break;
+
 			case EntityType::WALL:
 				if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
 					velocity[0] = lastVelocity[0];
@@ -54,22 +60,24 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 					velocity[1] = 0;
 				}
 				break;
+
 			case EntityType::PELLET:
 				collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
 				score += 10;
-				//Legg til poeng
-				//Forsvinne fra kartet
 				break;
+
 			case EntityType::POWER_PELLET:
 				*gameState = GameState::GAME_RUNNING_FLEE;
 				collidedWith->setEntityType(EntityType::INACTIVE_POWER_PELLET);
 				score += 50;
 				ghostPoints = 100;
 				break;
+
 			case EntityType::FRUIT:
 				collidedWith->setEntityType(EntityType::INACTIVE_FRUIT);
 				score += 50;
 				break;
+
 			case EntityType::DOOR:
 				if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
 					velocity[0] = lastVelocity[0];
@@ -77,12 +85,12 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 				}
 				else {
-
 					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 					velocity[0] = 0;
 					velocity[1] = 0;
 				}
 				break;
+
 			default:
 				break;
 			}
@@ -94,7 +102,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			m_input->update(velocity, gameState);
 		}
 
-		//Checks the direction pacman is traveling
+		//Checks the direction pacman is traveling and renders correct animation
 		if (velocity[0] > 0) {
 			lastAnimation = rightAnimation;
 			rightAnimation->render(coordinates[0], coordinates[1], renderer, 0);
@@ -105,7 +113,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			leftAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		}
-
 		else if (velocity[1] > 0) {
 			lastAnimation = downAnimation;
 			downAnimation->render(coordinates[0], coordinates[1], renderer, 0);
@@ -120,14 +127,17 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			lastAnimation = startAnimation;
 			startAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
+		//parent update function
 		MovingEntity::update();
 	}
 }
 
-Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth) : MovingEntity(104, 216, 3, mainSpriteSheet, textureWidth, textureHeight) {
+Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, SDL_Renderer* gameRenderer) : MovingEntity(104, 216, 3, mainSpriteSheet, textureWidth, textureHeight) {
 
 	m_input = std::make_shared <InputComponent>();
 	MovingEntity::setEntityType(EntityType::PACMAN);
+	scoreComponent = std::make_shared<Score>(gameRenderer);
+
 	lastAnimation = startAnimation;
 	deathAnimation = std::make_shared<AnimationComponent>(11, mainSpriteSheet, textureWidth, textureHeight);
 

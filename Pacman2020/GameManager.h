@@ -39,7 +39,6 @@ private:
 	std::shared_ptr<CollisionManager> m_collisionManager;/*!<collision manager used throughout the program*/
 	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();/*!<Keeps track of game state*/
 	std::shared_ptr<LevelManager> m_levelManager;/*!<A single level manager for creating and rendering levels*/
-	std::shared_ptr<Score> m_score;
 	std::shared_ptr<Ghost> shadow;
 	std::shared_ptr<Ghost> speedy;
 	std::shared_ptr<Ghost> bashful;
@@ -58,7 +57,7 @@ public:
 	void startGame();
 	void exitGame();
 	void pauseGame();
-	
+
 
 };
 

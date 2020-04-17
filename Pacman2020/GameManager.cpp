@@ -21,7 +21,6 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	m_input = std::make_shared <InputComponent>();
 	m_collisionManager = std::make_shared<CollisionManager>();
 	m_levelManager = std::make_shared<LevelManager>(gameRenderer);
-	m_score = std::make_shared<Score>(gameRenderer);;
 	//Creates ghost objects and add sprites to animation components
 	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
 	shadow->rightAnimation->addRect(457, 65, 14, 14);
@@ -71,7 +70,7 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	pokey->startAnimation->addRect(553, 113, 14, 14);
 	pokey->startAnimation->addRect(553, 113, 14, 14);
 
-	pacman = std::make_shared<Pacman>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth);
+	pacman = std::make_shared<Pacman>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, gameRenderer);
 	m_collisionManager->addEntity(pacman);
 	m_collisionManager->addEntity(shadow);
 	m_collisionManager->addEntity(speedy);
@@ -198,7 +197,6 @@ void GameManager::inGame() {
 	bashful->update(gameState, gameRenderer, pacman, m_collisionManager);
 	pokey->update(gameState, gameRenderer, pacman, m_collisionManager);
 	pacman->update(gameState, m_collisionManager, gameRenderer);
-	m_score->update(pacman);
 	//ending flee
 	if (startedFleeing == true && (3000ms + timeSinceFlee) <= 0ms) {
 		*gameState = GameState::GAME_RUNNING_FLEE_ENDING;
@@ -223,7 +221,7 @@ void GameManager::inGame() {
 		startedFleeing = true;
 	}
 	//Level complete
-	if (m_levelManager->pelletCount() == 0) {
+	if (m_levelManager->pelletCount() == 235) {
 		lvlLoaded = false;
 		shadow->increaseSpeed();
 		pokey->increaseSpeed();

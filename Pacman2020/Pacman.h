@@ -7,11 +7,13 @@
 #include "AnimationComponent.h"
 #include "MovingEntity.h"
 #include "GameState.h"
+#include "Score.h"
 #include "CollisionManager.h"
 
 class Pacman : public MovingEntity
 {
 private:
+	std::shared_ptr<Score> scoreComponent;
 	std::shared_ptr<AnimationComponent> deathAnimation;
 	std::shared_ptr<AnimationComponent> lastAnimation = nullptr;
 	int score = 0;
@@ -21,7 +23,7 @@ private:
 
 public:
 	void update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer* renderer);
-	Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth);
+	Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, SDL_Renderer* renderer);
 	int getScore();
 	int getRemainingLives();
 	~Pacman();

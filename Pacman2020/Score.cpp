@@ -1,6 +1,6 @@
 #include "Score.h"
 
-Score::Score(SDL_Renderer* renderer) : gameRenderer(renderer)
+Score::Score(SDL_Renderer* gameRenderer) : renderer(gameRenderer)
 {
 	loadspriteSheetTexture("..\\Pacman2020\\sprites\\spriteFont.png");
 	zero = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
@@ -13,6 +13,15 @@ Score::Score(SDL_Renderer* renderer) : gameRenderer(renderer)
 	seven = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
 	eight = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
 	nine = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
+	ghostPointsVisual = std::make_shared<AnimationComponent>(4, m_scoreTexture, m_textureWidth, m_textureHeight);
+	highScore = std::make_shared<AnimationComponent>(1, m_scoreTexture, m_textureWidth, m_textureHeight);
+	
+	highScore->addRect(769, 577, 47, 47);
+
+	ghostPointsVisual->addRect(769, 577, 47, 47);
+	ghostPointsVisual->addRect(817, 577, 47, 47);
+	ghostPointsVisual->addRect(865, 577, 47, 47);
+	ghostPointsVisual->addRect(913, 577, 47, 47);
 
 	zero->addRect(1, 1, 47, 47);
 	zero->addRect(49, 1, 47, 47);
@@ -125,10 +134,8 @@ Score::Score(SDL_Renderer* renderer) : gameRenderer(renderer)
 	nine->addRect(433, 1, 47, 47);
 }
 
-void Score::update(std::shared_ptr<Pacman> pacman)
+void Score::update(int score)
 {
-
-	int score = pacman->getScore();
 
 	int positionZero = score % 10;
 	int positionOne = score / 10 % 10;
@@ -141,17 +148,36 @@ void Score::update(std::shared_ptr<Pacman> pacman)
 	int positionEight = score / 100000000 % 10;
 	int positionNine = score / 1000000000 % 10;
 
-	zero->renderSpriteFonts(82, 1, gameRenderer, positionZero);
-	one->renderSpriteFonts(73, 1, gameRenderer, positionOne);
-	two->renderSpriteFonts(64, 1, gameRenderer, positionTwo);
-	three->renderSpriteFonts(55, 1, gameRenderer, positionThree);
-	four->renderSpriteFonts(46, 1, gameRenderer, positionFour);
-	five->renderSpriteFonts(37, 1, gameRenderer, positionFive);
-	six->renderSpriteFonts(28, 1, gameRenderer, positionSix);
-	seven->renderSpriteFonts(19, 1, gameRenderer, positionSeven);
-	eight->renderSpriteFonts(10, 1, gameRenderer, positionEight);
-	nine->renderSpriteFonts(1, 1, gameRenderer, positionNine);
+	zero->renderSpriteFonts(82, 8, renderer, positionZero);
+	one->renderSpriteFonts(73, 8, renderer, positionOne);
+	two->renderSpriteFonts(64, 8, renderer, positionTwo);
+	three->renderSpriteFonts(55, 8, renderer, positionThree);
+	four->renderSpriteFonts(46, 8, renderer, positionFour);
+	five->renderSpriteFonts(37, 8, renderer, positionFive);
+	six->renderSpriteFonts(28, 8, renderer, positionSix);
+	seven->renderSpriteFonts(19, 8, renderer, positionSeven);
+	eight->renderSpriteFonts(10, 8, renderer, positionEight);
+	nine->renderSpriteFonts(1, 8, renderer, positionNine);
 
+
+
+}
+
+void Score::renderGhostPoints(std::shared_ptr<Entity> pacman, int ghostPoints)
+{
+
+	if (ghostPoints == 200) {
+		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 0);
+	}
+	else if (ghostPoints == 400) {
+		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 1);
+	}
+	else if (ghostPoints == 800) {
+		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 2);
+	}
+	else if (ghostPoints == 1600) {
+		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 3);
+	}
 }
 
 //source: http://lazyfoo.net/tutorials/SDL/07_texture_loading_and_rendering/index.php
@@ -169,7 +195,7 @@ bool Score::loadspriteSheetTexture(std::string path)
 	{
 		//Color keying black to make the background transparent when rendering sprites
 		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0));
-		newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
+		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == NULL)
 		{
 			std::cout << "Unable to create texture! SDL Error: " << SDL_GetError() << std::endl;
