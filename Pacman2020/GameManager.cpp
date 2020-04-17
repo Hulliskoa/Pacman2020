@@ -26,7 +26,6 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
 	shadow->rightAnimation->addRect(457, 65, 14, 14);
 	shadow->rightAnimation->addRect(473, 65, 14, 14);
-	shadow->setVelocity(2, 0);
 	shadow->leftAnimation->addRect(489, 65, 14, 14);
 	shadow->leftAnimation->addRect(505, 65, 14, 14);
 	shadow->upAnimation->addRect(521, 65, 14, 14);
@@ -173,7 +172,7 @@ void GameManager::inGame() {
 
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
-
+	/*
 	if (ghostsMovingOut && (speedy->coordinates[1] > 160 || speedy->coordinates[1] < 120))
 		if (pokey->coordinates[1] > 160 || pokey->coordinates[1] < 120)
 			if (shadow->coordinates[1] > 160 || shadow->coordinates[1] < 120)
@@ -182,19 +181,23 @@ void GameManager::inGame() {
 					speedy->aiComponent->removeTarget();
 					bashful->aiComponent->removeTarget();
 					pokey->aiComponent->removeTarget();
-					m_levelManager->closeDoors();
+
 				}
+
+	*/
 
 	if (m_levelManager->pelletCount() == ((m_levelManager->getStartingPelletCount()) - 29) + currentLvl) {
 		releaseTime = high_resolution_clock::now();
 		m_levelManager->openDoors();
-		speedy->setVelocity(2, 0);
-		bashful->setVelocity(-2, 0);
-		pokey->setVelocity(-2, 0);
 
-		speedy->aiComponent->setTarget(8, 8);
-		bashful->aiComponent->setTarget(8, 8);
-		pokey->aiComponent->setTarget(8, 8);
+		speedy->setEntityType(EntityType::GHOST_RETURN);
+		bashful->setEntityType(EntityType::GHOST_RETURN);
+		pokey->setEntityType(EntityType::GHOST_RETURN);
+
+		speedy->aiComponent->setTarget(112, 120);
+		bashful->aiComponent->setTarget(112, 120);
+		pokey->aiComponent->setTarget(112, 120);
+		m_levelManager->closeDoors();
 		ghostsMovingOut = true;
 	}
 
@@ -247,6 +250,10 @@ void GameManager::inGame() {
 
 	if (m_levelManager->pelletCount() == 0) {
 		lvlLoaded = false;
+		shadow->increaseSpeed();
+		pokey->increaseSpeed();
+		bashful->increaseSpeed();
+		speedy->increaseSpeed();
 		*gameState = GameState::LEVEL_COMPLETE;
 	}
 
@@ -267,10 +274,10 @@ void GameManager::inGame() {
 		speedy->setCoordinates(132, 144);
 		bashful->setCoordinates(116, 144);
 		pokey->setCoordinates(100, 144);
-		speedy->setVelocity(0, 0);
-		bashful->setVelocity(0, 0);
-		pokey->setVelocity(0, 0);
-		shadow->setVelocity(2, 0);
+		speedy->setVelocity(1, 0);
+		bashful->setVelocity(1, 0);
+		pokey->setVelocity(1, 0);
+		shadow->setVelocity(1, 0);
 		*gameState = GameState::GAME_RUNNING;
 	}
 	std::this_thread::sleep_for(50ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
@@ -308,7 +315,7 @@ void GameManager::nextLvl()
 		speedy->setVelocity(0, 0);
 		bashful->setVelocity(0, 0);
 		pokey->setVelocity(0, 0);
-		shadow->setVelocity(2, 0);
+		shadow->setVelocity(1, 0);
 		lvlLoaded = true;
 	}
 

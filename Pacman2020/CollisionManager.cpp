@@ -4,8 +4,8 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(std::shared_ptr<Entity>
 {
 	bool collision = false;
 	int flip = 1;
-	int movementPlane = NULL;
-	int oppositePlane = NULL;
+	int movementPlane = 0;
+	int oppositePlane = 0;
 
 	//Checks which direction the entity is moving and sets movementPlane based on that
 	if (entityToCheck->velocity[0] != 0) {
@@ -16,18 +16,19 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(std::shared_ptr<Entity>
 		movementPlane = 1;
 		oppositePlane = 0;
 	}
-
+	// if standing still
 	if ((movementPlane == 0) && (oppositePlane == 0)) {
 		return nullptr;
 	}
-	//Checks if entityToCheck is within hitbox of any other entity on the map, returns value to be used in entity's updatefunction
+
+	//Checks if entityToCheck is within hitbox of any other entity on the map, returns value to be used in entity's update function
 	for (auto x : entities) {
-	
+
 		if (x->getEntityType() == entityToCheck->getEntityType()) {
 			continue;
 		}
-		
-		//flips collision box to negative to be able to check for collision in negative directions
+
+		//flips collision box to negative to be able to check for collision in all directions
 		if (entityToCheck->velocity[movementPlane] < 0) {
 			flip = -1;
 		}
@@ -37,6 +38,7 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(std::shared_ptr<Entity>
 		int collisionBoxEdge2 = (entityToCheck->coordinates[oppositePlane]) + (hitBoxRadius);
 		//Use hitbox dimensions to check if an entity is within range
 
+		//Use flip to determine in what directon to look for collision
 		if (flip < 0) {
 			if (collisionBoxStart > x->coordinates[movementPlane] && x->coordinates[movementPlane] > collisionBoxEnd) {
 				if ((collisionBoxEdge1 < x->coordinates[oppositePlane]) && (collisionBoxEdge2 > x->coordinates[oppositePlane])) {
@@ -51,6 +53,7 @@ std::shared_ptr<Entity> CollisionManager::collisionCheck(std::shared_ptr<Entity>
 				}
 			}
 		}
+		//returns the object that the entity collided with
 		if (collision) {
 			return x;
 		}

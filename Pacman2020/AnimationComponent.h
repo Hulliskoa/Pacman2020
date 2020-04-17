@@ -46,4 +46,8 @@ public:
 		\param renderer main renderer used to show sprites on screen
 	*/
 	void render(int x, int y, SDL_Renderer* renderer);
+
+	int getCurrentFrame();
+	int getTotalFrames();
+
 };

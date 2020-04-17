@@ -22,6 +22,11 @@ void MovingEntity::update() {
 
 }
 
+void MovingEntity::increaseSpeed()
+{
+	normalSpeed += 2;
+}
+
 MovingEntity::MovingEntity(int xStart, int yStart, int numAnimFrames, SDL_Texture* mainSpriteSheet, int textureWidth, int textureHeight)
 {
 	numFrames = numAnimFrames;

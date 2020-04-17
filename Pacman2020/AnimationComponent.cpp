@@ -59,3 +59,13 @@ void AnimationComponent::render(int x, int y, SDL_Renderer* renderer)
 	}
 
 }
+
+int AnimationComponent::getCurrentFrame()
+{
+	return m_frame;
+}
+
+int AnimationComponent::getTotalFrames()
+{
+	return m_numberOfFrames;
+}

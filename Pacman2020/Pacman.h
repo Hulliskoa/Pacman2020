@@ -22,6 +22,7 @@ private:
 public:
 	void update(std::shared_ptr<GameState> gameState, std::shared_ptr<CollisionManager> collisionManager, SDL_Renderer* renderer);
 	Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth);
+	int getRemainingLives();
 	~Pacman();
 
 };

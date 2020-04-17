@@ -1,18 +1,10 @@
 #include "Ghost.h"
 void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer, std::shared_ptr<MovingEntity> pacman, std::shared_ptr<CollisionManager> collisionManager)
 {
-	if (collisionManager->checkIntersection(shared_from_this())) {
-		aiComponent->update(shared_from_this(), aiBehaviour, pacman, collisionManager);
-		//std::shared_ptr<Entity> collidedwith = collisionManager->collisionCheck(shared_from_this());
-	}
 
-	coordinates[0] += velocity[0];
-	coordinates[1] += velocity[1];
-
-	if (this->getEntityType() == EntityType::GHOST_EYES) {
-		aiComponent->setTarget(116, 144);
-	
-
+	if (getEntityType() == EntityType::GHOST_EYES) {
+		speed = doubleSpeed;
+		aiComponent->setTarget(112, 136);
 		if (velocity[0] > 0) {
 			returnRightAnimation->render(coordinates[0], coordinates[1], renderer);
 		}
@@ -26,13 +18,15 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 			returnUpAnimation->render(coordinates[0], coordinates[1], renderer);
 		}
 
-		if (coordinates[0] == 116 && coordinates[1] == 144) {
-			setEntityType(EntityType::GHOST);
+		if (coordinates[0] == 112 && coordinates[1] == 136 && getEntityType() == EntityType::GHOST_EYES) {
+			setEntityType(EntityType::GHOST_RETURN);
+			aiComponent->setTarget(120, 116);
 		}
+
+
 	}
 	else {
-	
-
+		speed = normalSpeed;
 		if (*gameState == GameState::GAME_RUNNING) {
 			if (velocity[0] > 0) {
 				rightAnimation->render(coordinates[0], coordinates[1], renderer);
@@ -51,12 +45,12 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 			}
 		}
 
-		if (*gameState == GameState::GAME_RUNNING_FLEE) {
+		if (*gameState == GameState::GAME_RUNNING_FLEE && getEntityType() == EntityType::GHOST) {
 			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
 			blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
 		}
 
-		if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
+		if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING && getEntityType() == EntityType::GHOST) {
 			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
 			if (alternateFleeAnimation) {
 				blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
@@ -68,9 +62,23 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 			}
 
 		}
+
+
 	}
 
+	if (collisionManager->checkIntersection(shared_from_this())) {
+		aiComponent->update(shared_from_this(), aiBehaviour, pacman, collisionManager, gameState);
+		//std::shared_ptr<Entity> collidedwith = collisionManager->collisionCheck(shared_from_this());
+	}
 
+	coordinates[0] += (velocity[0] * speed);
+	coordinates[1] += (velocity[1] * speed);
+
+
+	if (coordinates[0] == 120 && coordinates[1] == 120 && getEntityType() == EntityType::GHOST_RETURN) {
+		aiComponent->removeTarget();
+		setEntityType(EntityType::GHOST);
+	}
 
 	MovingEntity::update();
 
@@ -80,7 +88,7 @@ Ghost::Ghost(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, 
 {
 	setEntityType(EntityType::GHOST);
 	aiComponent = std::make_shared<AiComponent>();
-
+	setVelocity(1, 0);
 	blueFleeAnimation = std::make_shared<AnimationComponent>(2, mainSpriteSheet, textureWidth, textureHeight);
 	blueFleeAnimation->addRect(585, 65, 14, 14);
 	blueFleeAnimation->addRect(601, 65, 14, 14);

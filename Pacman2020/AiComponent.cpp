@@ -16,21 +16,21 @@ void AiComponent::removeTarget()
 {
 	targetSet = false;
 }
-void AiComponent::update(std::shared_ptr<Entity> currentGhost, int ghostAI, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager)
+void AiComponent::update(std::shared_ptr<Entity> currentGhost, int ghostAI, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager, std::shared_ptr<GameState> gameState)
 {
 	switch (ghostAI)
 	{
 	case 0:
-		shadowAI(currentGhost, pacman, collisionManager);
+		shadowAI(currentGhost, pacman, collisionManager, gameState);
 		break;
 	case 1:
-		speedyAI(currentGhost, pacman, collisionManager);
+		speedyAI(currentGhost, pacman, collisionManager, gameState);
 		break;
 	case 2:
-		bashfulAI(currentGhost, pacman, collisionManager);
+		bashfulAI(currentGhost, pacman, collisionManager, gameState);
 		break;
 	case 3:
-		pokeyAI(currentGhost, pacman, collisionManager);
+		pokeyAI(currentGhost, pacman, collisionManager, gameState);
 		break;
 	default:
 		break;
@@ -38,19 +38,19 @@ void AiComponent::update(std::shared_ptr<Entity> currentGhost, int ghostAI, std:
 }
 
 
-void AiComponent::shadowAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager)
+void AiComponent::shadowAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager, std::shared_ptr<GameState> gameState)
 {
 	if (!targetSet) {
 		targetTile[0] = pacman->coordinates[0];
 		targetTile[1] = pacman->coordinates[1];
 	}
-	ai(currentGhost, pacman, collisionManager);
+	ai(currentGhost, pacman, collisionManager, gameState);
 }
 
 
 
 
-void AiComponent::speedyAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager)
+void AiComponent::speedyAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager, std::shared_ptr<GameState> gameState)
 {
 	if (!targetSet) {
 		targetTile[0] = pacman->coordinates[0];
@@ -71,29 +71,29 @@ void AiComponent::speedyAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr
 
 	}
 
-	ai(currentGhost, pacman, collisionManager);
+	ai(currentGhost, pacman, collisionManager, gameState);
 }
 
-void AiComponent::bashfulAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager)
+void AiComponent::bashfulAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager, std::shared_ptr<GameState> gameState)
 {
 	if (!targetSet) {
 		targetTile[0] = pacman->coordinates[0];
 		targetTile[1] = pacman->coordinates[1];
 	}
-	ai(currentGhost, pacman, collisionManager);
+	ai(currentGhost, pacman, collisionManager, gameState);
 }
 
-void AiComponent::pokeyAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager)
+void AiComponent::pokeyAI(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager, std::shared_ptr<GameState> gameState)
 {
 	if (!targetSet) {
 		targetTile[0] = pacman->coordinates[0];
 		targetTile[1] = pacman->coordinates[1];
 	}
 
-	ai(currentGhost, pacman, collisionManager);
+	ai(currentGhost, pacman, collisionManager, gameState);
 }
 
-void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager)
+void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entity> pacman, std::shared_ptr<CollisionManager> collisionManager, std::shared_ptr<GameState> gameState)
 {
 	firstV.clear();
 	secondV.clear();
@@ -103,34 +103,62 @@ void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entit
 	lastVelocity[0] = currentGhost->velocity[0];
 	lastVelocity[1] = currentGhost->velocity[1];
 
-	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::DOOR) {
+	if (collisionManager->collisionCheck(currentGhost)->getEntityType() == EntityType::PACMAN) {
+		std::cout << "ello" <<std::endl;
+	}
+	if (collisionManager->collisionCheck(currentGhost)->getEntityType() == EntityType::PACMAN && currentGhost->getEntityType() != EntityType::GHOST_EYES) {
+		if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
+			currentGhost->setEntityType(EntityType::GHOST_EYES);
+		}
+		else if (*gameState == GameState::GAME_RUNNING) {
+			*gameState == GameState::RESTART_LEVEL;
+			std::cout << "pacman hit" << std::endl;
+		}
+	}
+
+	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
 		tilesChecked[0] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - (targetTile[1]), 2);
 		firstV.emplace_back(currentGhost->velocity[0]);
 		firstV.emplace_back(currentGhost->velocity[1]);
 		shortestPath.insert(std::pair<int, std::vector<int>>(tilesChecked[0], firstV));
 	}
 
+	//check next tile in other direction
 	currentGhost->velocity[0] = lastVelocity[1];
 	currentGhost->velocity[1] = lastVelocity[0];
 
-	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::DOOR) {
+	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
 		tilesChecked[1] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - targetTile[1], 2);
 		secondV.emplace_back(currentGhost->velocity[0]);
 		secondV.emplace_back(currentGhost->velocity[1]);
 		shortestPath.insert(std::pair<int, std::vector<int>>(tilesChecked[1], secondV));
 	}
 
+	//check next tile in other direction
 	currentGhost->velocity[0] = -lastVelocity[1];
 	currentGhost->velocity[1] = -lastVelocity[0];
 
-	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::DOOR) {
+	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
 		tilesChecked[2] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - targetTile[1], 2);
 		thirdV.emplace_back(currentGhost->velocity[0]);
 		thirdV.emplace_back(currentGhost->velocity[1]);
 		shortestPath.insert(std::pair<int, std::vector<int>>(tilesChecked[2], thirdV));
 	}
 
-
+	//fetch shortest path from map
 	currentGhost->velocity[0] = shortestPath.begin()->second[0];
 	currentGhost->velocity[1] = shortestPath.begin()->second[1];
+}
+
+bool AiComponent::checkIfReturn(std::shared_ptr<Entity> currentGhost, std::shared_ptr<CollisionManager> collisionManager)
+{
+	if (currentGhost->getEntityType() == EntityType::GHOST_EYES || currentGhost->getEntityType() == EntityType::GHOST_RETURN && collisionManager->collisionCheck(currentGhost)->getEntityType() == EntityType::DOOR) {
+		return true;
+	}
+	else if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::DOOR) {
+		return true;
+	}
+	else if (collisionManager->collisionCheck(currentGhost)->getEntityType() == EntityType::DOOR) {
+		return false;
+	}
 }
