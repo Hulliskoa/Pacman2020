@@ -6,6 +6,7 @@
 #include <SDL_ttf.h>//source: http://www.sdltutorials.com/sdl-ttf
 #include <stdio.h>
 #include "GameManager.h"
+#include <SDL_mixer.h>
 
 const int SCREEN_WIDTH = 696;
 const int SCREEN_HEIGHT = 900;
@@ -49,8 +50,19 @@ bool init(SDL_Window** window, SDL_Renderer** renderer) {
 				else {
 					if (TTF_Init() < 0) {
 						std::cout << "SDL_TTF could not initialize!" << std::endl;
+						return false;
 					}
-					return true;
+					else {
+						if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+						{
+							std::cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
+							return false;
+						}
+						else {
+							return true;
+						}
+
+					}
 				}
 			}
 		}
@@ -76,6 +88,8 @@ int main(int argc, char* argv[])
 	window = NULL;
 	SDL_DestroyRenderer(renderer);
 	renderer = NULL;
+	Mix_Quit();
+	IMG_Quit();
 	TTF_Quit();
 	SDL_Quit();
 

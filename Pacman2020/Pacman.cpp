@@ -65,6 +65,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			case EntityType::PELLET:
 				collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
 				score += 10;
+				m_pelletMunch->play(0,70);
 				break;
 
 			case EntityType::POWER_PELLET:
@@ -140,6 +141,13 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 
 	setEntityType(EntityType::PACMAN);
 	lastAnimation = startAnimation;
+
+
+	m_pelletMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_chomp.wav");
+	m_fruitMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_eatfruit.wav");
+	m_ghostMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_eatghost.wav");
+	m_deathSound = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_death.wav");
+
 
 	deathAnimation = std::make_shared<AnimationComponent>(11, mainSpriteSheet, textureWidth, textureHeight);
 

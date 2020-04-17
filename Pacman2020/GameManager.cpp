@@ -21,6 +21,7 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	m_input = std::make_shared <InputComponent>();
 	m_collisionManager = std::make_shared<CollisionManager>();
 	m_levelManager = std::make_shared<LevelManager>(gameRenderer);
+	m_introMusic = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_beginning.wav");
 	//Creates ghost objects and add sprites to animation components
 	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
 	shadow->rightAnimation->addRect(457, 65, 14, 14);
@@ -126,7 +127,7 @@ void GameManager::mainMenu()
 
 		lvlLoaded = true;
 	}
-
+	m_introMusic->play(0, 30);
 	//Checks button push in main menu;
 	*menuInput = m_input->mainUpdate(gameState);
 
@@ -153,7 +154,6 @@ void GameManager::mainMenu()
 
 	if (*menuInput == "RETURN" && menuChoice == 0) {
 		*gameState = GameState::GAME_RUNNING;
-
 	}
 	if (*menuInput == "RETURN" && menuChoice == 1) {
 		*gameState = GameState::EXIT_GAME;

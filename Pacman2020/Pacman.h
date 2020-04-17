@@ -9,11 +9,16 @@
 #include "GameState.h"
 #include "Score.h"
 #include "CollisionManager.h"
+#include "SoundComponent.h"
 
 class Pacman : public MovingEntity
 {
 private:
 	std::shared_ptr<Score> scoreComponent;
+	std::shared_ptr<SoundComponent> m_pelletMunch;
+	std::shared_ptr<SoundComponent> m_fruitMunch;
+	std::shared_ptr<SoundComponent> m_ghostMunch;
+	std::shared_ptr<SoundComponent> m_deathSound;
 	std::shared_ptr<AnimationComponent> deathAnimation;
 	std::shared_ptr<AnimationComponent> lastAnimation = nullptr;
 	int score = 0;

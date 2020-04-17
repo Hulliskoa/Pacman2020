@@ -3,7 +3,7 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 {
 
 	if (getEntityType() == EntityType::GHOST_EYES) {
-		speed = doubleSpeed;
+		speed = normalSpeed;
 		aiComponent->setTarget(112, 136);
 		if (velocity[0] > 0) {
 			returnRightAnimation->render(coordinates[0], coordinates[1], renderer,0);
@@ -17,7 +17,6 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 		else if (velocity[1] < 0) {
 			returnUpAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
-
 		if (coordinates[0] == 112 && coordinates[1] == 136 && getEntityType() == EntityType::GHOST_EYES) {
 			setEntityType(EntityType::GHOST_RETURN);
 			aiComponent->setTarget(120, 116);
