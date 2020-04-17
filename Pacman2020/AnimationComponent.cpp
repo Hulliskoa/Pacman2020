@@ -35,17 +35,28 @@ void AnimationComponent::addRect(int xSpriteSheet, int ySpriteSheet, int w, int 
 	m_sprites.push_back(clip);
 }
 
-void AnimationComponent::render(int x, int y, SDL_Renderer* renderer)
+void AnimationComponent::render(int x, int y, SDL_Renderer* renderer, int renderSize)
 {
 	SDL_Rect clip = m_sprites[m_frame];
 	SDL_Rect renderQuad = { x - (clip.w / 2), y - (clip.h / 2), m_width, m_height };
 
-
-	if (&clip != NULL)
-	{
-		renderQuad.w = clip.w;
-		renderQuad.h = clip.h;
+	if (renderSize != 0) {
+		if (&clip != NULL)
+		{
+			renderQuad.w = renderSize;
+			renderQuad.h = renderSize;
+		}
 	}
+	else
+	{
+		if (&clip != NULL)
+		{
+			renderQuad.w = clip.w;
+			renderQuad.h = clip.h;
+		}
+	}
+
+
 
 
 	SDL_RenderCopy(renderer, m_texture, &clip, &renderQuad);
@@ -57,6 +68,23 @@ void AnimationComponent::render(int x, int y, SDL_Renderer* renderer)
 	if (m_frame >= m_numberOfFrames) {
 		m_frame = 0;
 	}
+
+}
+
+void AnimationComponent::renderSpriteFonts(int x, int y, SDL_Renderer* renderer, int numberToRender)
+{
+	SDL_Rect clip = m_sprites[numberToRender];
+	SDL_Rect renderQuad = { x , y , m_width, m_height };
+
+
+	if (&clip != NULL)
+	{
+		renderQuad.w = 8;
+		renderQuad.h = 8;
+	}
+
+
+	SDL_RenderCopy(renderer, m_texture, &clip, &renderQuad);
 
 }
 

@@ -162,6 +162,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Pacman2020.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="TextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="TextComponent.h" />
   </ItemGroup>
   <ItemGroup>

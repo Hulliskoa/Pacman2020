@@ -7,6 +7,10 @@ void MovingEntity::setVelocity(int x, int y) {
 
 void MovingEntity::update() {
 	//teleports entity when going outside window
+
+	if (coordinates[1] < 8) {
+		coordinates[1] = 320;
+	}
 	if (coordinates[0] > 250) {
 		coordinates[0] = -8;
 	}
@@ -16,9 +20,7 @@ void MovingEntity::update() {
 	if (coordinates[0] < -8) {
 		coordinates[0] = 240;
 	}
-	if (coordinates[1] < -8) {
-		coordinates[1] = 320;
-	}
+
 
 }
 

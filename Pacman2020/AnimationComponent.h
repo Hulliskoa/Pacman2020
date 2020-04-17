@@ -45,7 +45,8 @@ public:
 		\param y takes an int that represent the y coordinate of where we want the sprite to rendered inside the SDL_Window
 		\param renderer main renderer used to show sprites on screen
 	*/
-	void render(int x, int y, SDL_Renderer* renderer);
+	void render(int x, int y, SDL_Renderer* renderer, int renderSize);
+	void renderSpriteFonts(int x, int y, SDL_Renderer* renderer, int numberToRender);
 
 	int getCurrentFrame();
 	int getTotalFrames();

@@ -8,6 +8,7 @@
 #include "LevelManager.h"
 #include <SDL_ttf.h>
 #include "TextComponent.h"
+#include "Score.h"
 /*! \brief
  *		Handles the game loop, stores the different game states and creates game objects
  *
@@ -38,6 +39,7 @@ private:
 	std::shared_ptr<CollisionManager> m_collisionManager;/*!<collision manager used throughout the program*/
 	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();/*!<Keeps track of game state*/
 	std::shared_ptr<LevelManager> m_levelManager;/*!<A single level manager for creating and rendering levels*/
+	std::shared_ptr<Score> m_score;
 	std::shared_ptr<Ghost> shadow;
 	std::shared_ptr<Ghost> speedy;
 	std::shared_ptr<Ghost> bashful;

@@ -6,16 +6,16 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 		speed = doubleSpeed;
 		aiComponent->setTarget(112, 136);
 		if (velocity[0] > 0) {
-			returnRightAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnRightAnimation->render(coordinates[0], coordinates[1], renderer,0);
 		}
 		else if (velocity[0] < 0) {
-			returnLeftAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnLeftAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 		else if (velocity[1] > 0) {
-			returnDownAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnDownAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 		else if (velocity[1] < 0) {
-			returnUpAnimation->render(coordinates[0], coordinates[1], renderer);
+			returnUpAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 
 		if (coordinates[0] == 112 && coordinates[1] == 136 && getEntityType() == EntityType::GHOST_EYES) {
@@ -29,35 +29,35 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 		speed = normalSpeed;
 		if (*gameState == GameState::GAME_RUNNING) {
 			if (velocity[0] > 0) {
-				rightAnimation->render(coordinates[0], coordinates[1], renderer);
+				rightAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 			}
 			else if (velocity[0] < 0) {
-				leftAnimation->render(coordinates[0], coordinates[1], renderer);
+				leftAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 			}
 			else if (velocity[1] > 0) {
-				downAnimation->render(coordinates[0], coordinates[1], renderer);
+				downAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 			}
 			else if (velocity[1] < 0) {
-				upAnimation->render(coordinates[0], coordinates[1], renderer);
+				upAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 			}
 			else {
-				startAnimation->render(coordinates[0], coordinates[1], renderer);
+				startAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 			}
 		}
 
 		if (*gameState == GameState::GAME_RUNNING_FLEE && getEntityType() == EntityType::GHOST) {
 			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
-			blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
+			blueFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 
 		if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING && getEntityType() == EntityType::GHOST) {
 			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
 			if (alternateFleeAnimation) {
-				blueFleeAnimation->render(coordinates[0], coordinates[1], renderer);
+				blueFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 				alternateFleeAnimation = false;
 			}
 			else {
-				whiteFleeAnimation->render(coordinates[0], coordinates[1], renderer);
+				whiteFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 				alternateFleeAnimation = true;
 			}
 

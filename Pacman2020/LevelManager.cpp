@@ -382,7 +382,7 @@ void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
 
 	for (auto x : entityArray) {
 		if (x->getEntityType() != EntityType::NOT_DEFINED && x->getEntityType() != EntityType::INTERSECTION && x->getEntityType() != EntityType::INACTIVE_PELLET && x->getEntityType() != EntityType::INACTIVE_POWER_PELLET)
-			x->startAnimation->render(x->coordinates[0], x->coordinates[1], gameRenderer);
+			x->startAnimation->render(x->coordinates[0], x->coordinates[1], gameRenderer, 0);
 	}
 
 }

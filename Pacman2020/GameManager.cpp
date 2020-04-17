@@ -21,7 +21,7 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	m_input = std::make_shared <InputComponent>();
 	m_collisionManager = std::make_shared<CollisionManager>();
 	m_levelManager = std::make_shared<LevelManager>(gameRenderer);
-
+	m_score = std::make_shared<Score>(gameRenderer);;
 	//Creates ghost objects and add sprites to animation components
 	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
 	shadow->rightAnimation->addRect(457, 65, 14, 14);
@@ -175,19 +175,6 @@ void GameManager::inGame() {
 
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
-	/*
-	if (ghostsMovingOut && (speedy->coordinates[1] > 160 || speedy->coordinates[1] < 120))
-		if (pokey->coordinates[1] > 160 || pokey->coordinates[1] < 120)
-			if (shadow->coordinates[1] > 160 || shadow->coordinates[1] < 120)
-				if (bashful->coordinates[1] > 160 || bashful->coordinates[1] < 120) {
-					ghostsMovingOut = false;
-					speedy->aiComponent->removeTarget();
-					bashful->aiComponent->removeTarget();
-					pokey->aiComponent->removeTarget();
-
-				}
-
-	*/
 
 	if (m_levelManager->pelletCount() == ((m_levelManager->getStartingPelletCount()) - 29) + currentLvl) {
 		releaseTime = high_resolution_clock::now();
@@ -211,7 +198,7 @@ void GameManager::inGame() {
 	bashful->update(gameState, gameRenderer, pacman, m_collisionManager);
 	pokey->update(gameState, gameRenderer, pacman, m_collisionManager);
 	pacman->update(gameState, m_collisionManager, gameRenderer);
-
+	m_score->update(pacman);
 	//ending flee
 	if (startedFleeing == true && (3000ms + timeSinceFlee) <= 0ms) {
 		*gameState = GameState::GAME_RUNNING_FLEE_ENDING;
@@ -224,7 +211,6 @@ void GameManager::inGame() {
 		shadow->aiComponent->removeTarget();
 		*gameState = GameState::GAME_RUNNING;
 		startedFleeing = false;
-
 	}
 
 	//starting flee
@@ -234,23 +220,9 @@ void GameManager::inGame() {
 		bashful->aiComponent->setTarget(10, 880);
 		pokey->aiComponent->setTarget(670, 880);
 		shadow->aiComponent->setTarget(670, 10);
-
 		startedFleeing = true;
-
 	}
-
-
-	//if(*gameState == GameState::GAME_RUNNING_FLEE && timeSinceFlee >= 3000ms)
-	/*
-	while (*gameState == GameState::GAME_PAUSED) {
-		//display menu
-		//freeze everything else
-	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
-	SDL_RenderClear(gameRenderer);
-
-	}
-	*/
-
+	//Level complete
 	if (m_levelManager->pelletCount() == 0) {
 		lvlLoaded = false;
 		shadow->increaseSpeed();
@@ -260,17 +232,14 @@ void GameManager::inGame() {
 		*gameState = GameState::LEVEL_COMPLETE;
 	}
 
-
 	if (*gameState == GameState::PACMAN_DIED) {
 		pacman->setVelocity(0, 0);
 		speedy->setVelocity(0, 0);
 		bashful->setVelocity(0, 0);
 		pokey->setVelocity(0, 0);
 		shadow->setVelocity(0, 0);
-
-
-
 	}
+
 	if (*gameState == GameState::RESTART_LEVEL) {
 		pacman->setCoordinates(104, 216);
 		shadow->setCoordinates(116, 120);
@@ -307,8 +276,6 @@ void GameManager::nextLvl()
 		m_levelManager->readLevelFromTxt(currentLvl);
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
-
-
 
 		pacman->setVelocity(0, 0);
 		pacman->setCoordinates(104, 216);
