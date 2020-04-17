@@ -3,6 +3,7 @@ SoundComponent::SoundComponent(std::string path) : pathToMedia(path) {
 	if (!loadMedia()) {
 		std::cout << "Could not load media" << std::endl;
 	}
+	Mix_AllocateChannels(1);
 }
 
 SoundComponent::~SoundComponent()
@@ -31,11 +32,13 @@ bool SoundComponent::loadMedia() {
 
 void SoundComponent::play(int playLoop, int volume)
 {
-	soundEffect->volume = volume;
+	
 	Mix_PlayChannel(-1, soundEffect, playLoop);
+
+	
 }
 
 void SoundComponent::stop()
 {
-	Mix_PlayChannel(-1, soundEffect, 0);
+	
 }

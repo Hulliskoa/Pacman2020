@@ -65,7 +65,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			case EntityType::PELLET:
 				collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
 				score += 10;
-				m_pelletMunch->play(0,70);
+				m_pelletMunch->play(1,70);
 				break;
 
 			case EntityType::POWER_PELLET:

@@ -252,7 +252,7 @@ void GameManager::inGame() {
 	}
 
 
-	std::this_thread::sleep_for(50ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
+	std::this_thread::sleep_for(80ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
 	SDL_RenderPresent(gameRenderer);
 }
 //code for handling loading of next level after all pellets have been eaten
