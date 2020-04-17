@@ -74,6 +74,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				*gameState = GameState::GAME_RUNNING_FLEE;
 				collidedWith->setEntityType(EntityType::INACTIVE_POWER_PELLET);
 				score += 50;
+				m_pelletMunch->play(0, 0, 70);
 				ghostPoints = 100;
 				break;
 

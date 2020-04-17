@@ -22,6 +22,7 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	m_collisionManager = std::make_shared<CollisionManager>();
 	m_levelManager = std::make_shared<LevelManager>(gameRenderer);
 	m_introMusic = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_beginning.wav");
+	m_intermission = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_intermission.wav");
 	//Creates ghost objects and add sprites to animation components
 	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
 	shadow->rightAnimation->addRect(457, 65, 14, 14);
@@ -251,13 +252,14 @@ void GameManager::inGame() {
 //code for handling loading of next level after all pellets have been eaten
 void GameManager::nextLvl()
 {
-	m_introMusic->play(1, 0, 30);
+	m_intermission->play(1, 0, 30);
 	if (!lvlLoaded) {
 		currentLvl++;
-		//currentMap++;
+		currentMap++;
 		if (currentMap > 3) {
 			currentMap = 1;
 		}
+
 		m_collisionManager->clearEntityArray();
 		m_collisionManager->addEntity(pacman);
 		m_collisionManager->addEntity(shadow);
@@ -268,6 +270,7 @@ void GameManager::nextLvl()
 		if (!m_levelManager->readLevelFromTxt(currentMap)) {
 			std::cout << "could not open lvlfile" << std::endl;
 		}
+
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
 
@@ -284,7 +287,7 @@ void GameManager::nextLvl()
 		shadow->setVelocity(1, 0);
 		lvlLoaded = true;
 	}
-
+	
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
 

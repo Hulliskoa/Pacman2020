@@ -389,7 +389,7 @@ void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
 		}
 
 	}
-	std::cout << counter << std::endl;
+	//std::cout << counter << std::endl;
 }
 void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisionManager)
 {
