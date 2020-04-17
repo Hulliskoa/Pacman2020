@@ -143,7 +143,7 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 	lastAnimation = startAnimation;
 
 
-	m_pelletMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_chomp.wav");
+	m_pelletMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\eatball.wav");
 	m_fruitMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_eatfruit.wav");
 	m_ghostMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_eatghost.wav");
 	m_deathSound = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_death.wav");

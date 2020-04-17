@@ -35,10 +35,4 @@ void SoundComponent::play(int playLoop, int volume)
 	
 	Mix_PlayChannel(-1, soundEffect, playLoop);
 
-	
-}
-
-void SoundComponent::stop()
-{
-	
 }

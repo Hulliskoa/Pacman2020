@@ -13,6 +13,5 @@ public:
 	SoundComponent(std::string path);
 	bool loadMedia();
 	void play(int playLoop, int volume);
-	void stop();
 	~SoundComponent();
 };
