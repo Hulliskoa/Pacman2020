@@ -51,6 +51,7 @@ public:
 	void mainMenu();
 	void inGame();
 	void nextLvl();
+	void gameOver();
 
 	void startGame();
 	void exitGame();

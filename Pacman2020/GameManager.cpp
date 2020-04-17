@@ -89,12 +89,16 @@ void GameManager::run()
 	while (*gameState == GameState::MAIN_MENU) {
 		mainMenu();
 		totalPellets = m_levelManager->pelletCount();
-		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL) {
+		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL || *gameState == GameState::PACMAN_DIED) {
 			inGame();
 
 			while (*gameState == GameState::LEVEL_COMPLETE) {
 				nextLvl();
 			}
+			while (*gameState == GameState::GAME_OVER) {
+				gameOver();
+			}
+
 
 		}
 
@@ -147,7 +151,6 @@ void GameManager::mainMenu()
 	else if (*menuInput == "UP") {
 		menuChoice = menuChoice == 0 ? 1 : 0;
 	}
-
 
 	if (*menuInput == "RETURN" && menuChoice == 0) {
 		*gameState = GameState::GAME_RUNNING;
@@ -258,18 +261,18 @@ void GameManager::inGame() {
 	}
 
 
-	if (*gameState == GameState::RESTART_LEVEL) {
+	if (*gameState == GameState::PACMAN_DIED) {
 		pacman->setVelocity(0, 0);
 		speedy->setVelocity(0, 0);
 		bashful->setVelocity(0, 0);
 		pokey->setVelocity(0, 0);
 		shadow->setVelocity(0, 0);
-		deathTimer = high_resolution_clock::now();
-	}
 
-	if (timeSinceDeath > 5000ms && *gameState == GameState::RESTART_LEVEL) {
+
+
+	}
+	if (*gameState == GameState::RESTART_LEVEL) {
 		pacman->setCoordinates(104, 216);
-		pacman->setVelocity(0, 0);
 		shadow->setCoordinates(116, 120);
 		speedy->setCoordinates(132, 144);
 		bashful->setCoordinates(116, 144);
@@ -280,6 +283,8 @@ void GameManager::inGame() {
 		shadow->setVelocity(1, 0);
 		*gameState = GameState::GAME_RUNNING;
 	}
+
+
 	std::this_thread::sleep_for(50ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
 	SDL_RenderPresent(gameRenderer);
 }
@@ -348,6 +353,10 @@ void GameManager::nextLvl()
 		*gameState = GameState::EXIT_GAME;
 	}
 	SDL_RenderPresent(gameRenderer);
+}
+
+void GameManager::gameOver()
+{
 }
 
 

@@ -7,17 +7,18 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	// Saves last direction pacman traveled in.
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 
-	if (*gameState == GameState::RESTART_LEVEL) {
+	//Death animation and handling
+	if (*gameState == GameState::PACMAN_DIED) {
 		deathAnimation->render(coordinates[0], coordinates[1], renderer);
-		if (deathAnimation->getCurrentFrame() >= deathAnimation->getTotalFrames())
+
+		if (deathAnimation->getCurrentFrame() == deathAnimation->getTotalFrames() - 1) {
 			if (getRemainingLives() < 0) {
 				*gameState = GameState::GAME_OVER;
 			}
 			else {
-				*gameState = GameState::GAME_RUNNING;
+				*gameState = GameState::RESTART_LEVEL;
 			}
-
-
+		}
 	}
 	else {
 		std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());
@@ -29,7 +30,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
 					std::cout << "hit scared ghost" << std::endl;
 					collidedWith->setEntityType(EntityType::GHOST_EYES);
-					*gameState = GameState::RESTART_LEVEL;
+
 
 					//Score increase for each ghost pacman eats
 					pointDoubler = pointDoubler * 2;
@@ -40,16 +41,9 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				}
 				else {
 					pointDoubler = 2;
+					*gameState = GameState::PACMAN_DIED;
 					std::cout << "hit ghost" << std::endl;
-
-
-					if (remainingLife >= 0) {
-						//*gameState = GameState::RESTART_LEVEL;
-					}
-					else
-					{
-						//*gameState = GameState::GAME_OVER;
-					}
+					remainingLife--;
 
 				}
 

@@ -1,29 +1,4 @@
-﻿  AiComponent.cpp
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(114,15): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\utility(151,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
-          with
-          [
-              _Ty=double
-          ]
-          and
-          [
-              _Ty1=int
-          ]
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(123): message : see reference to function template instantiation 'std::pair<int,std::vector<int,std::allocator<int>>>::pair<_Ty&,std::vector<int,std::allocator<int>>&,0>(_Other1,_Other2) noexcept(false)' being compiled
-          with
-          [
-              _Ty=double,
-              _Other1=double &,
-              _Other2=std::vector<int,std::allocator<int>> &
-          ]
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(123): message : see reference to function template instantiation 'std::pair<int,std::vector<int,std::allocator<int>>>::pair<_Ty&,std::vector<int,std::allocator<int>>&,0>(_Other1,_Other2) noexcept(false)' being compiled
-          with
-          [
-              _Ty=double,
-              _Other1=double &,
-              _Other2=std::vector<int,std::allocator<int>> &
-          ]
+﻿  GameManager.cpp
   Pacman.cpp
   Generating Code...
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(164): warning C4715: 'AiComponent::checkIfReturn': not all control paths return a value
   Pacman2020.vcxproj -> C:\Users\truls\source\repos\Pacman2020\Debug\Pacman2020.exe
