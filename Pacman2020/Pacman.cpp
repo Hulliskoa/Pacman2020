@@ -24,7 +24,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		}
 	}
 	else {
-		std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());
+		//collision check and what switch case for what pacman should do depending on what entity type he collides with
+		std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());//returns a pointer to an entity that can be used for further handling
 		if (collidedWith != nullptr) {
 			switch (collidedWith->getEntityType())
 			{
@@ -135,10 +136,11 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, SDL_Renderer* gameRenderer) : MovingEntity(104, 216, 3, mainSpriteSheet, textureWidth, textureHeight) {
 
 	m_input = std::make_shared <InputComponent>();
-	MovingEntity::setEntityType(EntityType::PACMAN);
 	scoreComponent = std::make_shared<Score>(gameRenderer);
 
+	setEntityType(EntityType::PACMAN);
 	lastAnimation = startAnimation;
+
 	deathAnimation = std::make_shared<AnimationComponent>(11, mainSpriteSheet, textureWidth, textureHeight);
 
 	rightAnimation->addRect(457, 1, 13, 13);

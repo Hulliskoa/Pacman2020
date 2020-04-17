@@ -27,13 +27,15 @@ private:
 	int spriteSheetHeight;
 	int menuChoice = 0;/*!<Keeps track of which menu choice that is selected*/
 	int currentLvl = 1;
+	int currentMap = 1;
 	bool lvlLoaded = false;
 	bool ghostsMovingOut = false;
 	bool startedFleeing = false;
 
-	std::shared_ptr<TextComponent> startGameText;
-	std::shared_ptr<TextComponent> quitGameText;
-	std::shared_ptr<TextComponent> continueGameText;
+	std::shared_ptr<TextComponent> startGameText;/*!<TextComponent for static text in menus*/
+	std::shared_ptr<TextComponent> quitGameText;/*!<TextComponent for static text in menus*/
+	std::shared_ptr<TextComponent> continueGameText;/*!<TextComponent for static text in menus*/
+	std::shared_ptr<TextComponent> gameOverText;/*!<TextComponent for static text in menus*/
 	std::shared_ptr <std::string> menuInput = std::make_shared<std::string>();
 	std::shared_ptr<InputComponent> m_input;/*!<InputComponent for handling menu inputs*/
 	std::shared_ptr<CollisionManager> m_collisionManager;/*!<collision manager used throughout the program*/

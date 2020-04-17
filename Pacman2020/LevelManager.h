@@ -16,9 +16,9 @@
 class LevelManager
 {
 private:
-	char levelArray[31][28] = {};/*!<Array containing all char's in the .txt file that was loaded for the specified level*/
+	char levelArray[31][28] = {};/*!<Array containing all char's in the .txt file that was loaded for the current map*/
 	std::vector<std::shared_ptr<Entity>> entityArray;/*!< an array of entities for use when rendering map. This i populated by a controlstructure checking what symbol was loaded in the levelArray*/
-	std::vector<std::shared_ptr<Entity>> ghostDoors;
+	std::vector<std::shared_ptr<Entity>> ghostDoors;/*!< an array containing entity objects for the doors to the ghost cage*/
 	SDL_Renderer* renderer;/*<!main renderer supplied by the Game manager*/
 	SDL_Texture* m_levelSpriteSheet = nullptr;/*<! spritesheet texture used to render the maze*/
 	int m_textureWidth = 0;/*<! width of the texture used to render the maze*/
@@ -53,11 +53,27 @@ public:
 		Renders level to screen and makes use of the entityArray to load each entity created.
 		\param renderer needs to supply renderer to
 	*/
-	void renderLevel(SDL_Renderer * renderer);
+	void renderLevel(SDL_Renderer* renderer);
+	/**
+		Creates intersections where the ghosts are able to make decisions
+		\param collisionManager used for adding intersections to the collision check vector
+	*/
 	void createInterSections(std::shared_ptr<CollisionManager> collisionManager);
+	/**
+		Counts the amount of pellets remaining on the map
+	*/
 	int pelletCount();
+	/**
+		Counts the total amount of pellets
+	*/
 	int getStartingPelletCount();
+	/**
+	opens doors to the ghost cage
+	*/
 	void openDoors();
+	/**
+	opens doors to the ghost cage
+	*/
 	void closeDoors();
 
 };

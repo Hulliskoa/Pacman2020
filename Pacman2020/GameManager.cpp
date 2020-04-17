@@ -79,18 +79,18 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	startGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Start Game", 65, 80, 100, 10, gameRenderer, 30);
 	quitGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Quit Game", 65, 100, 100, 10, gameRenderer, 30);
 	continueGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Next Level", 65, 80, 100, 10, gameRenderer, 30);
+	gameOverText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Game Over", 40, 80, 100, 10, gameRenderer, 30);
 	*gameState = GameState::MAIN_MENU;
 }
 
 void GameManager::run()
 {
-	int totalPellets = 0;
 	while (*gameState == GameState::MAIN_MENU) {
 		mainMenu();
-		totalPellets = m_levelManager->pelletCount();
-		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL || *gameState == GameState::PACMAN_DIED) {
+		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE
+			|| *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL
+			|| *gameState == GameState::PACMAN_DIED) {
 			inGame();
-
 			while (*gameState == GameState::LEVEL_COMPLETE) {
 				nextLvl();
 			}
@@ -162,7 +162,7 @@ void GameManager::mainMenu()
 	SDL_RenderPresent(gameRenderer);
 
 }
-
+//Main gameloop
 void GameManager::inGame() {
 	auto lastFrame = currentFrame;
 	currentFrame = high_resolution_clock::now();
@@ -191,12 +191,12 @@ void GameManager::inGame() {
 	}
 
 	m_levelManager->renderLevel(gameRenderer);
-
 	shadow->update(gameState, gameRenderer, pacman, m_collisionManager);
 	speedy->update(gameState, gameRenderer, pacman, m_collisionManager);
 	bashful->update(gameState, gameRenderer, pacman, m_collisionManager);
 	pokey->update(gameState, gameRenderer, pacman, m_collisionManager);
 	pacman->update(gameState, m_collisionManager, gameRenderer);
+
 	//ending flee
 	if (startedFleeing == true && (3000ms + timeSinceFlee) <= 0ms) {
 		*gameState = GameState::GAME_RUNNING_FLEE_ENDING;
@@ -221,7 +221,7 @@ void GameManager::inGame() {
 		startedFleeing = true;
 	}
 	//Level complete
-	if (m_levelManager->pelletCount() == 235) {
+	if (m_levelManager->pelletCount() == 0) {
 		lvlLoaded = false;
 		shadow->increaseSpeed();
 		pokey->increaseSpeed();
@@ -255,14 +255,15 @@ void GameManager::inGame() {
 	std::this_thread::sleep_for(50ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
 	SDL_RenderPresent(gameRenderer);
 }
-
+//code for handling loading of next level after all pellets have been eaten
 void GameManager::nextLvl()
 {
 
 	if (!lvlLoaded) {
 		currentLvl++;
-		if (currentLvl > 3) {
-			currentLvl = 1;
+		currentMap++;
+		if (currentMap > 3) {
+			currentMap = 1;
 		}
 		m_collisionManager->clearEntityArray();
 		m_collisionManager->addEntity(pacman);
@@ -271,7 +272,9 @@ void GameManager::nextLvl()
 		m_collisionManager->addEntity(pokey);
 		m_collisionManager->addEntity(bashful);
 
-		m_levelManager->readLevelFromTxt(currentLvl);
+		if (!m_levelManager->readLevelFromTxt(currentMap)) {
+			std::cout << "could not open lvlfile" << std::endl;
+		}
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
 
@@ -322,6 +325,58 @@ void GameManager::nextLvl()
 
 void GameManager::gameOver()
 {
+	currentLvl = 1;
+	currentMap = 1;
+
+	if (!lvlLoaded) {
+		m_collisionManager->clearEntityArray();
+		m_collisionManager->addEntity(pacman);
+		m_collisionManager->addEntity(shadow);
+		m_collisionManager->addEntity(speedy);
+		m_collisionManager->addEntity(pokey);
+		m_collisionManager->addEntity(bashful);
+		m_levelManager->readLevelFromTxt(currentLvl);
+		m_levelManager->createLevel(m_collisionManager);
+		m_levelManager->createInterSections(m_collisionManager);
+
+		lvlLoaded = true;
+	}
+
+	//Checks button push in main menu;
+	*menuInput = m_input->mainUpdate(gameState);
+
+	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
+	SDL_RenderClear(gameRenderer);
+
+	//Renders main menu;
+	startGameText->renderText(gameRenderer, 0);
+	quitGameText->renderText(gameRenderer, 0);
+	gameOverText->renderText(gameRenderer, 0);
+
+	if (menuChoice == 0) {
+		startGameText->renderText(gameRenderer, 1);
+	}
+	if (menuChoice == 1) {
+		quitGameText->renderText(gameRenderer, 1);
+	}
+
+	if (*menuInput == "DOWN") {
+		menuChoice = menuChoice == 1 ? 0 : 1;
+	}
+	else if (*menuInput == "UP") {
+		menuChoice = menuChoice == 0 ? 1 : 0;
+	}
+
+	if (*menuInput == "RETURN" && menuChoice == 0) {
+		*gameState = GameState::GAME_RUNNING;
+
+	}
+	if (*menuInput == "RETURN" && menuChoice == 1) {
+		*gameState = GameState::EXIT_GAME;
+
+	}
+	SDL_RenderPresent(gameRenderer);
+
 }
 
 
