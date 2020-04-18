@@ -23,7 +23,7 @@ private:
 	std::shared_ptr<AnimationComponent> returnDownAnimation;/*!AnimationComponent for ghost returning to cage after being eaten*/
 	bool alternateFleeAnimation = true;/*!Boolean used for alternate between white and blue ghost animation at the end of the fleeing time*/
 	int aiBehaviour;
-
+	
 public:
 	
 	std::shared_ptr<AiComponent> aiComponent;
@@ -36,7 +36,7 @@ public:
 		\param collisionManager global collision manager
 	*/
 	void update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer, std::shared_ptr<MovingEntity> pacman, std::shared_ptr<CollisionManager> collisionManager);
-
+	
 
 
 };

@@ -12,7 +12,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 	//Death animation and handling
 	if (*gameState == GameState::PACMAN_DIED) {
-	
+
 		m_deathAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		if (m_deathAnimation->getCurrentFrame() == m_deathAnimation->getTotalFrames() - 1) {
@@ -35,7 +35,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 				case EntityType::GHOST:
 					if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
-
+						collidedWith->setOutSideCage(false);
 						collidedWith->setEntityType(EntityType::GHOST_EYES);
 						m_score += m_ghostPoints;
 						m_ghostMunch->play(1, 0, 70);

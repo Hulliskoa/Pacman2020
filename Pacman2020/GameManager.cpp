@@ -23,8 +23,10 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	m_levelManager = std::make_shared<LevelManager>(gameRenderer);
 	m_introMusic = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_beginning.wav");
 	m_intermission = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_intermission.wav");
+
 	//Creates ghost objects and add sprites to animation components
 	shadow = std::make_shared<Ghost>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, 0, 116, 120);
+	shadow->setOutSideCage(true);
 	shadow->rightAnimation->addRect(457, 65, 14, 14);
 	shadow->rightAnimation->addRect(473, 65, 14, 14);
 	shadow->leftAnimation->addRect(489, 65, 14, 14);
@@ -123,7 +125,7 @@ void GameManager::mainMenu()
 
 	//Renders main menu;
 	startGameText->renderText(0);
-	quitGameText->renderText( 0);
+	quitGameText->renderText(0);
 
 	if (menuChoice == 0) {
 		startGameText->renderText(1);
@@ -176,9 +178,9 @@ void GameManager::inGame() {
 		bashful->setEntityType(EntityType::GHOST_RETURN);
 		pokey->setEntityType(EntityType::GHOST_RETURN);
 
-		speedy->aiComponent->setTarget(112, 120);
-		bashful->aiComponent->setTarget(112, 120);
-		pokey->aiComponent->setTarget(112, 120);
+		speedy->aiComponent->setTarget(120, 120);
+		bashful->aiComponent->setTarget(120, 120);
+		pokey->aiComponent->setTarget(120, 120);
 		m_levelManager->closeDoors();
 		ghostsMovingOut = true;
 	}
@@ -231,18 +233,26 @@ void GameManager::inGame() {
 	if (*gameState == GameState::RESTART_LEVEL) {
 		pacman->setCoordinates(104, 216);
 		shadow->setCoordinates(116, 120);
-		speedy->setCoordinates(132, 144);
-		bashful->setCoordinates(116, 144);
-		pokey->setCoordinates(100, 144);
+		speedy->setCoordinates(132, 152);
+		bashful->setCoordinates(112, 152);
+		pokey->setCoordinates(100, 152);
 		speedy->setVelocity(1, 0);
-		bashful->setVelocity(1, 0);
+		bashful->setVelocity(0, -1);
 		pokey->setVelocity(1, 0);
 		shadow->setVelocity(1, 0);
+		speedy->setEntityType(EntityType::GHOST_RETURN);
+		bashful->setEntityType(EntityType::GHOST_RETURN);
+		pokey->setEntityType(EntityType::GHOST_RETURN);
+
+		speedy->aiComponent->setTarget(116, 120);
+		bashful->aiComponent->setTarget(116, 120);
+		pokey->aiComponent->setTarget(116, 120);
 		*gameState = GameState::GAME_RUNNING;
 	}
-	if(*gameState == GameState::GAME_OVER){
+	if (*gameState == GameState::GAME_OVER) {
 		lvlLoaded = false;
 	}
+
 	shadow->update(gameState, gameRenderer, pacman, m_collisionManager);
 	speedy->update(gameState, gameRenderer, pacman, m_collisionManager);
 	bashful->update(gameState, gameRenderer, pacman, m_collisionManager);

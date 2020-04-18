@@ -29,3 +29,8 @@ EntityType Entity::getEntityType()
 
 	return entityT;
 }
+
+void Entity::setOutSideCage(bool isOutSide)
+{
+	outsideCage = isOutSide;
+}

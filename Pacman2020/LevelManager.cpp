@@ -391,6 +391,7 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 	if (m_currentMap > 3) {
 		m_currentMap = 1;
 	}
+	m_startingPelletCount = pelletCount();
 }
 void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
 {

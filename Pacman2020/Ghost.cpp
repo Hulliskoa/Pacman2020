@@ -19,14 +19,14 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 		}
 		if (coordinates[0] == 112 && coordinates[1] == 136 && getEntityType() == EntityType::GHOST_EYES) {
 			setEntityType(EntityType::GHOST_RETURN);
-			aiComponent->setTarget(120, 116);
+			aiComponent->setTarget(120, 120);
 		}
 
 
 	}
 	else {
 		m_speed = m_normalSpeed;
-		if (*gameState == GameState::GAME_RUNNING) {
+		if (*gameState == GameState::GAME_RUNNING || !outsideCage) {
 			if (velocity[0] > 0) {
 				rightAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 			}
@@ -44,12 +44,12 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 			}
 		}
 
-		if (*gameState == GameState::GAME_RUNNING_FLEE && getEntityType() == EntityType::GHOST) {
+		if (*gameState == GameState::GAME_RUNNING_FLEE && getEntityType() == EntityType::GHOST && outsideCage) {
 			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
 			blueFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 
-		if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING && getEntityType() == EntityType::GHOST) {
+		if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING && getEntityType() == EntityType::GHOST && outsideCage) {
 			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
 			if (alternateFleeAnimation) {
 				blueFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
@@ -64,7 +64,6 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 
 	if (collisionManager->checkIntersection(shared_from_this())) {
 		aiComponent->update(shared_from_this(), aiBehaviour, pacman, collisionManager, gameState);
-		//std::shared_ptr<Entity> collidedwith = collisionManager->collisionCheck(shared_from_this());
 	}
 
 	coordinates[0] += (velocity[0] * m_speed);
@@ -73,6 +72,7 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 	//Resets target back to pacman after returned to cage
 	if (coordinates[0] == 120 && coordinates[1] == 120 && getEntityType() == EntityType::GHOST_RETURN) {
 		aiComponent->removeTarget();
+		setOutSideCage(true);
 		setEntityType(EntityType::GHOST);
 	}
 

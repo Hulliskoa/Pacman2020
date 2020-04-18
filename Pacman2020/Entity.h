@@ -35,6 +35,7 @@ class Entity
 protected:
 	EntityType entityT = EntityType::NOT_DEFINED;/*!<Defines what entity type the object is*/
 	int numFrames = 0;
+	bool outsideCage = false;
 public:
 
 	std::vector<int> velocity = { 0,0 };/*!<current direction the entity is travelling. element 0 = x-plane and element 1 = y-plane.*/
@@ -66,5 +67,7 @@ public:
 	/**Returns the entityT member variable
 	*/
 	EntityType getEntityType();
+
+	void setOutSideCage(bool isOutSide);
 };
 
