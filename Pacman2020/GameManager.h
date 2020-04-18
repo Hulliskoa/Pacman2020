@@ -26,8 +26,6 @@ private:
 	int spriteSheetWidth;
 	int spriteSheetHeight;
 	int menuChoice = 0;/*!<Keeps track of which menu choice that is selected*/
-	int currentLvl = 1;/*!<Keeps track of the current level*/
-	int currentMap = 1;/*!<Keeps track of the current map to be loaded*/
 	bool lvlLoaded = false;/*!<Boolean for checking if the current lvl is loaded*/
 	bool ghostsMovingOut = false; /*!<Boolean for checking if the ghost ar moving out of the cage*/
 	bool startedFleeing = false; /*!<Boolean for checking if the ghost started fleeing and then being able to set a timer*/

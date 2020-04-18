@@ -52,7 +52,7 @@ MovingEntity::MovingEntity() {}
 
 int MovingEntity::getSpeed()
 {
-	return speed;
+	return normalSpeed;
 }
 
 

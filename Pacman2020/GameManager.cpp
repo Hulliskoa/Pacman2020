@@ -93,7 +93,7 @@ void GameManager::run()
 		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE
 			|| *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL
 			|| *gameState == GameState::PACMAN_DIED) {
-			
+
 			inGame();
 
 			while (*gameState == GameState::LEVEL_COMPLETE) {
@@ -115,7 +115,6 @@ void GameManager::mainMenu()
 		m_collisionManager->addEntity(speedy);
 		m_collisionManager->addEntity(pokey);
 		m_collisionManager->addEntity(bashful);
-		m_levelManager->readLevelFromTxt(currentLvl);
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
 
@@ -167,7 +166,7 @@ void GameManager::inGame() {
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
 
-	if (m_levelManager->pelletCount() == ((m_levelManager->getStartingPelletCount()) - 29) + currentLvl) {
+	if (m_levelManager->pelletCount() == ((m_levelManager->getStartingPelletCount()) - 29) + m_levelManager->getCurrentLevel()) {
 		releaseTime = high_resolution_clock::now();
 		m_levelManager->openDoors();
 
@@ -215,7 +214,7 @@ void GameManager::inGame() {
 	//Level complete
 	if (m_levelManager->pelletCount() == 235) {
 		lvlLoaded = false;
-		if (currentLvl % 10 == 2) {
+		if (m_levelManager->getCurrentLevel() % 10 == 2) {
 			shadow->increaseSpeed();
 			pokey->increaseSpeed();
 			bashful->increaseSpeed();
@@ -255,22 +254,14 @@ void GameManager::nextLvl()
 {
 	m_intermission->play(1, 0, 30);
 	if (!lvlLoaded) {
-		currentLvl++;
-		currentMap++;
-		if (currentMap > 3) {
-			currentMap = 1;
-		}
 
+		SDL_RenderClear(gameRenderer);
 		m_collisionManager->clearEntityArray();
 		m_collisionManager->addEntity(pacman);
 		m_collisionManager->addEntity(shadow);
 		m_collisionManager->addEntity(speedy);
 		m_collisionManager->addEntity(pokey);
 		m_collisionManager->addEntity(bashful);
-
-		if (!m_levelManager->readLevelFromTxt(currentMap)) {
-			std::cout << "could not open lvlfile" << std::endl;
-		}
 
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
@@ -288,7 +279,7 @@ void GameManager::nextLvl()
 		shadow->setVelocity(1, 0);
 		lvlLoaded = true;
 	}
-	
+
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
 
@@ -323,8 +314,6 @@ void GameManager::nextLvl()
 
 void GameManager::gameOver()
 {
-	currentLvl = 1;
-	currentMap = 1;
 
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
@@ -333,7 +322,7 @@ void GameManager::gameOver()
 		m_collisionManager->addEntity(speedy);
 		m_collisionManager->addEntity(pokey);
 		m_collisionManager->addEntity(bashful);
-		m_levelManager->readLevelFromTxt(currentLvl);
+		m_levelManager->resetLevels();
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
 

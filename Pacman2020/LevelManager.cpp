@@ -2,9 +2,7 @@
 
 LevelManager::LevelManager(SDL_Renderer* mainRenderer) : renderer(mainRenderer) {
 
-	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
-		std::cout << "could not load maze spritesheet" << std::endl;
-	}
+
 }
 LevelManager::~LevelManager()
 {
@@ -18,16 +16,17 @@ LevelManager::~LevelManager()
 }
 bool LevelManager::readLevelFromTxt(int currentLvl) {
 
-	std::ifstream lvlFile;
-	std::string path = "..\\Pacman2020\\levels\\lvl" + std::to_string(currentLvl) + ".txt";
 
+	std::string path = "..\\Pacman2020\\levels\\lvl" + std::to_string(currentLvl) + ".txt";
 	lvlFile.open(path);
 	char currentChar;
 	int rowCounter = 0;
 	int columnCounter = 0;
 
 	if (!lvlFile) {
-		std::cerr << "Unable to open lvlfile";
+		std::cerr << "Unable to open lvlfile" << std::endl;
+		lvlFile.clear();
+		lvlFile.close();
 		return false;
 	}
 	while (lvlFile >> currentChar) {
@@ -42,12 +41,22 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 
 		}
 	}
+
+	lvlFile.clear();
+	lvlFile.close();
 	return true;
 }
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)
 {
+	
 
+	if (!readLevelFromTxt(currentMap)) {
+		std::cout << "could not open lvlfile" << std::endl;
+	}
 
+	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
+		std::cout << "could not load maze spritesheet" << std::endl;
+	}
 
 	entityArray.clear();
 	entityArray.shrink_to_fit();
@@ -374,6 +383,13 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 			yCoord = 88;
 		}
 	}
+
+
+	currentLvl++;
+	currentMap++;
+	if (currentMap > 3) {
+		currentMap = 1;
+	}
 }
 void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
 {
@@ -438,27 +454,31 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 {
 	//The final texture
 
-	if (m_levelSpriteSheet != NULL) {
+	if (m_levelSpriteSheet != NULL)
+	{
 		SDL_DestroyTexture(m_levelSpriteSheet);
 		m_levelSpriteSheet = NULL;
+		m_textureWidth = 0;
+		m_textureHeight = 0;
 	}
 
-
-	SDL_Texture* newTexture = NULL;
+	SDL_Texture* newTexture = nullptr;
 
 	//Load image at specified path
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 
-	if (loadedSurface == NULL)
+	if (loadedSurface == nullptr)
 	{
 		std::cout << "Unable to load image! SDL_image Error: " << IMG_GetError() << std::endl;
 	}
 	else
 	{
+		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0));
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-		if (newTexture == NULL)
+		if (newTexture == nullptr)
 		{
 			std::cout << "Unable to create texture! SDL Error: " << SDL_GetError() << std::endl;
+			return false;
 		}
 		else
 		{
@@ -494,4 +514,15 @@ void LevelManager::closeDoors()
 	for (auto x : ghostDoors) {
 		x->setEntityType(EntityType::DOOR);
 	}
+}
+
+int LevelManager::getCurrentLevel()
+{
+	return currentLvl;
+}
+
+void LevelManager::resetLevels()
+{
+	currentLvl = 1;
+	currentMap = 1;
 }

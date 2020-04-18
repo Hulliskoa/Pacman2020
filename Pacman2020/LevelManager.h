@@ -26,6 +26,9 @@ private:
 	int xMapOffset = 1;/*<! x offset to where the sprites should be rendered inside the sdl window*/
 	int yMapOffset = 4;/*<! y offset to where the sprites should be rendered inside the sdl window*/
 	int startingPelletCount = 0;
+	int currentLvl = 1;/*!<Keeps track of the current level*/
+	int currentMap = 1;/*!<Keeps track of the current map to be loaded*/
+	std::ifstream lvlFile;
 public:
 
 	LevelManager(SDL_Renderer* mainRenderer);
@@ -75,6 +78,9 @@ public:
 	opens doors to the ghost cage
 	*/
 	void closeDoors();
+
+	int getCurrentLevel();
+	void resetLevels();
 
 };
 
