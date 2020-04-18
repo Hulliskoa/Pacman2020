@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <thread>
+#include <future>
 #include "Entity.h"
 
 /*! \brief
@@ -12,19 +14,28 @@ class CollisionManager
 {
 private:
 	int hitBoxRadius = 8;/*!<Hitbox radius for the moving entity*/
-	std::vector<std::shared_ptr<Entity>> entities;/*!<Vector containing all entities in the game*/
+	std::vector<std::shared_ptr<Entity>> stationaryEntities;/*!<Vector containing all entities in the game*/
+	std::vector<std::shared_ptr<Entity>> movingEntities;/*!<Vector containing all entities in the game*/
+	std::vector<std::shared_ptr<Entity>> entitiesCollidedWith;
 
 public:
 	/**
 		Checks if the entity has collided with anything and returns the pointer to the object it collided with
 		\param entityToCheck the Entity that we want to check collision on
 	*/
-	std::shared_ptr<Entity>  collisionCheck(std::shared_ptr<Entity> entityToCheck);
+	std::vector<std::shared_ptr<Entity>>  collisionCheck(std::shared_ptr<Entity> entityToCheck);
+	std::shared_ptr<Entity>  collisionCheckMoving(std::shared_ptr<Entity> entityToCheck);
+	std::shared_ptr<Entity>  collisionCheckStationary(std::shared_ptr<Entity> entityToCheck);
 	/**
-		Used to add entities to the entities vector
+		Used to add stationary entities to the stationaryEntities vector
 		\param entity Entity we want to add to vector for collision checking later
 	*/
 	void addEntity(std::shared_ptr<Entity> entity);
+	/**
+	Used to add moving entities to the movingEntities vector
+	\param entity Entity we want to add to vector for collision checking later
+*/
+	void addMovingEntity(std::shared_ptr<Entity> entity);
 	/**
 		checks if entity is on top of an intersection
 		\param entityToCheck Entity we want to check is on top of intersection

@@ -74,15 +74,17 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 
 	pacman = std::make_shared<Pacman>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, gameRenderer);
 	pacman->setBaseSpeed(4);
-	m_collisionManager->addEntity(pacman);
-	m_collisionManager->addEntity(shadow);
-	m_collisionManager->addEntity(speedy);
-	m_collisionManager->addEntity(pokey);
+	m_collisionManager->addMovingEntity(pacman);
+	m_collisionManager->addMovingEntity(shadow);
+	m_collisionManager->addMovingEntity(bashful);
+	m_collisionManager->addMovingEntity(speedy);
+	m_collisionManager->addMovingEntity(pokey);
+
 	//creates text components for the menu
 	startGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Start Game", 65, 80, 100, 10, gameRenderer, 30);
 	quitGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Quit Game", 65, 100, 100, 10, gameRenderer, 30);
 	continueGameText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Next Level", 65, 80, 100, 10, gameRenderer, 30);
-	gameOverText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Game Over", 40, 80, 100, 10, gameRenderer, 30);
+	gameOverText = std::make_shared<TextComponent>("..\\Pacman2020\\fonts\\emulogic.ttf", "Game Over", 40, 40, 150, 30, gameRenderer, 30);
 	*gameState = GameState::MAIN_MENU;
 }
 
@@ -110,11 +112,6 @@ void GameManager::mainMenu()
 {
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
-		m_collisionManager->addEntity(pacman);
-		m_collisionManager->addEntity(shadow);
-		m_collisionManager->addEntity(speedy);
-		m_collisionManager->addEntity(pokey);
-		m_collisionManager->addEntity(bashful);
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
 
@@ -257,11 +254,6 @@ void GameManager::nextLvl()
 
 		SDL_RenderClear(gameRenderer);
 		m_collisionManager->clearEntityArray();
-		m_collisionManager->addEntity(pacman);
-		m_collisionManager->addEntity(shadow);
-		m_collisionManager->addEntity(speedy);
-		m_collisionManager->addEntity(pokey);
-		m_collisionManager->addEntity(bashful);
 
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
@@ -319,11 +311,6 @@ void GameManager::gameOver()
 
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
-		m_collisionManager->addEntity(pacman);
-		m_collisionManager->addEntity(shadow);
-		m_collisionManager->addEntity(speedy);
-		m_collisionManager->addEntity(pokey);
-		m_collisionManager->addEntity(bashful);
 		m_levelManager->resetLevels();
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);

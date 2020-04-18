@@ -83,8 +83,9 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 
 }
 
-Ghost::Ghost(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, int ai, int startingPositionX, int startingPositionY) : MovingEntity(startingPositionX, startingPositionY, 2, mainSpriteSheet, textureWidth, textureHeight), aiBehaviour(ai)
+Ghost::Ghost(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, int ai, int startingPositionX, int startingPositionY) : MovingEntity(startingPositionX, startingPositionY, 2, mainSpriteSheet, textureWidth, textureHeight) //aiBehaviour(ai)
 {
+	aiBehaviour = ai;
 	setEntityType(EntityType::GHOST);
 	aiComponent = std::make_shared<AiComponent>();
 	setVelocity(1, 0);

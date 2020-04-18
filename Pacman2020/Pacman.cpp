@@ -25,68 +25,69 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	}
 	else {
 		//collision check and switch case for what pacman should do depending on what entity type he collides with
-		std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());//returns a pointer to an entity that can be used for further handling
-		if (collidedWith != nullptr) {
-			switch (collidedWith->getEntityType())
-			{
+		for (auto collidedWith : collisionManager->collisionCheck(shared_from_this())) {
+			//returns a pointer to an entity that can be used for further handling
+			if (collidedWith != nullptr) {
+				switch (collidedWith->getEntityType())
+				{
 
-			case EntityType::GHOST:
-				if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
+				case EntityType::GHOST:
+					if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
 
-					collidedWith->setEntityType(EntityType::GHOST_EYES);
-					score += ghostPoints;
-					m_ghostMunch->play(1, 0, 70);
-					//Score increase for each ghost pacman eats
-					ghostPoints *= pointDoubler;
-				}
-				else {
-					m_deathSound->play(1, 0, 70);
-					pointDoubler = 2;
-					*gameState = GameState::PACMAN_DIED;
-					remainingLife--;
+						collidedWith->setEntityType(EntityType::GHOST_EYES);
+						score += ghostPoints;
+						m_ghostMunch->play(1, 0, 70);
+						//Score increase for each ghost pacman eats
+						ghostPoints *= pointDoubler;
+					}
+					else {
+						m_deathSound->play(1, 0, 70);
+						pointDoubler = 2;
+						*gameState = GameState::PACMAN_DIED;
+						remainingLife--;
 
-				}
-				break;
+					}
+					break;
 
-			case EntityType::WALL:
+				case EntityType::WALL:
 
-				lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
-				velocity[0] = 0;
-				velocity[1] = 0;
-
-				break;
-
-			case EntityType::PELLET:
-				collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
-				score += 10;
-				m_pelletMunch->play(0, 0, 70);
-				break;
-
-			case EntityType::POWER_PELLET:
-				*gameState = GameState::GAME_RUNNING_FLEE;
-				collidedWith->setEntityType(EntityType::INACTIVE_POWER_PELLET);
-				score += 50;
-				m_pelletMunch->play(0, 0, 70);
-				ghostPoints = 100;
-				break;
-
-			case EntityType::FRUIT:
-				collidedWith->setEntityType(EntityType::INACTIVE_FRUIT);
-				score += 50;
-				break;
-
-			case EntityType::DOOR:
 					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 					velocity[0] = 0;
 					velocity[1] = 0;
-			
-				break;
 
-			default:
-				break;
+					break;
+
+				case EntityType::PELLET:
+					collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
+					score += 10;
+					m_pelletMunch->play(0, 0, 70);
+					break;
+
+				case EntityType::POWER_PELLET:
+					*gameState = GameState::GAME_RUNNING_FLEE;
+					collidedWith->setEntityType(EntityType::INACTIVE_POWER_PELLET);
+					score += 50;
+					m_pelletMunch->play(0, 0, 70);
+					ghostPoints = 100;
+					break;
+
+				case EntityType::FRUIT:
+					collidedWith->setEntityType(EntityType::INACTIVE_FRUIT);
+					score += 50;
+					break;
+
+				case EntityType::DOOR:
+					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
+					velocity[0] = 0;
+					velocity[1] = 0;
+
+					break;
+
+				default:
+					break;
+				}
 			}
 		}
-
 
 		coordinates[0] += velocity[0];
 		coordinates[1] += velocity[1];
