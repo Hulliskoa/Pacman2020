@@ -6,7 +6,7 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 		speed = normalSpeed;
 		aiComponent->setTarget(112, 136);
 		if (velocity[0] > 0) {
-			returnRightAnimation->render(coordinates[0], coordinates[1], renderer,0);
+			returnRightAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 		else if (velocity[0] < 0) {
 			returnLeftAnimation->render(coordinates[0], coordinates[1], renderer, 0);
@@ -59,10 +59,7 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 				whiteFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 				alternateFleeAnimation = true;
 			}
-
 		}
-
-
 	}
 
 	if (collisionManager->checkIntersection(shared_from_this())) {
@@ -73,7 +70,7 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 	coordinates[0] += (velocity[0] * speed);
 	coordinates[1] += (velocity[1] * speed);
 
-
+	//Resets target back to pacman after returned to cage
 	if (coordinates[0] == 120 && coordinates[1] == 120 && getEntityType() == EntityType::GHOST_RETURN) {
 		aiComponent->removeTarget();
 		setEntityType(EntityType::GHOST);

@@ -10,12 +10,8 @@ std::vector<std::shared_ptr<Entity>> CollisionManager::collisionCheck(std::share
 	auto t1 = std::async(&CollisionManager::collisionCheckStationary, this, entityToCheck);
 	auto t2 = std::async(&CollisionManager::collisionCheckMoving, this, entityToCheck);
 
-
-		entitiesCollidedWith.emplace_back(t1.get());
-		entitiesCollidedWith.emplace_back(t2.get());
-	
-
-
+	entitiesCollidedWith.emplace_back(t1.get());
+	entitiesCollidedWith.emplace_back(t2.get());
 
 	return entitiesCollidedWith;
 }
@@ -60,7 +56,6 @@ std::shared_ptr<Entity> CollisionManager::collisionCheckMoving(std::shared_ptr<E
 		int collisionBoxEdge1 = (entityToCheck->coordinates[oppositePlane]) - (hitBoxRadius);
 		int collisionBoxEdge2 = (entityToCheck->coordinates[oppositePlane]) + (hitBoxRadius);
 		//Use hitbox dimensions to check if an entity is within range
-
 		//Use flip to determine in what directon to look for collision
 		if (flip < 0) {
 			if (collisionBoxStart >= x->coordinates[movementPlane] && x->coordinates[movementPlane] >= collisionBoxEnd) {
@@ -78,9 +73,7 @@ std::shared_ptr<Entity> CollisionManager::collisionCheckMoving(std::shared_ptr<E
 		}
 		//returns the object that the entity collided with
 		if (collision) {
-
 			return x;
-		
 		}
 	}
 	return nullptr;
@@ -137,11 +130,12 @@ std::shared_ptr<Entity> CollisionManager::collisionCheckStationary(std::shared_p
 		}
 		//returns the object that the entity collided with
 		if (collision) {
+
 			return x;
 		}
 	}
 	return nullptr;
-	
+
 }
 
 void CollisionManager::addEntity(std::shared_ptr<Entity> entity)

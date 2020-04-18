@@ -94,7 +94,7 @@ void GameManager::run()
 		mainMenu();
 		while (*gameState == GameState::GAME_RUNNING || *gameState == GameState::GAME_RUNNING_FLEE
 			|| *gameState == GameState::GAME_RUNNING_FLEE_ENDING || *gameState == GameState::RESTART_LEVEL
-			|| *gameState == GameState::PACMAN_DIED) {
+			|| *gameState == GameState::PACMAN_DIED || *gameState == GameState::GAME_OVER) {
 
 			inGame();
 
@@ -163,6 +163,11 @@ void GameManager::inGame() {
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
 
+	m_levelManager->renderLevel(gameRenderer);
+	pacman->update(gameState, m_collisionManager, gameRenderer);
+
+
+
 	if (m_levelManager->pelletCount() == ((m_levelManager->getStartingPelletCount()) - 29) + m_levelManager->getCurrentLevel()) {
 		releaseTime = high_resolution_clock::now();
 		m_levelManager->openDoors();
@@ -177,13 +182,6 @@ void GameManager::inGame() {
 		m_levelManager->closeDoors();
 		ghostsMovingOut = true;
 	}
-
-	m_levelManager->renderLevel(gameRenderer);
-	shadow->update(gameState, gameRenderer, pacman, m_collisionManager);
-	speedy->update(gameState, gameRenderer, pacman, m_collisionManager);
-	bashful->update(gameState, gameRenderer, pacman, m_collisionManager);
-	pokey->update(gameState, gameRenderer, pacman, m_collisionManager);
-	pacman->update(gameState, m_collisionManager, gameRenderer);
 
 	//ending flee
 	if (startedFleeing == true && (3000ms + timeSinceFlee) <= 0ms) {
@@ -241,6 +239,12 @@ void GameManager::inGame() {
 		shadow->setVelocity(1, 0);
 		*gameState = GameState::GAME_RUNNING;
 	}
+	shadow->update(gameState, gameRenderer, pacman, m_collisionManager);
+	speedy->update(gameState, gameRenderer, pacman, m_collisionManager);
+	bashful->update(gameState, gameRenderer, pacman, m_collisionManager);
+	pokey->update(gameState, gameRenderer, pacman, m_collisionManager);
+
+
 
 
 	std::this_thread::sleep_for(50ms - std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - high_resolution_clock::now()));
@@ -315,7 +319,6 @@ void GameManager::gameOver()
 		pacman->resetScore();
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
-
 		lvlLoaded = true;
 	}
 

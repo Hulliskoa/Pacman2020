@@ -23,5 +23,9 @@ void Entity::setEntityType(EntityType type)
 
 EntityType Entity::getEntityType()
 {
+	if (this == NULL) {
+		return EntityType::NOT_DEFINED;
+	}
+
 	return entityT;
 }

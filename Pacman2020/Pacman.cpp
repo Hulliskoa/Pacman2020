@@ -46,7 +46,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 						m_deathSound->play(1, 0, 70);
 						pointDoubler = 2;
 						*gameState = GameState::PACMAN_DIED;
-						remainingLife--;
 
 					}
 					break;

@@ -26,7 +26,6 @@ private:
 	int m_textureWidth;
 	int m_textureHeight;
 
-
 public:
 
 	Score(SDL_Renderer * gameRenderer);

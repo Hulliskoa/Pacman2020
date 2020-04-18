@@ -116,8 +116,6 @@ void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entit
 		}
 	}
 	else {
-
-
 		//Checks tile directly in front of ghost
 		if (collisionManager->collisionCheckStationary(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
 			tilesChecked[0] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - (targetTile[1]), 2);
