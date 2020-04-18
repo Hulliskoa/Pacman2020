@@ -100,26 +100,262 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a63431e5983e1d4ae1e6ae249fad91941"><td class="memItemLeft" align="right" valign="top"><a id="a63431e5983e1d4ae1e6ae249fad91941"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>LevelManager</b> (SDL_Renderer *mainRenderer)</td></tr>
 <tr class="separator:a63431e5983e1d4ae1e6ae249fad91941"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d50e315ec3427f98bce20d8bcf38b7f"><td class="memItemLeft" align="right" valign="top"><a id="a0d50e315ec3427f98bce20d8bcf38b7f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>free</b> ()</td></tr>
-<tr class="separator:a0d50e315ec3427f98bce20d8bcf38b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76cad5f9ec8ca9b4a4153d2d42a48618"><td class="memItemLeft" align="right" valign="top"><a id="a76cad5f9ec8ca9b4a4153d2d42a48618"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>readLevelFromTxt</b> (int currentLvl)</td></tr>
+<tr class="memitem:a76cad5f9ec8ca9b4a4153d2d42a48618"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a76cad5f9ec8ca9b4a4153d2d42a48618">readLevelFromTxt</a> (int currentLvl)</td></tr>
 <tr class="separator:a76cad5f9ec8ca9b4a4153d2d42a48618"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6de547fb129523222163d3dafbaed2d9"><td class="memItemLeft" align="right" valign="top"><a id="a6de547fb129523222163d3dafbaed2d9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadspriteSheetTexture</b> (std::string path)</td></tr>
+<tr class="memitem:a6de547fb129523222163d3dafbaed2d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a6de547fb129523222163d3dafbaed2d9">loadspriteSheetTexture</a> (std::string path)</td></tr>
 <tr class="separator:a6de547fb129523222163d3dafbaed2d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28f7ab4cdc0b15c48834ca3eacb7cbfd"><td class="memItemLeft" align="right" valign="top"><a id="a28f7ab4cdc0b15c48834ca3eacb7cbfd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createLevel</b> (std::shared_ptr&lt; <a class="el" href="class_collision_manager.html">CollisionManager</a> &gt; collisionManager)</td></tr>
+<tr class="memitem:a28f7ab4cdc0b15c48834ca3eacb7cbfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a28f7ab4cdc0b15c48834ca3eacb7cbfd">createLevel</a> (std::shared_ptr&lt; <a class="el" href="class_collision_manager.html">CollisionManager</a> &gt; collisionManager)</td></tr>
 <tr class="separator:a28f7ab4cdc0b15c48834ca3eacb7cbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a874637f46eac9bc616c2f4fb5baca090"><td class="memItemLeft" align="right" valign="top"><a id="a874637f46eac9bc616c2f4fb5baca090"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>renderLevel</b> (SDL_Renderer *renderer)</td></tr>
+<tr class="memitem:a874637f46eac9bc616c2f4fb5baca090"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a874637f46eac9bc616c2f4fb5baca090">renderLevel</a> (SDL_Renderer *renderer)</td></tr>
 <tr class="separator:a874637f46eac9bc616c2f4fb5baca090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62a22c2071750612baf3aa4287dd7554"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a62a22c2071750612baf3aa4287dd7554">createInterSections</a> (std::shared_ptr&lt; <a class="el" href="class_collision_manager.html">CollisionManager</a> &gt; collisionManager)</td></tr>
+<tr class="separator:a62a22c2071750612baf3aa4287dd7554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b1954a9152cac921d97af194a0d914"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#ac8b1954a9152cac921d97af194a0d914">pelletCount</a> ()</td></tr>
+<tr class="separator:ac8b1954a9152cac921d97af194a0d914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12b2dfe75ee9e58c9b0e6ee9c2d31919"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a12b2dfe75ee9e58c9b0e6ee9c2d31919">getStartingPelletCount</a> ()</td></tr>
+<tr class="separator:a12b2dfe75ee9e58c9b0e6ee9c2d31919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abedfa3041d3b9b370a408be32a96ea6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#abedfa3041d3b9b370a408be32a96ea6d">openDoors</a> ()</td></tr>
+<tr class="separator:abedfa3041d3b9b370a408be32a96ea6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15011b1c96e21792930af1e3eb731b97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a15011b1c96e21792930af1e3eb731b97">closeDoors</a> ()</td></tr>
+<tr class="separator:a15011b1c96e21792930af1e3eb731b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f79ad45be70ba1fce453c453bc0f399"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a5f79ad45be70ba1fce453c453bc0f399">getCurrentLevel</a> ()</td></tr>
+<tr class="separator:a5f79ad45be70ba1fce453c453bc0f399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ad26997a1b9f35b756feaffbf4f3c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_manager.html#a41ad26997a1b9f35b756feaffbf4f3c4">resetLevels</a> ()</td></tr>
+<tr class="separator:a41ad26997a1b9f35b756feaffbf4f3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Renders and creates each level based on .txt files. </p>
 <p>Each .txt file contains ascii drawings of the level to be rendered. All stationary objects on the level is created and rendered by this class. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a15011b1c96e21792930af1e3eb731b97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15011b1c96e21792930af1e3eb731b97">&#9670;&nbsp;</a></span>closeDoors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelManager::closeDoors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>opens doors to the ghost cage </p>
+
+</div>
+</div>
+<a id="a62a22c2071750612baf3aa4287dd7554"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62a22c2071750612baf3aa4287dd7554">&#9670;&nbsp;</a></span>createInterSections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelManager::createInterSections </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_collision_manager.html">CollisionManager</a> &gt;&#160;</td>
+          <td class="paramname"><em>collisionManager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates intersections where the ghosts are able to make decisions </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collisionManager</td><td>used for adding intersections to the collision check vector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a28f7ab4cdc0b15c48834ca3eacb7cbfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28f7ab4cdc0b15c48834ca3eacb7cbfd">&#9670;&nbsp;</a></span>createLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelManager::createLevel </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_collision_manager.html">CollisionManager</a> &gt;&#160;</td>
+          <td class="paramname"><em>collisionManager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates lvl in the form of entity objects </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collisionManager</td><td>global collision manager is supplied so that every entity created can be push into the collision vector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5f79ad45be70ba1fce453c453bc0f399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f79ad45be70ba1fce453c453bc0f399">&#9670;&nbsp;</a></span>getCurrentLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LevelManager::getCurrentLevel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>returns current lvl </p>
+
+</div>
+</div>
+<a id="a12b2dfe75ee9e58c9b0e6ee9c2d31919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12b2dfe75ee9e58c9b0e6ee9c2d31919">&#9670;&nbsp;</a></span>getStartingPelletCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LevelManager::getStartingPelletCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Counts the total amount of pellets </p>
+
+</div>
+</div>
+<a id="a6de547fb129523222163d3dafbaed2d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6de547fb129523222163d3dafbaed2d9">&#9670;&nbsp;</a></span>loadspriteSheetTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LevelManager::loadspriteSheetTexture </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used to load the spritesheet into a texture for use when creating entities and rendering </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>to spritesheet png </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abedfa3041d3b9b370a408be32a96ea6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abedfa3041d3b9b370a408be32a96ea6d">&#9670;&nbsp;</a></span>openDoors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelManager::openDoors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>opens doors to the ghost cage </p>
+
+</div>
+</div>
+<a id="ac8b1954a9152cac921d97af194a0d914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8b1954a9152cac921d97af194a0d914">&#9670;&nbsp;</a></span>pelletCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LevelManager::pelletCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Counts the amount of pellets remaining on the map </p>
+
+</div>
+</div>
+<a id="a76cad5f9ec8ca9b4a4153d2d42a48618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76cad5f9ec8ca9b4a4153d2d42a48618">&#9670;&nbsp;</a></span>readLevelFromTxt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LevelManager::readLevelFromTxt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentLvl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used to read .txt file and convert it into the levelArray </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">currentLvl</td><td>used when loading the .txt file. the naming of each file is "lvl#.txt" </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a874637f46eac9bc616c2f4fb5baca090"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a874637f46eac9bc616c2f4fb5baca090">&#9670;&nbsp;</a></span>renderLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelManager::renderLevel </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Renders level to screen and makes use of the entityArray to load each entity created. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>needs to supply renderer to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a41ad26997a1b9f35b756feaffbf4f3c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41ad26997a1b9f35b756feaffbf4f3c4">&#9670;&nbsp;</a></span>resetLevels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelManager::resetLevels </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>set currentLevel member variable to 1; </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_level_manager_8h_source.html">LevelManager.h</a></li>
 <li>LevelManager.cpp</li>
 </ul>

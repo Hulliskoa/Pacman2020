@@ -2,7 +2,7 @@
 \label{class_entity}\index{Entity@{Entity}}
 
 
-All ingame objects are either an \mbox{\hyperlink{class_entity}{Entity}} or derived from it -\/ see\+: \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}}, \mbox{\hyperlink{class_pacman}{Pacman}}, \mbox{\hyperlink{class_shadow}{Shadow}}.  
+All ingame objects are either an \mbox{\hyperlink{class_entity}{Entity}} or derived from it -\/ see\+: \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}}.  
 
 
 
@@ -18,22 +18,18 @@ Inheritance diagram for Entity\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_entity_aac4313d4f72e0ace055e5ed914ef465b}\label{class_entity_aac4313d4f72e0ace055e5ed914ef465b}} 
-{\bfseries Entity} (int x\+Start, int y\+Start, int num\+Anim\+Frames, S\+D\+L\+\_\+\+Texture $\ast$sprite\+Texture, int sprite\+Width, int sprite\+Height)
+\mbox{\hyperlink{class_entity_aac4313d4f72e0ace055e5ed914ef465b}{Entity}} (int x\+Start, int y\+Start, int num\+Anim\+Frames, S\+D\+L\+\_\+\+Texture $\ast$sprite\+Texture, int sprite\+Width, int sprite\+Height)
 \item 
-\mbox{\Hypertarget{class_entity_a5b4a105615745fbaf859ba61f2786019}\label{class_entity_a5b4a105615745fbaf859ba61f2786019}} 
-void {\bfseries set\+Coordinates} (int $\ast$new\+Coordinates)
+void \mbox{\hyperlink{class_entity_a9dd7f6aba551a780c8769cd91209d1e4}{set\+Coordinates}} (int x, int y)
 \item 
-\mbox{\Hypertarget{class_entity_a93982cb8359648b54c7d63c8b7841c64}\label{class_entity_a93982cb8359648b54c7d63c8b7841c64}} 
-void {\bfseries set\+Entity\+Type} (Entity\+Type type)
+void \mbox{\hyperlink{class_entity_a93982cb8359648b54c7d63c8b7841c64}{set\+Entity\+Type}} (Entity\+Type type)
 \item 
-\mbox{\Hypertarget{class_entity_a5c82bd9c16d75af5293757a1f29ad3d6}\label{class_entity_a5c82bd9c16d75af5293757a1f29ad3d6}} 
-Entity\+Type {\bfseries get\+Entity\+Type} ()
+Entity\+Type \mbox{\hyperlink{class_entity_a5c82bd9c16d75af5293757a1f29ad3d6}{get\+Entity\+Type}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{class_entity_ada4fb2e4ca7984ea0354cb3275413793}{velocity}} \mbox{[}2\mbox{]} = \{ 0,0 \}
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_entity_a31273850e682dc658a8cc56178ccd3f2}{velocity}} = \{ 0,0 \}
 \item 
 int \mbox{\hyperlink{class_entity_a6579716bfda99a483be988974ee5b8bd}{coordinates}} \mbox{[}2\mbox{]} = \{ 0,0 \}
 \item 
@@ -50,9 +46,66 @@ int {\bfseries num\+Frames} = 0
 
 
 \doxysubsection{Detailed Description}
-All ingame objects are either an \mbox{\hyperlink{class_entity}{Entity}} or derived from it -\/ see\+: \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}}, \mbox{\hyperlink{class_pacman}{Pacman}}, \mbox{\hyperlink{class_shadow}{Shadow}}. 
+All ingame objects are either an \mbox{\hyperlink{class_entity}{Entity}} or derived from it -\/ see\+: \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}}. 
 
 The whole game is built up by entities. These have different entity types that define their behaviour when pacman collide with them 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_entity_aac4313d4f72e0ace055e5ed914ef465b}\label{class_entity_aac4313d4f72e0ace055e5ed914ef465b}} 
+\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{int}]{x\+Start,  }\item[{int}]{y\+Start,  }\item[{int}]{num\+Anim\+Frames,  }\item[{S\+D\+L\+\_\+\+Texture $\ast$}]{sprite\+Texture,  }\item[{int}]{sprite\+Width,  }\item[{int}]{sprite\+Height }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em x\+Start} & x coordinate for starting position \\
+\hline
+{\em y\+Start} & y coordinate for starting position \\
+\hline
+{\em num\+Anim\+Frames} & number of frames in the entityes animations \\
+\hline
+{\em sprite\+Texture} & sprite texture for rendering sprites \\
+\hline
+{\em sprite\+Width} & width of sprite texture in pixels \\
+\hline
+{\em sprite\+Height} & heigth of sprite texture in pixels \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_entity_a5c82bd9c16d75af5293757a1f29ad3d6}\label{class_entity_a5c82bd9c16d75af5293757a1f29ad3d6}} 
+\index{Entity@{Entity}!getEntityType@{getEntityType}}
+\index{getEntityType@{getEntityType}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getEntityType()}{getEntityType()}}
+{\footnotesize\ttfamily Entity\+Type Entity\+::get\+Entity\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns the entityT member variable \mbox{\Hypertarget{class_entity_a9dd7f6aba551a780c8769cd91209d1e4}\label{class_entity_a9dd7f6aba551a780c8769cd91209d1e4}} 
+\index{Entity@{Entity}!setCoordinates@{setCoordinates}}
+\index{setCoordinates@{setCoordinates}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{setCoordinates()}{setCoordinates()}}
+{\footnotesize\ttfamily void Entity\+::set\+Coordinates (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Manually sets new coordinates for the entity 
+\begin{DoxyParams}{Parameters}
+{\em x} & x coordinate \\
+\hline
+{\em y} & y coordinate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_entity_a93982cb8359648b54c7d63c8b7841c64}\label{class_entity_a93982cb8359648b54c7d63c8b7841c64}} 
+\index{Entity@{Entity}!setEntityType@{setEntityType}}
+\index{setEntityType@{setEntityType}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{setEntityType()}{setEntityType()}}
+{\footnotesize\ttfamily void Entity\+::set\+Entity\+Type (\begin{DoxyParamCaption}\item[{Entity\+Type}]{type }\end{DoxyParamCaption})}
+
+Sets the entityT member variable 
+\begin{DoxyParams}{Parameters}
+{\em type} & the Entity\+Type that entityT is going to be set to. \\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_entity_a6579716bfda99a483be988974ee5b8bd}\label{class_entity_a6579716bfda99a483be988974ee5b8bd}} 
@@ -61,7 +114,7 @@ The whole game is built up by entities. These have different entity types that d
 \doxysubsubsection{\texorpdfstring{coordinates}{coordinates}}
 {\footnotesize\ttfamily int Entity\+::coordinates\mbox{[}2\mbox{]} = \{ 0,0 \}}
 
-current coordinates to be used for rendering and collision checking element 0 = x-\/coordinate and element 1 = y-\/coordinate. \mbox{\Hypertarget{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}\label{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}} 
+current coordinates to be used for rendering and collision checking. element 0 = x-\/coordinate and element 1 = y-\/coordinate. \mbox{\Hypertarget{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}\label{class_entity_a506d52aeeddfd99bd80ca08c34eefaf5}} 
 \index{Entity@{Entity}!entityT@{entityT}}
 \index{entityT@{entityT}!Entity@{Entity}}
 \doxysubsubsection{\texorpdfstring{entityT}{entityT}}
@@ -73,11 +126,11 @@ Defines what entity type the object is \mbox{\Hypertarget{class_entity_aaf345856
 \doxysubsubsection{\texorpdfstring{startAnimation}{startAnimation}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Entity\+::start\+Animation}
 
-Animation used at the start of game or if the object is stationary \mbox{\Hypertarget{class_entity_ada4fb2e4ca7984ea0354cb3275413793}\label{class_entity_ada4fb2e4ca7984ea0354cb3275413793}} 
+Animation used at the start of game or if the object is stationary \mbox{\Hypertarget{class_entity_a31273850e682dc658a8cc56178ccd3f2}\label{class_entity_a31273850e682dc658a8cc56178ccd3f2}} 
 \index{Entity@{Entity}!velocity@{velocity}}
 \index{velocity@{velocity}!Entity@{Entity}}
 \doxysubsubsection{\texorpdfstring{velocity}{velocity}}
-{\footnotesize\ttfamily int Entity\+::velocity\mbox{[}2\mbox{]} = \{ 0,0 \}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Entity\+::velocity = \{ 0,0 \}}
 
 current direction the entity is travelling. element 0 = x-\/plane and element 1 = y-\/plane. 
 

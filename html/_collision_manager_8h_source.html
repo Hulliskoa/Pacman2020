@@ -88,27 +88,37 @@ $(document).ready(function(){initNavTree('_collision_manager_8h_source.html','')
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;Entity.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;MovingEntity.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_collision_manager.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_collision_manager.html">CollisionManager</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">int</span> hitBoxRadius = 8;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; entities;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::shared_ptr&lt;Entity&gt;  <a class="code" href="class_collision_manager.html#aaafc944c384702015bd29c5d876261a2">collisionCheck</a>(<a class="code" href="class_entity.html">Entity</a>* entityToCheck);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_collision_manager.html#ae8e8ea8866c6b82a68cacad7cc27d322">addEntity</a>(std::shared_ptr&lt;Entity&gt; entity);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_collision_manager.html">CollisionManager</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    ~<a class="code" href="class_collision_manager.html">CollisionManager</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;future&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;Entity.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_collision_manager.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_collision_manager.html">CollisionManager</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">int</span> hitBoxRadius = 8;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; stationaryEntities;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; movingEntities;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; entitiesCollidedWith;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt;  <a class="code" href="class_collision_manager.html#a1b77e96922687039e396888241a6725f">collisionCheck</a>(std::shared_ptr&lt;Entity&gt; entityToCheck);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::shared_ptr&lt;Entity&gt;  collisionCheckMoving(std::shared_ptr&lt;Entity&gt; entityToCheck);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::shared_ptr&lt;Entity&gt;  collisionCheckStationary(std::shared_ptr&lt;Entity&gt; entityToCheck);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_collision_manager.html#ae8e8ea8866c6b82a68cacad7cc27d322">addEntity</a>(std::shared_ptr&lt;Entity&gt; entity);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_collision_manager.html#a043cc7460cb4b50accf850be26ff3746">addMovingEntity</a>(std::shared_ptr&lt;Entity&gt; entity);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_collision_manager.html#aaca878a61fbd2f50d8ba5ca7cfc54d2a">checkIntersection</a>(std::shared_ptr&lt;Entity&gt; entityToCheck);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> clearEntityArray();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_collision_manager.html">CollisionManager</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    ~<a class="code" href="class_collision_manager.html">CollisionManager</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_collision_manager_html"><div class="ttname"><a href="class_collision_manager.html">CollisionManager</a></div><div class="ttdoc">Does collision checking on behalf of all the MovingEntity objects.</div><div class="ttdef"><b>Definition:</b> CollisionManager.h:12</div></div>
-<div class="ttc" id="aclass_collision_manager_html_aaafc944c384702015bd29c5d876261a2"><div class="ttname"><a href="class_collision_manager.html#aaafc944c384702015bd29c5d876261a2">CollisionManager::collisionCheck</a></div><div class="ttdeci">std::shared_ptr&lt; Entity &gt; collisionCheck(Entity *entityToCheck)</div><div class="ttdef"><b>Definition:</b> CollisionManager.cpp:3</div></div>
-<div class="ttc" id="aclass_collision_manager_html_ae8e8ea8866c6b82a68cacad7cc27d322"><div class="ttname"><a href="class_collision_manager.html#ae8e8ea8866c6b82a68cacad7cc27d322">CollisionManager::addEntity</a></div><div class="ttdeci">void addEntity(std::shared_ptr&lt; Entity &gt; entity)</div><div class="ttdef"><b>Definition:</b> CollisionManager.cpp:68</div></div>
-<div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdoc">All ingame objects are either an Entity or derived from it - see: MovingEntity, Pacman,...</div><div class="ttdef"><b>Definition:</b> Entity.h:29</div></div>
+<div class="ttc" id="aclass_collision_manager_html_a043cc7460cb4b50accf850be26ff3746"><div class="ttname"><a href="class_collision_manager.html#a043cc7460cb4b50accf850be26ff3746">CollisionManager::addMovingEntity</a></div><div class="ttdeci">void addMovingEntity(std::shared_ptr&lt; Entity &gt; entity)</div><div class="ttdef"><b>Definition:</b> CollisionManager.cpp:142</div></div>
+<div class="ttc" id="aclass_collision_manager_html_aaca878a61fbd2f50d8ba5ca7cfc54d2a"><div class="ttname"><a href="class_collision_manager.html#aaca878a61fbd2f50d8ba5ca7cfc54d2a">CollisionManager::checkIntersection</a></div><div class="ttdeci">bool checkIntersection(std::shared_ptr&lt; Entity &gt; entityToCheck)</div><div class="ttdef"><b>Definition:</b> CollisionManager.cpp:147</div></div>
+<div class="ttc" id="aclass_collision_manager_html"><div class="ttname"><a href="class_collision_manager.html">CollisionManager</a></div><div class="ttdoc">Does collision checking on behalf of all the MovingEntity objects.</div><div class="ttdef"><b>Definition:</b> CollisionManager.h:13</div></div>
+<div class="ttc" id="aclass_collision_manager_html_ae8e8ea8866c6b82a68cacad7cc27d322"><div class="ttname"><a href="class_collision_manager.html#ae8e8ea8866c6b82a68cacad7cc27d322">CollisionManager::addEntity</a></div><div class="ttdeci">void addEntity(std::shared_ptr&lt; Entity &gt; entity)</div><div class="ttdef"><b>Definition:</b> CollisionManager.cpp:137</div></div>
+<div class="ttc" id="aclass_collision_manager_html_a1b77e96922687039e396888241a6725f"><div class="ttname"><a href="class_collision_manager.html#a1b77e96922687039e396888241a6725f">CollisionManager::collisionCheck</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; Entity &gt; &gt; collisionCheck(std::shared_ptr&lt; Entity &gt; entityToCheck)</div><div class="ttdef"><b>Definition:</b> CollisionManager.cpp:3</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

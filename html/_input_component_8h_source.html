@@ -92,20 +92,25 @@ $(document).ready(function(){initNavTree('_input_component_8h_source.html',''); 
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;GameState.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_input_component.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_input_component.html">InputComponent</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    SDL_Event <span class="keyword">event</span>{};</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> speed = 8;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_input_component.html#a0ccbc8df1018cc6f67155dd68abe98b3">update</a>(SDL_Window* window, <span class="keywordtype">int</span> speedXY[2], std::shared_ptr&lt;GameState&gt; gameState);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_input_component.html">InputComponent</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;MovingEntity.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;CollisionManager.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_input_component.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_input_component.html">InputComponent</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    SDL_Event <span class="keyword">event</span>{};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_input_component.html#ae43e7e108e494284377ba6c69b9dabb8">update</a>(std::shared_ptr&lt;MovingEntity&gt;  entityBeingController, std::shared_ptr&lt;GameState&gt; gameState);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::string <a class="code" href="class_input_component.html#ad990fa45eed446afd55ee2b08c469261">mainUpdate</a>(std::shared_ptr&lt;GameState&gt; gameState);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_input_component.html">InputComponent</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_input_component_html_a0ccbc8df1018cc6f67155dd68abe98b3"><div class="ttname"><a href="class_input_component.html#a0ccbc8df1018cc6f67155dd68abe98b3">InputComponent::update</a></div><div class="ttdeci">void update(SDL_Window *window, int speedXY[2], std::shared_ptr&lt; GameState &gt; gameState)</div><div class="ttdef"><b>Definition:</b> InputComponent.cpp:4</div></div>
-<div class="ttc" id="aclass_input_component_html"><div class="ttname"><a href="class_input_component.html">InputComponent</a></div><div class="ttdef"><b>Definition:</b> InputComponent.h:12</div></div>
+<div class="ttc" id="aclass_input_component_html_ad990fa45eed446afd55ee2b08c469261"><div class="ttname"><a href="class_input_component.html#ad990fa45eed446afd55ee2b08c469261">InputComponent::mainUpdate</a></div><div class="ttdeci">std::string mainUpdate(std::shared_ptr&lt; GameState &gt; gameState)</div><div class="ttdef"><b>Definition:</b> InputComponent.cpp:61</div></div>
+<div class="ttc" id="aclass_input_component_html_ae43e7e108e494284377ba6c69b9dabb8"><div class="ttname"><a href="class_input_component.html#ae43e7e108e494284377ba6c69b9dabb8">InputComponent::update</a></div><div class="ttdeci">virtual void update(std::shared_ptr&lt; MovingEntity &gt; entityBeingController, std::shared_ptr&lt; GameState &gt; gameState)</div><div class="ttdef"><b>Definition:</b> InputComponent.cpp:4</div></div>
+<div class="ttc" id="aclass_input_component_html"><div class="ttname"><a href="class_input_component.html">InputComponent</a></div><div class="ttdoc">Component for controlling entities in the game.</div><div class="ttdef"><b>Definition:</b> InputComponent.h:13</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -8,7 +8,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 
 	//update score on main screen;
-	scoreComponent->update(score);
+	scoreComponent->update(m_score);
 
 	//Death animation and handling
 	if (*gameState == GameState::PACMAN_DIED) {
@@ -37,14 +37,14 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 					if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
 
 						collidedWith->setEntityType(EntityType::GHOST_EYES);
-						score += ghostPoints;
+						m_score += m_ghostPoints;
 						m_ghostMunch->play(1, 0, 70);
 						//Score increase for each ghost pacman eats
-						ghostPoints *= pointDoubler;
+						m_ghostPoints *= m_pointDoubler;
 					}
 					else {
 						m_deathSound->play(1, 0, 70);
-						pointDoubler = 2;
+						m_pointDoubler = 2;
 						*gameState = GameState::PACMAN_DIED;
 
 					}
@@ -59,21 +59,21 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 				case EntityType::PELLET:
 					collidedWith->setEntityType(EntityType::INACTIVE_PELLET);
-					score += 10;
+					m_score += 10;
 					m_pelletMunch->play(0, 0, 70);
 					break;
 
 				case EntityType::POWER_PELLET:
 					*gameState = GameState::GAME_RUNNING_FLEE;
 					collidedWith->setEntityType(EntityType::INACTIVE_POWER_PELLET);
-					score += 50;
+					m_score += 50;
 					m_pelletMunch->play(0, 0, 70);
-					ghostPoints = 100;
+					m_ghostPoints = 100;
 					break;
 
 				case EntityType::FRUIT:
 					collidedWith->setEntityType(EntityType::INACTIVE_FRUIT);
-					score += 50;
+					m_score += 50;
 					break;
 
 				case EntityType::DOOR:
@@ -177,21 +177,21 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 
 int Pacman::getRemainingLives()
 {
-	return remainingLife;
+	return m_remainingLife;
 }
 
 int Pacman::getScore() {
-	return score;
+	return m_score;
 }
 
 void Pacman::resetScore()
 {
-	score = 0;
+	m_score = 0;
 }
 
 void Pacman::lostLife()
 {
-	remainingLife--;
+	m_remainingLife--;
 }
 
 Pacman::~Pacman()

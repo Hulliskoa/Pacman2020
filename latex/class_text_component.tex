@@ -1,0 +1,71 @@
+\hypertarget{class_text_component}{}\doxysection{Text\+Component Class Reference}
+\label{class_text_component}\index{TextComponent@{TextComponent}}
+
+
+Wrapper object for showing text on screen.  
+
+
+
+
+{\ttfamily \#include $<$Text\+Component.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_text_component_a2658adfee1182d357907b771d4f7bd99}{Text\+Component}} (std\+::string font\+Path, std\+::string text, int x\+Coord, int y\+Coord, int text\+Width, int text\+Height, S\+D\+L\+\_\+\+Renderer $\ast$renderer, int font\+Size)
+\item 
+void \mbox{\hyperlink{class_text_component_aa38af02d7c5c463989022d45839cdf7b}{render\+Text}} (int position)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Wrapper object for showing text on screen. 
+
+It saves two versions of the same text to be able to switch between white and purple text 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_text_component_a2658adfee1182d357907b771d4f7bd99}\label{class_text_component_a2658adfee1182d357907b771d4f7bd99}} 
+\index{TextComponent@{TextComponent}!TextComponent@{TextComponent}}
+\index{TextComponent@{TextComponent}!TextComponent@{TextComponent}}
+\doxysubsubsection{\texorpdfstring{TextComponent()}{TextComponent()}}
+{\footnotesize\ttfamily Text\+Component\+::\+Text\+Component (\begin{DoxyParamCaption}\item[{std\+::string}]{font\+Path,  }\item[{std\+::string}]{text,  }\item[{int}]{x\+Coord,  }\item[{int}]{y\+Coord,  }\item[{int}]{text\+Width,  }\item[{int}]{text\+Height,  }\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{int}]{font\+Size }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em font\+Path} & channel to play sound on (0 or 1); \\
+\hline
+{\em text} & -\/1 loops, 0 plays once, 1 plays twice \\
+\hline
+{\em x\+Coord} & x coordinate text is rendered at \\
+\hline
+{\em y\+Coord} & y coordinate text is rendered at \\
+\hline
+{\em text\+Width} & widht of textbox \\
+\hline
+{\em text\+Height} & heigt of textbox \\
+\hline
+{\em renderer} & main renderer used for rendering text to screen \\
+\hline
+{\em font\+Size} & size of font \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_text_component_aa38af02d7c5c463989022d45839cdf7b}\label{class_text_component_aa38af02d7c5c463989022d45839cdf7b}} 
+\index{TextComponent@{TextComponent}!renderText@{renderText}}
+\index{renderText@{renderText}!TextComponent@{TextComponent}}
+\doxysubsubsection{\texorpdfstring{renderText()}{renderText()}}
+{\footnotesize\ttfamily void Text\+Component\+::render\+Text (\begin{DoxyParamCaption}\item[{int}]{position }\end{DoxyParamCaption})}
+
+Renderes text to screen 
+\begin{DoxyParams}{Parameters}
+{\em position} & position of the text we want to render i tne texts vector \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Text\+Component.\+h\item 
+Text\+Component.\+cpp\end{DoxyCompactItemize}

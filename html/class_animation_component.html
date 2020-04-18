@@ -90,6 +90,9 @@ $(document).ready(function(){initNavTree('class_animation_component.html',''); i
 </div><!--header-->
 <div class="contents">
 
+<p>responsible for rendering animations for all entities in the game.  
+ <a href="class_animation_component.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_animation_component_8h_source.html">AnimationComponent.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -98,11 +101,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9109568f995cfa036e8337898039396d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a097c2d6627968fb7405616e0aad6b9ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_component.html#a097c2d6627968fb7405616e0aad6b9ab">addRect</a> (int xSpriteSheet, int ySpriteSheet, int w, int h)</td></tr>
 <tr class="separator:a097c2d6627968fb7405616e0aad6b9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a808d922bb219087c274854274aca5056"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_component.html#a808d922bb219087c274854274aca5056">render</a> (int x, int y, SDL_Renderer *renderer)</td></tr>
-<tr class="separator:a808d922bb219087c274854274aca5056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a365aace00ff8ae56bb8d65687eefeea4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_component.html#a365aace00ff8ae56bb8d65687eefeea4">render</a> (int x, int y, SDL_Renderer *renderer, int renderSize)</td></tr>
+<tr class="separator:a365aace00ff8ae56bb8d65687eefeea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49ecabb954026ca2290abf74ae6db89c"><td class="memItemLeft" align="right" valign="top"><a id="a49ecabb954026ca2290abf74ae6db89c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>renderSpriteFonts</b> (int x, int y, SDL_Renderer *renderer, int numberToRender)</td></tr>
+<tr class="separator:a49ecabb954026ca2290abf74ae6db89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acef2c9e2c017e34b145c57073448cd8d"><td class="memItemLeft" align="right" valign="top"><a id="acef2c9e2c017e34b145c57073448cd8d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentFrame</b> ()</td></tr>
+<tr class="separator:acef2c9e2c017e34b145c57073448cd8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b40be2d74746be07f7ba64e2dd7cd3b"><td class="memItemLeft" align="right" valign="top"><a id="a6b40be2d74746be07f7ba64e2dd7cd3b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getTotalFrames</b> ()</td></tr>
+<tr class="separator:a6b40be2d74746be07f7ba64e2dd7cd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_animation_component.html">AnimationComponent</a> is responsible for rendering animations for all entities in the game. Each entity object has a <a class="el" href="class_animation_component.html">AnimationComponent</a> for each animations they need. With the help of spritesheets and SDL_Renderer this class can render all the sprites we need to create animations </p>
+<div class="textblock"><p>responsible for rendering animations for all entities in the game. </p>
+<p>Each entity object has a <a class="el" href="class_animation_component.html" title="responsible for rendering animations for all entities in the game.">AnimationComponent</a> for each animations they need. With the help of spritesheets and SDL_Renderer this class can render all the sprites we need to create animations </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9109568f995cfa036e8337898039396d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9109568f995cfa036e8337898039396d">&#9670;&nbsp;</a></span>AnimationComponent()</h2>
@@ -143,7 +156,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Constructor </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">numSprites</td><td>an int that tells the <a class="el" href="class_animation_component.html">AnimationComponent</a> how many sprites will be used in this animation </td></tr>
+    <tr><td class="paramname">numSprites</td><td>an int that tells the <a class="el" href="class_animation_component.html" title="responsible for rendering animations for all entities in the game.">AnimationComponent</a> how many sprites will be used in this animation </td></tr>
     <tr><td class="paramname">texture</td><td>SDL_Texture of the spritesheet textures used to show sprites on screen </td></tr>
     <tr><td class="paramname">textureWidth</td><td>width of the spritesheet texture we will be using </td></tr>
     <tr><td class="paramname">textureHeight</td><td>height of the spritesheet texture we will be using </td></tr>
@@ -203,8 +216,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a808d922bb219087c274854274aca5056"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a808d922bb219087c274854274aca5056">&#9670;&nbsp;</a></span>render()</h2>
+<a id="a365aace00ff8ae56bb8d65687eefeea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a365aace00ff8ae56bb8d65687eefeea4">&#9670;&nbsp;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,7 +238,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">SDL_Renderer *&#160;</td>
-          <td class="paramname"><em>renderer</em>&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>renderSize</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

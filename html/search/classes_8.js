@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['shadow_30',['Shadow',['../class_shadow.html',1,'']]]
+  ['score_82',['Score',['../class_score.html',1,'']]],
+  ['soundcomponent_83',['SoundComponent',['../class_sound_component.html',1,'']]]
 ];

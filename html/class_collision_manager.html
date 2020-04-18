@@ -90,21 +90,34 @@ $(document).ready(function(){initNavTree('class_collision_manager.html',''); ini
 </div><!--header-->
 <div class="contents">
 
-<p>Does collision checking on behalf of all the <a class="el" href="class_moving_entity.html">MovingEntity</a> objects.  
+<p>Does collision checking on behalf of all the <a class="el" href="class_moving_entity.html" title="MovingEntity class is derived from Entity super class and is used to create all moving entities in th...">MovingEntity</a> objects.  
  <a href="class_collision_manager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_collision_manager_8h_source.html">CollisionManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaafc944c384702015bd29c5d876261a2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collision_manager.html#aaafc944c384702015bd29c5d876261a2">collisionCheck</a> (<a class="el" href="class_entity.html">Entity</a> *entityToCheck)</td></tr>
-<tr class="separator:aaafc944c384702015bd29c5d876261a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b77e96922687039e396888241a6725f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collision_manager.html#a1b77e96922687039e396888241a6725f">collisionCheck</a> (std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; entityToCheck)</td></tr>
+<tr class="separator:a1b77e96922687039e396888241a6725f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a92af6e8a3673999e5d444094de45b2"><td class="memItemLeft" align="right" valign="top"><a id="a6a92af6e8a3673999e5d444094de45b2"></a>
+std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>collisionCheckMoving</b> (std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; entityToCheck)</td></tr>
+<tr class="separator:a6a92af6e8a3673999e5d444094de45b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1240a83c555229ab6adea769b273ef7"><td class="memItemLeft" align="right" valign="top"><a id="ae1240a83c555229ab6adea769b273ef7"></a>
+std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>collisionCheckStationary</b> (std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; entityToCheck)</td></tr>
+<tr class="separator:ae1240a83c555229ab6adea769b273ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8e8ea8866c6b82a68cacad7cc27d322"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collision_manager.html#ae8e8ea8866c6b82a68cacad7cc27d322">addEntity</a> (std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; entity)</td></tr>
 <tr class="separator:ae8e8ea8866c6b82a68cacad7cc27d322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a043cc7460cb4b50accf850be26ff3746"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collision_manager.html#a043cc7460cb4b50accf850be26ff3746">addMovingEntity</a> (std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; entity)</td></tr>
+<tr class="separator:a043cc7460cb4b50accf850be26ff3746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca878a61fbd2f50d8ba5ca7cfc54d2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collision_manager.html#aaca878a61fbd2f50d8ba5ca7cfc54d2a">checkIntersection</a> (std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; entityToCheck)</td></tr>
+<tr class="separator:aaca878a61fbd2f50d8ba5ca7cfc54d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93997f6773090357f3428fd3fb17fe73"><td class="memItemLeft" align="right" valign="top"><a id="a93997f6773090357f3428fd3fb17fe73"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>clearEntityArray</b> ()</td></tr>
+<tr class="separator:a93997f6773090357f3428fd3fb17fe73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Does collision checking on behalf of all the <a class="el" href="class_moving_entity.html">MovingEntity</a> objects. </p>
-<p>The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them </p>
+<div class="textblock"><p>Does collision checking on behalf of all the <a class="el" href="class_moving_entity.html" title="MovingEntity class is derived from Entity super class and is used to create all moving entities in th...">MovingEntity</a> objects. </p>
+<p>The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them. It is used inside all update methods of <a class="el" href="class_moving_entity.html" title="MovingEntity class is derived from Entity super class and is used to create all moving entities in th...">MovingEntity</a> classes </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae8e8ea8866c6b82a68cacad7cc27d322"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8e8ea8866c6b82a68cacad7cc27d322">&#9670;&nbsp;</a></span>addEntity()</h2>
@@ -121,25 +134,73 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Used to add entities to the entities vector </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Used to add stationary entities to the stationaryEntities vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">entity</td><td><a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity, Pacman,...">Entity</a> we want to add to vector for collision checking later </td></tr>
+    <tr><td class="paramname">entity</td><td><a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity.">Entity</a> we want to add to vector for collision checking later </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="aaafc944c384702015bd29c5d876261a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaafc944c384702015bd29c5d876261a2">&#9670;&nbsp;</a></span>collisionCheck()</h2>
+<a id="a043cc7460cb4b50accf850be26ff3746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a043cc7460cb4b50accf850be26ff3746">&#9670;&nbsp;</a></span>addMovingEntity()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; CollisionManager::collisionCheck </td>
+          <td class="memname">void CollisionManager::addMovingEntity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_entity.html">Entity</a> *&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt;&#160;</td>
+          <td class="paramname"><em>entity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used to add moving entities to the movingEntities vector </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td><a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity.">Entity</a> we want to add to vector for collision checking later </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaca878a61fbd2f50d8ba5ca7cfc54d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaca878a61fbd2f50d8ba5ca7cfc54d2a">&#9670;&nbsp;</a></span>checkIntersection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CollisionManager::checkIntersection </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt;&#160;</td>
+          <td class="paramname"><em>entityToCheck</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>checks if entity is on top of an intersection </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entityToCheck</td><td><a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity.">Entity</a> we want to check is on top of intersection </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b77e96922687039e396888241a6725f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b77e96922687039e396888241a6725f">&#9670;&nbsp;</a></span>collisionCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; &gt; CollisionManager::collisionCheck </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt;&#160;</td>
           <td class="paramname"><em>entityToCheck</em></td><td>)</td>
           <td></td>
         </tr>
@@ -147,7 +208,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Checks if the entity has collided with anything and returns the pointer to the object it collided with </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">entityToCheck</td><td>the <a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity, Pacman,...">Entity</a> that we want to check collision on </td></tr>
+    <tr><td class="paramname">entityToCheck</td><td>the <a class="el" href="class_entity.html" title="All ingame objects are either an Entity or derived from it - see: MovingEntity.">Entity</a> that we want to check collision on </td></tr>
   </table>
   </dd>
 </dl>

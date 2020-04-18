@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 322.580645
+%%BoundingBox: 0 0 500 106.761566
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.550000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 4.683333 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -175,8 +175,9 @@ boxfont setfont
 1 boundaspect scale
 (MovingEntity) cw
 (Entity) cw
+(std::enable_shared_from_this< MovingEntity >) cw
+(Ghost) cw
 (Pacman) cw
-(Shadow) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -189,16 +190,21 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- classes -----
 
  (MovingEntity) 0.500000 1.000000 box
- (Entity) 0.500000 2.000000 box
- (Pacman) 0.000000 0.000000 box
- (Shadow) 1.000000 0.000000 box
+ (Entity) 0.000000 2.000000 box
+ (std::enable_shared_from_this< MovingEntity >) 1.000000 2.000000 box
+ (Ghost) 0.000000 0.000000 box
+ (Pacman) 1.000000 0.000000 box
 
 % ----- relations -----
 
 solid
 0 0.500000 1.000000 out
 solid
-1 0.500000 2.000000 in
+0.000000 1.000000 2.000000 conn
+solid
+1 0.000000 2.000000 in
+solid
+1 1.000000 2.000000 in
 solid
 1 0.500000 0.250000 out
 solid

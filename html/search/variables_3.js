@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leftanimation_40',['leftAnimation',['../class_moving_entity.html#a3f02844717fb37a2adb2dd7b7c275aa6',1,'MovingEntity']]]
+  ['halfspeed_142',['halfSpeed',['../class_moving_entity.html#a07c045afb1ee2a8fe3374d1addf83e1c',1,'MovingEntity']]]
 ];

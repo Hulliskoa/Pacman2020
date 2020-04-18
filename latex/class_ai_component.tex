@@ -1,0 +1,157 @@
+\hypertarget{class_ai_component}{}\doxysection{Ai\+Component Class Reference}
+\label{class_ai_component}\index{AiComponent@{AiComponent}}
+
+
+Controls the ghosts.  
+
+
+
+
+{\ttfamily \#include $<$Ai\+Component.\+h$>$}
+
+Inheritance diagram for Ai\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ai_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_ai_component_ac6aa7e4f19a6428d6ff4edaf769a3c24}{set\+Target}} (int x, int y)
+\item 
+void \mbox{\hyperlink{class_ai_component_a839b668696f1686a8192a8b1abfb6a61}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ current\+Ghost, int ghost\+Ai, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ pacman, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\item 
+void \mbox{\hyperlink{class_ai_component_a8f376b32a21e8d769c444c157a698d9f}{shadow\+AI}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ current\+Ghost, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ pacman, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\item 
+void \mbox{\hyperlink{class_ai_component_abedc5236919b5115c9ff75020d0f5aa3}{speedy\+AI}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ current\+Ghost, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ pacman, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manage, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\item 
+void \mbox{\hyperlink{class_ai_component_a1f1230c969d6f53b41d2cf762cfdd4be}{bashful\+AI}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ current\+Ghost, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ pacman, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\item 
+void \mbox{\hyperlink{class_ai_component_aca0cdfc4dee79814e699e8b4e4eb3312}{pokey\+AI}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ current\+Ghost, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ pacman, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\item 
+void \mbox{\hyperlink{class_ai_component_afa7666d95c8307125036fd16e5575e0c}{ai}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ current\+Ghost, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ pacman, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\item 
+bool \mbox{\hyperlink{class_ai_component_ae69d6f98f313abf38adba5e85ff682a9}{check\+If\+Return}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ current\+Ghost, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager)
+\item 
+void \mbox{\hyperlink{class_ai_component_a6c28c67aa1d4cc5fd41f819facde0185}{remove\+Target}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controls the ghosts. 
+
+By using pytagoras to calculate the shortest path from ghost to pacman this class choose the next tile to travel to based on that. The game board is split up into tiles. Some of these tile is so called intersections. On these intersections this class is allow to do its calculation. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ai_component_afa7666d95c8307125036fd16e5575e0c}\label{class_ai_component_afa7666d95c8307125036fd16e5575e0c}} 
+\index{AiComponent@{AiComponent}!ai@{ai}}
+\index{ai@{ai}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{ai()}{ai()}}
+{\footnotesize\ttfamily void Ai\+Component\+::ai (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{current\+Ghost,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{pacman,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+
+The AI algorithm for making decision based on distance to pacman. The algorithm checks three tiles around the ghost. Left, Front and Right based on the direction it is travelling. Then it calculates the hypotenus between the ghost and pacman based on an imagined triangle between them. The result of this calculation is saved as a key in the shortest\+Path map together with the vector of coordinates to the tile that was used for calculating the distance. If one or more of the tiles are walls or other obstacles the calculation will not be done for those tiles. At the end the map is used for selecting the tile that gets the ghost closer to pacman. This is done by selecting the first element in the map since this key automatically will be the one that is the lowest. 
+\begin{DoxyParams}{Parameters}
+{\em current\+Ghost} & the ghost that is currently being controlled byu the AI \\
+\hline
+{\em ghost\+Ai} & a number between 0 and 4 for selectin wich AI we want to use \\
+\hline
+{\em pacman} & a smart pointer to the pacman object \\
+\hline
+{\em collision\+Manager} & the global collision manager. To make decision based on what is currently on the tiles around the ghost \\
+\hline
+{\em game\+State} & the global game\+State to make decisions based on this \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_ai_component_a1f1230c969d6f53b41d2cf762cfdd4be}\label{class_ai_component_a1f1230c969d6f53b41d2cf762cfdd4be}} 
+\index{AiComponent@{AiComponent}!bashfulAI@{bashfulAI}}
+\index{bashfulAI@{bashfulAI}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{bashfulAI()}{bashfulAI()}}
+{\footnotesize\ttfamily void Ai\+Component\+::bashful\+AI (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{current\+Ghost,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{pacman,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+
+See description for shadow\+AI \mbox{\Hypertarget{class_ai_component_ae69d6f98f313abf38adba5e85ff682a9}\label{class_ai_component_ae69d6f98f313abf38adba5e85ff682a9}} 
+\index{AiComponent@{AiComponent}!checkIfReturn@{checkIfReturn}}
+\index{checkIfReturn@{checkIfReturn}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{checkIfReturn()}{checkIfReturn()}}
+{\footnotesize\ttfamily bool Ai\+Component\+::check\+If\+Return (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{current\+Ghost,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager }\end{DoxyParamCaption})}
+
+Checks if the ghost is back in the cage 
+\begin{DoxyParams}{Parameters}
+{\em current\+Ghost} & the ghost that is currently being controlled by the AI \\
+\hline
+{\em collision\+Manager} & a number between 0 and 4 for selecting wich AI we want to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_ai_component_aca0cdfc4dee79814e699e8b4e4eb3312}\label{class_ai_component_aca0cdfc4dee79814e699e8b4e4eb3312}} 
+\index{AiComponent@{AiComponent}!pokeyAI@{pokeyAI}}
+\index{pokeyAI@{pokeyAI}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{pokeyAI()}{pokeyAI()}}
+{\footnotesize\ttfamily void Ai\+Component\+::pokey\+AI (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{current\+Ghost,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{pacman,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+
+See description for shadow\+AI \mbox{\Hypertarget{class_ai_component_a6c28c67aa1d4cc5fd41f819facde0185}\label{class_ai_component_a6c28c67aa1d4cc5fd41f819facde0185}} 
+\index{AiComponent@{AiComponent}!removeTarget@{removeTarget}}
+\index{removeTarget@{removeTarget}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{removeTarget()}{removeTarget()}}
+{\footnotesize\ttfamily void Ai\+Component\+::remove\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Remove manually set target and resets target back to pacman \mbox{\Hypertarget{class_ai_component_ac6aa7e4f19a6428d6ff4edaf769a3c24}\label{class_ai_component_ac6aa7e4f19a6428d6ff4edaf769a3c24}} 
+\index{AiComponent@{AiComponent}!setTarget@{setTarget}}
+\index{setTarget@{setTarget}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{setTarget()}{setTarget()}}
+{\footnotesize\ttfamily void Ai\+Component\+::set\+Target (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Sets a new target other than pacman. Used when ghosts are fleeing or returnin to cage after being eaten 
+\begin{DoxyParams}{Parameters}
+{\em x} & x-\/coordinate to target position \\
+\hline
+{\em y} & x-\/coordinate to target position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_ai_component_a8f376b32a21e8d769c444c157a698d9f}\label{class_ai_component_a8f376b32a21e8d769c444c157a698d9f}} 
+\index{AiComponent@{AiComponent}!shadowAI@{shadowAI}}
+\index{shadowAI@{shadowAI}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{shadowAI()}{shadowAI()}}
+{\footnotesize\ttfamily void Ai\+Component\+::shadow\+AI (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{current\+Ghost,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{pacman,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+
+Sets up conditions for this particular ai and feeds that input on to the actual ai method 
+\begin{DoxyParams}{Parameters}
+{\em current\+Ghost} & the ghost that is currently being controlled by the AI \\
+\hline
+{\em pacman} & a smart pointer to the pacman object \\
+\hline
+{\em collision\+Manager} & the global collision manager. To make decision based on what is currently on the tiles around the ghost \\
+\hline
+{\em game\+State} & the global game\+State to make decisions based on this \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_ai_component_abedc5236919b5115c9ff75020d0f5aa3}\label{class_ai_component_abedc5236919b5115c9ff75020d0f5aa3}} 
+\index{AiComponent@{AiComponent}!speedyAI@{speedyAI}}
+\index{speedyAI@{speedyAI}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{speedyAI()}{speedyAI()}}
+{\footnotesize\ttfamily void Ai\+Component\+::speedy\+AI (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{current\+Ghost,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{pacman,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manage,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+
+See description for shadow\+AI \mbox{\Hypertarget{class_ai_component_a839b668696f1686a8192a8b1abfb6a61}\label{class_ai_component_a839b668696f1686a8192a8b1abfb6a61}} 
+\index{AiComponent@{AiComponent}!update@{update}}
+\index{update@{update}!AiComponent@{AiComponent}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Ai\+Component\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{current\+Ghost,  }\item[{int}]{ghost\+Ai,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{pacman,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+
+The update method uses a switch statement to send its parameter on to the actual ai methods 
+\begin{DoxyParams}{Parameters}
+{\em current\+Ghost} & the ghost that is currently being controlled by the AI \\
+\hline
+{\em ghost\+Ai} & a number between 0 and 3 for selecting wich AI we want to use \\
+\hline
+{\em pacman} & a smart pointer to the pacman object \\
+\hline
+{\em collision\+Manager} & the global collision manager. To make decision based on what is currently on the tiles around the ghost \\
+\hline
+{\em game\+State} & the global game\+State to make decisions based on this \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Ai\+Component.\+h\item 
+Ai\+Component.\+cpp\end{DoxyCompactItemize}

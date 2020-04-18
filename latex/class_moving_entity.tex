@@ -2,25 +2,33 @@
 \label{class_moving_entity}\index{MovingEntity@{MovingEntity}}
 
 
+\mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} class is derived from \mbox{\hyperlink{class_entity}{Entity}} super class and is used to create all moving entities in the game.  
+
+
+
+
 {\ttfamily \#include $<$Moving\+Entity.\+h$>$}
 
 Inheritance diagram for Moving\+Entity\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{class_moving_entity}
+\includegraphics[height=2.989324cm]{class_moving_entity}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_moving_entity_a2ba99ce07171b7f250a0c2f1c13904f1}\label{class_moving_entity_a2ba99ce07171b7f250a0c2f1c13904f1}} 
-virtual void {\bfseries set\+Velocity} (int x, int y)
+\mbox{\hyperlink{class_moving_entity_acb4cd05921080d325fd27dfbefa38436}{Moving\+Entity}} (int x\+Start, int y\+Start, int num\+Anim\+Frames, S\+D\+L\+\_\+\+Texture $\ast$main\+Sprite\+Sheet, int texture\+Width, int texture\+Height)
 \item 
-\mbox{\Hypertarget{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123c5c}\label{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123c5c}} 
-virtual void {\bfseries update} ()
+virtual void \mbox{\hyperlink{class_moving_entity_a2ba99ce07171b7f250a0c2f1c13904f1}{set\+Velocity}} (int x, int y)
 \item 
-\mbox{\Hypertarget{class_moving_entity_acb4cd05921080d325fd27dfbefa38436}\label{class_moving_entity_acb4cd05921080d325fd27dfbefa38436}} 
-{\bfseries Moving\+Entity} (int x\+Start, int y\+Start, int num\+Anim\+Frames, S\+D\+L\+\_\+\+Texture $\ast$main\+Sprite\+Sheet, int texture\+Width, int texture\+Height)
+virtual void \mbox{\hyperlink{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123c5c}{update}} ()
+\item 
+void \mbox{\hyperlink{class_moving_entity_af87d7cf435362084babc65d1207fde55}{increase\+Speed}} ()
+\item 
+void \mbox{\hyperlink{class_moving_entity_a0076bd8a1714e5467523bc0f148467f4}{set\+Base\+Speed}} (int \mbox{\hyperlink{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}{speed}})
+\item 
+int \mbox{\hyperlink{class_moving_entity_a0b62a80d12e081309dc4676bf931b924}{get\+Speed}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -33,32 +41,132 @@ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\
 \item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\+Component}} $>$ \mbox{\hyperlink{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}{down\+Animation}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} = 2
+\item 
+int \mbox{\hyperlink{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}{speed}} = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}}
+\item 
+int \mbox{\hyperlink{class_moving_entity_a07c045afb1ee2a8fe3374d1addf83e1c}{half\+Speed}} = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} / 2
+\item 
+int \mbox{\hyperlink{class_moving_entity_a5df0d3cbe5701b24d2298cd4f105d2a5}{double\+Speed}} = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} $\ast$ 2
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} class is derived from \mbox{\hyperlink{class_entity}{Entity}} super class and handles all moving entities on the map. 
+\mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} class is derived from \mbox{\hyperlink{class_entity}{Entity}} super class and is used to create all moving entities in the game. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_moving_entity_acb4cd05921080d325fd27dfbefa38436}\label{class_moving_entity_acb4cd05921080d325fd27dfbefa38436}} 
+\index{MovingEntity@{MovingEntity}!MovingEntity@{MovingEntity}}
+\index{MovingEntity@{MovingEntity}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{MovingEntity()}{MovingEntity()}}
+{\footnotesize\ttfamily Moving\+Entity\+::\+Moving\+Entity (\begin{DoxyParamCaption}\item[{int}]{x\+Start,  }\item[{int}]{y\+Start,  }\item[{int}]{num\+Anim\+Frames,  }\item[{S\+D\+L\+\_\+\+Texture $\ast$}]{main\+Sprite\+Sheet,  }\item[{int}]{texture\+Width,  }\item[{int}]{texture\+Height }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em x\+Start} & starting x-\/coordinate \\
+\hline
+{\em y\+Start} & starting y-\/coordinate \\
+\hline
+{\em num\+Anim\+Frames} & number of frames to be used in animations \\
+\hline
+{\em main\+Sprite\+Sheet} & spritesheet texture loaded in game manager \\
+\hline
+{\em texture\+Width} & height of spritesheets\+Texture \\
+\hline
+{\em texture\+Height} & widht of spritesheets\+Texture \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_moving_entity_a0b62a80d12e081309dc4676bf931b924}\label{class_moving_entity_a0b62a80d12e081309dc4676bf931b924}} 
+\index{MovingEntity@{MovingEntity}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily int Moving\+Entity\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns current speed \mbox{\Hypertarget{class_moving_entity_af87d7cf435362084babc65d1207fde55}\label{class_moving_entity_af87d7cf435362084babc65d1207fde55}} 
+\index{MovingEntity@{MovingEntity}!increaseSpeed@{increaseSpeed}}
+\index{increaseSpeed@{increaseSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{increaseSpeed()}{increaseSpeed()}}
+{\footnotesize\ttfamily void Moving\+Entity\+::increase\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Increses speed by 2; \mbox{\Hypertarget{class_moving_entity_a0076bd8a1714e5467523bc0f148467f4}\label{class_moving_entity_a0076bd8a1714e5467523bc0f148467f4}} 
+\index{MovingEntity@{MovingEntity}!setBaseSpeed@{setBaseSpeed}}
+\index{setBaseSpeed@{setBaseSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{setBaseSpeed()}{setBaseSpeed()}}
+{\footnotesize\ttfamily void Moving\+Entity\+::set\+Base\+Speed (\begin{DoxyParamCaption}\item[{int}]{speed }\end{DoxyParamCaption})}
+
+sets base speed; \mbox{\Hypertarget{class_moving_entity_a2ba99ce07171b7f250a0c2f1c13904f1}\label{class_moving_entity_a2ba99ce07171b7f250a0c2f1c13904f1}} 
+\index{MovingEntity@{MovingEntity}!setVelocity@{setVelocity}}
+\index{setVelocity@{setVelocity}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{setVelocity()}{setVelocity()}}
+{\footnotesize\ttfamily void Moving\+Entity\+::set\+Velocity (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Used to read .txt file and convert it into the level\+Array 
+\begin{DoxyParams}{Parameters}
+{\em x} & value for direction in the x plane \\
+\hline
+{\em y} & value for direction in the y plane \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123c5c}\label{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123c5c}} 
+\index{MovingEntity@{MovingEntity}!update@{update}}
+\index{update@{update}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Moving\+Entity\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Virtual update method for use implementation in child classes 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}\label{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}} 
+\mbox{\Hypertarget{class_moving_entity_a5df0d3cbe5701b24d2298cd4f105d2a5}\label{class_moving_entity_a5df0d3cbe5701b24d2298cd4f105d2a5}} 
+\index{MovingEntity@{MovingEntity}!doubleSpeed@{doubleSpeed}}
+\index{doubleSpeed@{doubleSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{doubleSpeed}{doubleSpeed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::double\+Speed = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} $\ast$ 2\hspace{0.3cm}{\ttfamily [protected]}}
+
+normal\+Speed $\ast$ 2 \mbox{\Hypertarget{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}\label{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}} 
 \index{MovingEntity@{MovingEntity}!downAnimation@{downAnimation}}
 \index{downAnimation@{downAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{downAnimation}{downAnimation}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::down\+Animation}
 
-Animation used for animating movement downwards \mbox{\Hypertarget{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}\label{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}} 
+Animation used for animating movement downwards \mbox{\Hypertarget{class_moving_entity_a07c045afb1ee2a8fe3374d1addf83e1c}\label{class_moving_entity_a07c045afb1ee2a8fe3374d1addf83e1c}} 
+\index{MovingEntity@{MovingEntity}!halfSpeed@{halfSpeed}}
+\index{halfSpeed@{halfSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{halfSpeed}{halfSpeed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::half\+Speed = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} / 2\hspace{0.3cm}{\ttfamily [protected]}}
+
+normal\+Speed / 2 \mbox{\Hypertarget{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}\label{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}} 
 \index{MovingEntity@{MovingEntity}!leftAnimation@{leftAnimation}}
 \index{leftAnimation@{leftAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{leftAnimation}{leftAnimation}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::left\+Animation}
 
-Animation used for animating movement towards the left \mbox{\Hypertarget{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}\label{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}} 
+Animation used for animating movement towards the left \mbox{\Hypertarget{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}\label{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}} 
+\index{MovingEntity@{MovingEntity}!normalSpeed@{normalSpeed}}
+\index{normalSpeed@{normalSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{normalSpeed}{normalSpeed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::normal\+Speed = 2\hspace{0.3cm}{\ttfamily [protected]}}
+
+Normal speed for an moving entity \mbox{\Hypertarget{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}\label{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}} 
 \index{MovingEntity@{MovingEntity}!rightAnimation@{rightAnimation}}
 \index{rightAnimation@{rightAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{rightAnimation}{rightAnimation}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::right\+Animation}
 
-Animation used for animating movement towards the right \mbox{\Hypertarget{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}\label{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}} 
+Animation used for animating movement towards the right \mbox{\Hypertarget{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}\label{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}} 
+\index{MovingEntity@{MovingEntity}!speed@{speed}}
+\index{speed@{speed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::speed = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+speed is the same as normal speed on creation \mbox{\Hypertarget{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}\label{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}} 
 \index{MovingEntity@{MovingEntity}!upAnimation@{upAnimation}}
 \index{upAnimation@{upAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{upAnimation}{upAnimation}}

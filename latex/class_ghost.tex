@@ -1,0 +1,63 @@
+\hypertarget{class_ghost}{}\doxysection{Ghost Class Reference}
+\label{class_ghost}\index{Ghost@{Ghost}}
+
+
+Child class of \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} and contains \mbox{\hyperlink{class_ghost}{Ghost}} specific member variables and methods.  
+
+
+
+
+{\ttfamily \#include $<$Ghost.\+h$>$}
+
+Inheritance diagram for Ghost\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.989324cm]{class_ghost}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_ghost_afcb1da1482fda6073e56c35702f14f98}\label{class_ghost_afcb1da1482fda6073e56c35702f14f98}} 
+{\bfseries Ghost} (S\+D\+L\+\_\+\+Texture $\ast$main\+Sprite\+Sheet, int texture\+Height, int texture\+Width, int ai, int starting\+PositionX, int starting\+PositionY)
+\item 
+void \mbox{\hyperlink{class_ghost_a5d7046552992d4b59281a7591a4b658d}{update}} (std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State, S\+D\+L\+\_\+\+Renderer $\ast$renderer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$ pacman, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_ghost_a630641af9d0ceca01e84c519c42bb3b7}\label{class_ghost_a630641af9d0ceca01e84c519c42bb3b7}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ai_component}{Ai\+Component}} $>$ {\bfseries ai\+Component}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Child class of \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} and contains \mbox{\hyperlink{class_ghost}{Ghost}} specific member variables and methods. 
+
+The different parts of the game is split in to different methods e.\+g main\+Menu, in\+Game and so on. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ghost_a5d7046552992d4b59281a7591a4b658d}\label{class_ghost_a5d7046552992d4b59281a7591a4b658d}} 
+\index{Ghost@{Ghost}!update@{update}}
+\index{update@{update}!Ghost@{Ghost}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Ghost\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State,  }\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$}]{pacman,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager }\end{DoxyParamCaption})}
+
+Update function for handling all actions the ghost can make 
+\begin{DoxyParams}{Parameters}
+{\em game\+State} & global game state \\
+\hline
+{\em renderer} & global S\+D\+L\+\_\+\+Renderer \\
+\hline
+{\em pacman} & pacman entity object \\
+\hline
+{\em collision\+Manager} & global collision manager \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Ghost.\+h\item 
+Ghost.\+cpp\end{DoxyCompactItemize}

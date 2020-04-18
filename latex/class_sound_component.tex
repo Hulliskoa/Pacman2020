@@ -1,0 +1,77 @@
+\hypertarget{class_sound_component}{}\doxysection{Sound\+Component Class Reference}
+\label{class_sound_component}\index{SoundComponent@{SoundComponent}}
+
+
+Component for play sound in game.  
+
+
+
+
+{\ttfamily \#include $<$Sound\+Component.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sound_component_aad453add3a5737ac2767764be34b0821}{Sound\+Component}} (std\+::string path)
+\item 
+bool \mbox{\hyperlink{class_sound_component_a89416cd0e21ea069a792e483fd87d76e}{load\+Media}} ()
+\item 
+void \mbox{\hyperlink{class_sound_component_aead8064ff9d773bc903ccc17fcefe57a}{play}} (int channel, int play\+Loop, int volume)
+\item 
+void \mbox{\hyperlink{class_sound_component_ad93bea1e37e222bbc181d5b1ebb1ebdc}{fade\+Out}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Component for play sound in game. 
+
+Each sound in the game is created with a sound component 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sound_component_aad453add3a5737ac2767764be34b0821}\label{class_sound_component_aad453add3a5737ac2767764be34b0821}} 
+\index{SoundComponent@{SoundComponent}!SoundComponent@{SoundComponent}}
+\index{SoundComponent@{SoundComponent}!SoundComponent@{SoundComponent}}
+\doxysubsubsection{\texorpdfstring{SoundComponent()}{SoundComponent()}}
+{\footnotesize\ttfamily Sound\+Component\+::\+Sound\+Component (\begin{DoxyParamCaption}\item[{std\+::string}]{path }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em path} & path to sound we want to use \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sound_component_ad93bea1e37e222bbc181d5b1ebb1ebdc}\label{class_sound_component_ad93bea1e37e222bbc181d5b1ebb1ebdc}} 
+\index{SoundComponent@{SoundComponent}!fadeOut@{fadeOut}}
+\index{fadeOut@{fadeOut}!SoundComponent@{SoundComponent}}
+\doxysubsubsection{\texorpdfstring{fadeOut()}{fadeOut()}}
+{\footnotesize\ttfamily void Sound\+Component\+::fade\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+fades current sound out and stops it \mbox{\Hypertarget{class_sound_component_a89416cd0e21ea069a792e483fd87d76e}\label{class_sound_component_a89416cd0e21ea069a792e483fd87d76e}} 
+\index{SoundComponent@{SoundComponent}!loadMedia@{loadMedia}}
+\index{loadMedia@{loadMedia}!SoundComponent@{SoundComponent}}
+\doxysubsubsection{\texorpdfstring{loadMedia()}{loadMedia()}}
+{\footnotesize\ttfamily bool Sound\+Component\+::load\+Media (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Loads sound file int sound\+Effect Mix Chunk \mbox{\Hypertarget{class_sound_component_aead8064ff9d773bc903ccc17fcefe57a}\label{class_sound_component_aead8064ff9d773bc903ccc17fcefe57a}} 
+\index{SoundComponent@{SoundComponent}!play@{play}}
+\index{play@{play}!SoundComponent@{SoundComponent}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void Sound\+Component\+::play (\begin{DoxyParamCaption}\item[{int}]{channel,  }\item[{int}]{play\+Loop,  }\item[{int}]{volume }\end{DoxyParamCaption})}
+
+Plays back Mix\+\_\+\+Chunk object 
+\begin{DoxyParams}{Parameters}
+{\em channel} & channel to play sound on (0 or 1); \\
+\hline
+{\em play\+Loop} & -\/1 loops, 0 plays once, 1 plays twice \\
+\hline
+{\em volume} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sound\+Component.\+h\item 
+Sound\+Component.\+cpp\end{DoxyCompactItemize}

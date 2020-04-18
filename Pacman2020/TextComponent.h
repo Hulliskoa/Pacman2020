@@ -14,7 +14,7 @@ class TextComponent
 {
 private:
 	std::vector<SDL_Texture*> texts;
-	TTF_Font* m_font;
+	TTF_Font* m_font = nullptr;
 	SDL_Rect message_rect;
 	SDL_Color color;
 	std::string m_text;
@@ -22,8 +22,22 @@ private:
 
 
 public:
+	/**
+		Constructor
+		\param fontPath channel to play sound on (0 or 1);
+		\param text -1 loops, 0 plays once, 1 plays twice
+		\param xCoord x coordinate text is rendered at
+		\param yCoord y coordinate text is rendered at
+		\param textWidth widht of textbox
+		\param textHeight heigt of textbox
+		\param renderer main renderer used for rendering text to screen
+		\param fontSize size of font
+	*/
 	TextComponent(std::string fontPath, std::string text, int xCoord, int yCoord, int textWidth, int textHeight, SDL_Renderer* renderer, int fontSize);
-	void renderText(SDL_Renderer* renderer, int position);
-	void switchColor();
-};
 
+	/**
+	Renderes text to screen
+		\param position position of the text we want to render i tne texts vector
+	*/
+	void renderText(int position);
+};

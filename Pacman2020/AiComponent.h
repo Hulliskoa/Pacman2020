@@ -82,7 +82,7 @@ public:
 	
 	/** Checks if the ghost is back in the cage
 		\param currentGhost the ghost that is currently being controlled by the AI
-		\param collisionManager a number between 0 and 4 for selectin wich AI we want to use
+		\param collisionManager a number between 0 and 4 for selecting wich AI we want to use
 
 	*/
 	bool checkIfReturn(std::shared_ptr<Entity> currentGhost, std::shared_ptr<CollisionManager> collisionManager);

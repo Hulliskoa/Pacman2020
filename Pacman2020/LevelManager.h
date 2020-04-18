@@ -71,15 +71,20 @@ public:
 	*/
 	int getStartingPelletCount();
 	/**
-	opens doors to the ghost cage
+		opens doors to the ghost cage
 	*/
 	void openDoors();
 	/**
-	opens doors to the ghost cage
+		opens doors to the ghost cage
 	*/
 	void closeDoors();
-
+	/**
+		returns current lvl
+	*/
 	int getCurrentLevel();
+	/**
+		set currentLevel member variable to 1;
+	*/
 	void resetLevels();
 
 };

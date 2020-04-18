@@ -90,35 +90,183 @@ $(document).ready(function(){initNavTree('class_game_manager.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
-<p>Handles the different game states and creation of game objects.  
+<p>Handles the game loop, stores the different game states and creates game objects.  
  <a href="class_game_manager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_game_manager_8h_source.html">GameManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aed925f4c3b91ad0e9603c271aea7dbc8"><td class="memItemLeft" align="right" valign="top"><a id="aed925f4c3b91ad0e9603c271aea7dbc8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GameManager</b> (SDL_Window *window, SDL_Renderer *renderer)</td></tr>
+<tr class="memitem:aed925f4c3b91ad0e9603c271aea7dbc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aed925f4c3b91ad0e9603c271aea7dbc8">GameManager</a> (SDL_Window *window, SDL_Renderer *renderer)</td></tr>
 <tr class="separator:aed925f4c3b91ad0e9603c271aea7dbc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbde8090c24ca199815ba1e85059c96f"><td class="memItemLeft" align="right" valign="top"><a id="abbde8090c24ca199815ba1e85059c96f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
+<tr class="memitem:abbde8090c24ca199815ba1e85059c96f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#abbde8090c24ca199815ba1e85059c96f">run</a> ()</td></tr>
 <tr class="separator:abbde8090c24ca199815ba1e85059c96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af12213767934ef16e379da3a923eda5a"><td class="memItemLeft" align="right" valign="top"><a id="af12213767934ef16e379da3a923eda5a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadspriteSheetTexture</b> (std::string path)</td></tr>
+<tr class="memitem:af12213767934ef16e379da3a923eda5a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#af12213767934ef16e379da3a923eda5a">loadspriteSheetTexture</a> (std::string path)</td></tr>
 <tr class="separator:af12213767934ef16e379da3a923eda5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae272eb0bf4e4987797fcff97723819cc"><td class="memItemLeft" align="right" valign="top"><a id="ae272eb0bf4e4987797fcff97723819cc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>startGame</b> ()</td></tr>
-<tr class="separator:ae272eb0bf4e4987797fcff97723819cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6164416055b0b0199d55fd33f0b630ce"><td class="memItemLeft" align="right" valign="top"><a id="a6164416055b0b0199d55fd33f0b630ce"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>exitGame</b> ()</td></tr>
-<tr class="separator:a6164416055b0b0199d55fd33f0b630ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a208350c4837cac0d984f51d5c3dcf8fe"><td class="memItemLeft" align="right" valign="top"><a id="a208350c4837cac0d984f51d5c3dcf8fe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pauseGame</b> ()</td></tr>
-<tr class="separator:a208350c4837cac0d984f51d5c3dcf8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cda44bac63cec73b24477c6f0f401ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a2cda44bac63cec73b24477c6f0f401ed">mainMenu</a> ()</td></tr>
+<tr class="separator:a2cda44bac63cec73b24477c6f0f401ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0f37e4a3948183a290c6d29529c7757"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#ae0f37e4a3948183a290c6d29529c7757">inGame</a> ()</td></tr>
+<tr class="separator:ae0f37e4a3948183a290c6d29529c7757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e0732a80a7e3e44c355cf49dc4967db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a5e0732a80a7e3e44c355cf49dc4967db">nextLvl</a> ()</td></tr>
+<tr class="separator:a5e0732a80a7e3e44c355cf49dc4967db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0a1d5f00ea21fe31c0b1be719c3e24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aee0a1d5f00ea21fe31c0b1be719c3e24">gameOver</a> ()</td></tr>
+<tr class="separator:aee0a1d5f00ea21fe31c0b1be719c3e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Handles the different game states and creation of game objects. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<div class="textblock"><p>Handles the game loop, stores the different game states and creates game objects. </p>
+<p>The different parts of the game is split in to different methods e.g mainMenu, inGame and so on. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aed925f4c3b91ad0e9603c271aea7dbc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed925f4c3b91ad0e9603c271aea7dbc8">&#9670;&nbsp;</a></span>GameManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameManager::GameManager </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window *&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>the main SDL window created in the main method. </td></tr>
+    <tr><td class="paramname">renderer</td><td>the main renderer created in the main method and used throughout the game </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aee0a1d5f00ea21fe31c0b1be719c3e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee0a1d5f00ea21fe31c0b1be719c3e24">&#9670;&nbsp;</a></span>gameOver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameManager::gameOver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Handles the exit process of the game </p>
+
+</div>
+</div>
+<a id="ae0f37e4a3948183a290c6d29529c7757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0f37e4a3948183a290c6d29529c7757">&#9670;&nbsp;</a></span>inGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameManager::inGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The actual game with update methods for all game objects and also the different game state while in game </p>
+
+</div>
+</div>
+<a id="af12213767934ef16e379da3a923eda5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af12213767934ef16e379da3a923eda5a">&#9670;&nbsp;</a></span>loadspriteSheetTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameManager::loadspriteSheetTexture </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Loads the main spritesheet used for rendering moving objects </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>path to spritesheet png file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2cda44bac63cec73b24477c6f0f401ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cda44bac63cec73b24477c6f0f401ed">&#9670;&nbsp;</a></span>mainMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameManager::mainMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Handles text rendering and input from user in main menu </p>
+
+</div>
+</div>
+<a id="a5e0732a80a7e3e44c355cf49dc4967db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e0732a80a7e3e44c355cf49dc4967db">&#9670;&nbsp;</a></span>nextLvl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameManager::nextLvl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Handles the intermission between each level </p>
+
+</div>
+</div>
+<a id="abbde8090c24ca199815ba1e85059c96f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbde8090c24ca199815ba1e85059c96f">&#9670;&nbsp;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameManager::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The game loop </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_game_manager_8h_source.html">GameManager.h</a></li>
 <li>GameManager.cpp</li>
 </ul>

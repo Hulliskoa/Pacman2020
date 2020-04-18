@@ -15,20 +15,27 @@ Renders and creates each level based on .txt files.
 \mbox{\Hypertarget{class_level_manager_a63431e5983e1d4ae1e6ae249fad91941}\label{class_level_manager_a63431e5983e1d4ae1e6ae249fad91941}} 
 {\bfseries Level\+Manager} (S\+D\+L\+\_\+\+Renderer $\ast$main\+Renderer)
 \item 
-\mbox{\Hypertarget{class_level_manager_a0d50e315ec3427f98bce20d8bcf38b7f}\label{class_level_manager_a0d50e315ec3427f98bce20d8bcf38b7f}} 
-void {\bfseries free} ()
+bool \mbox{\hyperlink{class_level_manager_a76cad5f9ec8ca9b4a4153d2d42a48618}{read\+Level\+From\+Txt}} (int current\+Lvl)
 \item 
-\mbox{\Hypertarget{class_level_manager_a76cad5f9ec8ca9b4a4153d2d42a48618}\label{class_level_manager_a76cad5f9ec8ca9b4a4153d2d42a48618}} 
-bool {\bfseries read\+Level\+From\+Txt} (int current\+Lvl)
+bool \mbox{\hyperlink{class_level_manager_a6de547fb129523222163d3dafbaed2d9}{loadsprite\+Sheet\+Texture}} (std\+::string path)
 \item 
-\mbox{\Hypertarget{class_level_manager_a6de547fb129523222163d3dafbaed2d9}\label{class_level_manager_a6de547fb129523222163d3dafbaed2d9}} 
-bool {\bfseries loadsprite\+Sheet\+Texture} (std\+::string path)
+void \mbox{\hyperlink{class_level_manager_a28f7ab4cdc0b15c48834ca3eacb7cbfd}{create\+Level}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager)
 \item 
-\mbox{\Hypertarget{class_level_manager_a28f7ab4cdc0b15c48834ca3eacb7cbfd}\label{class_level_manager_a28f7ab4cdc0b15c48834ca3eacb7cbfd}} 
-void {\bfseries create\+Level} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager)
+void \mbox{\hyperlink{class_level_manager_a874637f46eac9bc616c2f4fb5baca090}{render\+Level}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)
 \item 
-\mbox{\Hypertarget{class_level_manager_a874637f46eac9bc616c2f4fb5baca090}\label{class_level_manager_a874637f46eac9bc616c2f4fb5baca090}} 
-void {\bfseries render\+Level} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)
+void \mbox{\hyperlink{class_level_manager_a62a22c2071750612baf3aa4287dd7554}{create\+Inter\+Sections}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager)
+\item 
+int \mbox{\hyperlink{class_level_manager_ac8b1954a9152cac921d97af194a0d914}{pellet\+Count}} ()
+\item 
+int \mbox{\hyperlink{class_level_manager_a12b2dfe75ee9e58c9b0e6ee9c2d31919}{get\+Starting\+Pellet\+Count}} ()
+\item 
+void \mbox{\hyperlink{class_level_manager_abedfa3041d3b9b370a408be32a96ea6d}{open\+Doors}} ()
+\item 
+void \mbox{\hyperlink{class_level_manager_a15011b1c96e21792930af1e3eb731b97}{close\+Doors}} ()
+\item 
+int \mbox{\hyperlink{class_level_manager_a5f79ad45be70ba1fce453c453bc0f399}{get\+Current\+Level}} ()
+\item 
+void \mbox{\hyperlink{class_level_manager_a41ad26997a1b9f35b756feaffbf4f3c4}{reset\+Levels}} ()
 \end{DoxyCompactItemize}
 
 
@@ -36,6 +43,100 @@ void {\bfseries render\+Level} (S\+D\+L\+\_\+\+Renderer $\ast$renderer)
 Renders and creates each level based on .txt files. 
 
 Each .txt file contains ascii drawings of the level to be rendered. All stationary objects on the level is created and rendered by this class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_level_manager_a15011b1c96e21792930af1e3eb731b97}\label{class_level_manager_a15011b1c96e21792930af1e3eb731b97}} 
+\index{LevelManager@{LevelManager}!closeDoors@{closeDoors}}
+\index{closeDoors@{closeDoors}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{closeDoors()}{closeDoors()}}
+{\footnotesize\ttfamily void Level\+Manager\+::close\+Doors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+opens doors to the ghost cage \mbox{\Hypertarget{class_level_manager_a62a22c2071750612baf3aa4287dd7554}\label{class_level_manager_a62a22c2071750612baf3aa4287dd7554}} 
+\index{LevelManager@{LevelManager}!createInterSections@{createInterSections}}
+\index{createInterSections@{createInterSections}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{createInterSections()}{createInterSections()}}
+{\footnotesize\ttfamily void Level\+Manager\+::create\+Inter\+Sections (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager }\end{DoxyParamCaption})}
+
+Creates intersections where the ghosts are able to make decisions 
+\begin{DoxyParams}{Parameters}
+{\em collision\+Manager} & used for adding intersections to the collision check vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_level_manager_a28f7ab4cdc0b15c48834ca3eacb7cbfd}\label{class_level_manager_a28f7ab4cdc0b15c48834ca3eacb7cbfd}} 
+\index{LevelManager@{LevelManager}!createLevel@{createLevel}}
+\index{createLevel@{createLevel}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{createLevel()}{createLevel()}}
+{\footnotesize\ttfamily void Level\+Manager\+::create\+Level (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$}]{collision\+Manager }\end{DoxyParamCaption})}
+
+Creates lvl in the form of entity objects 
+\begin{DoxyParams}{Parameters}
+{\em collision\+Manager} & global collision manager is supplied so that every entity created can be push into the collision vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_level_manager_a5f79ad45be70ba1fce453c453bc0f399}\label{class_level_manager_a5f79ad45be70ba1fce453c453bc0f399}} 
+\index{LevelManager@{LevelManager}!getCurrentLevel@{getCurrentLevel}}
+\index{getCurrentLevel@{getCurrentLevel}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{getCurrentLevel()}{getCurrentLevel()}}
+{\footnotesize\ttfamily int Level\+Manager\+::get\+Current\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns current lvl \mbox{\Hypertarget{class_level_manager_a12b2dfe75ee9e58c9b0e6ee9c2d31919}\label{class_level_manager_a12b2dfe75ee9e58c9b0e6ee9c2d31919}} 
+\index{LevelManager@{LevelManager}!getStartingPelletCount@{getStartingPelletCount}}
+\index{getStartingPelletCount@{getStartingPelletCount}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{getStartingPelletCount()}{getStartingPelletCount()}}
+{\footnotesize\ttfamily int Level\+Manager\+::get\+Starting\+Pellet\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Counts the total amount of pellets \mbox{\Hypertarget{class_level_manager_a6de547fb129523222163d3dafbaed2d9}\label{class_level_manager_a6de547fb129523222163d3dafbaed2d9}} 
+\index{LevelManager@{LevelManager}!loadspriteSheetTexture@{loadspriteSheetTexture}}
+\index{loadspriteSheetTexture@{loadspriteSheetTexture}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{loadspriteSheetTexture()}{loadspriteSheetTexture()}}
+{\footnotesize\ttfamily bool Level\+Manager\+::loadsprite\+Sheet\+Texture (\begin{DoxyParamCaption}\item[{std\+::string}]{path }\end{DoxyParamCaption})}
+
+Used to load the spritesheet into a texture for use when creating entities and rendering 
+\begin{DoxyParams}{Parameters}
+{\em path} & to spritesheet png \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_level_manager_abedfa3041d3b9b370a408be32a96ea6d}\label{class_level_manager_abedfa3041d3b9b370a408be32a96ea6d}} 
+\index{LevelManager@{LevelManager}!openDoors@{openDoors}}
+\index{openDoors@{openDoors}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{openDoors()}{openDoors()}}
+{\footnotesize\ttfamily void Level\+Manager\+::open\+Doors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+opens doors to the ghost cage \mbox{\Hypertarget{class_level_manager_ac8b1954a9152cac921d97af194a0d914}\label{class_level_manager_ac8b1954a9152cac921d97af194a0d914}} 
+\index{LevelManager@{LevelManager}!pelletCount@{pelletCount}}
+\index{pelletCount@{pelletCount}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{pelletCount()}{pelletCount()}}
+{\footnotesize\ttfamily int Level\+Manager\+::pellet\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Counts the amount of pellets remaining on the map \mbox{\Hypertarget{class_level_manager_a76cad5f9ec8ca9b4a4153d2d42a48618}\label{class_level_manager_a76cad5f9ec8ca9b4a4153d2d42a48618}} 
+\index{LevelManager@{LevelManager}!readLevelFromTxt@{readLevelFromTxt}}
+\index{readLevelFromTxt@{readLevelFromTxt}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{readLevelFromTxt()}{readLevelFromTxt()}}
+{\footnotesize\ttfamily bool Level\+Manager\+::read\+Level\+From\+Txt (\begin{DoxyParamCaption}\item[{int}]{current\+Lvl }\end{DoxyParamCaption})}
+
+Used to read .txt file and convert it into the level\+Array 
+\begin{DoxyParams}{Parameters}
+{\em current\+Lvl} & used when loading the .txt file. the naming of each file is \char`\"{}lvl\#.\+txt\char`\"{} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_level_manager_a874637f46eac9bc616c2f4fb5baca090}\label{class_level_manager_a874637f46eac9bc616c2f4fb5baca090}} 
+\index{LevelManager@{LevelManager}!renderLevel@{renderLevel}}
+\index{renderLevel@{renderLevel}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{renderLevel()}{renderLevel()}}
+{\footnotesize\ttfamily void Level\+Manager\+::render\+Level (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer }\end{DoxyParamCaption})}
+
+Renders level to screen and makes use of the entity\+Array to load each entity created. 
+\begin{DoxyParams}{Parameters}
+{\em renderer} & needs to supply renderer to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_level_manager_a41ad26997a1b9f35b756feaffbf4f3c4}\label{class_level_manager_a41ad26997a1b9f35b756feaffbf4f3c4}} 
+\index{LevelManager@{LevelManager}!resetLevels@{resetLevels}}
+\index{resetLevels@{resetLevels}!LevelManager@{LevelManager}}
+\doxysubsubsection{\texorpdfstring{resetLevels()}{resetLevels()}}
+{\footnotesize\ttfamily void Level\+Manager\+::reset\+Levels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+set current\+Level member variable to 1; 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

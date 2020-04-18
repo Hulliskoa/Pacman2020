@@ -13,15 +13,9 @@ Score::Score(SDL_Renderer* gameRenderer) : renderer(gameRenderer)
 	seven = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
 	eight = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
 	nine = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
-	ghostPointsVisual = std::make_shared<AnimationComponent>(4, m_scoreTexture, m_textureWidth, m_textureHeight);
 	highScore = std::make_shared<AnimationComponent>(1, m_scoreTexture, m_textureWidth, m_textureHeight);
 	
 	highScore->addRect(769, 577, 47, 47);
-
-	ghostPointsVisual->addRect(769, 577, 47, 47);
-	ghostPointsVisual->addRect(817, 577, 47, 47);
-	ghostPointsVisual->addRect(865, 577, 47, 47);
-	ghostPointsVisual->addRect(913, 577, 47, 47);
 
 	zero->addRect(1, 1, 47, 47);
 	zero->addRect(49, 1, 47, 47);
@@ -161,23 +155,6 @@ void Score::update(int score)
 
 
 
-}
-
-void Score::renderGhostPoints(std::shared_ptr<Entity> pacman, int ghostPoints)
-{
-
-	if (ghostPoints == 200) {
-		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 0);
-	}
-	else if (ghostPoints == 400) {
-		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 1);
-	}
-	else if (ghostPoints == 800) {
-		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 2);
-	}
-	else if (ghostPoints == 1600) {
-		ghostPointsVisual->renderSpriteFonts(pacman->coordinates[0], pacman->coordinates[1], renderer, 3);
-	}
 }
 
 //source: http://lazyfoo.net/tutorials/SDL/07_texture_loading_and_rendering/index.php

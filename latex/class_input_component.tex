@@ -2,30 +2,52 @@
 \label{class_input_component}\index{InputComponent@{InputComponent}}
 
 
+Component for controlling entities in the game.  
+
+
+
+
 {\ttfamily \#include $<$Input\+Component.\+h$>$}
 
+Inheritance diagram for Input\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_input_component}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_input_component_a0ccbc8df1018cc6f67155dd68abe98b3}{update}} (S\+D\+L\+\_\+\+Window $\ast$window, int speed\+XY\mbox{[}2\mbox{]}, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+virtual void \mbox{\hyperlink{class_input_component_ae43e7e108e494284377ba6c69b9dabb8}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$ entity\+Being\+Controller, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+\item 
+std\+::string \mbox{\hyperlink{class_input_component_ad990fa45eed446afd55ee2b08c469261}{main\+Update}} (std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Component for controlling the different entities in the game. 
+Component for controlling entities in the game. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_input_component_a0ccbc8df1018cc6f67155dd68abe98b3}\label{class_input_component_a0ccbc8df1018cc6f67155dd68abe98b3}} 
-\index{InputComponent@{InputComponent}!update@{update}}
-\index{update@{update}!InputComponent@{InputComponent}}
-\doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void Input\+Component\+::update (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Window $\ast$}]{window,  }\item[{int}]{speed\+XY\mbox{[}2\mbox{]},  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_input_component_ad990fa45eed446afd55ee2b08c469261}\label{class_input_component_ad990fa45eed446afd55ee2b08c469261}} 
+\index{InputComponent@{InputComponent}!mainUpdate@{mainUpdate}}
+\index{mainUpdate@{mainUpdate}!InputComponent@{InputComponent}}
+\doxysubsubsection{\texorpdfstring{mainUpdate()}{mainUpdate()}}
+{\footnotesize\ttfamily std\+::string Input\+Component\+::main\+Update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
 
 Function for checking for input from keyboard 
 \begin{DoxyParams}{Parameters}
-{\em window} & S\+D\+L\+\_\+\+Window in which the input will be coming from \\
+{\em game\+State} & supplies games state to be able to quit when someone click the x on the window \\
 \hline
-{\em speed\+XY} & array for handling in which direction the entity is moving \\
+\end{DoxyParams}
+\mbox{\Hypertarget{class_input_component_ae43e7e108e494284377ba6c69b9dabb8}\label{class_input_component_ae43e7e108e494284377ba6c69b9dabb8}} 
+\index{InputComponent@{InputComponent}!update@{update}}
+\index{update@{update}!InputComponent@{InputComponent}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Input\+Component\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$}]{entity\+Being\+Controller,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Function for checking for input from keyboard 
+\begin{DoxyParams}{Parameters}
+{\em entity\+Being\+Controller} & entity object for accessing and editing the direction the entity is moving \\
 \hline
 {\em game\+State} & used for sending back gamestate to the \mbox{\hyperlink{class_game_manager}{Game\+Manager}} depending on input recieved \\
 \hline

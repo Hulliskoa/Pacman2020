@@ -5,10 +5,13 @@
 #include <vector>
 #include <iostream>
 
-/**
-AnimationComponent is responsible for rendering animations for all entities in the game.
-Each entity object has a AnimationComponent for each animations they need. With the help of spritesheets  and SDL_Renderer this class can render all the sprites we need to create animations
-*/
+/*! \brief
+ *		responsible for rendering animations for all entities in the game.
+ *
+ *
+ * 
+ * Each entity object has a AnimationComponent for each animations they need. With the help of spritesheets  and SDL_Renderer this class can render all the sprites we need to create animations
+ */
 class AnimationComponent
 {
 private:

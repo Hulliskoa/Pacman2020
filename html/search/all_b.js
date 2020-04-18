@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['upanimation_19',['upAnimation',['../class_moving_entity.html#a98d8cccd807935034aa4b53066c685b9',1,'MovingEntity']]],
-  ['update_20',['update',['../class_input_component.html#a0ccbc8df1018cc6f67155dd68abe98b3',1,'InputComponent']]]
+  ['nextlvl_41',['nextLvl',['../class_game_manager.html#a5e0732a80a7e3e44c355cf49dc4967db',1,'GameManager']]],
+  ['normalspeed_42',['normalSpeed',['../class_moving_entity.html#ae6807ead0e334f910985f52becddd3b7',1,'MovingEntity']]]
 ];

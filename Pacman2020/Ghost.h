@@ -5,7 +5,7 @@
 #include "AiComponent.h"
 
 /*! \brief
- *		Child class og MovingEntity and contains Ghost specific member variables and methods
+ *		Child class of MovingEntity and contains Ghost specific member variables and methods
  *
  *
  *	The different parts of the game is split in to different methods e.g mainMenu, inGame and so on.
@@ -28,6 +28,13 @@ public:
 	
 	std::shared_ptr<AiComponent> aiComponent;
 	Ghost(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, int ai, int startingPositionX, int startingPositionY);
+	/**
+		Update function for handling all actions the ghost can make
+		\param gameState global game state
+		\param renderer global SDL_Renderer
+		\param pacman pacman entity object
+		\param collisionManager global collision manager
+	*/
 	void update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer, std::shared_ptr<MovingEntity> pacman, std::shared_ptr<CollisionManager> collisionManager);
 
 

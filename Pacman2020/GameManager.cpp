@@ -122,14 +122,14 @@ void GameManager::mainMenu()
 	*menuInput = m_input->mainUpdate(gameState);
 
 	//Renders main menu;
-	startGameText->renderText(gameRenderer, 0);
-	quitGameText->renderText(gameRenderer, 0);
+	startGameText->renderText(0);
+	quitGameText->renderText( 0);
 
 	if (menuChoice == 0) {
-		startGameText->renderText(gameRenderer, 1);
+		startGameText->renderText(1);
 	}
 	if (menuChoice == 1) {
-		quitGameText->renderText(gameRenderer, 1);
+		quitGameText->renderText(1);
 	}
 
 	if (*menuInput == "DOWN") {
@@ -286,15 +286,15 @@ void GameManager::nextLvl()
 	//Checks button push in menu;
 	*menuInput = m_input->mainUpdate(gameState);
 
-	continueGameText->renderText(gameRenderer, 0);
-	quitGameText->renderText(gameRenderer, 0);
+	continueGameText->renderText(0);
+	quitGameText->renderText(0);
 
 	//switch color
 	if (menuChoice == 0) {
-		continueGameText->renderText(gameRenderer, 1);
+		continueGameText->renderText(1);
 	}
 	if (menuChoice == 1) {
-		quitGameText->renderText(gameRenderer, 1);
+		quitGameText->renderText(1);
 	}
 
 	if (*menuInput == "DOWN") {
@@ -342,16 +342,16 @@ void GameManager::gameOver()
 	SDL_RenderClear(gameRenderer);
 
 	//Renders main menu;
-	startGameText->renderText(gameRenderer, 0);
-	quitGameText->renderText(gameRenderer, 0);
-	gameOverText->renderText(gameRenderer, 0);
+	startGameText->renderText(0);
+	quitGameText->renderText(0);
+	gameOverText->renderText(0);
 
 	//switch color
 	if (menuChoice == 0) {
-		startGameText->renderText(gameRenderer, 1);
+		startGameText->renderText(1);
 	}
 	if (menuChoice == 1) {
-		quitGameText->renderText(gameRenderer, 1);
+		quitGameText->renderText(1);
 	}
 
 	if (*menuInput == "DOWN") {

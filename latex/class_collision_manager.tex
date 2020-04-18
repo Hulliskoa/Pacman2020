@@ -12,16 +12,29 @@ Does collision checking on behalf of all the \mbox{\hyperlink{class_moving_entit
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ \mbox{\hyperlink{class_collision_manager_aaafc944c384702015bd29c5d876261a2}{collision\+Check}} (\mbox{\hyperlink{class_entity}{Entity}} $\ast$entity\+To\+Check)
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ $>$ \mbox{\hyperlink{class_collision_manager_a1b77e96922687039e396888241a6725f}{collision\+Check}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity\+To\+Check)
+\item 
+\mbox{\Hypertarget{class_collision_manager_a6a92af6e8a3673999e5d444094de45b2}\label{class_collision_manager_a6a92af6e8a3673999e5d444094de45b2}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ {\bfseries collision\+Check\+Moving} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity\+To\+Check)
+\item 
+\mbox{\Hypertarget{class_collision_manager_ae1240a83c555229ab6adea769b273ef7}\label{class_collision_manager_ae1240a83c555229ab6adea769b273ef7}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ {\bfseries collision\+Check\+Stationary} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity\+To\+Check)
 \item 
 void \mbox{\hyperlink{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}{add\+Entity}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity)
+\item 
+void \mbox{\hyperlink{class_collision_manager_a043cc7460cb4b50accf850be26ff3746}{add\+Moving\+Entity}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity)
+\item 
+bool \mbox{\hyperlink{class_collision_manager_aaca878a61fbd2f50d8ba5ca7cfc54d2a}{check\+Intersection}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity\+To\+Check)
+\item 
+\mbox{\Hypertarget{class_collision_manager_a93997f6773090357f3428fd3fb17fe73}\label{class_collision_manager_a93997f6773090357f3428fd3fb17fe73}} 
+void {\bfseries clear\+Entity\+Array} ()
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Does collision checking on behalf of all the \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} objects. 
 
-The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them 
+The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them. It is used inside all update methods of \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} classes 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}\label{class_collision_manager_ae8e8ea8866c6b82a68cacad7cc27d322}} 
@@ -30,16 +43,38 @@ The collision manager keeps track of all entities in game and can be called to c
 \doxysubsubsection{\texorpdfstring{addEntity()}{addEntity()}}
 {\footnotesize\ttfamily void Collision\+Manager\+::add\+Entity (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{entity }\end{DoxyParamCaption})}
 
-Used to add entities to the entities vector 
+Used to add stationary entities to the stationary\+Entities vector 
 \begin{DoxyParams}{Parameters}
 {\em entity} & \mbox{\hyperlink{class_entity}{Entity}} we want to add to vector for collision checking later \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_collision_manager_aaafc944c384702015bd29c5d876261a2}\label{class_collision_manager_aaafc944c384702015bd29c5d876261a2}} 
+\mbox{\Hypertarget{class_collision_manager_a043cc7460cb4b50accf850be26ff3746}\label{class_collision_manager_a043cc7460cb4b50accf850be26ff3746}} 
+\index{CollisionManager@{CollisionManager}!addMovingEntity@{addMovingEntity}}
+\index{addMovingEntity@{addMovingEntity}!CollisionManager@{CollisionManager}}
+\doxysubsubsection{\texorpdfstring{addMovingEntity()}{addMovingEntity()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::add\+Moving\+Entity (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{entity }\end{DoxyParamCaption})}
+
+Used to add moving entities to the moving\+Entities vector 
+\begin{DoxyParams}{Parameters}
+{\em entity} & \mbox{\hyperlink{class_entity}{Entity}} we want to add to vector for collision checking later \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_collision_manager_aaca878a61fbd2f50d8ba5ca7cfc54d2a}\label{class_collision_manager_aaca878a61fbd2f50d8ba5ca7cfc54d2a}} 
+\index{CollisionManager@{CollisionManager}!checkIntersection@{checkIntersection}}
+\index{checkIntersection@{checkIntersection}!CollisionManager@{CollisionManager}}
+\doxysubsubsection{\texorpdfstring{checkIntersection()}{checkIntersection()}}
+{\footnotesize\ttfamily bool Collision\+Manager\+::check\+Intersection (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{entity\+To\+Check }\end{DoxyParamCaption})}
+
+checks if entity is on top of an intersection 
+\begin{DoxyParams}{Parameters}
+{\em entity\+To\+Check} & \mbox{\hyperlink{class_entity}{Entity}} we want to check is on top of intersection \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_collision_manager_a1b77e96922687039e396888241a6725f}\label{class_collision_manager_a1b77e96922687039e396888241a6725f}} 
 \index{CollisionManager@{CollisionManager}!collisionCheck@{collisionCheck}}
 \index{collisionCheck@{collisionCheck}!CollisionManager@{CollisionManager}}
 \doxysubsubsection{\texorpdfstring{collisionCheck()}{collisionCheck()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ Collision\+Manager\+::collision\+Check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_entity}{Entity}} $\ast$}]{entity\+To\+Check }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ $>$ Collision\+Manager\+::collision\+Check (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{entity\+To\+Check }\end{DoxyParamCaption})}
 
 Checks if the entity has collided with anything and returns the pointer to the object it collided with 
 \begin{DoxyParams}{Parameters}

@@ -27,13 +27,11 @@ TextComponent::TextComponent(std::string fontPath, std::string text, int xCoord,
 }
 
 
-void TextComponent::renderText(SDL_Renderer* renderer, int position)
+void TextComponent::renderText(int position)
 {
-	SDL_RenderCopy(renderer, texts[position], NULL, &message_rect);
+	SDL_RenderCopy(m_mainRenderer, texts[position], NULL, &message_rect);
 }
 
-void TextComponent::switchColor()
-{
-}
+
 
 

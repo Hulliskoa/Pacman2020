@@ -1,9 +1,18 @@
 \hypertarget{class_pacman}{}\doxysection{Pacman Class Reference}
 \label{class_pacman}\index{Pacman@{Pacman}}
+
+
+child class of \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} and contains all \mbox{\hyperlink{class_pacman}{Pacman}} specific member variables and methods  
+
+
+
+
+{\ttfamily \#include $<$Pacman.\+h$>$}
+
 Inheritance diagram for Pacman\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{class_pacman}
+\includegraphics[height=2.989324cm]{class_pacman}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -12,11 +21,51 @@ Inheritance diagram for Pacman\+:\begin{figure}[H]
 \mbox{\Hypertarget{class_pacman_af98ff2cc8ee412b3feb5c6dc45a73683}\label{class_pacman_af98ff2cc8ee412b3feb5c6dc45a73683}} 
 void {\bfseries update} (std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_manager}{Collision\+Manager}} $>$ collision\+Manager, S\+D\+L\+\_\+\+Renderer $\ast$renderer)
 \item 
-\mbox{\Hypertarget{class_pacman_a2e4e3e64999aae1197fc3592f1821d34}\label{class_pacman_a2e4e3e64999aae1197fc3592f1821d34}} 
-{\bfseries Pacman} (S\+D\+L\+\_\+\+Window $\ast$w, S\+D\+L\+\_\+\+Texture $\ast$main\+Sprite\+Sheet, int texture\+Height, int texture\+Width)
+\mbox{\Hypertarget{class_pacman_aa9e76e901909e1b770f57c1b1a806e73}\label{class_pacman_aa9e76e901909e1b770f57c1b1a806e73}} 
+{\bfseries Pacman} (S\+D\+L\+\_\+\+Texture $\ast$main\+Sprite\+Sheet, int texture\+Height, int texture\+Width, S\+D\+L\+\_\+\+Renderer $\ast$renderer)
+\item 
+int \mbox{\hyperlink{class_pacman_a111a32bb5314d4ead57988ea0f5529ba}{get\+Score}} ()
+\item 
+void \mbox{\hyperlink{class_pacman_ac8a89dfc0ef1864bdd21e768eb87b59c}{reset\+Score}} ()
+\item 
+void \mbox{\hyperlink{class_pacman_af0b4de5cb0975f879d27818988fefa80}{lost\+Life}} ()
+\item 
+int \mbox{\hyperlink{class_pacman_a3c45370b9c4dda2e480ff60ef2ae2709}{get\+Remaining\+Lives}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
+
+\doxysubsection{Detailed Description}
+child class of \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} and contains all \mbox{\hyperlink{class_pacman}{Pacman}} specific member variables and methods 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_pacman_a3c45370b9c4dda2e480ff60ef2ae2709}\label{class_pacman_a3c45370b9c4dda2e480ff60ef2ae2709}} 
+\index{Pacman@{Pacman}!getRemainingLives@{getRemainingLives}}
+\index{getRemainingLives@{getRemainingLives}!Pacman@{Pacman}}
+\doxysubsubsection{\texorpdfstring{getRemainingLives()}{getRemainingLives()}}
+{\footnotesize\ttfamily int Pacman\+::get\+Remaining\+Lives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns m\+\_\+remaining\+Life \mbox{\Hypertarget{class_pacman_a111a32bb5314d4ead57988ea0f5529ba}\label{class_pacman_a111a32bb5314d4ead57988ea0f5529ba}} 
+\index{Pacman@{Pacman}!getScore@{getScore}}
+\index{getScore@{getScore}!Pacman@{Pacman}}
+\doxysubsubsection{\texorpdfstring{getScore()}{getScore()}}
+{\footnotesize\ttfamily int Pacman\+::get\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns m\+\_\+score \mbox{\Hypertarget{class_pacman_af0b4de5cb0975f879d27818988fefa80}\label{class_pacman_af0b4de5cb0975f879d27818988fefa80}} 
+\index{Pacman@{Pacman}!lostLife@{lostLife}}
+\index{lostLife@{lostLife}!Pacman@{Pacman}}
+\doxysubsubsection{\texorpdfstring{lostLife()}{lostLife()}}
+{\footnotesize\ttfamily void Pacman\+::lost\+Life (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+reduce m\+\_\+remaining\+Life by 1 \mbox{\Hypertarget{class_pacman_ac8a89dfc0ef1864bdd21e768eb87b59c}\label{class_pacman_ac8a89dfc0ef1864bdd21e768eb87b59c}} 
+\index{Pacman@{Pacman}!resetScore@{resetScore}}
+\index{resetScore@{resetScore}!Pacman@{Pacman}}
+\doxysubsubsection{\texorpdfstring{resetScore()}{resetScore()}}
+{\footnotesize\ttfamily void Pacman\+::reset\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+resets m\+\_\+score to 0 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
