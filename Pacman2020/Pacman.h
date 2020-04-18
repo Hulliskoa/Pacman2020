@@ -10,10 +10,13 @@
 #include "Score.h"
 #include "CollisionManager.h"
 #include "SoundComponent.h"
+#include "InputComponent.h"
 
 class Pacman : public MovingEntity
 {
 private:
+	std::shared_ptr<InputComponent> m_input;
+
 	std::shared_ptr<Score> scoreComponent;
 	std::shared_ptr<SoundComponent> m_pelletMunch;
 	std::shared_ptr<SoundComponent> m_fruitMunch;

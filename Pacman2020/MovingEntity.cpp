@@ -29,6 +29,11 @@ void MovingEntity::increaseSpeed()
 	normalSpeed += 2;
 }
 
+void MovingEntity::setBaseSpeed(int newSpeed)
+{
+	normalSpeed = newSpeed;
+}
+
 MovingEntity::MovingEntity(int xStart, int yStart, int numAnimFrames, SDL_Texture* mainSpriteSheet, int textureWidth, int textureHeight)
 {
 	numFrames = numAnimFrames;
@@ -44,5 +49,10 @@ MovingEntity::MovingEntity(int xStart, int yStart, int numAnimFrames, SDL_Textur
 }
 
 MovingEntity::MovingEntity() {}
+
+int MovingEntity::getSpeed()
+{
+	return speed;
+}
 
 

@@ -13,7 +13,7 @@
  *		Handles the game loop, stores the different game states and creates game objects
  *
  *
- *
+ *	The different parts of the game is split in to different methods e.g mainMenu, inGame and so on.
  */
 class GameManager
 {
@@ -26,11 +26,11 @@ private:
 	int spriteSheetWidth;
 	int spriteSheetHeight;
 	int menuChoice = 0;/*!<Keeps track of which menu choice that is selected*/
-	int currentLvl = 1;
-	int currentMap = 1;
-	bool lvlLoaded = false;
-	bool ghostsMovingOut = false;
-	bool startedFleeing = false;
+	int currentLvl = 1;/*!<Keeps track of the current level*/
+	int currentMap = 1;/*!<Keeps track of the current map to be loaded*/
+	bool lvlLoaded = false;/*!<Boolean for checking if the current lvl is loaded*/
+	bool ghostsMovingOut = false; /*!<Boolean for checking if the ghost ar moving out of the cage*/
+	bool startedFleeing = false; /*!<Boolean for checking if the ghost started fleeing and then being able to set a timer*/
 
 	std::shared_ptr<TextComponent> startGameText;/*!<TextComponent for static text in menus*/
 	std::shared_ptr<TextComponent> quitGameText;/*!<TextComponent for static text in menus*/
@@ -41,8 +41,8 @@ private:
 	std::shared_ptr<CollisionManager> m_collisionManager;/*!<collision manager used throughout the program*/
 	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();/*!<Keeps track of game state*/
 	std::shared_ptr<LevelManager> m_levelManager;/*!<A single level manager for creating and rendering levels*/
-	std::shared_ptr<SoundComponent> m_introMusic;/*!<A single level manager for creating and rendering levels*/
-	std::shared_ptr<SoundComponent> m_intermission;/*!<A single level manager for creating and rendering levels*/
+	std::shared_ptr<SoundComponent> m_introMusic;/*!<SoundComponent for the intro music*/
+	std::shared_ptr<SoundComponent> m_intermission;/*!<SoundComponent for the intermission music*/
 
 	std::shared_ptr<Ghost> shadow;
 	std::shared_ptr<Ghost> speedy;
@@ -51,17 +51,30 @@ private:
 	std::shared_ptr<Pacman> pacman;
 
 public:
+	/**Constructor
+		\param window the main SDL window created in the main method.
+		\param renderer the main renderer created in the main method and used throughout the game
+	*/
 	GameManager(SDL_Window* window, SDL_Renderer* renderer);
+	
+	/**The game loop*/
 	void run();
+	/**Loads the main spritesheet used for rendering moving objects
+		\param path path to spritesheet png file
+	*/
 	bool loadspriteSheetTexture(std::string path);
-	void mainMenu();
-	void inGame();
-	void nextLvl();
-	void gameOver();
 
-	void startGame();
-	void exitGame();
-	void pauseGame();
+	/**Handles text rendering and input from user in main menu*/
+	void mainMenu();
+
+	/**The actual game with update methods for all game objects and also the different game state while in game*/
+	void inGame();
+
+	/**Handles the intermission between each level*/
+	void nextLvl();
+
+	/**Handles the exit process of the game*/
+	void gameOver();
 
 
 };

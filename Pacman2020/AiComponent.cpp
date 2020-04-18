@@ -104,18 +104,18 @@ void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entit
 	lastVelocity[1] = currentGhost->velocity[1];
 
 	if (collisionManager->collisionCheck(currentGhost)->getEntityType() == EntityType::PACMAN) {
-		std::cout << "ello" <<std::endl;
+
 	}
 	if (collisionManager->collisionCheck(currentGhost)->getEntityType() == EntityType::PACMAN && currentGhost->getEntityType() != EntityType::GHOST_EYES) {
 		if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
 			currentGhost->setEntityType(EntityType::GHOST_EYES);
 		}
 		else if (*gameState == GameState::GAME_RUNNING) {
-			*gameState == GameState::RESTART_LEVEL;
+			*gameState = GameState::RESTART_LEVEL;
 			std::cout << "pacman hit" << std::endl;
 		}
 	}
-
+	//Checks tile directly in front of ghost
 	if (collisionManager->collisionCheck(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
 		tilesChecked[0] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - (targetTile[1]), 2);
 		firstV.emplace_back(currentGhost->velocity[0]);
@@ -123,7 +123,7 @@ void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entit
 		shortestPath.insert(std::pair<int, std::vector<int>>(tilesChecked[0], firstV));
 	}
 
-	//check next tile in other direction
+	//check next tile in left direction
 	currentGhost->velocity[0] = lastVelocity[1];
 	currentGhost->velocity[1] = lastVelocity[0];
 
@@ -134,7 +134,7 @@ void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entit
 		shortestPath.insert(std::pair<int, std::vector<int>>(tilesChecked[1], secondV));
 	}
 
-	//check next tile in other direction
+	//check next tile in right direction
 	currentGhost->velocity[0] = -lastVelocity[1];
 	currentGhost->velocity[1] = -lastVelocity[0];
 

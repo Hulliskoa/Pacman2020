@@ -1,6 +1,11 @@
 #pragma once
 
-
+/*! \brief
+ *		Enum class for all possible game states in the game
+ *
+ *
+ *
+ */
 enum class GameState {
 	MAIN_MENU,
 	GAME_RUNNING,

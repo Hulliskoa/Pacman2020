@@ -374,9 +374,6 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 			yCoord = 88;
 		}
 	}
-	//startingPelletCount = pelletCount();
-
-
 }
 void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
 {
@@ -458,7 +455,6 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 	}
 	else
 	{
-		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == NULL)
 		{

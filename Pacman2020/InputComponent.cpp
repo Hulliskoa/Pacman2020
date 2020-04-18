@@ -1,7 +1,7 @@
 #include "InputComponent.h"
 
 
-void InputComponent::update(int * speedXY, std::shared_ptr<GameState> gameState)
+void InputComponent::update(std::shared_ptr<MovingEntity> entityBeingController, std::shared_ptr<GameState> gameState)
 {
 
 	while (SDL_PollEvent(&event) != 0)
@@ -20,26 +20,27 @@ void InputComponent::update(int * speedXY, std::shared_ptr<GameState> gameState)
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_UP:
-				speedXY[0] = 0;
-				speedXY[1] = -speed;
+				entityBeingController->velocity[0] = 0;
+				entityBeingController->velocity[1] = -entityBeingController->getSpeed();;
 
 				break;
 
 			case SDLK_DOWN:
-				speedXY[0] = 0;
-				speedXY[1] = speed;
+				entityBeingController->velocity[0] = 0;
+				entityBeingController->velocity[1] = entityBeingController->getSpeed();
 
 				break;
 
 			case SDLK_LEFT:
-				speedXY[0] = -speed;
-				speedXY[1] = 0;
+				entityBeingController->velocity[0] = -entityBeingController->getSpeed();;
+				entityBeingController->velocity[1] = 0;
+
 
 				break;
 
 			case SDLK_RIGHT:
-				speedXY[0] = speed;
-				speedXY[1] = 0;
+				entityBeingController->velocity[0] = entityBeingController->getSpeed();;
+				entityBeingController->velocity[1] = 0;
 
 				break;
 			case SDLK_ESCAPE:
@@ -88,6 +89,7 @@ std::string InputComponent::mainUpdate(std::shared_ptr<GameState> gameState)
 			case SDLK_ESCAPE:
 				return "ESC";
 				break;
+
 			case SDLK_RETURN:
 				return "RETURN";
 				break;

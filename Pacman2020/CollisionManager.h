@@ -6,12 +6,12 @@
  *		Does collision checking on behalf of all the MovingEntity objects
  *
  *
- * The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them
+ * The collision manager keeps track of all entities in game and can be called to check if an entity has collided with any of them. It is used inside all update methods of MovingEntity classes
  */
 class CollisionManager
 {
 private:
-	int hitBoxRadius = 8;/*!<Hitbox radious for the moving entity*/
+	int hitBoxRadius = 8;/*!<Hitbox radius for the moving entity*/
 	std::vector<std::shared_ptr<Entity>> entities;/*!<Vector containing all entities in the game*/
 
 public:

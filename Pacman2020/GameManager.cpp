@@ -73,6 +73,7 @@ GameManager::GameManager(SDL_Window* window, SDL_Renderer* renderer) :
 	pokey->startAnimation->addRect(553, 113, 14, 14);
 
 	pacman = std::make_shared<Pacman>(spriteSheetTexture, spriteSheetHeight, spriteSheetWidth, gameRenderer);
+	pacman->setBaseSpeed(4);
 	m_collisionManager->addEntity(pacman);
 	m_collisionManager->addEntity(shadow);
 	m_collisionManager->addEntity(speedy);

@@ -24,7 +24,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		}
 	}
 	else {
-		//collision check and what switch case for what pacman should do depending on what entity type he collides with
+		//collision check and switch case for what pacman should do depending on what entity type he collides with
 		std::shared_ptr<Entity>  collidedWith = collisionManager->collisionCheck(shared_from_this());//returns a pointer to an entity that can be used for further handling
 		if (collidedWith != nullptr) {
 			switch (collidedWith->getEntityType())
@@ -104,8 +104,21 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		coordinates[1] += velocity[1];
 
 		if (collisionManager->checkIntersection(shared_from_this())) {
-			m_input->update(velocity, gameState);
+			m_input->update(shared_from_this(), gameState);
 		}
+		
+		else {
+			lastVelocity[0] = velocity[0];
+			lastVelocity[1] = velocity[1];
+			m_input->update(shared_from_this(), gameState);
+			if (lastVelocity[0] == 0) {
+				velocity[0] = 0;
+			}
+			else if (lastVelocity[1] == 0) {
+				velocity[1] = 0;
+			}
+		}
+		
 
 		//Checks the direction pacman is traveling and renders correct animation
 		if (velocity[0] > 0) {
