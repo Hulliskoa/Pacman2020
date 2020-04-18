@@ -55,7 +55,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 					velocity[0] = 0;
 					velocity[1] = 0;
-
 					break;
 
 				case EntityType::PELLET:

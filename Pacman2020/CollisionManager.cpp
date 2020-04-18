@@ -2,10 +2,7 @@
 
 std::vector<std::shared_ptr<Entity>> CollisionManager::collisionCheck(std::shared_ptr<Entity> entityToCheck)
 {
-	//std::thread t1(collisionCheckMoving(entityToCheck));
 	entitiesCollidedWith.clear();
-
-
 
 	auto t1 = std::async(&CollisionManager::collisionCheckStationary, this, entityToCheck);
 	auto t2 = std::async(&CollisionManager::collisionCheckMoving, this, entityToCheck);
@@ -130,7 +127,6 @@ std::shared_ptr<Entity> CollisionManager::collisionCheckStationary(std::shared_p
 		}
 		//returns the object that the entity collided with
 		if (collision) {
-
 			return x;
 		}
 	}

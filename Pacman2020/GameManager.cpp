@@ -225,6 +225,7 @@ void GameManager::inGame() {
 		bashful->setVelocity(0, 0);
 		pokey->setVelocity(0, 0);
 		shadow->setVelocity(0, 0);
+
 	}
 
 	if (*gameState == GameState::RESTART_LEVEL) {
@@ -238,6 +239,9 @@ void GameManager::inGame() {
 		pokey->setVelocity(1, 0);
 		shadow->setVelocity(1, 0);
 		*gameState = GameState::GAME_RUNNING;
+	}
+	if(*gameState == GameState::GAME_OVER){
+		lvlLoaded = false;
 	}
 	shadow->update(gameState, gameRenderer, pacman, m_collisionManager);
 	speedy->update(gameState, gameRenderer, pacman, m_collisionManager);
@@ -319,6 +323,15 @@ void GameManager::gameOver()
 		pacman->resetScore();
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
+		pacman->setCoordinates(104, 216);
+		shadow->setCoordinates(116, 120);
+		speedy->setCoordinates(132, 144);
+		bashful->setCoordinates(116, 144);
+		pokey->setCoordinates(100, 144);
+		speedy->setVelocity(1, 0);
+		bashful->setVelocity(1, 0);
+		pokey->setVelocity(1, 0);
+		shadow->setVelocity(1, 0);
 		lvlLoaded = true;
 	}
 
