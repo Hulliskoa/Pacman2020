@@ -312,6 +312,7 @@ void GameManager::gameOver()
 	if (!lvlLoaded) {
 		m_collisionManager->clearEntityArray();
 		m_levelManager->resetLevels();
+		pacman->resetScore();
 		m_levelManager->createLevel(m_collisionManager);
 		m_levelManager->createInterSections(m_collisionManager);
 

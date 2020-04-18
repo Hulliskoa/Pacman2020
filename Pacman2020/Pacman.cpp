@@ -12,6 +12,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 	//Death animation and handling
 	if (*gameState == GameState::PACMAN_DIED) {
+	
 		deathAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		if (deathAnimation->getCurrentFrame() == deathAnimation->getTotalFrames() - 1) {
@@ -19,6 +20,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				*gameState = GameState::GAME_OVER;
 			}
 			else {
+				lostLife();
 				*gameState = GameState::RESTART_LEVEL;
 			}
 		}
@@ -182,6 +184,16 @@ int Pacman::getRemainingLives()
 
 int Pacman::getScore() {
 	return score;
+}
+
+void Pacman::resetScore()
+{
+	score = 0;
+}
+
+void Pacman::lostLife()
+{
+	remainingLife--;
 }
 
 Pacman::~Pacman()

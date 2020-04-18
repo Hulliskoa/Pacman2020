@@ -1,18 +1,2 @@
-﻿  AiComponent.cpp
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(123,107): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(134,107): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(145,107): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(172): warning C4715: 'AiComponent::checkIfReturn': not all control paths return a value
+﻿  Pacman.cpp
   Pacman2020.vcxproj -> C:\Users\truls\source\repos\Pacman2020\Debug\Pacman2020.exe
