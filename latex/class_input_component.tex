@@ -18,7 +18,7 @@ Inheritance diagram for Input\+Component\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \mbox{\hyperlink{class_input_component_ae43e7e108e494284377ba6c69b9dabb8}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$ entity\+Being\+Controller, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
+void \mbox{\hyperlink{class_input_component_a7f97de22718a0d1136e987f8229099e2}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$ entity\+Being\+Controlled, std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
 \item 
 std\+::string \mbox{\hyperlink{class_input_component_ad990fa45eed446afd55ee2b08c469261}{main\+Update}} (std\+::shared\+\_\+ptr$<$ Game\+State $>$ game\+State)
 \end{DoxyCompactItemize}
@@ -39,15 +39,15 @@ Function for checking for input from keyboard
 {\em game\+State} & supplies games state to be able to quit when someone click the x on the window \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_input_component_ae43e7e108e494284377ba6c69b9dabb8}\label{class_input_component_ae43e7e108e494284377ba6c69b9dabb8}} 
+\mbox{\Hypertarget{class_input_component_a7f97de22718a0d1136e987f8229099e2}\label{class_input_component_a7f97de22718a0d1136e987f8229099e2}} 
 \index{InputComponent@{InputComponent}!update@{update}}
 \index{update@{update}!InputComponent@{InputComponent}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void Input\+Component\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$}]{entity\+Being\+Controller,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Input\+Component\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_moving_entity}{Moving\+Entity}} $>$}]{entity\+Being\+Controlled,  }\item[{std\+::shared\+\_\+ptr$<$ Game\+State $>$}]{game\+State }\end{DoxyParamCaption})}
 
 Function for checking for input from keyboard 
 \begin{DoxyParams}{Parameters}
-{\em entity\+Being\+Controller} & entity object for accessing and editing the direction the entity is moving \\
+{\em entity\+Being\+Controlled} & entity object for accessing and editing the direction the entity is moving \\
 \hline
 {\em game\+State} & used for sending back gamestate to the \mbox{\hyperlink{class_game_manager}{Game\+Manager}} depending on input recieved \\
 \hline

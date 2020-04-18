@@ -106,8 +106,8 @@ Inheritance diagram for InputComponent:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae43e7e108e494284377ba6c69b9dabb8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#ae43e7e108e494284377ba6c69b9dabb8">update</a> (std::shared_ptr&lt; <a class="el" href="class_moving_entity.html">MovingEntity</a> &gt; entityBeingController, std::shared_ptr&lt; GameState &gt; gameState)</td></tr>
-<tr class="separator:ae43e7e108e494284377ba6c69b9dabb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f97de22718a0d1136e987f8229099e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#a7f97de22718a0d1136e987f8229099e2">update</a> (std::shared_ptr&lt; <a class="el" href="class_moving_entity.html">MovingEntity</a> &gt; entityBeingControlled, std::shared_ptr&lt; GameState &gt; gameState)</td></tr>
+<tr class="separator:a7f97de22718a0d1136e987f8229099e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad990fa45eed446afd55ee2b08c469261"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_component.html#ad990fa45eed446afd55ee2b08c469261">mainUpdate</a> (std::shared_ptr&lt; GameState &gt; gameState)</td></tr>
 <tr class="separator:ad990fa45eed446afd55ee2b08c469261"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -138,20 +138,17 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae43e7e108e494284377ba6c69b9dabb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae43e7e108e494284377ba6c69b9dabb8">&#9670;&nbsp;</a></span>update()</h2>
+<a id="a7f97de22718a0d1136e987f8229099e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f97de22718a0d1136e987f8229099e2">&#9670;&nbsp;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void InputComponent::update </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_moving_entity.html">MovingEntity</a> &gt;&#160;</td>
-          <td class="paramname"><em>entityBeingController</em>, </td>
+          <td class="paramname"><em>entityBeingControlled</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -165,15 +162,10 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p>Function for checking for input from keyboard </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">entityBeingController</td><td>entity object for accessing and editing the direction the entity is moving </td></tr>
+    <tr><td class="paramname">entityBeingControlled</td><td>entity object for accessing and editing the direction the entity is moving </td></tr>
     <tr><td class="paramname">gameState</td><td>used for sending back gamestate to the <a class="el" href="class_game_manager.html" title="Handles the game loop, stores the different game states and creates game objects.">GameManager</a> depending on input recieved </td></tr>
   </table>
   </dd>

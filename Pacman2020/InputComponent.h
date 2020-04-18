@@ -18,10 +18,10 @@ public:
 
 	/**
 		Function for checking for input from keyboard
-		\param entityBeingController entity object for accessing and editing the direction the entity is moving
+		\param entityBeingControlled entity object for accessing and editing the direction the entity is moving
 		\param gameState used for sending back gamestate to the GameManager depending on input recieved
 	*/
-	virtual void update(std::shared_ptr<MovingEntity>  entityBeingController, std::shared_ptr<GameState> gameState);
+	void update(std::shared_ptr<MovingEntity>  entityBeingControlled, std::shared_ptr<GameState> gameState);
 
 	/**
 		Function for checking for input from keyboard
