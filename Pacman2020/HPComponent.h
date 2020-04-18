@@ -2,7 +2,12 @@
 #include "AnimationComponent.h"
 #include <SDL.h>
 
-
+/*! \brief
+ *		Component for rendering remaining life
+ *
+ *
+ *
+ */
 class HPComponent
 {
 
@@ -11,12 +16,16 @@ private:
 	std::shared_ptr<AnimationComponent> m_secondLife;
 	std::shared_ptr<AnimationComponent> m_thirdLife;
 
-	SDL_Texture* m_hpTexture;/*!<Animations for numbers in score counter*/
+	SDL_Texture* m_hpTexture;
 	SDL_Renderer* renderer;
 	int m_textureWidth;
 	int m_textureHeight;
 public:
 	HPComponent(SDL_Renderer* mainRenderer);
+	/**
+		Updates remaining life on screen
+	\param life remaining life pacman has
+	*/
 	void update(int life);
 
 	/**

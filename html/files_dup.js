@@ -7,12 +7,13 @@ var files_dup =
     [ "GameManager.h", "_game_manager_8h_source.html", null ],
     [ "GameState.h", "_game_state_8h_source.html", null ],
     [ "Ghost.h", "_ghost_8h_source.html", null ],
+    [ "HPComponent.h", "_h_p_component_8h_source.html", null ],
     [ "InputComponent.h", "_input_component_8h_source.html", null ],
     [ "LevelManager.h", "_level_manager_8h_source.html", null ],
     [ "MovingEntity.h", "_moving_entity_8h_source.html", null ],
     [ "Pacman.h", "_pacman_8h_source.html", null ],
     [ "resource1.h", "resource1_8h_source.html", null ],
-    [ "Score.h", "_score_8h_source.html", null ],
+    [ "ScoreComponent.h", "_score_component_8h_source.html", null ],
     [ "SoundComponent.h", "_sound_component_8h_source.html", null ],
     [ "TextComponent.h", "_text_component_8h_source.html", null ]
 ];

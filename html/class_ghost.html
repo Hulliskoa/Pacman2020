@@ -122,7 +122,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0806cb18f8c48c8cfa8f64cd0f123c5c inherit pub_methods_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af87d7cf435362084babc65d1207fde55 inherit pub_methods_class_moving_entity"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#af87d7cf435362084babc65d1207fde55">increaseSpeed</a> ()</td></tr>
 <tr class="separator:af87d7cf435362084babc65d1207fde55 inherit pub_methods_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0076bd8a1714e5467523bc0f148467f4 inherit pub_methods_class_moving_entity"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a0076bd8a1714e5467523bc0f148467f4">setBaseSpeed</a> (int <a class="el" href="class_moving_entity.html#a8b87f4d619deed21506008ce20e48f98">speed</a>)</td></tr>
+<tr class="memitem:a0076bd8a1714e5467523bc0f148467f4 inherit pub_methods_class_moving_entity"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a0076bd8a1714e5467523bc0f148467f4">setBaseSpeed</a> (int speed)</td></tr>
 <tr class="separator:a0076bd8a1714e5467523bc0f148467f4 inherit pub_methods_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b62a80d12e081309dc4676bf931b924 inherit pub_methods_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a0b62a80d12e081309dc4676bf931b924">getSpeed</a> ()</td></tr>
 <tr class="separator:a0b62a80d12e081309dc4676bf931b924 inherit pub_methods_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,6 +135,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a93982cb8359648b54c7d63c8b7841c64 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c82bd9c16d75af5293757a1f29ad3d6 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top">EntityType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#a5c82bd9c16d75af5293757a1f29ad3d6">getEntityType</a> ()</td></tr>
 <tr class="separator:a5c82bd9c16d75af5293757a1f29ad3d6 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91931ff6f0442c864b2e26db286b539f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a91931ff6f0442c864b2e26db286b539f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setOutSideCage</b> (bool isOutSide)</td></tr>
+<tr class="separator:a91931ff6f0442c864b2e26db286b539f inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -161,20 +164,23 @@ std::shared_ptr&lt; <a class="el" href="class_ai_component.html">AiComponent</a>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_moving_entity"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_moving_entity')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_moving_entity.html">MovingEntity</a></td></tr>
-<tr class="memitem:ae6807ead0e334f910985f52becddd3b7 inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#ae6807ead0e334f910985f52becddd3b7">normalSpeed</a> = 2</td></tr>
-<tr class="separator:ae6807ead0e334f910985f52becddd3b7 inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b87f4d619deed21506008ce20e48f98 inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a8b87f4d619deed21506008ce20e48f98">speed</a> = <a class="el" href="class_moving_entity.html#ae6807ead0e334f910985f52becddd3b7">normalSpeed</a></td></tr>
-<tr class="separator:a8b87f4d619deed21506008ce20e48f98 inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07c045afb1ee2a8fe3374d1addf83e1c inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a07c045afb1ee2a8fe3374d1addf83e1c">halfSpeed</a> = <a class="el" href="class_moving_entity.html#ae6807ead0e334f910985f52becddd3b7">normalSpeed</a> / 2</td></tr>
-<tr class="separator:a07c045afb1ee2a8fe3374d1addf83e1c inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5df0d3cbe5701b24d2298cd4f105d2a5 inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a5df0d3cbe5701b24d2298cd4f105d2a5">doubleSpeed</a> = <a class="el" href="class_moving_entity.html#ae6807ead0e334f910985f52becddd3b7">normalSpeed</a> * 2</td></tr>
-<tr class="separator:a5df0d3cbe5701b24d2298cd4f105d2a5 inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c7786c75901fd0f8d3f580e5a52ff74 inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a4c7786c75901fd0f8d3f580e5a52ff74">m_normalSpeed</a> = 2</td></tr>
+<tr class="separator:a4c7786c75901fd0f8d3f580e5a52ff74 inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02285dd9e0d2c33d7a30cc5088741858 inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a02285dd9e0d2c33d7a30cc5088741858">m_speed</a> = <a class="el" href="class_moving_entity.html#a4c7786c75901fd0f8d3f580e5a52ff74">m_normalSpeed</a></td></tr>
+<tr class="separator:a02285dd9e0d2c33d7a30cc5088741858 inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3ebef28816be7e76baa06f644977db inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a0a3ebef28816be7e76baa06f644977db">m_halfSpeed</a> = <a class="el" href="class_moving_entity.html#a4c7786c75901fd0f8d3f580e5a52ff74">m_normalSpeed</a> / 2</td></tr>
+<tr class="separator:a0a3ebef28816be7e76baa06f644977db inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85c5857edb730517e21027c690e90b9d inherit pro_attribs_class_moving_entity"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moving_entity.html#a85c5857edb730517e21027c690e90b9d">m_doubleSpeed</a> = <a class="el" href="class_moving_entity.html#a4c7786c75901fd0f8d3f580e5a52ff74">m_normalSpeed</a> * 2</td></tr>
+<tr class="separator:a85c5857edb730517e21027c690e90b9d inherit pro_attribs_class_moving_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_entity')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_entity.html">Entity</a></td></tr>
 <tr class="memitem:a506d52aeeddfd99bd80ca08c34eefaf5 inherit pro_attribs_class_entity"><td class="memItemLeft" align="right" valign="top">EntityType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#a506d52aeeddfd99bd80ca08c34eefaf5">entityT</a> = EntityType::NOT_DEFINED</td></tr>
 <tr class="separator:a506d52aeeddfd99bd80ca08c34eefaf5 inherit pro_attribs_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af36b7fe32bbac6e497ce4b626b7f910a inherit pro_attribs_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="af36b7fe32bbac6e497ce4b626b7f910a"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>numFrames</b> = 0</td></tr>
 <tr class="separator:af36b7fe32bbac6e497ce4b626b7f910a inherit pro_attribs_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d7df64aa3ae4f0a0b7aa978972ccd4 inherit pro_attribs_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a97d7df64aa3ae4f0a0b7aa978972ccd4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>outsideCage</b> = false</td></tr>
+<tr class="separator:a97d7df64aa3ae4f0a0b7aa978972ccd4 inherit pro_attribs_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Child class of <a class="el" href="class_moving_entity.html" title="MovingEntity class is derived from Entity super class and is used to create all moving entities in th...">MovingEntity</a> and contains <a class="el" href="class_ghost.html" title="Child class of MovingEntity and contains Ghost specific member variables and methods.">Ghost</a> specific member variables and methods. </p>

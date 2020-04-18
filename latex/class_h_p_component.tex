@@ -1,0 +1,59 @@
+\hypertarget{class_h_p_component}{}\doxysection{H\+P\+Component Class Reference}
+\label{class_h_p_component}\index{HPComponent@{HPComponent}}
+
+
+Component for rendering remaining life.  
+
+
+
+
+{\ttfamily \#include $<$H\+P\+Component.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_h_p_component_a1ffbce8a892bfafc44aa9e7e84734e3a}\label{class_h_p_component_a1ffbce8a892bfafc44aa9e7e84734e3a}} 
+{\bfseries H\+P\+Component} (S\+D\+L\+\_\+\+Renderer $\ast$main\+Renderer)
+\item 
+void \mbox{\hyperlink{class_h_p_component_afada1678b778d671a6633613f53a2412}{update}} (int life)
+\item 
+bool \mbox{\hyperlink{class_h_p_component_a9872f5e75d012ece6356e08ca8591289}{loadsprite\+Sheet\+Texture}} (std\+::string path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Component for rendering remaining life. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_h_p_component_a9872f5e75d012ece6356e08ca8591289}\label{class_h_p_component_a9872f5e75d012ece6356e08ca8591289}} 
+\index{HPComponent@{HPComponent}!loadspriteSheetTexture@{loadspriteSheetTexture}}
+\index{loadspriteSheetTexture@{loadspriteSheetTexture}!HPComponent@{HPComponent}}
+\doxysubsubsection{\texorpdfstring{loadspriteSheetTexture()}{loadspriteSheetTexture()}}
+{\footnotesize\ttfamily bool H\+P\+Component\+::loadsprite\+Sheet\+Texture (\begin{DoxyParamCaption}\item[{std\+::string}]{path }\end{DoxyParamCaption})}
+
+Load the spritesheet that is going to be used for rendering on screen 
+\begin{DoxyParams}{Parameters}
+{\em path} & path to sprite sheet we want to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_h_p_component_afada1678b778d671a6633613f53a2412}\label{class_h_p_component_afada1678b778d671a6633613f53a2412}} 
+\index{HPComponent@{HPComponent}!update@{update}}
+\index{update@{update}!HPComponent@{HPComponent}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void H\+P\+Component\+::update (\begin{DoxyParamCaption}\item[{int}]{life }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Updates remaining life on screen
+\end{DoxyVerb}
+ 
+\begin{DoxyParams}{Parameters}
+{\em life} & remaining life pacman has \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+H\+P\+Component.\+h\item 
+H\+P\+Component.\+cpp\end{DoxyCompactItemize}

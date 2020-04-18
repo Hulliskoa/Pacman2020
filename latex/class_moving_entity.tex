@@ -26,7 +26,7 @@ virtual void \mbox{\hyperlink{class_moving_entity_a0806cb18f8c48c8cfa8f64cd0f123
 \item 
 void \mbox{\hyperlink{class_moving_entity_af87d7cf435362084babc65d1207fde55}{increase\+Speed}} ()
 \item 
-void \mbox{\hyperlink{class_moving_entity_a0076bd8a1714e5467523bc0f148467f4}{set\+Base\+Speed}} (int \mbox{\hyperlink{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}{speed}})
+void \mbox{\hyperlink{class_moving_entity_a0076bd8a1714e5467523bc0f148467f4}{set\+Base\+Speed}} (int speed)
 \item 
 int \mbox{\hyperlink{class_moving_entity_a0b62a80d12e081309dc4676bf931b924}{get\+Speed}} ()
 \end{DoxyCompactItemize}
@@ -44,13 +44,13 @@ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animation_component}{Animation\
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} = 2
+int \mbox{\hyperlink{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}{m\+\_\+normal\+Speed}} = 2
 \item 
-int \mbox{\hyperlink{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}{speed}} = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}}
+int \mbox{\hyperlink{class_moving_entity_a02285dd9e0d2c33d7a30cc5088741858}{m\+\_\+speed}} = \mbox{\hyperlink{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}{m\+\_\+normal\+Speed}}
 \item 
-int \mbox{\hyperlink{class_moving_entity_a07c045afb1ee2a8fe3374d1addf83e1c}{half\+Speed}} = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} / 2
+int \mbox{\hyperlink{class_moving_entity_a0a3ebef28816be7e76baa06f644977db}{m\+\_\+half\+Speed}} = \mbox{\hyperlink{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}{m\+\_\+normal\+Speed}} / 2
 \item 
-int \mbox{\hyperlink{class_moving_entity_a5df0d3cbe5701b24d2298cd4f105d2a5}{double\+Speed}} = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} $\ast$ 2
+int \mbox{\hyperlink{class_moving_entity_a85c5857edb730517e21027c690e90b9d}{m\+\_\+double\+Speed}} = \mbox{\hyperlink{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}{m\+\_\+normal\+Speed}} $\ast$ 2
 \end{DoxyCompactItemize}
 
 
@@ -124,49 +124,49 @@ Used to read .txt file and convert it into the level\+Array
 Virtual update method for use implementation in child classes 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_moving_entity_a5df0d3cbe5701b24d2298cd4f105d2a5}\label{class_moving_entity_a5df0d3cbe5701b24d2298cd4f105d2a5}} 
-\index{MovingEntity@{MovingEntity}!doubleSpeed@{doubleSpeed}}
-\index{doubleSpeed@{doubleSpeed}!MovingEntity@{MovingEntity}}
-\doxysubsubsection{\texorpdfstring{doubleSpeed}{doubleSpeed}}
-{\footnotesize\ttfamily int Moving\+Entity\+::double\+Speed = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} $\ast$ 2\hspace{0.3cm}{\ttfamily [protected]}}
-
-normal\+Speed $\ast$ 2 \mbox{\Hypertarget{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}\label{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}} 
+\mbox{\Hypertarget{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}\label{class_moving_entity_a9b830dd19f589b7c6a8083e4a7590e07}} 
 \index{MovingEntity@{MovingEntity}!downAnimation@{downAnimation}}
 \index{downAnimation@{downAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{downAnimation}{downAnimation}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::down\+Animation}
 
-Animation used for animating movement downwards \mbox{\Hypertarget{class_moving_entity_a07c045afb1ee2a8fe3374d1addf83e1c}\label{class_moving_entity_a07c045afb1ee2a8fe3374d1addf83e1c}} 
-\index{MovingEntity@{MovingEntity}!halfSpeed@{halfSpeed}}
-\index{halfSpeed@{halfSpeed}!MovingEntity@{MovingEntity}}
-\doxysubsubsection{\texorpdfstring{halfSpeed}{halfSpeed}}
-{\footnotesize\ttfamily int Moving\+Entity\+::half\+Speed = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}} / 2\hspace{0.3cm}{\ttfamily [protected]}}
-
-normal\+Speed / 2 \mbox{\Hypertarget{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}\label{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}} 
+Animation used for animating movement downwards \mbox{\Hypertarget{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}\label{class_moving_entity_a3f02844717fb37a2adb2dd7b7c275aa6}} 
 \index{MovingEntity@{MovingEntity}!leftAnimation@{leftAnimation}}
 \index{leftAnimation@{leftAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{leftAnimation}{leftAnimation}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::left\+Animation}
 
-Animation used for animating movement towards the left \mbox{\Hypertarget{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}\label{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}} 
-\index{MovingEntity@{MovingEntity}!normalSpeed@{normalSpeed}}
-\index{normalSpeed@{normalSpeed}!MovingEntity@{MovingEntity}}
-\doxysubsubsection{\texorpdfstring{normalSpeed}{normalSpeed}}
-{\footnotesize\ttfamily int Moving\+Entity\+::normal\+Speed = 2\hspace{0.3cm}{\ttfamily [protected]}}
+Animation used for animating movement towards the left \mbox{\Hypertarget{class_moving_entity_a85c5857edb730517e21027c690e90b9d}\label{class_moving_entity_a85c5857edb730517e21027c690e90b9d}} 
+\index{MovingEntity@{MovingEntity}!m\_doubleSpeed@{m\_doubleSpeed}}
+\index{m\_doubleSpeed@{m\_doubleSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{m\_doubleSpeed}{m\_doubleSpeed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::m\+\_\+double\+Speed = \mbox{\hyperlink{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}{m\+\_\+normal\+Speed}} $\ast$ 2\hspace{0.3cm}{\ttfamily [protected]}}
 
-Normal speed for an moving entity \mbox{\Hypertarget{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}\label{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}} 
+normal\+Speed $\ast$ 2 \mbox{\Hypertarget{class_moving_entity_a0a3ebef28816be7e76baa06f644977db}\label{class_moving_entity_a0a3ebef28816be7e76baa06f644977db}} 
+\index{MovingEntity@{MovingEntity}!m\_halfSpeed@{m\_halfSpeed}}
+\index{m\_halfSpeed@{m\_halfSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{m\_halfSpeed}{m\_halfSpeed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::m\+\_\+half\+Speed = \mbox{\hyperlink{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}{m\+\_\+normal\+Speed}} / 2\hspace{0.3cm}{\ttfamily [protected]}}
+
+normal\+Speed / 2 \mbox{\Hypertarget{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}\label{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}} 
+\index{MovingEntity@{MovingEntity}!m\_normalSpeed@{m\_normalSpeed}}
+\index{m\_normalSpeed@{m\_normalSpeed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{m\_normalSpeed}{m\_normalSpeed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::m\+\_\+normal\+Speed = 2\hspace{0.3cm}{\ttfamily [protected]}}
+
+Normal speed for an moving entity \mbox{\Hypertarget{class_moving_entity_a02285dd9e0d2c33d7a30cc5088741858}\label{class_moving_entity_a02285dd9e0d2c33d7a30cc5088741858}} 
+\index{MovingEntity@{MovingEntity}!m\_speed@{m\_speed}}
+\index{m\_speed@{m\_speed}!MovingEntity@{MovingEntity}}
+\doxysubsubsection{\texorpdfstring{m\_speed}{m\_speed}}
+{\footnotesize\ttfamily int Moving\+Entity\+::m\+\_\+speed = \mbox{\hyperlink{class_moving_entity_a4c7786c75901fd0f8d3f580e5a52ff74}{m\+\_\+normal\+Speed}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+speed is the same as normal speed on creation \mbox{\Hypertarget{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}\label{class_moving_entity_ab3e5dda24da9f346dc21a258bdddb2ed}} 
 \index{MovingEntity@{MovingEntity}!rightAnimation@{rightAnimation}}
 \index{rightAnimation@{rightAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{rightAnimation}{rightAnimation}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_animation_component}{Animation\+Component}}$>$ Moving\+Entity\+::right\+Animation}
 
-Animation used for animating movement towards the right \mbox{\Hypertarget{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}\label{class_moving_entity_a8b87f4d619deed21506008ce20e48f98}} 
-\index{MovingEntity@{MovingEntity}!speed@{speed}}
-\index{speed@{speed}!MovingEntity@{MovingEntity}}
-\doxysubsubsection{\texorpdfstring{speed}{speed}}
-{\footnotesize\ttfamily int Moving\+Entity\+::speed = \mbox{\hyperlink{class_moving_entity_ae6807ead0e334f910985f52becddd3b7}{normal\+Speed}}\hspace{0.3cm}{\ttfamily [protected]}}
-
-speed is the same as normal speed on creation \mbox{\Hypertarget{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}\label{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}} 
+Animation used for animating movement towards the right \mbox{\Hypertarget{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}\label{class_moving_entity_a98d8cccd807935034aa4b53066c685b9}} 
 \index{MovingEntity@{MovingEntity}!upAnimation@{upAnimation}}
 \index{upAnimation@{upAnimation}!MovingEntity@{MovingEntity}}
 \doxysubsubsection{\texorpdfstring{upAnimation}{upAnimation}}

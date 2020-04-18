@@ -12,11 +12,12 @@ var hierarchy =
       [ "MovingEntity", "class_moving_entity.html", null ]
     ] ],
     [ "GameManager", "class_game_manager.html", null ],
+    [ "HPComponent", "class_h_p_component.html", null ],
     [ "InputComponent", "class_input_component.html", [
       [ "AiComponent", "class_ai_component.html", null ]
     ] ],
     [ "LevelManager", "class_level_manager.html", null ],
-    [ "Score", "class_score.html", null ],
+    [ "ScoreComponent", "class_score_component.html", null ],
     [ "SoundComponent", "class_sound_component.html", null ],
     [ "TextComponent", "class_text_component.html", null ]
 ];

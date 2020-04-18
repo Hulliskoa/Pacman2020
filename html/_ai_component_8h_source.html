@@ -99,14 +99,14 @@ $(document).ready(function(){initNavTree('_ai_component_8h_source.html',''); ini
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_ai_component.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_ai_component.html">AiComponent</a> : <span class="keyword">public</span> <a class="code" href="class_input_component.html">InputComponent</a></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::vector&lt;int&gt; targetTile;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::vector&lt;int&gt; lastVelocity;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::vector &lt;int&gt; firstV;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::vector&lt;int&gt; secondV;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::vector&lt;int&gt; thirdV;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::map&lt;int, std::vector&lt;int&gt;&gt; shortestPath;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> targetSet = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::vector&lt;int&gt; tilesChecked = { 0,0,0 };</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::vector&lt;int&gt; m_targetTile;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::vector&lt;int&gt; m_lastVelocity;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::vector &lt;int&gt; m_firstV;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::vector&lt;int&gt; m_secondV;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::vector&lt;int&gt; m_thirdV;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::map&lt;int, std::vector&lt;int&gt;&gt; m_shortestPath;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> m_targetSet = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::vector&lt;int&gt; m_tilesChecked = { 0,0,0 };</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_ai_component.html">AiComponent</a>();</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['textcomponent_84',['TextComponent',['../class_text_component.html',1,'']]]
+  ['scorecomponent_84',['ScoreComponent',['../class_score_component.html',1,'']]],
+  ['soundcomponent_85',['SoundComponent',['../class_sound_component.html',1,'']]]
 ];
