@@ -1,2 +1,17 @@
-﻿  GameManager.cpp
+﻿  AiComponent.cpp
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(121,110): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(132,110): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\truls\source\repos\Pacman2020\Pacman2020\AiComponent.cpp(143,110): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
   Pacman2020.vcxproj -> C:\Users\truls\source\repos\Pacman2020\Debug\Pacman2020.exe

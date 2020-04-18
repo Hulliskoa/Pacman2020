@@ -6,6 +6,7 @@
 #include <iostream>
 #include "CollisionManager.h"
 
+
 /*! \brief
  *		Renders and creates each level based on .txt files
  *

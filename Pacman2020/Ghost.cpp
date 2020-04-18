@@ -45,12 +45,12 @@ void Ghost::update(std::shared_ptr<GameState> gameState, SDL_Renderer* renderer,
 		}
 
 		if (*gameState == GameState::GAME_RUNNING_FLEE && getEntityType() == EntityType::GHOST && outsideCage) {
-			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
+			aiComponent->setTarget(pacman->coordinates[1], pacman->coordinates[0]);
 			blueFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 
 		if (*gameState == GameState::GAME_RUNNING_FLEE_ENDING && getEntityType() == EntityType::GHOST && outsideCage) {
-			aiComponent->setTarget(rand() % 400 + 1, rand() % 400 + 1);
+			aiComponent->setTarget(pacman->coordinates[1], pacman->coordinates[0]);
 			if (alternateFleeAnimation) {
 				blueFleeAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 				alternateFleeAnimation = false;

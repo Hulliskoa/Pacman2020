@@ -115,41 +115,42 @@ void AiComponent::ai(std::shared_ptr<Entity> currentGhost, std::shared_ptr<Entit
 			}
 		}
 	}
-	else {
-		//Checks tile directly in front of ghost
-		if (collisionManager->collisionCheckStationary(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
-			m_tilesChecked[0] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (m_targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - (m_targetTile[1]), 2);
-			m_firstV.emplace_back(currentGhost->velocity[0]);
-			m_firstV.emplace_back(currentGhost->velocity[1]);
-			m_shortestPath.insert(std::pair<int, std::vector<int>>(m_tilesChecked[0], m_firstV));
-		}
 
-		//check next tile in left direction
-		currentGhost->velocity[0] = m_lastVelocity[1];
-		currentGhost->velocity[1] = m_lastVelocity[0];
-
-		if (collisionManager->collisionCheckStationary(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
-			m_tilesChecked[1] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (m_targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - m_targetTile[1], 2);
-			m_secondV.emplace_back(currentGhost->velocity[0]);
-			m_secondV.emplace_back(currentGhost->velocity[1]);
-			m_shortestPath.insert(std::pair<int, std::vector<int>>(m_tilesChecked[1], m_secondV));
-		}
-
-		//check next tile in right direction
-		currentGhost->velocity[0] = -m_lastVelocity[1];
-		currentGhost->velocity[1] = -m_lastVelocity[0];
-
-		if (collisionManager->collisionCheckStationary(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
-			m_tilesChecked[2] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (m_targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - m_targetTile[1], 2);
-			m_thirdV.emplace_back(currentGhost->velocity[0]);
-			m_thirdV.emplace_back(currentGhost->velocity[1]);
-			m_shortestPath.insert(std::pair<int, std::vector<int>>(m_tilesChecked[2], m_thirdV));
-		}
-
-		//fetch shortest path from map
-		currentGhost->velocity[0] = m_shortestPath.begin()->second[0];
-		currentGhost->velocity[1] = m_shortestPath.begin()->second[1];
+	//Checks tile directly in front of ghost
+	if (collisionManager->collisionCheckStationary(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
+		m_tilesChecked[0] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (m_targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - (m_targetTile[1]), 2);
+		m_firstV.emplace_back(currentGhost->velocity[0]);
+		m_firstV.emplace_back(currentGhost->velocity[1]);
+		m_shortestPath.insert(std::pair<int, std::vector<int>>(m_tilesChecked[0], m_firstV));
 	}
+
+	//check next tile in left direction
+	currentGhost->velocity[0] = m_lastVelocity[1];
+	currentGhost->velocity[1] = m_lastVelocity[0];
+
+	if (collisionManager->collisionCheckStationary(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
+		m_tilesChecked[1] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (m_targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - m_targetTile[1], 2);
+		m_secondV.emplace_back(currentGhost->velocity[0]);
+		m_secondV.emplace_back(currentGhost->velocity[1]);
+		m_shortestPath.insert(std::pair<int, std::vector<int>>(m_tilesChecked[1], m_secondV));
+	}
+
+	//check next tile in right direction
+	currentGhost->velocity[0] = -m_lastVelocity[1];
+	currentGhost->velocity[1] = -m_lastVelocity[0];
+
+	if (collisionManager->collisionCheckStationary(currentGhost)->getEntityType() != EntityType::WALL && checkIfReturn(currentGhost, collisionManager)) {
+		m_tilesChecked[2] = pow((currentGhost->coordinates[0] + currentGhost->velocity[0]) - (m_targetTile[0]), 2) + pow((currentGhost->coordinates[1] + currentGhost->velocity[1]) - m_targetTile[1], 2);
+		m_thirdV.emplace_back(currentGhost->velocity[0]);
+		m_thirdV.emplace_back(currentGhost->velocity[1]);
+		m_shortestPath.insert(std::pair<int, std::vector<int>>(m_tilesChecked[2], m_thirdV));
+	}
+
+	//fetch shortest path from map
+	currentGhost->velocity[0] = m_shortestPath.begin()->second[0];
+	currentGhost->velocity[1] = m_shortestPath.begin()->second[1];
+
+
 
 }
 
@@ -166,5 +167,6 @@ bool AiComponent::checkIfReturn(std::shared_ptr<Entity> currentGhost, std::share
 			return false;
 		}
 	}
+	return false;
 
 }
