@@ -52,16 +52,11 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				break;
 
 			case EntityType::WALL:
-				if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
-					velocity[0] = lastVelocity[0];
-					velocity[1] = lastVelocity[1];
-					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
-				}
-				else {
-					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
-					velocity[0] = 0;
-					velocity[1] = 0;
-				}
+
+				lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
+				velocity[0] = 0;
+				velocity[1] = 0;
+
 				break;
 
 			case EntityType::PELLET:
@@ -100,25 +95,20 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				break;
 			}
 		}
+
+
 		coordinates[0] += velocity[0];
 		coordinates[1] += velocity[1];
 
 		if (collisionManager->checkIntersection(shared_from_this())) {
-			m_input->update(shared_from_this(), gameState);
+			m_input->update(shared_from_this(), gameState, true);
 		}
-		
 		else {
-			lastVelocity[0] = velocity[0];
-			lastVelocity[1] = velocity[1];
-			m_input->update(shared_from_this(), gameState);
-			if (lastVelocity[0] == 0) {
-				velocity[0] = 0;
-			}
-			else if (lastVelocity[1] == 0) {
-				velocity[1] = 0;
-			}
+			m_input->update(shared_from_this(), gameState, false);
 		}
-		
+
+
+
 
 		//Checks the direction pacman is traveling and renders correct animation
 		if (velocity[0] > 0) {

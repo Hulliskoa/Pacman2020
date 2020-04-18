@@ -20,7 +20,7 @@ public:
 		\param entityBeingController entity object for accessing and editing the direction the entity is moving
 		\param gameState used for sending back gamestate to the GameManager depending on input recieved
 	*/
-	virtual void update(std::shared_ptr<MovingEntity>  entityBeingController, std::shared_ptr<GameState> gameState);
+	virtual void update(std::shared_ptr<MovingEntity>  entityBeingController, std::shared_ptr<GameState> gameState, bool atIntersection);
 	/**
 		Function for checking for input from keyboard
 		\param gameState supplies games state to be able to quit when someone click the x on the window

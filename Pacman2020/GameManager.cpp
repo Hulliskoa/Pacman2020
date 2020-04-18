@@ -212,7 +212,7 @@ void GameManager::inGame() {
 		startedFleeing = true;
 	}
 	//Level complete
-	if (m_levelManager->pelletCount() == 235) {
+	if (m_levelManager->pelletCount() == 0) {
 		lvlLoaded = false;
 		if (m_levelManager->getCurrentLevel() % 10 == 2) {
 			shadow->increaseSpeed();

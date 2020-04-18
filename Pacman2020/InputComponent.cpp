@@ -1,9 +1,9 @@
 #include "InputComponent.h"
 
 
-void InputComponent::update(std::shared_ptr<MovingEntity> entityBeingController, std::shared_ptr<GameState> gameState)
+void InputComponent::update(std::shared_ptr<MovingEntity> entityBeingController, std::shared_ptr<GameState> gameState, bool atIntersection)
 {
-
+	std::vector<int> lastVelocity = entityBeingController->velocity;
 	while (SDL_PollEvent(&event) != 0)
 	{
 		if (event.type == SDL_QUIT)
@@ -15,32 +15,57 @@ void InputComponent::update(std::shared_ptr<MovingEntity> entityBeingController,
 		//User presses a key
 		if (event.type == SDL_KEYDOWN)
 		{
-
 			//Select surfaces based on key press
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_UP:
-				entityBeingController->velocity[0] = 0;
-				entityBeingController->velocity[1] = -entityBeingController->getSpeed();;
+				if (atIntersection) {
+					entityBeingController->velocity[0] = 0;
+					entityBeingController->velocity[1] = -entityBeingController->getSpeed();
+				}
+				else {
+					entityBeingController->velocity[0] = -lastVelocity[0];
+					entityBeingController->velocity[1] = -lastVelocity[1];
+				}
+
 
 				break;
 
 			case SDLK_DOWN:
-				entityBeingController->velocity[0] = 0;
-				entityBeingController->velocity[1] = entityBeingController->getSpeed();
+				if (atIntersection) {
+					entityBeingController->velocity[0] = 0;
+					entityBeingController->velocity[1] = entityBeingController->getSpeed();
+				}
+				else {
+					entityBeingController->velocity[0] = -lastVelocity[0];
+					entityBeingController->velocity[1] = -lastVelocity[1];
+				}
+
 
 				break;
 
 			case SDLK_LEFT:
-				entityBeingController->velocity[0] = -entityBeingController->getSpeed();;
-				entityBeingController->velocity[1] = 0;
-
+				if (atIntersection) {
+					entityBeingController->velocity[0] = -entityBeingController->getSpeed();
+					entityBeingController->velocity[1] = 0;
+				}
+				else {
+					entityBeingController->velocity[0] = -lastVelocity[0];
+					entityBeingController->velocity[1] = -lastVelocity[1];
+				}
 
 				break;
 
 			case SDLK_RIGHT:
-				entityBeingController->velocity[0] = entityBeingController->getSpeed();;
-				entityBeingController->velocity[1] = 0;
+				if (atIntersection) {
+					entityBeingController->velocity[0] = entityBeingController->getSpeed();;
+					entityBeingController->velocity[1] = 0;
+				}
+				else {
+					entityBeingController->velocity[0] = -lastVelocity[0];
+					entityBeingController->velocity[1] = -lastVelocity[1];
+				}
+
 
 				break;
 			case SDLK_ESCAPE:
@@ -49,9 +74,15 @@ void InputComponent::update(std::shared_ptr<MovingEntity> entityBeingController,
 			default:
 				break;
 			}
+
 		}
 	}
 }
+
+
+
+
+
 
 std::string InputComponent::mainUpdate(std::shared_ptr<GameState> gameState)
 {

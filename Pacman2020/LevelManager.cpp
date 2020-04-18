@@ -475,7 +475,7 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 	}
 	else
 	{
-		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0));
+
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == nullptr)
 		{
@@ -489,7 +489,6 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 		}
 	}
 	m_levelSpriteSheet = newTexture;
-	//SDL_FreeSurface(loadedSurface);
 	return m_levelSpriteSheet != NULL;
 }
 int LevelManager::pelletCount() {
