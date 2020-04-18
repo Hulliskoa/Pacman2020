@@ -283,11 +283,13 @@ void GameManager::nextLvl()
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gameRenderer);
 
+	//Checks button push in menu;
 	*menuInput = m_input->mainUpdate(gameState);
 
 	continueGameText->renderText(gameRenderer, 0);
 	quitGameText->renderText(gameRenderer, 0);
 
+	//switch color
 	if (menuChoice == 0) {
 		continueGameText->renderText(gameRenderer, 1);
 	}
@@ -329,7 +331,7 @@ void GameManager::gameOver()
 		lvlLoaded = true;
 	}
 
-	//Checks button push in main menu;
+	//Checks button push in menu;
 	*menuInput = m_input->mainUpdate(gameState);
 
 	SDL_SetRenderDrawColor(gameRenderer, 0x00, 0x00, 0x00, 0x00);
@@ -340,6 +342,7 @@ void GameManager::gameOver()
 	quitGameText->renderText(gameRenderer, 0);
 	gameOverText->renderText(gameRenderer, 0);
 
+	//switch color
 	if (menuChoice == 0) {
 		startGameText->renderText(gameRenderer, 1);
 	}

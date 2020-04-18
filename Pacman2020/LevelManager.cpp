@@ -3,6 +3,7 @@
 LevelManager::LevelManager(SDL_Renderer* mainRenderer) : renderer(mainRenderer) {
 
 
+
 }
 LevelManager::~LevelManager()
 {
@@ -48,15 +49,15 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 }
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)
 {
-	
+
+	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
+		std::cout << "could not load maze spritesheet" << std::endl;
+	}
 
 	if (!readLevelFromTxt(currentMap)) {
 		std::cout << "could not open lvlfile" << std::endl;
 	}
 
-	if (!loadspriteSheetTexture("..\\Pacman2020\\sprites\\mazeParts.png")) {
-		std::cout << "could not load maze spritesheet" << std::endl;
-	}
 
 	entityArray.clear();
 	entityArray.shrink_to_fit();
@@ -456,6 +457,7 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 
 	if (m_levelSpriteSheet != NULL)
 	{
+
 		SDL_DestroyTexture(m_levelSpriteSheet);
 		m_levelSpriteSheet = NULL;
 		m_textureWidth = 0;
@@ -465,15 +467,15 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 	SDL_Texture* newTexture = nullptr;
 
 	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 	if (loadedSurface == nullptr)
 	{
 		std::cout << "Unable to load image! SDL_image Error: " << IMG_GetError() << std::endl;
 	}
 	else
 	{
-		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0));
+		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0));
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == nullptr)
 		{
@@ -487,7 +489,7 @@ bool LevelManager::loadspriteSheetTexture(std::string path)
 		}
 	}
 	m_levelSpriteSheet = newTexture;
-	SDL_FreeSurface(loadedSurface);
+	//SDL_FreeSurface(loadedSurface);
 	return m_levelSpriteSheet != NULL;
 }
 int LevelManager::pelletCount() {
