@@ -11,6 +11,7 @@
 #include "CollisionManager.h"
 #include "SoundComponent.h"
 #include "InputComponent.h"
+#include "HPComponent.h"
 
 /*! \brief
  *		 child class of MovingEntity and contains all Pacman specific member variables and methods
@@ -21,6 +22,7 @@ class Pacman : public MovingEntity
 {
 private:
 	std::shared_ptr<InputComponent> m_input;
+	std::shared_ptr<HPComponent> m_hp;
 
 	std::shared_ptr<ScoreComponent> m_scoreComponent;/*!<Is responsible for rendering score to screen*/
 	std::shared_ptr<SoundComponent> m_pelletMunch;
@@ -54,6 +56,7 @@ public:
 		returns m_remainingLife
 	*/
 	int getRemainingLives();
+	void resetLife();
 	~Pacman();
 
 };

@@ -16,7 +16,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		m_deathAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		if (m_deathAnimation->getCurrentFrame() == m_deathAnimation->getTotalFrames() - 1) {
-			if (getRemainingLives() < 0) {
+			if (getRemainingLives() == 0) {
+				resetLife();
 				*gameState = GameState::GAME_OVER;
 			}
 			else {
@@ -82,6 +83,10 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 					velocity[1] = 0;
 
 					break;
+				case EntityType::GHOST_EYES:
+					
+
+					break;
 
 				default:
 					break;
@@ -121,6 +126,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			m_lastAnimation = startAnimation;
 			startAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
+
+		m_hp->update(getRemainingLives());
 		//parent update function
 		MovingEntity::update();
 	}
@@ -130,7 +137,7 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 
 	m_input = std::make_shared <InputComponent>();
 	m_scoreComponent = std::make_shared<ScoreComponent>(gameRenderer);
-
+	m_hp = std::make_shared<HPComponent>(gameRenderer);
 	setEntityType(EntityType::PACMAN);
 	m_lastAnimation = startAnimation;
 
@@ -178,6 +185,11 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 int Pacman::getRemainingLives()
 {
 	return m_remainingLife;
+}
+
+void Pacman::resetLife()
+{
+	m_remainingLife = 3;
 }
 
 int Pacman::getScore() {
