@@ -18,14 +18,14 @@
 class AiComponent : public InputComponent
 {
 private:
-	std::vector<int> targetTile;/*!< The target that currently is the target for the calculation being done*/
-	std::vector<int> lastVelocity;/*!< Last rounds direction the ghost was travelling */
-	std::vector <int> firstV;/*!< The first tile left of the direction that is travelled */
-	std::vector<int> secondV;/*!< The second tile left of the direction that is travelled */
-	std::vector<int> thirdV;/*!< The third tile left of the direction that is travelled */
-	std::map<int, std::vector<int>> shortestPath;/*!< A map of all the paths that can be chosen */
-	bool targetSet = false;/*!< boolean to check if other target than pacman i set*/
-	std::vector<int> tilesChecked = { 0,0,0 };/*!< stores the distance values for each of the tiles that are checked*/ 
+	std::vector<int> m_targetTile;/*!< The target that currently is the target for the calculation being done*/
+	std::vector<int> m_lastVelocity;/*!< Last rounds direction the ghost was travelling */
+	std::vector <int> m_firstV;/*!< The first tile left of the direction that is travelled */
+	std::vector<int> m_secondV;/*!< The second tile left of the direction that is travelled */
+	std::vector<int> m_thirdV;/*!< The third tile left of the direction that is travelled */
+	std::map<int, std::vector<int>> m_shortestPath;/*!< A map of all the paths that can be chosen */
+	bool m_targetSet = false;/*!< boolean to check if other target than pacman i set*/
+	std::vector<int> m_tilesChecked = { 0,0,0 };/*!< stores the distance values for each of the tiles that are checked*/ 
 
 public:
 	AiComponent();

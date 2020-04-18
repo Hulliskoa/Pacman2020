@@ -1,6 +1,6 @@
-#include "Score.h"
+#include "ScoreComponent.h"
 
-Score::Score(SDL_Renderer* gameRenderer) : renderer(gameRenderer)
+ScoreComponent::ScoreComponent(SDL_Renderer* gameRenderer) : renderer(gameRenderer)
 {
 	loadspriteSheetTexture("..\\Pacman2020\\sprites\\spriteFont.png");
 	zero = std::make_shared<AnimationComponent>(10, m_scoreTexture, m_textureWidth, m_textureHeight);
@@ -128,7 +128,7 @@ Score::Score(SDL_Renderer* gameRenderer) : renderer(gameRenderer)
 	nine->addRect(433, 1, 47, 47);
 }
 
-void Score::update(int score)
+void ScoreComponent::update(int score)
 {
 
 	int positionZero = score % 10;
@@ -158,7 +158,7 @@ void Score::update(int score)
 }
 
 //source: http://lazyfoo.net/tutorials/SDL/07_texture_loading_and_rendering/index.php
-bool Score::loadspriteSheetTexture(std::string path)
+bool ScoreComponent::loadspriteSheetTexture(std::string path)
 {
 
 	SDL_Texture* newTexture = NULL;

@@ -8,14 +8,14 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 	int lastVelocity[2] = { velocity[0], velocity[1] };
 
 	//update score on main screen;
-	scoreComponent->update(m_score);
+	m_scoreComponent->update(m_score);
 
 	//Death animation and handling
 	if (*gameState == GameState::PACMAN_DIED) {
 	
-		deathAnimation->render(coordinates[0], coordinates[1], renderer, 0);
+		m_deathAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
-		if (deathAnimation->getCurrentFrame() == deathAnimation->getTotalFrames() - 1) {
+		if (m_deathAnimation->getCurrentFrame() == m_deathAnimation->getTotalFrames() - 1) {
 			if (getRemainingLives() < 0) {
 				*gameState = GameState::GAME_OVER;
 			}
@@ -52,7 +52,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 				case EntityType::WALL:
 
-					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
+					m_lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 					velocity[0] = 0;
 					velocity[1] = 0;
 					break;
@@ -77,7 +77,7 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 					break;
 
 				case EntityType::DOOR:
-					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
+					m_lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 					velocity[0] = 0;
 					velocity[1] = 0;
 
@@ -98,27 +98,27 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 
 		//Checks the direction pacman is traveling and renders correct animation
 		if (velocity[0] > 0) {
-			lastAnimation = rightAnimation;
+			m_lastAnimation = rightAnimation;
 			rightAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		}
 		else if (velocity[0] < 0) {
-			lastAnimation = leftAnimation;
+			m_lastAnimation = leftAnimation;
 			leftAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		}
 		else if (velocity[1] > 0) {
-			lastAnimation = downAnimation;
+			m_lastAnimation = downAnimation;
 			downAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		}
 		else if (velocity[1] < 0) {
-			lastAnimation = upAnimation;
+			m_lastAnimation = upAnimation;
 			upAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 
 		}
 		else {
-			lastAnimation = startAnimation;
+			m_lastAnimation = startAnimation;
 			startAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 		}
 		//parent update function
@@ -129,10 +129,10 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth, SDL_Renderer* gameRenderer) : MovingEntity(104, 216, 3, mainSpriteSheet, textureWidth, textureHeight) {
 
 	m_input = std::make_shared <InputComponent>();
-	scoreComponent = std::make_shared<Score>(gameRenderer);
+	m_scoreComponent = std::make_shared<ScoreComponent>(gameRenderer);
 
 	setEntityType(EntityType::PACMAN);
-	lastAnimation = startAnimation;
+	m_lastAnimation = startAnimation;
 
 	m_pelletMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_chomp.wav");
 	m_fruitMunch = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_eatfruit.wav");
@@ -140,7 +140,7 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 	m_deathSound = std::make_shared<SoundComponent>("..\\Pacman2020\\sounds\\pacman_death.wav");
 
 
-	deathAnimation = std::make_shared<AnimationComponent>(11, mainSpriteSheet, textureWidth, textureHeight);
+	m_deathAnimation = std::make_shared<AnimationComponent>(11, mainSpriteSheet, textureWidth, textureHeight);
 
 	rightAnimation->addRect(457, 1, 13, 13);
 	rightAnimation->addRect(473, 1, 13, 13);
@@ -162,17 +162,17 @@ Pacman::Pacman(SDL_Texture* mainSpriteSheet, int textureHeight, int textureWidth
 	startAnimation->addRect(489, 1, 13, 13);
 	startAnimation->addRect(489, 1, 13, 13);
 
-	deathAnimation->addRect(489, 1, 13, 13);
-	deathAnimation->addRect(505, 1, 15, 13);
-	deathAnimation->addRect(519, 1, 15, 13);
-	deathAnimation->addRect(536, 1, 15, 13);
-	deathAnimation->addRect(552, 1, 15, 13);
-	deathAnimation->addRect(568, 1, 15, 13);
-	deathAnimation->addRect(584, 1, 15, 13);
-	deathAnimation->addRect(601, 1, 15, 13);
-	deathAnimation->addRect(615, 1, 15, 13);
-	deathAnimation->addRect(631, 1, 15, 13);
-	deathAnimation->addRect(647, 1, 15, 13);
+	m_deathAnimation->addRect(489, 1, 13, 13);
+	m_deathAnimation->addRect(505, 1, 15, 13);
+	m_deathAnimation->addRect(519, 1, 15, 13);
+	m_deathAnimation->addRect(536, 1, 15, 13);
+	m_deathAnimation->addRect(552, 1, 15, 13);
+	m_deathAnimation->addRect(568, 1, 15, 13);
+	m_deathAnimation->addRect(584, 1, 15, 13);
+	m_deathAnimation->addRect(601, 1, 15, 13);
+	m_deathAnimation->addRect(615, 1, 15, 13);
+	m_deathAnimation->addRect(631, 1, 15, 13);
+	m_deathAnimation->addRect(647, 1, 15, 13);
 }
 
 int Pacman::getRemainingLives()

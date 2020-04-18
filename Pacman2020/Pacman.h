@@ -7,7 +7,7 @@
 #include "AnimationComponent.h"
 #include "MovingEntity.h"
 #include "GameState.h"
-#include "Score.h"
+#include "ScoreComponent.h"
 #include "CollisionManager.h"
 #include "SoundComponent.h"
 #include "InputComponent.h"
@@ -15,7 +15,6 @@
 /*! \brief
  *		 child class of MovingEntity and contains all Pacman specific member variables and methods
  *
-
  */
 
 class Pacman : public MovingEntity
@@ -23,13 +22,13 @@ class Pacman : public MovingEntity
 private:
 	std::shared_ptr<InputComponent> m_input;
 
-	std::shared_ptr<Score> scoreComponent;/*!<Is responsible for rendering score to screen*/
+	std::shared_ptr<ScoreComponent> m_scoreComponent;/*!<Is responsible for rendering score to screen*/
 	std::shared_ptr<SoundComponent> m_pelletMunch;
 	std::shared_ptr<SoundComponent> m_fruitMunch;
 	std::shared_ptr<SoundComponent> m_ghostMunch;
 	std::shared_ptr<SoundComponent> m_deathSound;
-	std::shared_ptr<AnimationComponent> deathAnimation;
-	std::shared_ptr<AnimationComponent> lastAnimation = nullptr;
+	std::shared_ptr<AnimationComponent> m_deathAnimation;
+	std::shared_ptr<AnimationComponent> m_lastAnimation = nullptr;
 	int m_score = 0;/*!<keeps track of score*/
 	int m_remainingLife = 3;
 	int m_ghostPoints = 100;

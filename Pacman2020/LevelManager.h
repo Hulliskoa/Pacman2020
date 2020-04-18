@@ -23,12 +23,12 @@ private:
 	SDL_Texture* m_levelSpriteSheet = nullptr;/*<! spritesheet texture used to render the maze*/
 	int m_textureWidth = 0;/*<! width of the texture used to render the maze*/
 	int m_textureHeight = 0;/*<! height of the texture used to render the maze*/
-	int xMapOffset = 1;/*<! x offset to where the sprites should be rendered inside the sdl window*/
-	int yMapOffset = 4;/*<! y offset to where the sprites should be rendered inside the sdl window*/
-	int startingPelletCount = 0;
-	int currentLvl = 1;/*!<Keeps track of the current level*/
-	int currentMap = 1;/*!<Keeps track of the current map to be loaded*/
-	std::ifstream lvlFile;
+	int m_xMapOffset = 1;/*<! x offset to where the sprites should be rendered inside the sdl window*/
+	int m_yMapOffset = 4;/*<! y offset to where the sprites should be rendered inside the sdl window*/
+	int m_startingPelletCount = 0;
+	int m_currentLvl = 1;/*!<Keeps track of the current level*/
+	int m_currentMap = 1;/*!<Keeps track of the current map to be loaded*/
+	std::ifstream m_lvlFile;
 public:
 
 	LevelManager(SDL_Renderer* mainRenderer);

@@ -19,18 +19,18 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 
 
 	std::string path = "..\\Pacman2020\\levels\\lvl" + std::to_string(currentLvl) + ".txt";
-	lvlFile.open(path);
+	m_lvlFile.open(path);
 	char currentChar;
 	int rowCounter = 0;
 	int columnCounter = 0;
 
-	if (!lvlFile) {
+	if (!m_lvlFile) {
 		std::cerr << "Unable to open lvlfile" << std::endl;
-		lvlFile.clear();
-		lvlFile.close();
+		m_lvlFile.clear();
+		m_lvlFile.close();
 		return false;
 	}
-	while (lvlFile >> currentChar) {
+	while (m_lvlFile >> currentChar) {
 
 		levelArray[rowCounter][columnCounter] = currentChar;
 		columnCounter++;
@@ -43,8 +43,8 @@ bool LevelManager::readLevelFromTxt(int currentLvl) {
 		}
 	}
 
-	lvlFile.clear();
-	lvlFile.close();
+	m_lvlFile.clear();
+	m_lvlFile.close();
 	return true;
 }
 void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManager)
@@ -54,7 +54,7 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 		std::cout << "could not load maze spritesheet" << std::endl;
 	}
 
-	if (!readLevelFromTxt(currentMap)) {
+	if (!readLevelFromTxt(m_currentMap)) {
 		std::cout << "could not open lvlfile" << std::endl;
 	}
 
@@ -371,7 +371,7 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 
 			}
 			if (currentTile != 's') {
-				lvlEntity = std::make_shared<Entity>((x + xMapOffset) * 8, (y + yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
+				lvlEntity = std::make_shared<Entity>((x + m_xMapOffset) * 8, (y + m_yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
 				entityArray.emplace_back(lvlEntity);
 				lvlEntity->startAnimation->addRect(xCoord, yCoord, 8, 8);
 				lvlEntity->setEntityType(entityType);
@@ -386,10 +386,10 @@ void LevelManager::createLevel(std::shared_ptr<CollisionManager> collisionManage
 	}
 
 
-	currentLvl++;
-	currentMap++;
-	if (currentMap > 3) {
-		currentMap = 1;
+	m_currentLvl++;
+	m_currentMap++;
+	if (m_currentMap > 3) {
+		m_currentMap = 1;
 	}
 }
 void LevelManager::renderLevel(SDL_Renderer* gameRenderer)
@@ -437,7 +437,7 @@ void LevelManager::createInterSections(std::shared_ptr<CollisionManager> collisi
 
 				if (countTiles >= 2) {
 					std::shared_ptr<Entity> lvlEntity;
-					lvlEntity = std::make_shared<Entity>((x + xMapOffset) * 8, (y + yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
+					lvlEntity = std::make_shared<Entity>((x + m_xMapOffset) * 8, (y + m_yMapOffset) * 8, 1, m_levelSpriteSheet, m_textureWidth, m_textureHeight);
 					lvlEntity->startAnimation->addRect(192, 88, 8, 8);
 					lvlEntity->setEntityType(entityType);
 					collisionManager->addEntity(lvlEntity);
@@ -502,7 +502,7 @@ int LevelManager::pelletCount() {
 }
 int LevelManager::getStartingPelletCount()
 {
-	return startingPelletCount;
+	return m_startingPelletCount;
 }
 void LevelManager::openDoors()
 {
@@ -519,11 +519,11 @@ void LevelManager::closeDoors()
 
 int LevelManager::getCurrentLevel()
 {
-	return currentLvl;
+	return m_currentLvl;
 }
 
 void LevelManager::resetLevels()
 {
-	currentLvl = 1;
-	currentMap = 1;
+	m_currentLvl = 1;
+	m_currentMap = 1;
 }

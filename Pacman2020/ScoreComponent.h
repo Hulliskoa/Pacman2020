@@ -7,7 +7,7 @@
  *
  * 
  */
-class Score
+class ScoreComponent
 {
 private:
 	/*!<Animations for numbers in score counter*/
@@ -30,7 +30,7 @@ private:
 
 public:
 
-	Score(SDL_Renderer* gameRenderer);
+	ScoreComponent(SDL_Renderer* gameRenderer);
 
 	/**
 	Updates current score
