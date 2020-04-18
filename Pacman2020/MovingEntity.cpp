@@ -11,14 +11,14 @@ void MovingEntity::update() {
 	if (coordinates[1] < -8) {
 		coordinates[1] = 250;
 	}
-	if (coordinates[0] > 250) {
-		coordinates[0] = -8;
+	if (coordinates[0] > 240) {
+		coordinates[0] = -4;
 	}
 	if (coordinates[1] > 280) {
 		coordinates[1] = -8;
 	}
-	if (coordinates[0] < -8) {
-		coordinates[0] = 280;
+	if (coordinates[0] < -4) {
+		coordinates[0] = 240;
 	}
 
 
