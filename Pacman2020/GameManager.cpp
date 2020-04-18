@@ -186,7 +186,7 @@ void GameManager::inGame() {
 	}
 
 	//ending flee
-	if (startedFleeing == true && (3000ms + timeSinceFlee) <= 0ms) {
+	if (startedFleeing == true && (3000ms + timeSinceFlee) <= 0ms && *gameState == GameState::GAME_RUNNING_FLEE) {
 		*gameState = GameState::GAME_RUNNING_FLEE_ENDING;
 	}
 
@@ -208,41 +208,35 @@ void GameManager::inGame() {
 		shadow->aiComponent->setTarget(670, 10);
 		startedFleeing = true;
 	}
+
 	//Level complete
 	if (m_levelManager->pelletCount() == 0) {
 		lvlLoaded = false;
-		if (m_levelManager->getCurrentLevel() % 10 == 2) {
-			shadow->increaseSpeed();
-			pokey->increaseSpeed();
-			bashful->increaseSpeed();
-			speedy->increaseSpeed();
-		}
-
 		*gameState = GameState::LEVEL_COMPLETE;
 	}
 
-	if (*gameState == GameState::PACMAN_DIED) {
-		pacman->setVelocity(0, 0);
-		speedy->setVelocity(0, 0);
-		bashful->setVelocity(0, 0);
-		pokey->setVelocity(0, 0);
-		shadow->setVelocity(0, 0);
-
-	}
-
+	//Restart level
 	if (*gameState == GameState::RESTART_LEVEL) {
 		pacman->setCoordinates(104, 216);
 		shadow->setCoordinates(116, 120);
 		speedy->setCoordinates(132, 152);
 		bashful->setCoordinates(112, 152);
 		pokey->setCoordinates(100, 152);
+
+		speedy->setOutSideCage(false);
+		bashful->setOutSideCage(false);
+		pokey->setOutSideCage(false);
+
 		speedy->setVelocity(1, 0);
 		bashful->setVelocity(0, -1);
 		pokey->setVelocity(1, 0);
 		shadow->setVelocity(1, 0);
+
 		speedy->setEntityType(EntityType::GHOST_RETURN);
 		bashful->setEntityType(EntityType::GHOST_RETURN);
 		pokey->setEntityType(EntityType::GHOST_RETURN);
+
+
 
 		speedy->aiComponent->setTarget(116, 120);
 		bashful->aiComponent->setTarget(116, 120);
@@ -280,12 +274,21 @@ void GameManager::nextLvl()
 		pacman->setCoordinates(104, 216);
 
 		shadow->setCoordinates(116, 120);
-		speedy->setCoordinates(132, 144);
-		bashful->setCoordinates(116, 144);
-		pokey->setCoordinates(100, 144);
-		speedy->setVelocity(0, 0);
-		bashful->setVelocity(0, 0);
-		pokey->setVelocity(0, 0);
+		speedy->setCoordinates(132, 152);
+		bashful->setCoordinates(112, 152);
+		pokey->setCoordinates(100, 152);
+
+		speedy->setEntityType(EntityType::GHOST);
+		bashful->setEntityType(EntityType::GHOST);
+		pokey->setEntityType(EntityType::GHOST);
+
+		speedy->setOutSideCage(false);
+		bashful->setOutSideCage(false);
+		pokey->setOutSideCage(false);
+
+		speedy->setVelocity(1, 0);
+		bashful->setVelocity(0, -1);
+		pokey->setVelocity(1, 0);
 		shadow->setVelocity(1, 0);
 		lvlLoaded = true;
 	}
