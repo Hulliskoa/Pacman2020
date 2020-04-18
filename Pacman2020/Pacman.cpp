@@ -31,10 +31,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 			{
 
 			case EntityType::GHOST:
-				std::cout << "hit ghost" << std::endl;
 				if (*gameState == GameState::GAME_RUNNING_FLEE || *gameState == GameState::GAME_RUNNING_FLEE_ENDING) {
-					std::cout << "hit scared ghost" << std::endl;
-					scoreComponent->renderGhostPoints(shared_from_this(), ghostPoints);
+
 					collidedWith->setEntityType(EntityType::GHOST_EYES);
 					score += ghostPoints;
 					m_ghostMunch->play(1, 0, 70);
@@ -45,7 +43,6 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 					m_deathSound->play(1, 0, 70);
 					pointDoubler = 2;
 					*gameState = GameState::PACMAN_DIED;
-					std::cout << "hit ghost" << std::endl;
 					remainingLife--;
 
 				}
@@ -79,16 +76,10 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 				break;
 
 			case EntityType::DOOR:
-				if ((velocity[0] != lastVelocity[0]) || (velocity[1] != lastVelocity[1])) {
-					velocity[0] = lastVelocity[0];
-					velocity[1] = lastVelocity[1];
-					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
-				}
-				else {
 					lastAnimation->render(coordinates[0], coordinates[1], renderer, 0);
 					velocity[0] = 0;
 					velocity[1] = 0;
-				}
+			
 				break;
 
 			default:
@@ -101,14 +92,8 @@ void Pacman::update(std::shared_ptr<GameState> gameState, std::shared_ptr<Collis
 		coordinates[1] += velocity[1];
 
 		if (collisionManager->checkIntersection(shared_from_this())) {
-			m_input->update(shared_from_this(), gameState, true);
+			m_input->update(shared_from_this(), gameState);
 		}
-		else {
-			m_input->update(shared_from_this(), gameState, false);
-		}
-
-
-
 
 		//Checks the direction pacman is traveling and renders correct animation
 		if (velocity[0] > 0) {
